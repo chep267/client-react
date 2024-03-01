@@ -1,0 +1,34 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2023.
+ *
+ */
+
+import * as React from 'react';
+
+/** hooks */
+import { AuthContext, defaultAuthState } from '@module-auth/constants';
+
+/** types */
+import { AuthContextProps, AuthProviderProps } from '@module-auth/models';
+
+export default function AuthProvider(props: AuthProviderProps) {
+    const { children } = props;
+    const [auth, setAuth] = React.useState<AuthContextProps['data']>(defaultAuthState);
+
+    const changeAuth = React.useCallback<AuthContextProps['method']['setAuth']>(({ isAuth, me } = defaultAuthState) => {
+        const user: AuthContextProps['data']['me'] = { ...me, uid: me.uid };
+        setAuth({ isAuth, me: user });
+    }, []);
+
+    const store = React.useMemo<AuthContextProps>(() => {
+        return {
+            data: auth,
+            method: {
+                setAuth: changeAuth,
+            },
+        };
+    }, [auth]);
+
+    return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>;
+}
