@@ -22,7 +22,6 @@ export const en = Object.freeze({
     'module.auth.status.password.empty': 'Password is empty!',
     'module.auth.status.email.invalid': 'Email is invalid!',
     'module.auth.status.password.invalid': '8 characters minimum, 1 lower case, 1 upper case, 1 number, 1 special character!',
-    'module.auth.status.email.incorrect': 'Email is invalid!',
 
     // button
     'module.auth.button.signin': 'Sign in',
@@ -31,6 +30,9 @@ export const en = Object.freeze({
     'module.auth.button.clear': 'Refresh',
 
     // notify
-    'module.auth.notify.signin.error.4xx': 'Account or password is incorrect!',
-    'module.auth.notify.5xx': 'The server is not responding, please try again later.',
+    'module.auth.notify.refresh.error': 'This session has expired!!',
+    'module.auth.notify.signin.error': 'Account or password is incorrect!',
+    'module.auth.notify.register.success': 'Account registered successfully!',
+    'module.auth.notify.register.error': 'Account already exists!',
+    'module.auth.notify.server.error': 'The server is not responding, please try again later.',
 });

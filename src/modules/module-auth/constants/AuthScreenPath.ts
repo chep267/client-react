@@ -5,10 +5,9 @@
  */
 
 export const AuthScreenPath = Object.freeze({
-    home: '',
+    home: '/',
+    start: '/start',
     signin: '/signin',
-    verifyOTP: '/verify-code',
     register: '/register',
     recover: '/recover',
-    resetPass: 'password/reset-verification',
 });

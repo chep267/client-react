@@ -8,9 +8,6 @@ import * as React from 'react';
 import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-/** apis */
-import { authApi } from '@module-auth/apis';
-
 /** constants */
 import { AppKey } from '@module-base/constants';
 import { AccountState, AuthScreenPath } from '@module-auth/constants';
@@ -30,17 +27,18 @@ export default function AuthRoute(props: PropsWithChildren) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const AUTH = useAuth();
-    const accessToken = Cookies.get(AppKey.accessToken);
-
-    const accountState = AUTH.data.isAuth ? AccountState.signedIn : accessToken ? AccountState.reSignin : AccountState.signin;
+    const uid = Cookies.get(AppKey.uid);
+    const accountState = AUTH.data.isAuthentication
+        ? AccountState.signedIn
+        : uid
+          ? AccountState.reSignin
+          : AccountState.signin;
 
     React.useEffect(() => {
         if (accountState === AccountState.reSignin) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-            authApi.restart({}).then(() => {
-                // @ts-ignore
-                AUTH.method.setAuth({ isAuth: true, me: { email: 'dong', uid: 'dong' } });
-            });
+            AUTH.method.setAuth();
+            navigate(AuthScreenPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && Object.values(AuthScreenPath).includes(pathname as any)) {
             navigate(AuthScreenPath.home, { replace: true });

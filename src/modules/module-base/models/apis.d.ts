@@ -9,3 +9,9 @@ export type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults
 export type TypeCallApiDebounce = { timer?: number };
 
 export type TypeCallApiPayload<Data = unknown> = TypeCallApiDebounce & Data;
+
+export type TypeResponseApi<Data = unknown> = {
+    message: string;
+    status: string | number;
+    data: Data;
+};

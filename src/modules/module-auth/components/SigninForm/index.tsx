@@ -11,7 +11,7 @@ import { Box, Paper } from '@mui/material';
 import { InputEmail, InputPassword, ButtonSubmit, AuthBreadcrumbs } from '@module-auth/components';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks';
+import { useSignin } from '@module-auth/hooks/useSignin.ts';
 import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
 
 export default function SigninForm() {

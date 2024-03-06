@@ -5,7 +5,7 @@
  */
 
 import * as React from 'react';
-import { useMediaQuery } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** utils */
 import { SiderContext } from '@module-global/constants';

@@ -9,7 +9,8 @@ import Cookies from 'js-cookie';
 
 /** lib components */
 import { StyledEngineProvider } from '@mui/material/styles';
-import { CssBaseline, useMediaQuery, createTheme, ThemeProvider as ThemeProviderMUI } from '@mui/material';
+import { CssBaseline, createTheme, ThemeProvider as ThemeProviderMUI } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
 import { AppKey } from '@module-base/constants';

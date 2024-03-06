@@ -31,6 +31,9 @@ export const vi = Object.freeze({
     'module.auth.button.clear': 'Làm mới',
 
     // notify
-    'module.auth.notify.signin.error.4xx': 'Tài khoản hoặc mật khẩu không chính xác!',
-    'module.auth.notify.5xx': 'Máy chủ không phản hồi, vui lòng thử lại sau.',
+    'module.auth.notify.refresh.error': 'Phiên đăng nhập đã hết hạn!',
+    'module.auth.notify.signin.error': 'Tài khoản hoặc mật khẩu không chính xác!',
+    'module.auth.notify.register.success': 'Tài khoản đăng kí thành công!',
+    'module.auth.notify.register.error': 'Tài khoản đã tồn tại!',
+    'module.auth.notify.server.error': 'Máy chủ không phản hồi, vui lòng thử lại sau.',
 });

@@ -5,13 +5,13 @@
  */
 
 /** types */
-import type { TypeCallApiPayload } from '@module-base/models';
+import type { TypeCallApiPayload, TypeResponseApi } from '@module-base/models';
 import type { TypeUser } from '@module-user/models';
 
 export interface TypeApiAuth {
     Signin: {
-        Payload: TypeCallApiPayload<{ email: string; password: string }>;
-        Response: { user: TypeUser };
+        Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
+        Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
     };
     Signout: {
         Payload: TypeCallApiPayload;
@@ -19,6 +19,10 @@ export interface TypeApiAuth {
     };
     Restart: {
         Payload: TypeCallApiPayload;
-        Response: unknown;
+        Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
+    };
+    Register: {
+        Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
+        Response: TypeResponseApi;
     };
 }

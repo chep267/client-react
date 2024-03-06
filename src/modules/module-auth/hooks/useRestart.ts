@@ -4,41 +4,46 @@
  *
  */
 
+import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
 import { authApi } from '@module-auth/apis/authApi.ts';
 
+/** constants */
+import { AppKey } from '@module-base/constants/AppKey.ts';
+
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks';
-import { useAuth } from '@module-auth/hooks';
+import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
 /** types */
 import type { AxiosError } from '@module-base/models';
 import type { TypeApiAuth } from '@module-auth/models';
 
-export function useSignin() {
+export function useRestart() {
     const AUTH = useAuth();
     const NOTIFY = useNotify();
 
-    const SIGN_IN = useMutation({
-        mutationFn: authApi.signin,
-        onSuccess: async (response: TypeApiAuth['Signin']['Response'], data) => {
+    const RESTART = useMutation({
+        mutationFn: authApi.restart,
+        onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             AUTH.method.setAuth({ isAuth: true, me: response.data.user });
-            debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
+            debounce(response.data.token.exp, () => RESTART.mutate({})).then();
         },
-        onError: (error: AxiosError) => {
+        onError: async (error: AxiosError) => {
             let intlMessage = '';
             const code = Number(error?.response?.status);
+            Cookies.remove(AppKey.uid);
             switch (true) {
                 case !code || code >= 500:
                     intlMessage = 'module.auth.notify.server.error';
                     break;
                 case code >= 400:
-                    intlMessage = 'module.auth.notify.signin.error';
+                    intlMessage = 'module.auth.notify.refresh.error';
                     break;
                 default:
                     break;
@@ -51,5 +56,5 @@ export function useSignin() {
         },
     });
 
-    return SIGN_IN;
+    return RESTART;
 }

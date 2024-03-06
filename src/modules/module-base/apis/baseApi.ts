@@ -8,38 +8,39 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
-import { API_HOST } from '@root/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppEnv } from '@module-base/constants/AppEnv.ts';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
+
+/** utils */
+import { debounce } from '@module-base/utils/debounce.ts';
 
 /** types */
 import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/models';
 
 /** for default api */
 const axiosDefaultConfig: CreateAxiosDefaults = {
-    baseURL: API_HOST,
-    headers: { 'Content-Type': 'application/json' },
-    timeout: 600,
+    baseURL: AppEnv.apiHost,
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Credentials': true,
+        lang: 'en',
+    },
+    timeout: AppTimer.timeoutApi,
+    withCredentials: true,
 };
 const axiosClient = axios.create(axiosDefaultConfig);
 
 /** for file api */
 const axiosDefaultFormDataConfig = {
-    baseURL: API_HOST,
+    baseURL: AppEnv.apiHost,
     headers: { 'Content-Type': 'multipart/form-data' },
 };
 const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 
 /** Add a request interceptor */
 axiosClient.interceptors.request.use(
-    (config) => {
-        const token = Cookies.get(AppKey.accessToken);
-        if (config.headers) {
-            config.headers.Authorization = token ? `Bearer ${token}` : '';
-            config.headers.lang = 'en';
-        }
-
-        return config;
-    },
+    (config) => config,
     (error) => Promise.reject(error)
 );
 
@@ -51,15 +52,17 @@ axiosClient.interceptors.response.use(
             status: response.status,
         };
     },
-    (error: AxiosError) => {
-        if (error.response?.status === 401) {
-            Cookies.remove(AppKey.accessToken);
+    async (error: AxiosError) => {
+        /** khoan, dừng khoảng chừng là 600ms */
+        await debounce(600);
+        if (error.response?.status === 4010) {
+            Cookies.remove(AppKey.uid);
         }
         return Promise.reject(error);
     }
 );
 
-export const callApi = async <R>(options: AxiosRequestConfig, isCDN?: boolean) => {
+export const baseApi = async <Res>(options: AxiosRequestConfig, isCDN?: boolean) => {
     const client = isCDN ? axiosClientCDN : axiosClient;
-    return client<any, R>(options);
+    return client<any, Res, any>(options);
 };

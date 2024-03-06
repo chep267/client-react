@@ -24,7 +24,7 @@ const Particle = React.memo(function Particle(props: IParticlesProps) {
 
     React.useEffect(() => {
         initParticlesEngine(async (engine) => {
-            // await loadSlim(engine);
+            await loadSlim(engine);
         }).then(() => {
             setInit(true);
         });

@@ -5,6 +5,7 @@
  */
 
 export const AppTimer = Object.freeze({
+    timeoutApi: 0,
     pendingApi: 600,
     searching: 300,
     notifyDuration: 2000,

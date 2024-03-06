@@ -5,8 +5,8 @@
  */
 
 export const AppKey = Object.freeze({
-    accessToken: 'access_token',
-    localEmail: 'local_email',
+    uid: 'local_uid',
+    email: 'local_email',
     theme: 'local_theme',
     locale: 'local_locale',
 });

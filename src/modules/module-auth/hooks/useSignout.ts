@@ -8,7 +8,7 @@ import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { authApi } from '@module-auth/apis';
+import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { AppKey } from '@module-base/constants';
