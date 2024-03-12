@@ -7,10 +7,11 @@
 import * as React from 'react';
 
 /** components */
-import { ErrorBoundary } from '@module-base/components';
+import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
 /** constants */
-import { defaultNotifyState, NotifyContext } from '@module-base/constants';
+import { defaultNotifyState } from '@module-base/constants/defaultNotifyState.ts';
+import { NotifyContext } from '@module-base/constants/NotifyContext.ts';
 
 /** types */
 import type { TypeNotifyContext, TypeNotify, NotifyProviderProps } from '@module-base/models';

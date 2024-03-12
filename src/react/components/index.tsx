@@ -10,10 +10,10 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@root/utils/queryClient.ts';
 
 /** providers */
-import { NotifyProvider } from '@module-base/components';
-import { ThemeProvider } from '@module-theme/components';
-import { LanguageProvider } from '@module-language/components';
-import { AuthProvider } from '@module-auth/components';
+import NotifyProvider from '@module-base/components/NotifyProvider';
+import ThemeProvider from '@module-theme/components/ThemeProvider';
+import LanguageProvider from '@module-language/components/LanguageProvider';
+import AuthProvider from '@module-auth/components/AuthProvider';
 
 /** screens */
 import MainScreen from '@module-global/screens/MainScreen';

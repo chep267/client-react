@@ -8,14 +8,17 @@
 import { Box, Paper } from '@mui/material';
 
 /** components */
-import { InputEmail, InputPassword, ButtonSubmit, AuthBreadcrumbs } from '@module-auth/components';
+import InputEmail from '@module-auth/components/InputEmail';
+import InputPassword from '@module-auth/components/InputPassword';
+import ButtonSubmit from '@module-auth/components/ButtonSubmit';
+import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks/useSignin.ts';
+import { useSignIn } from '@module-auth/hooks/useSignIn.ts';
 import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
 
-export default function SigninForm() {
-    const SIGN_IN = useSignin();
+export default function SignInForm() {
+    const SIGN_IN = useSignIn();
     const {
         handleSubmit,
         control,

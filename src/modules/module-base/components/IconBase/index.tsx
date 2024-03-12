@@ -7,7 +7,7 @@
 import * as React from 'react';
 
 /** lib components */
-import { Skeleton } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 /** types */
 import type { IconBaseProps, TypeIcons } from '@module-base/models';

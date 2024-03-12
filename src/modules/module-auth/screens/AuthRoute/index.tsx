@@ -9,18 +9,19 @@ import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
-import { AccountState, AuthScreenPath } from '@module-auth/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AccountState } from '@module-auth/constants/AccountState';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks';
+import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
 /** types */
 import type { PropsWithChildren } from 'react';
 
 /** screens */
 const StartScreen = React.lazy(() => import('@module-base/components/StartLoading'));
-const SigninScreen = React.lazy(() => import('@module-auth/screens/SigninScreen'));
+const SignInScreen = React.lazy(() => import('@module-auth/screens/SignInScreen'));
 
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
@@ -53,7 +54,7 @@ export default function AuthRoute(props: PropsWithChildren) {
                 ) : accountState === AccountState.reSignin ? (
                     <StartScreen />
                 ) : (
-                    <SigninScreen />
+                    <SignInScreen />
                 )}
             </React.Suspense>
         );

@@ -7,6 +7,6 @@
 import * as React from 'react';
 
 /** constants */
-import { AuthContext } from '@module-auth/constants';
+import { AuthContext } from '@module-auth/constants/AuthContext.ts';
 
 export const useAuth = () => React.useContext(AuthContext);

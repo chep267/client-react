@@ -9,19 +9,20 @@ import classnames from 'classnames';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { Drawer, Button, Divider, Tooltip } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import Drawer from '@mui/material/Drawer';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
 
-/** icons */
-import {
-    KeyboardDoubleArrowRight as KeyboardDoubleArrowRightIcon,
-    KeyboardDoubleArrowLeft as KeyboardDoubleArrowLeftIcon,
-} from '@mui/icons-material';
+/** lib icons */
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 /** components */
 import ListApp from './ListApp';
 
 /** hooks */
-import { useSider } from '@module-global/hooks';
+import { useSider } from '@module-global/hooks/useSider.ts';
 
 const AppSider = React.memo(function AppSider() {
     const {

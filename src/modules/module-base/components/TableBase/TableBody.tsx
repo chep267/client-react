@@ -11,7 +11,7 @@ import classnames from 'classnames';
 import { TableBody as TableBodyElem, TableRow, TableCell } from '@mui/material';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 /** styles */
 import useStyles from './styles';

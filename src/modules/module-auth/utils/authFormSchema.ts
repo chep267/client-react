@@ -7,7 +7,7 @@
 import * as yup from 'yup';
 
 /** constants */
-import { Regex } from '@module-auth/constants';
+import { Regex } from '@module-auth/constants/Regex.ts';
 
 export const authFormSchema = yup
     .object({

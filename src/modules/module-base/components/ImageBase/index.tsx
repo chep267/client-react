@@ -8,7 +8,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 /** lib components */
-import { Skeleton } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
 
 /** styles */
 import { useStyles } from './styles';

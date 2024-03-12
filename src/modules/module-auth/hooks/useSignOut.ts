@@ -11,22 +11,22 @@ import { useMutation } from '@tanstack/react-query';
 import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks';
+import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
-export function useSignout() {
+export function useSignOut() {
     const AUTH = useAuth();
 
     const SIGN_OUT = useMutation({
         mutationFn: authApi.signout,
         retry: 3,
         onSettled: () => {
-            Cookies.remove(AppKey.accessToken);
+            Cookies.remove(AppKey.uid);
             AUTH.method.setAuth();
         },
     });
 
-    return { isAuth: AUTH.data.isAuth, ...SIGN_OUT };
+    return { isAuthentication: AUTH.data.isAuthentication, ...SIGN_OUT };
 }

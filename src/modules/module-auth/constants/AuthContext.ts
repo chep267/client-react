@@ -7,7 +7,7 @@
 import * as React from 'react';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { defaultAuthState } from './defaultAuthState.ts';
 
 /** types */

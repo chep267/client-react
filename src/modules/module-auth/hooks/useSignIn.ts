@@ -13,21 +13,21 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 import { debounce } from '@module-base/utils/debounce.ts';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks';
-import { useAuth } from '@module-auth/hooks';
+import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
 /** types */
 import type { AxiosError } from '@module-base/models';
 import type { TypeApiAuth } from '@module-auth/models';
 
-export function useSignin() {
+export function useSignIn() {
     const AUTH = useAuth();
     const NOTIFY = useNotify();
 
     const SIGN_IN = useMutation({
         mutationFn: authApi.signin,
-        onSuccess: async (response: TypeApiAuth['Signin']['Response'], data) => {
-            AUTH.method.setAuth({ isAuth: true, me: response.data.user });
+        onSuccess: async (response: TypeApiAuth['SignIn']['Response'], data) => {
+            AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
             debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
         },
         onError: (error: AxiosError) => {

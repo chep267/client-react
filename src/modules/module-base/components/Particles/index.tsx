@@ -10,7 +10,7 @@ import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@mui/material';
 
 /** constants */
-import { particleOptions } from '@module-base/utils';
+import { particleOptions } from '@module-base/utils/particleOptions.ts';
 
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';

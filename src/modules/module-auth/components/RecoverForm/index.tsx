@@ -8,14 +8,16 @@
 import { Box, Paper } from '@mui/material';
 
 /** components */
-import { InputEmail, ButtonSubmit, AuthBreadcrumbs } from '@module-auth/components';
+import InputEmail from '@module-auth/components/InputEmail';
+import ButtonSubmit from '@module-auth/components/ButtonSubmit';
+import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks';
+import { useSignIn } from '@module-auth/hooks/useSignIn.ts';
 import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
 
 export default function RecoverForm() {
-    const SIGN_IN = useSignin();
+    const SIGN_IN = useSignIn();
     const {
         handleSubmit,
         control,

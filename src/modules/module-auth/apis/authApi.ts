@@ -17,10 +17,10 @@ import { debounce } from '@module-base/utils/debounce.ts';
 /** types */
 import type { TypeApiAuth } from '@module-auth/models';
 
-const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
+const apiSignin = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<TypeApiAuth['Signin']['Response']>({ method: 'post', url: AuthApi.signin, data: { email, password } });
+        return baseApi<TypeApiAuth['SignIn']['Response']>({ method: 'post', url: AuthApi.signin, data: { email, password } });
     };
     const [res] = await Promise.all([callApi(), debounce(timer)]);
     return res;

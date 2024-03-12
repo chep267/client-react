@@ -8,7 +8,7 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** utils */
-import { SiderContext } from '@module-global/constants';
+import { SiderContext } from '@module-global/constants/SiderContext.ts';
 
 /** types */
 import type { SiderProviderProps, TypeSiderContext } from '@module-global/models';

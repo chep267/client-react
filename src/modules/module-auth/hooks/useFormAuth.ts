@@ -9,10 +9,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
 
 /** utils */
-import { authFormSchema } from '@module-auth/utils';
+import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
 export function useFormAuth({ type }: { type: 'signin' | 'register' | 'recover' }) {
     return useForm({

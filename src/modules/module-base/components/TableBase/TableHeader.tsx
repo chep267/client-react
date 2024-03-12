@@ -8,8 +8,14 @@ import * as React from 'react';
 import { visuallyHidden } from '@mui/utils';
 
 /** lib components */
-import { Box, TableHead, TableRow, TableCell, TableSortLabel } from '@mui/material';
-import { ArrowDropDown as ArrowDropDownIcon } from '@mui/icons-material';
+import Box from '@mui/material/Box';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel from '@mui/material/TableSortLabel';
+
+/** lib icons */
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 /** styles */
 import useStyles from './styles';

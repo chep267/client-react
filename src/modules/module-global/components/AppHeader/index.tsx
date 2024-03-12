@@ -7,10 +7,13 @@
 import * as React from 'react';
 
 /** lib components */
-import { AppBar, Toolbar, Box } from '@mui/material';
+import Box from '@mui/material/Box';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
 
-/** icons */
-import { Notifications as NotificationsIcon, Message as MessageIcon } from '@mui/icons-material';
+/** lib icons */
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import MessageIcon from '@mui/icons-material/Message';
 
 /** components */
 import AppInfo from './AppInfo.tsx';

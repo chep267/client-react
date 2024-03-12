@@ -7,6 +7,6 @@
 import * as React from 'react';
 
 /** constants */
-import { SiderContext } from '@module-global/constants';
+import { SiderContext } from '@module-global/constants/SiderContext.ts';
 
 export const useSider = () => React.useContext(SiderContext);

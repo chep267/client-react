@@ -7,7 +7,7 @@
 /** lib components */
 import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
-import { TextField } from '@mui/material';
+import TextField from '@mui/material/TextField';
 
 /** types */
 import type { Control, FieldValues, FieldPath } from 'react-hook-form';

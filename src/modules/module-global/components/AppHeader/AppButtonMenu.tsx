@@ -8,10 +8,12 @@ import * as React from 'react';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { Tooltip, Button, Menu } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import Button from '@mui/material/Button';
 
-/** icons */
-import { Menu as MenuIcon } from '@mui/icons-material';
+/** lib icons */
+import MenuIcon from '@mui/icons-material/Menu';
 
 /** components */
 import MenuSetting from './MenuSetting.tsx';

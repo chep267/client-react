@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { Box, Typography } from '@mui/material';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks';
+import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 
 function TimeToday() {
     const {

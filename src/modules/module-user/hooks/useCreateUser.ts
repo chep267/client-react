@@ -7,10 +7,10 @@
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { apiCreateUser } from '@module-user/apis';
+import { apiCreateUser } from '@module-user/apis/userApi.ts';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks';
+import { useNotify } from '@module-base/hooks/useNotify.ts';
 
 export function useCreateUser() {
     const NOTIFY = useNotify();

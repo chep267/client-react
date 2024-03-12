@@ -9,13 +9,13 @@ import classnames from 'classnames';
 
 /** lib components */
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants';
+import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 
 /** hooks */
-import { useSider } from '@module-global/hooks';
+import { useSider } from '@module-global/hooks/useSider.ts';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));

@@ -8,22 +8,22 @@ import * as React from 'react';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { List } from '@mui/material';
-import {
-    DarkMode as DarkModeIcon,
-    LightMode as LightModeIcon,
-    Logout as LogoutIcon,
-    Palette as PaletteIcon,
-    Translate as TranslateIcon,
-} from '@mui/icons-material';
+import List from '@mui/material/List';
+
+/** lib icons */
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import LogoutIcon from '@mui/icons-material/Logout';
+import PaletteIcon from '@mui/icons-material/Palette';
+import TranslateIcon from '@mui/icons-material/Translate';
 
 /** components */
-import { NestedItem } from '@module-base/components';
+import NestedItem from '@module-base/components/NestedItem';
 
 /** hooks */
-import { useTheme } from '@module-theme/hooks';
-import { useLanguage } from '@module-language/hooks';
-import { useSignout } from '@module-auth/hooks';
+import { useTheme } from '@module-theme/hooks/useTheme.ts';
+import { useLanguage } from '@module-language/hooks/useLanguage.ts';
+import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
 
 /** types */
 import type { NestedItemProps } from '@module-base/models';
@@ -37,7 +37,7 @@ export default function MenuSetting(props: Props) {
 
     const THEME = useTheme();
     const LANGUAGE = useLanguage();
-    const SIGN_OUT = useSignout();
+    const SIGN_OUT = useSignOut();
 
     const menuBase = React.useRef<NestedItemProps[]>([
         {
@@ -110,7 +110,7 @@ export default function MenuSetting(props: Props) {
     return (
         <List component="nav">
             {renderMenuBase}
-            {SIGN_OUT.isAuth ? renderMenuSignOut : null}
+            {SIGN_OUT.isAuthentication ? renderMenuSignOut : null}
         </List>
     );
 }

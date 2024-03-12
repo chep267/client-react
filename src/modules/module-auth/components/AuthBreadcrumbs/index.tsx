@@ -10,7 +10,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants';
+import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
 
 /** types */
 export type TypeAuthBreadcrumbsItem = {

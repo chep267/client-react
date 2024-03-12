@@ -7,10 +7,12 @@
 import { collection, doc, getDoc, getDocs, limit, query, setDoc, getFirestore } from 'firebase/firestore';
 
 /** constants */
-import { AppTimer, firebaseRef } from '@module-base/constants';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { firebaseRef } from '@module-base/constants/firebaseRef.ts';
 
 /** utils */
-import { debounce, firebaseApp } from '@module-base/utils';
+import { debounce } from '@module-base/utils/debounce.ts';
+import { firebaseApp } from '@module-base/utils/firebaseApp.ts';
 
 /** types */
 import type { TypeItemIds, TypeItems } from '@module-base/models';

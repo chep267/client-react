@@ -12,10 +12,10 @@ import { FormattedMessage } from 'react-intl';
 import { Snackbar, Alert, AlertTitle } from '@mui/material';
 
 /** constants */
-import { AppTimer } from '@module-base/constants';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
 
 /** utils */
-import { useNotify } from '@module-base/hooks';
+import { useNotify } from '@module-base/hooks/useNotify.ts';
 
 /** styles */
 import useStyles from './styles';

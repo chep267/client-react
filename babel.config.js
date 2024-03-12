@@ -5,25 +5,25 @@
  */
 
 /** module path */
-const ModuleArray = ['@module-base', '@module-theme', '@module-language', '@module-global', '@module-user', '@module-auth'];
+// const ModuleArray = ['@module-base', '@module-theme', '@module-language', '@module-global', '@module-user', '@module-auth'];
 
-const treeShakingModule = () => {
-    const output = {};
-    ModuleArray.forEach((module) => {
-        ['constants', 'hooks', 'utils'].forEach((lib) => {
-            output[`${module}/${lib}`] = {
-                transform: (path) => `${module}/${lib}/${path}`,
-                preventFullImport: false,
-                skipDefaultConversion: true,
-            };
-        });
-        output[`${module}/components`] = {
-            transform: (path) => `${module}/components/${path}`,
-            preventFullImport: true,
-        };
-    });
-    return output;
-};
+// const treeShakingModule = () => {
+//     const output = {};
+//     ModuleArray.forEach((module) => {
+//         ['constants', 'hooks', 'utils'].forEach((lib) => {
+//             output[`${module}/${lib}`] = {
+//                 transform: (path) => `${module}/${lib}/${path}`,
+//                 preventFullImport: false,
+//                 skipDefaultConversion: true,
+//             };
+//         });
+//         output[`${module}/components`] = {
+//             transform: (path) => `${module}/components/${path}`,
+//             preventFullImport: true,
+//         };
+//     });
+//     return output;
+// };
 
 export default {
     plugins: [
@@ -46,10 +46,10 @@ export default {
                 ],
             },
         ],
-        [
-            // 'babel-plugin-transform-imports',
-            'transform-imports',
-            treeShakingModule(),
-        ],
+        // [
+        //     // 'babel-plugin-transform-imports',
+        //     'transform-imports',
+        //     treeShakingModule(),
+        // ],
     ],
 };

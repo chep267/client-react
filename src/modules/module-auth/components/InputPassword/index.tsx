@@ -9,7 +9,7 @@ import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
 /** components */
-import { PasswordField } from '@module-base/components';
+import PasswordField from '@module-base/components/PasswordField';
 
 /** types */
 import type { Control, FieldValues, FieldPath, UseFormSetFocus } from 'react-hook-form';

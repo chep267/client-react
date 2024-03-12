@@ -7,10 +7,13 @@
 import * as React from 'react';
 
 /** lib components */
-import { TextField, InputAdornment, IconButton } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import IconButton from '@mui/material/IconButton';
 
 /** icons */
-import { Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon } from '@mui/icons-material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 /** types */
 import type { PasswordFieldProps } from '@module-base/models';

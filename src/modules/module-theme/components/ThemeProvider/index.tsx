@@ -6,15 +6,19 @@
 
 import * as React from 'react';
 import Cookies from 'js-cookie';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** lib components */
 import { StyledEngineProvider } from '@mui/material/styles';
 import { CssBaseline, createTheme, ThemeProvider as ThemeProviderMUI } from '@mui/material';
-import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
-import { themeObject, breakpoints, palette, ThemeContext, components } from '@module-theme/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
+import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { breakpoints } from '@module-theme/constants/breakpoints.ts';
+import { palette } from '@module-theme/constants/palette.ts';
+import { ThemeContext } from '@module-theme/constants/ThemeContext.ts';
+import { components } from '@module-theme/constants/components.ts';
 
 /** types */
 import type { PropsWithChildren } from 'react';

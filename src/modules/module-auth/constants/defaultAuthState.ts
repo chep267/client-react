@@ -6,5 +6,10 @@
 
 /** types */
 import type { User } from 'firebase/auth';
+import type { AuthContextProps } from '@module-auth/models';
 
-export const defaultAuthState = Object.freeze({ isAuth: false, me: {} as User });
+export const defaultAuthState = Object.freeze<AuthContextProps['data']>({
+    isAuthentication: false,
+    user: {} as User,
+    prePath: '/',
+});

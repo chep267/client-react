@@ -7,10 +7,10 @@
 import * as React from 'react';
 
 /** lib components */
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** components */
-import { IconBase } from '@module-base/components';
+import IconBase from '@module-base/components/IconBase';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));

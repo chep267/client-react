@@ -11,7 +11,7 @@ import { FormattedMessage } from 'react-intl';
 import { Stack, Typography } from '@mui/material';
 
 /** components */
-import { IconBase } from '@module-base/components';
+import IconBase from '@module-base/components/IconBase';
 import ButtonRetry from './ButtonRetry.tsx';
 
 /** styles */

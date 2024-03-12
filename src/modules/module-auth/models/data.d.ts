@@ -15,8 +15,7 @@ export type AuthContextProps = {
         user: TypeUser;
     };
     method: {
-        setPath(path: string): void;
-        setAuth(options?: AuthContextProps['data']): void;
+        setAuth(options?: Partial<AuthContextProps['data']>): void;
     };
 };
 

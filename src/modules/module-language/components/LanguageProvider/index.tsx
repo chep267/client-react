@@ -10,11 +10,13 @@ import { IntlProvider } from 'react-intl';
 import 'dayjs/locale/vi';
 
 /** constants */
-import { AppKey } from '@module-base/constants';
-import { localeObject, LanguageContext } from '@module-language/constants';
+import { AppKey } from '@module-base/constants/AppKey.ts';
+import { localeObject } from '@module-language/constants/localeObject';
+import { LanguageContext } from '@module-language/constants/LanguageContext';
 
 /** utils */
-import { getDeviceLanguage, getMessage } from '@module-language/utils';
+import { getDeviceLanguage } from '@module-language/utils/getDeviceLanguage';
+import { getMessage } from '@module-language/utils/getMessage';
 
 /** types */
 import type { TypeLocale, TypeMessages, LanguageProviderProps, LanguageContextProps } from '@module-language/models';

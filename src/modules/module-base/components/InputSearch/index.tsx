@@ -7,13 +7,15 @@
 import * as React from 'react';
 
 /** lib components */
-import { TextField, InputAdornment } from '@mui/material';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
-/** icons */
-import { Clear as ClearIcon, Search as SearchIcon } from '@mui/icons-material';
+/** lib icons */
+import ClearIcon from '@mui/icons-material/Clear';
+import SearchIcon from '@mui/icons-material/Search';
 
 /** constants */
-import { AppTimer } from '@module-base/constants';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
 
 /** types */
 import type { InputSearchProps, InputChangeEvent } from '@module-base/models';

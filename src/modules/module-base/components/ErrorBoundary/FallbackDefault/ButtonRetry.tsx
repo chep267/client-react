@@ -8,13 +8,15 @@ import * as React from 'react';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { Stack, Typography, Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 /** constants */
-import { AppTimer } from '@module-base/constants';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
 
 /** hooks */
-import { useCountdown } from '@module-base/hooks';
+import { useCountdown } from '@module-base/hooks/useCountdown.ts';
 
 /** styles */
 import { useStyles } from './styles';

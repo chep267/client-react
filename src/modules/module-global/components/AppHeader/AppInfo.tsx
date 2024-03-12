@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 import { Box, Typography } from '@mui/material';
 
 /** components */
-import { IconBase } from '@module-base/components';
+import IconBase from '@module-base/components/IconBase';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants';
+import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 import { APP_NAME } from '@root/constants';
 
 export default function AppInfo() {

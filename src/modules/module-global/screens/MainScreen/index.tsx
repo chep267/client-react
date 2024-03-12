@@ -8,11 +8,15 @@ import * as React from 'react';
 
 /** lib components */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Box, Container } from '@mui/material';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 /** components */
-import { StartLoading } from '@module-base/components';
-import { AppHeader, AppMain, AppSider, SiderProvider } from '@module-global/components';
+import StartLoading from '@module-base/components/StartLoading';
+import AppHeader from '@module-global/components/AppHeader';
+import AppMain from '@module-global/components/AppMain';
+import AppSider from '@module-global/components/AppSider';
+import SiderProvider from '@module-global/components/SiderProvider';
 
 /** screens */
 import AuthRoute from '@module-auth/screens/AuthRoute';

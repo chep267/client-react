@@ -7,7 +7,8 @@
 import * as React from 'react';
 
 /** hooks */
-import { AuthContext, defaultAuthState } from '@module-auth/constants';
+import { defaultAuthState } from '@module-auth/constants/defaultAuthState.ts';
+import { AuthContext } from '@module-auth/constants/AuthContext.ts';
 
 /** types */
 import { AuthContextProps, AuthProviderProps } from '@module-auth/models';
@@ -16,9 +17,8 @@ export default function AuthProvider(props: AuthProviderProps) {
     const { children } = props;
     const [auth, setAuth] = React.useState<AuthContextProps['data']>(defaultAuthState);
 
-    const changeAuth = React.useCallback<AuthContextProps['method']['setAuth']>(({ isAuth, me } = defaultAuthState) => {
-        const user: AuthContextProps['data']['me'] = { ...me, uid: me.uid };
-        setAuth({ isAuth, me: user });
+    const changeAuth = React.useCallback<AuthContextProps['method']['setAuth']>((data = defaultAuthState) => {
+        setAuth({ ...defaultAuthState, ...data });
     }, []);
 
     const store = React.useMemo<AuthContextProps>(() => {
