@@ -7,7 +7,7 @@
 import { alpha } from '@mui/material/styles';
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ palette }) => ({
+export const useStyles = makeStyles(({ palette }) => ({
     tableBox: {
         display: 'flex',
         maxWidth: '100%',
@@ -65,5 +65,3 @@ const useStyles = makeStyles(({ palette }) => ({
         cursor: 'pointer',
     },
 }));
-
-export default useStyles;

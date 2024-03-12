@@ -8,13 +8,15 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 /** lib components */
-import { TableBody as TableBodyElem, TableRow, TableCell } from '@mui/material';
+import TableBodyElem from '@mui/material/TableBody';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { TableBodyProps } from '@module-base/models';

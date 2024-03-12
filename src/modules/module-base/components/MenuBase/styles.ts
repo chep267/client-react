@@ -9,7 +9,7 @@ import makeStyles from '@mui/styles/makeStyles';
 /** constants */
 import { alpha } from '@mui/material/styles';
 
-const useStyles = makeStyles(({ palette }) => ({
+export const useStyles = makeStyles(({ palette }) => ({
     menu: {
         '& .MuiPaper-root': {
             '&::-webkit-scrollbar': {
@@ -33,5 +33,3 @@ const useStyles = makeStyles(({ palette }) => ({
         },
     },
 }));
-
-export default useStyles;

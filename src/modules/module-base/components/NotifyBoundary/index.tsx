@@ -9,7 +9,9 @@ import classnames from 'classnames';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { Snackbar, Alert, AlertTitle } from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer.ts';
@@ -18,7 +20,7 @@ import { AppTimer } from '@module-base/constants/AppTimer.ts';
 import { useNotify } from '@module-base/hooks/useNotify.ts';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { NotifyBoundaryProps } from '@module-base/models';

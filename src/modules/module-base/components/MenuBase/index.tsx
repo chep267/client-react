@@ -8,13 +8,15 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 /** lib components */
-import { Tooltip, Menu, IconButton } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import Menu from '@mui/material/Menu';
+import IconButton from '@mui/material/IconButton';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { ElementClickEvent, MenuBaseProps } from '@module-base/models';

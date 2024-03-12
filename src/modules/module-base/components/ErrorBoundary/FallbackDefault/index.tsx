@@ -8,7 +8,8 @@ import * as React from 'react';
 
 /** lib components */
 import { FormattedMessage } from 'react-intl';
-import { Stack, Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';

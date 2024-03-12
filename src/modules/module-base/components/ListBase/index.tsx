@@ -8,13 +8,14 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 /** lib components */
-import { Stack, List } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import List from '@mui/material/List';
 
 /** components */
 import ListLoading from './ListLoading';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { ListBaseProps } from '@module-base/models';

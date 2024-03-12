@@ -17,7 +17,7 @@ import { useStyles } from './styles';
 import type { ImageBaseProps, ReactEventHandler } from '@module-base/models';
 
 export default function ImageBase(props: ImageBaseProps) {
-    const { alt = '', loading = 'lazy', onLoad, ...other } = props;
+    const { alt = '', loading = 'lazy', onLoad, ...imageProps } = props;
     const classes = useStyles();
 
     const [isLoading, setLoading] = React.useState(true);
@@ -35,7 +35,7 @@ export default function ImageBase(props: ImageBaseProps) {
             {isLoading ? (
                 <Skeleton className={classnames(classes.loading, 'image-base-loading')} variant="rectangular" />
             ) : null}
-            <img alt={alt} onLoad={onLoadImage} loading={loading} {...other} />
+            <img alt={alt} onLoad={onLoadImage} loading={loading} {...imageProps} />
         </>
     );
 }

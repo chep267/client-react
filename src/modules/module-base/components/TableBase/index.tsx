@@ -8,7 +8,9 @@ import * as React from 'react';
 import classnames from 'classnames';
 
 /** lib components */
-import { Box, Table, TableContainer } from '@mui/material';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableContainer from '@mui/material/TableContainer';
 
 /** components */
 import TableLoading from './TableLoading';
@@ -16,7 +18,7 @@ import TableHeader from './TableHeader';
 import TableBody from './TableBody';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { TableBaseProps } from '@module-base/models';

@@ -8,10 +8,12 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 
 /** lib components */
-import { Stack, Typography, CircularProgress } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { TableLoadingProps } from '@module-base/models';

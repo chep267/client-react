@@ -9,7 +9,7 @@ import makeStyles from '@mui/styles/makeStyles';
 /** constants */
 import { alpha } from '@mui/material/styles';
 
-const useStyles = makeStyles(({ palette, spacing }) => ({
+export const useStyles = makeStyles(({ palette, spacing }) => ({
     list_wrap: {
         position: 'relative',
         width: '100%',
@@ -64,5 +64,3 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
         margin: '3px 0',
     },
 }));
-
-export default useStyles;

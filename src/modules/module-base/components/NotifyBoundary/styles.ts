@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ palette }) => ({
+export const useStyles = makeStyles(({ palette }) => ({
     notify: {
         width: '100%',
     },
@@ -21,5 +21,3 @@ const useStyles = makeStyles(({ palette }) => ({
         textTransform: 'capitalize',
     },
 }));
-
-export default useStyles;

@@ -18,7 +18,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 /** styles */
-import useStyles from './styles';
+import { useStyles } from './styles';
 
 /** types */
 import type { TableHeaderProps } from '@module-base/models';
