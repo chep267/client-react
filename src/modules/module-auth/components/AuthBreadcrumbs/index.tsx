@@ -5,7 +5,9 @@
  */
 
 /** lib components */
-import { Breadcrumbs, Link } from '@mui/material';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
+
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 

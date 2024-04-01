@@ -8,7 +8,7 @@ import * as React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 /** lib components */
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** components */
 import AuthTitle from '@module-auth/components/AuthTitle';

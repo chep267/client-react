@@ -3,7 +3,7 @@
  * @author dongntd267@gmail.com on 26/07/2023.
  *
  */
-import { Theme } from '@mui/material';
+import type { Theme } from '@mui/material/styles';
 
 export const components = {
     MuiAppBar: {

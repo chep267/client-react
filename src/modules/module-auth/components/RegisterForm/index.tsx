@@ -5,7 +5,8 @@
  */
 
 /** lib components */
-import { Box, Paper } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 /** components */
 import InputEmail from '@module-auth/components/InputEmail';

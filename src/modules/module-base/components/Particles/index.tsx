@@ -7,7 +7,7 @@
 import * as React from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
-import { useTheme } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 /** constants */
 import { particleOptions } from '@module-base/utils/particleOptions.ts';

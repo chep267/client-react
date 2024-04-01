@@ -4,7 +4,8 @@
  *
  */
 
-import { Tooltip, Button } from '@mui/material';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
 
 /** utils */
 import { useNotify } from '@module-base/hooks/useNotify.ts';

@@ -9,8 +9,8 @@ import Cookies from 'js-cookie';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** lib components */
-import { StyledEngineProvider } from '@mui/material/styles';
-import { CssBaseline, createTheme, ThemeProvider as ThemeProviderMUI } from '@mui/material';
+import { StyledEngineProvider, createTheme, ThemeProvider as ThemeProviderMUI } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
@@ -22,7 +22,7 @@ import { components } from '@module-theme/constants/components.ts';
 
 /** types */
 import type { PropsWithChildren } from 'react';
-import type { ThemeOptions } from '@mui/material';
+import type { ThemeOptions } from '@mui/material/styles';
 import type { TypeThemeMode, ThemeContextProps } from '@module-theme/models';
 
 export default function ThemeProvider(props: PropsWithChildren) {
