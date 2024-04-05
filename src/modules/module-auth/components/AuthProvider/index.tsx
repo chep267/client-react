@@ -17,7 +17,7 @@ export default function AuthProvider(props: AuthProviderProps) {
     const { children } = props;
     const [auth, setAuth] = React.useState<AuthContextProps['data']>(defaultAuthState);
 
-    const changeAuth = React.useCallback<AuthContextProps['method']['setAuth']>((data = defaultAuthState) => {
+    const onChangeAuth = React.useCallback<AuthContextProps['method']['setAuth']>((data = defaultAuthState) => {
         setAuth({ ...defaultAuthState, ...data });
     }, []);
 
@@ -25,7 +25,7 @@ export default function AuthProvider(props: AuthProviderProps) {
         return {
             data: auth,
             method: {
-                setAuth: changeAuth,
+                setAuth: onChangeAuth,
             },
         };
     }, [auth]);
