@@ -9,7 +9,7 @@ import type { IconSVGProps } from '@module-base/models';
 
 export default function AppLogo(props: IconSVGProps) {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} fill="none" {...props} viewBox="0 0 30 30">
+        <svg xmlns="http://www.w3.org/2000/svg" width={30} height={30} fill="none" viewBox="0 0 30 30" {...props}>
             <circle cx={15} cy={15} r={15} fill="#038cf5" />
             <path
                 stroke="#fff"

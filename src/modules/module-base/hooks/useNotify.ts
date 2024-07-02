@@ -4,9 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 
 /** hooks */
-import { NotifyContext } from '@module-base/constants/NotifyContext.ts';
+import { NotifyContext } from '@module-base/contexts/NotifyContext.ts';
 
 export const useNotify = () => React.useContext(NotifyContext);

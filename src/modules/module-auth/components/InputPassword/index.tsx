@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
@@ -12,16 +12,8 @@ import { FormattedMessage } from 'react-intl';
 import PasswordField from '@module-base/components/PasswordField';
 
 /** types */
-import type { Control, FieldValues, FieldPath, UseFormSetFocus } from 'react-hook-form';
-
-type InputPasswordProps<T extends FieldValues> = {
-    name: FieldPath<T>;
-    control: Control<T>;
-    error?: boolean;
-    errorMessage?: string;
-    setFocus: UseFormSetFocus<T>;
-    isConfirm?: boolean;
-};
+import type { FieldValues } from 'react-hook-form';
+import type { InputPasswordProps } from '@module-auth/models';
 
 export default function InputPassword<T extends FieldValues>(props: InputPasswordProps<T>) {
     const { name, control, error, errorMessage, setFocus, isConfirm } = props;
@@ -30,12 +22,16 @@ export default function InputPassword<T extends FieldValues>(props: InputPasswor
         <Controller
             name={name}
             control={control}
-            render={({ field: { ref, ...field } }) => {
+            render={({ field }) => {
                 return (
                     <PasswordField
-                        {...field}
-                        inputRef={ref}
+                        inputRef={field.ref}
                         label={<FormattedMessage id={`module.auth.input.label.${isConfirm ? 'confirm.' : ''}password`} />}
+                        value={field.value}
+                        name={field.name}
+                        disabled={field.disabled}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
                         variant="outlined"
                         spellCheck={false}
                         fullWidth

@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import { QueryClientProvider } from '@tanstack/react-query';
 
 /** utils */

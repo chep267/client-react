@@ -4,20 +4,31 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
+import makeStyles from '@mui/styles/makeStyles';
 import Skeleton from '@mui/material/Skeleton';
-
-/** styles */
-import { useStyles } from './styles';
 
 /** types */
 import type { ImageBaseProps, ReactEventHandler } from '@module-base/models';
 
+/** styles */
+const useStyles = makeStyles({
+    loading: {
+        position: 'absolute',
+        zIndex: 1,
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0,
+        width: '100%',
+        height: '100%',
+    },
+});
+
 export default function ImageBase(props: ImageBaseProps) {
-    const { alt = '', loading = 'lazy', onLoad, ...imageProps } = props;
+    const { alt = '', loading = 'lazy' as const, onLoad, ...imageProps } = props;
     const classes = useStyles();
 
     const [isLoading, setLoading] = React.useState(true);

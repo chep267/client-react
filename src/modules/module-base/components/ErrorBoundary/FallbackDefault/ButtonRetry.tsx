@@ -4,9 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
+import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -18,11 +18,22 @@ import { AppTimer } from '@module-base/constants/AppTimer.ts';
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown.ts';
 
-/** styles */
-import { useStyles } from './styles';
-
 /** types */
 import type { FallbackDefaultProps } from '@module-base/models';
+
+/** styles */
+const useStyles = makeStyles(({ zIndex }) => ({
+    content: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: zIndex.modal,
+        '& img': {
+            width: 'auto',
+            height: 150,
+            borderRadius: '50%',
+        },
+    },
+}));
 
 export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoReload'>) {
     const { isAutoReload = true } = props;

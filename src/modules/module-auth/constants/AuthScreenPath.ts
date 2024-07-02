@@ -5,7 +5,6 @@
  */
 
 export const AuthScreenPath = Object.freeze({
-    home: '/',
     start: '/start',
     signin: '/signin',
     register: '/register',

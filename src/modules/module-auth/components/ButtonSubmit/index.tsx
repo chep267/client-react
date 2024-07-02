@@ -4,16 +4,14 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { FormattedMessage } from 'react-intl';
 import { LoadingButton } from '@mui/lab';
 
-type ButtonSubmitProps = {
-    loading?: boolean;
-    type: 'signin' | 'register' | 'recover';
-};
+/** types */
+import type { AuthButtonSubmitProps } from '@module-auth/models';
 
-export default function ButtonSubmit(props: ButtonSubmitProps) {
+export default function ButtonSubmit(props: AuthButtonSubmitProps) {
     const { loading, type } = props;
 
     return (

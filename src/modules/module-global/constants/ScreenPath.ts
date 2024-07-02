@@ -19,3 +19,13 @@ export const ScreenPath = Object.freeze({
 
     PROFILE: '/profile',
 });
+
+export const ScreenPath2 = Object.freeze({
+    home: '/',
+    start: '/start',
+    defaultPath: '/calendar',
+    feed: '/feed',
+    messenger: '/messenger',
+    calendar: '/calendar',
+    notFound: '/not-found',
+});

@@ -4,9 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 
 /** constants */
-import { ThemeContext } from '@module-theme/constants/ThemeContext.ts';
+import { ThemeContext } from '@module-theme/contexts/ThemeContext.ts';
 
 export const useTheme = () => React.useContext(ThemeContext);

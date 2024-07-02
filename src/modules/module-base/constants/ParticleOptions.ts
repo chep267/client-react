@@ -7,7 +7,7 @@
 /** types */
 import { TypeThemeMode } from '@module-theme/models';
 
-export const particleOptions = (mode: TypeThemeMode) => ({
+export const ParticleOptions = (mode: TypeThemeMode) => ({
     autoPlay: true,
     clear: true,
     delay: 0,

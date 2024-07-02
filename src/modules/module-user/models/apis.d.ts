@@ -6,19 +6,19 @@
 
 /** types */
 import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/models';
-import type { UserInfo } from '@module-user/models';
+import type { TypeUser } from '@module-user/models/data.d.ts';
 
 export interface UserApiProps {
     Create: {
-        Payload: TypeCallApiPayload<{ user: UserInfo }>;
+        Payload: TypeCallApiPayload<{ user: TypeUser }>;
         Response?: void;
     };
     Get: {
-        Payload: TypeCallApiPayload<{ uid: UserInfo['uid'] }>;
-        Response?: UserInfo;
+        Payload: TypeCallApiPayload<{ uid: TypeUser['uid'] }>;
+        Response?: TypeUser;
     };
     GetList: {
         Payload: TypeCallApiPayload<{ limit?: number }>;
-        Response?: { itemIds: TypeItemIds; items: TypeItems<UserInfo> };
+        Response?: { itemIds: TypeItemIds; items: TypeItems<TypeUser> };
     };
 }

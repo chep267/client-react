@@ -4,9 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 
 /** constants */
-import { AuthContext } from '@module-auth/constants/AuthContext.ts';
+import { AuthContext } from '@module-auth/contexts/AuthContext.ts';
 
 export const useAuth = () => React.useContext(AuthContext);

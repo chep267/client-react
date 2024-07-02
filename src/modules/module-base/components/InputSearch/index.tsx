@@ -4,13 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
-
-/** lib icons */
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -27,19 +24,19 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         onLoading,
         type = 'text',
         spellCheck = false,
-        size = 'small',
+        size = 'small' as const,
         InputProps,
         ...inputProps
     } = props;
 
-    const inputRef = React.useRef<HTMLInputElement>(null);
+    const inputRef = React.useRef<HTMLInputElement | null>(null);
     const prevValue = React.useRef('');
     const [value, setValue] = React.useState('');
 
     const onChange = React.useCallback((event: InputChangeEvent) => setValue(event?.target?.value || ''), []);
 
     React.useEffect(() => {
-        let timeout: NodeJS.Timeout;
+        let timeout: number;
         const nextValue = value.trim();
 
         if (nextValue !== prevValue.current) {
@@ -90,8 +87,8 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
 
     return (
         <TextField
-            type={type}
             inputRef={inputRef}
+            type={type}
             spellCheck={spellCheck}
             value={value}
             onChange={onChange}

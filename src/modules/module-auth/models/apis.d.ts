@@ -9,7 +9,7 @@ import type { TypeCallApiPayload, TypeResponseApi } from '@module-base/models';
 import type { TypeUser } from '@module-user/models';
 
 export interface TypeApiAuth {
-    SignIn: {
+    Signin: {
         Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
         Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
     };
@@ -23,6 +23,10 @@ export interface TypeApiAuth {
     };
     Register: {
         Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
+        Response: TypeResponseApi;
+    };
+    Recover: {
+        Payload: TypeCallApiPayload<{ email: TypeUser['email'] }>;
         Response: TypeResponseApi;
     };
 }

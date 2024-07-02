@@ -5,9 +5,9 @@
  */
 
 export const vi = Object.freeze({
-    'module.theme.theme': 'Giao diện',
-    'module.theme.theme.light': 'Sáng',
-    'module.theme.theme.purple': 'Cá tính',
-    'module.theme.theme.dark': 'Tối',
-    'module.theme.theme.system': 'Hệ thống',
+    'module.theme.text.title': 'Giao diện',
+    'module.theme.text.light': 'Sáng',
+    'module.theme.text.purple': 'Cá tính',
+    'module.theme.text.dark': 'Tối',
+    'module.theme.text.system': 'Hệ thống',
 });

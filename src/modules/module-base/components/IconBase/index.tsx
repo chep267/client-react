@@ -4,9 +4,8 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import Skeleton from '@mui/material/Skeleton';
 
 /** types */
@@ -21,12 +20,12 @@ const Icons: TypeIcons = Object.freeze({
 });
 
 const IconBase = React.memo(function IconBase(props: IconBaseProps) {
-    const { name, size = 24, viewBox = '0 0 24 24', ...iconProps } = props;
+    const { name, size = 24, ...iconProps } = props;
     const Icon = Icons[name];
 
     return (
         <React.Suspense fallback={<Skeleton width={size} height={size} variant="circular" />}>
-            <Icon name={name} width={size} height={size} viewBox={viewBox} {...iconProps} />
+            <Icon name={name} width={size} height={size} {...iconProps} />
         </React.Suspense>
     );
 });

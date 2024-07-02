@@ -4,20 +4,14 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import TextField from '@mui/material/TextField';
 
 /** types */
-import type { Control, FieldValues, FieldPath } from 'react-hook-form';
-
-type InputEmailProps<T extends FieldValues> = {
-    name: FieldPath<T>;
-    control: Control<T>;
-    error?: boolean;
-    errorMessage?: string;
-};
+import type { FieldValues } from 'react-hook-form';
+import type { InputEmailProps } from '@module-auth/models';
 
 export default function InputEmail<T extends FieldValues>(props: InputEmailProps<T>) {
     const { name, control, error, errorMessage } = props;
@@ -26,13 +20,17 @@ export default function InputEmail<T extends FieldValues>(props: InputEmailProps
         <Controller
             name={name}
             control={control}
-            render={({ field: { ref, ...field } }) => {
+            render={({ field }) => {
                 return (
                     <TextField
-                        {...field}
-                        inputRef={ref}
+                        inputRef={field.ref}
                         type="email"
                         label={<FormattedMessage id="module.auth.input.label.email" />}
+                        value={field.value}
+                        name={field.name}
+                        disabled={field.disabled}
+                        onChange={field.onChange}
+                        onBlur={field.onBlur}
                         variant="outlined"
                         spellCheck={false}
                         fullWidth

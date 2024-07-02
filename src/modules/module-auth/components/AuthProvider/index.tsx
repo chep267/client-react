@@ -4,14 +4,14 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 
 /** hooks */
-import { defaultAuthState } from '@module-auth/constants/defaultAuthState.ts';
-import { AuthContext } from '@module-auth/constants/AuthContext.ts';
+import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext.ts';
 
 /** types */
-import { AuthContextProps, AuthProviderProps } from '@module-auth/models';
+import type { AuthContextProps, AuthProviderProps } from '@module-auth/models';
 
 export default function AuthProvider(props: AuthProviderProps) {
     const { children } = props;

@@ -4,11 +4,12 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { localeObject } from './localeObject.ts';
+import { localeObject } from '@module-language/constants/localeObject.ts';
 
 /** types */
 import type { LanguageContextProps } from '@module-language/models';

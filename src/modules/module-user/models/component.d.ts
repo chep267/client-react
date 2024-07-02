@@ -6,10 +6,8 @@
 
 /** types */
 import type { AvatarProps, TypographyProps } from '@mui/material';
-import type { UserInfo } from '@module-user/models/data';
+import type { TypeUser } from '@module-user/models/data.d.ts';
 
-/** UserAvatar */
-export type UserAvatarProps = AvatarProps & { uid?: UserInfo['uid'] };
+export type UserAvatarProps = AvatarProps & { uid?: TypeUser['uid'] };
 
-/** UserName */
-export type UserNameProps = TypographyProps & { uid?: UserInfo['uid']; name?: UserInfo['displayName'] };
+export type UserNameProps = TypographyProps & { uid?: TypeUser['uid']; name?: TypeUser['displayName'] };

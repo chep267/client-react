@@ -5,9 +5,9 @@
  */
 
 export const en = Object.freeze({
-    'module.theme.theme': 'Theme',
-    'module.theme.theme.light': 'Light',
-    'module.theme.theme.purple': 'Purple',
-    'module.theme.theme.dark': 'Dark',
-    'module.theme.theme.system': 'System',
+    'module.theme.text.title': 'Theme',
+    'module.theme.text.light': 'Light',
+    'module.theme.text.purple': 'Purple',
+    'module.theme.text.dark': 'Dark',
+    'module.theme.text.system': 'System',
 });

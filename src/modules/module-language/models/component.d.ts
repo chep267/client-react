@@ -11,7 +11,6 @@ import type { TypeLocale, TypeMessages } from './data.d.ts';
 export type LanguageContextProps = {
     data: {
         locale: TypeLocale;
-        // messages: Record<string, string>;
     };
     method: {
         setLanguage: (value: TypeLocale) => void;

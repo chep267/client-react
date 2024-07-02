@@ -10,6 +10,9 @@
             "@module-language/*": ["src/modules/module-language/*"],
             "@module-user/*": ["src/modules/module-user/*"],
             "@module-auth/*": ["src/modules/module-auth/*"],
+            "@module-calendar/*": ["src/modules/module-calendar/*"],
+            "@module-messenger/*": ["src/modules/module-messenger/*"],
+            "@module-feed/*": ["src/modules/module-feed/*"],
             "@module-global/*": ["src/modules/module-global/*"]
         }
     }

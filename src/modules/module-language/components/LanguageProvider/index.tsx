@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import Cookies from 'js-cookie';
 import { IntlProvider } from 'react-intl';
@@ -12,7 +13,7 @@ import 'dayjs/locale/vi';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { localeObject } from '@module-language/constants/localeObject';
-import { LanguageContext } from '@module-language/constants/LanguageContext';
+import { LanguageContext } from '@module-language/contexts/LanguageContext.ts';
 
 /** utils */
 import { getDeviceLanguage } from '@module-language/utils/getDeviceLanguage';
@@ -25,6 +26,7 @@ export default function LanguageProvider(props: LanguageProviderProps) {
     const { children } = props;
 
     const [locale, setLocale] = React.useState<TypeLocale>(() => {
+        // @ts-ignore
         const localeCookie = Cookies.get(AppKey.locale) as TypeLocale;
         if (localeCookie && localeCookie in localeObject) {
             return localeCookie;
@@ -42,13 +44,12 @@ export default function LanguageProvider(props: LanguageProviderProps) {
         setLocale(value);
     }, []);
 
-    const store = React.useMemo<LanguageContextProps>(
-        () => ({
+    const store = React.useMemo<LanguageContextProps>(() => {
+        return {
             data: { locale },
             method: { setLanguage },
-        }),
-        [locale]
-    );
+        };
+    }, [locale]);
 
     if (!messages) {
         return null;

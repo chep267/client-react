@@ -11,7 +11,7 @@ import type { TypeUser } from '@module-user/models';
 export type AuthContextProps = {
     data: {
         isAuthentication: boolean;
-        prePath: '/';
+        prePath: string;
         user: TypeUser;
     };
     method: {

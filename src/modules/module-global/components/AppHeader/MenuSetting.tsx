@@ -27,6 +27,7 @@ import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
 
 /** types */
 import type { NestedItemProps } from '@module-base/models';
+import { localeObject } from '@module-language/constants/localeObject.ts';
 
 type Props = {
     closeMenu(): void;
@@ -42,19 +43,19 @@ export default function MenuSetting(props: Props) {
     const menuBase = React.useRef<NestedItemProps[]>([
         {
             id: 'Theme',
-            title: <FormattedMessage id="module.theme.theme" />,
+            title: <FormattedMessage id="module.theme.text.title" />,
             icon: <PaletteIcon color="primary" />,
             divide: 'top-bottom',
             subMenu: [
                 {
                     id: 'Theme-Dark',
-                    title: <FormattedMessage id="module.theme.theme.dark" />,
+                    title: <FormattedMessage id="module.theme.text.dark" />,
                     icon: <DarkModeIcon color="disabled" />,
                     onClick: () => THEME.method.setTheme('dark'),
                 },
                 {
                     id: 'Theme-Light',
-                    title: <FormattedMessage id="module.theme.theme.light" />,
+                    title: <FormattedMessage id="module.theme.text.light" />,
                     icon: <LightModeIcon color="warning" />,
                     onClick: () => THEME.method.setTheme('light'),
                 },
@@ -62,25 +63,25 @@ export default function MenuSetting(props: Props) {
         },
         {
             id: 'Language',
-            title: <FormattedMessage id="module.language.lang" />,
+            title: <FormattedMessage id="module.language.text.title" />,
             icon: <TranslateIcon color="primary" />,
             divide: 'bottom',
             subMenu: [
                 {
                     id: 'Language-Vi',
-                    title: <FormattedMessage id="module.language.lang.vi" />,
+                    title: <FormattedMessage id="module.language.text.vi" />,
                     icon: (
                         <span style={{ transform: 'scale(1.2)' }} className="w-screen">
                             🇻🇳
                         </span>
                     ),
-                    onClick: () => LANGUAGE.method.setLanguage('vi'),
+                    onClick: () => LANGUAGE.method.setLanguage(localeObject.vi),
                 },
                 {
                     id: 'Language-En',
-                    title: <FormattedMessage id="module.language.lang.en" />,
+                    title: <FormattedMessage id="module.language.text.en" />,
                     icon: <span style={{ transform: 'scale(1.2)' }}>🇬🇧</span>,
-                    onClick: () => LANGUAGE.method.setLanguage('en'),
+                    onClick: () => LANGUAGE.method.setLanguage(localeObject.vi),
                 },
             ],
         },

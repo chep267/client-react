@@ -17,10 +17,10 @@ import { debounce } from '@module-base/utils/debounce.ts';
 /** types */
 import type { TypeApiAuth } from '@module-auth/models';
 
-const apiSignin = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
+const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<TypeApiAuth['SignIn']['Response']>({ method: 'post', url: AuthApi.signin, data: { email, password } });
+        return baseApi<TypeApiAuth['Signin']['Response']>({ method: 'post', url: AuthApi.signin, data: { email, password } });
     };
     const [res] = await Promise.all([callApi(), debounce(timer)]);
     return res;
@@ -54,9 +54,23 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
     return res;
 };
 
+const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<TypeApiAuth['Recover']['Response']> => {
+    const { timer = AppTimer.pendingApi, email } = payload;
+    const callApi = () => {
+        return baseApi<TypeApiAuth['Recover']['Response']>({
+            method: 'post',
+            url: AuthApi.recover,
+            data: { email },
+        });
+    };
+    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    return res;
+};
+
 export const authApi = {
     signin: apiSignin,
     signout: apiSignout,
     restart: apiRestart,
     register: apiRegister,
+    recover: apiRecover,
 };

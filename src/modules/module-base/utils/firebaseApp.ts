@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = Object.freeze({

@@ -4,13 +4,15 @@
  *
  */
 
+/** libs */
+import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
 import { authApi } from '@module-auth/apis/authApi.ts';
 
-/** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+/** constants */
+import { AppKey } from '@module-base/constants/AppKey.ts';
 
 /** hooks */
 import { useNotify } from '@module-base/hooks/useNotify.ts';
@@ -24,11 +26,13 @@ export function useSignIn() {
     const AUTH = useAuth();
     const NOTIFY = useNotify();
 
-    const SIGN_IN = useMutation({
+    return useMutation({
         mutationFn: authApi.signin,
-        onSuccess: async (response: TypeApiAuth['SignIn']['Response'], data) => {
+        onSuccess: async (response: TypeApiAuth['Signin']['Response']) => {
+            const { user } = response.data;
+            Cookies.set(AppKey.uid, user.uid);
+            Cookies.set(AppKey.email, `${user.email}`);
             AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
-            debounce(response.data.token.exp, () => SIGN_IN.mutate(data)).then();
         },
         onError: (error: AxiosError) => {
             let intlMessage = '';
@@ -50,6 +54,4 @@ export function useSignIn() {
             });
         },
     });
-
-    return SIGN_IN;
 }

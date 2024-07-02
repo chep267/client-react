@@ -4,17 +4,16 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-
-/** lib components */
 import Box from '@mui/material/Box';
-
-/** components */
-import AuthTitle from '@module-auth/components/AuthTitle';
 
 /** constants */
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+
+/** components */
+import AuthTitle from '@module-auth/components/AuthTitle';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));

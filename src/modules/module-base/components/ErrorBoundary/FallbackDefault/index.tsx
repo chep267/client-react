@@ -4,9 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
+import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -15,14 +15,32 @@ import Typography from '@mui/material/Typography';
 import IconBase from '@module-base/components/IconBase';
 import ButtonRetry from './ButtonRetry.tsx';
 
-/** styles */
-import { useStyles } from './styles.ts';
-
 /** types */
 import type { FallbackDefaultProps } from '@module-base/models';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));
+
+/** styles */
+const useStyles = makeStyles(({ zIndex }) => ({
+    fallback: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100vw',
+        height: '100vh',
+        overflow: 'hidden',
+    },
+    content: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: zIndex.modal,
+        '& img': {
+            width: 'auto',
+            height: 150,
+            borderRadius: '50%',
+        },
+    },
+}));
 
 export default function FallbackDefault(props: FallbackDefaultProps) {
     const { isAutoReload } = props;

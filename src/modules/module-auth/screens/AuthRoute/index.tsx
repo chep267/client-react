@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -20,14 +21,17 @@ import { useAuth } from '@module-auth/hooks/useAuth.ts';
 import type { PropsWithChildren } from 'react';
 
 /** screens */
-const StartScreen = React.lazy(() => import('@module-base/components/StartLoading'));
+const StartScreen = React.lazy(() => import('@module-auth/screens/StartScreen'));
 const SignInScreen = React.lazy(() => import('@module-auth/screens/SignInScreen'));
 
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
+
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const AUTH = useAuth();
+
+    // @ts-ignore
     const uid = Cookies.get(AppKey.uid);
     const accountState = AUTH.data.isAuthentication
         ? AccountState.signedIn
@@ -35,14 +39,20 @@ export default function AuthRoute(props: PropsWithChildren) {
           ? AccountState.reSignin
           : AccountState.signin;
 
+    console.log('uid: ', uid);
+
     React.useEffect(() => {
-        if (accountState === AccountState.reSignin) {
+        if (accountState === AccountState.reSignin && !pathname.startsWith('AuthScreenPath.start')) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-            AUTH.method.setAuth();
             navigate(AuthScreenPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && Object.values(AuthScreenPath).includes(pathname as any)) {
-            navigate(AuthScreenPath.home, { replace: true });
+            /** đã đăng nhập xong, vào home */
+            navigate('/', { replace: true });
+        }
+        if (accountState === AccountState.signin && !Object.values(AuthScreenPath).includes(pathname as any)) {
+            /** chưa đăng nhập, trở về đăng nhập  */
+            navigate(AuthScreenPath.signin, { replace: true });
         }
     }, [accountState, pathname]);
 

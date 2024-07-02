@@ -4,13 +4,14 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@mui/material/styles';
 
 /** constants */
-import { particleOptions } from '@module-base/utils/particleOptions.ts';
+import { ParticleOptions } from '@module-base/constants/ParticleOptions.ts';
 
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';
@@ -30,7 +31,7 @@ const Particle = React.memo(function Particle(props: IParticlesProps) {
         });
     }, []);
 
-    const options = Options || particleOptions(theme.palette.mode);
+    const options = Options || ParticleOptions(theme.palette.mode);
 
     // @ts-ignore
     return init ? <Particles id={`Particles-${id}`} options={options} /> : null;

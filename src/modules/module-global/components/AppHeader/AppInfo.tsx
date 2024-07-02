@@ -14,14 +14,14 @@ import IconBase from '@module-base/components/IconBase';
 
 /** constants */
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
-import { APP_NAME } from '@root/constants';
+import { AppName } from '@module-global/constants/AppName.ts';
 
 export default function AppInfo() {
     return (
         <Box className="flex items-center gap-2" component={Link} to={ScreenPath.HOME}>
             <IconBase name="appLogo" />
             <Typography variant="h6" fontWeight={600}>
-                {APP_NAME}
+                {AppName}
             </Typography>
         </Box>
     );

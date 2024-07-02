@@ -4,6 +4,7 @@
  *
  */
 
+/** libs */
 import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
@@ -31,7 +32,7 @@ export function useRestart() {
     const RESTART = useMutation({
         mutationFn: authApi.restart,
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
-            AUTH.method.setAuth({ isAuth: true, me: response.data.user });
+            AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
             debounce(response.data.token.exp, () => RESTART.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
@@ -53,6 +54,7 @@ export function useRestart() {
                 mode: 'error',
                 intlMessage,
             });
+            AUTH.method.setAuth();
         },
     });
 

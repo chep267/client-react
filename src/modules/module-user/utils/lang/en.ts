@@ -4,7 +4,4 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.messenger.router.name': 'Messenger',
-    'module.messenger.component.thread.title': 'Chat',
-});
+export const en = Object.freeze({});
