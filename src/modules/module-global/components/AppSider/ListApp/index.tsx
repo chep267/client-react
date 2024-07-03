@@ -30,28 +30,28 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
 
     const MENU_ROUTER = React.useRef<TypeAppItem[]>([
         {
-            path: ScreenPath.FEED,
+            path: ScreenPath.feed,
             name: <FormattedMessage id="module.global.sider.app.feed.tooltip" />,
             icon: <HomeIcon />,
-            onClick: () => navigate(ScreenPath.FEED),
+            onClick: () => navigate(ScreenPath.feed),
         },
         {
-            path: ScreenPath.MESSENGER,
+            path: ScreenPath.messenger,
             name: <FormattedMessage id="module.global.sider.app.messenger.tooltip" />,
             icon: <TelegramIcon />,
-            onClick: () => navigate(ScreenPath.MESSENGER),
+            onClick: () => navigate(ScreenPath.messenger),
         },
         {
-            path: ScreenPath.CALENDAR,
+            path: ScreenPath.calendar,
             name: <FormattedMessage id="module.global.sider.app.calendar.tooltip" />,
             icon: <CalendarMonthIcon />,
-            onClick: () => navigate(ScreenPath.CALENDAR),
+            onClick: () => navigate(ScreenPath.calendar),
         },
         {
-            path: ScreenPath.GAME,
+            path: ScreenPath.game,
             name: <FormattedMessage id="module.global.sider.app.game.tooltip" />,
             icon: <GamesIcon />,
-            onClick: () => navigate(ScreenPath.GAME),
+            onClick: () => navigate(ScreenPath.game),
         },
     ]).current;
 

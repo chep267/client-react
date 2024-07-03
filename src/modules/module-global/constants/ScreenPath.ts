@@ -27,5 +27,6 @@ export const ScreenPath = Object.freeze({
     feed: '/feed',
     messenger: '/messenger',
     calendar: '/calendar',
+    game: '/game',
     notFound: '/not-found',
 });
