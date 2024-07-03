@@ -4,10 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -26,7 +25,7 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
     const classes = useStyles();
 
     const menuId = React.useId();
-    const [menuElem, setMenuElem] = React.useState<null | HTMLElement>(null);
+    const [menuElem, setMenuElem] = React.useState<HTMLElement>(null);
     const open = Boolean(menuElem);
 
     const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
@@ -36,12 +35,13 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
     const { children: tooltipChildren, title, ...tooltipOther } = tooltipProps ?? AppDefaultValue.emptyObject;
     const { children: iconButtonChildren, ...iconButtonOther } = iconButtonProps ?? AppDefaultValue.emptyObject;
     const { children: menuChildren, ...menuOther } = menuProps ?? AppDefaultValue.emptyObject;
+
     return (
         <div>
             <Tooltip title={title} {...tooltipOther}>
                 <IconButton
                     {...iconButtonOther}
-                    id={`button-${menuId}`}
+                    id={`button-menu-${menuId}`}
                     aria-controls={open ? `menu-${menuId}` : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
@@ -57,7 +57,7 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
                 open={open}
                 onClose={closeMenu}
                 MenuListProps={{
-                    'aria-labelledby': `button-${menuId}`,
+                    'aria-labelledby': `button-menu-${menuId}`,
                 }}>
                 {menuChildren}
             </Menu>

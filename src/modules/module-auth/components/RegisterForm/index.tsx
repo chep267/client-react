@@ -18,6 +18,9 @@ import InputPassword from '@module-auth/components/InputPassword';
 import ButtonSubmit from '@module-auth/components/ButtonSubmit';
 import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
+/** types */
+import type { TypeFormAuth } from '@module-auth/models';
+
 export default function RegisterForm() {
     const SIGN_IN = useSignIn();
     const {
@@ -33,15 +36,20 @@ export default function RegisterForm() {
             component="form"
             onSubmit={handleSubmit(({ email, password }) => SIGN_IN.mutate({ email, password }))}
             noValidate>
-            <InputEmail name="email" control={control} error={Boolean(errors.email)} errorMessage={errors.email?.message} />
-            <InputPassword
+            <InputEmail<TypeFormAuth>
+                name="email"
+                control={control}
+                error={Boolean(errors.email)}
+                errorMessage={errors.email?.message}
+            />
+            <InputPassword<TypeFormAuth>
                 name="password"
                 control={control}
                 error={Boolean(errors.password)}
                 errorMessage={errors.password?.message}
                 setFocus={setFocus}
             />
-            <InputPassword
+            <InputPassword<TypeFormAuth>
                 name="confirm_password"
                 control={control}
                 error={Boolean(errors.password)}

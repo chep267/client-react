@@ -21,16 +21,22 @@ export type AuthButtonSubmitProps = {
 
 export type InputEmailProps<T extends FieldValues> = {
     name: FieldPath<T>;
-    control: Control<FieldValues, any>;
+    control: Control<T>;
     error?: boolean;
     errorMessage?: string;
 };
 
 export type InputPasswordProps<T extends FieldValues> = {
     name: FieldPath<T>;
-    control: Control<FieldValues, any>;
+    control: Control<T>;
     error?: boolean;
     errorMessage?: string;
     setFocus: UseFormSetFocus<T>;
     isConfirm?: boolean;
+};
+
+export type TypeFormAuth = {
+    email: string;
+    password: string;
+    confirm_password: string;
 };

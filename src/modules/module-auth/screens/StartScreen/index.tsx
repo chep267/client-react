@@ -15,6 +15,7 @@ const StartLoading = React.lazy(() => import('@module-base/components/StartLoadi
 
 export default function StartScreen() {
     const RESTART = useRestart();
+
     React.useEffect(() => {
         RESTART.mutate({});
     }, []);

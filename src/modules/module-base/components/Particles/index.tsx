@@ -17,7 +17,7 @@ import { ParticleOptions } from '@module-base/constants/ParticleOptions.ts';
 import type { IParticlesProps } from '@tsparticles/react';
 
 const Particle = React.memo(function Particle(props: IParticlesProps) {
-    const { options: Options } = props;
+    const { options: optionsBase } = props;
     const theme = useTheme();
     const id = React.useId();
 
@@ -31,9 +31,10 @@ const Particle = React.memo(function Particle(props: IParticlesProps) {
         });
     }, []);
 
-    const options = Options || ParticleOptions(theme.palette.mode);
+    const options = React.useMemo(() => {
+        return optionsBase || ParticleOptions(theme.palette.mode);
+    }, [optionsBase, theme.palette.mode]);
 
-    // @ts-ignore
     return init ? <Particles id={`Particles-${id}`} options={options} /> : null;
 });
 

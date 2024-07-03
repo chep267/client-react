@@ -4,10 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';

@@ -15,13 +15,7 @@ export default function ButtonSubmit(props: AuthButtonSubmitProps) {
     const { loading, type } = props;
 
     return (
-        <LoadingButton
-            type="submit"
-            loading={loading}
-            size="large"
-            variant="contained"
-            className="rounded-lg w-1/3"
-            fullWidth={false}>
+        <LoadingButton type="submit" loading={loading} size="large" variant="contained" className="rounded-lg w-1/3">
             <FormattedMessage id={`module.auth.button.${type}`} />
         </LoadingButton>
     );

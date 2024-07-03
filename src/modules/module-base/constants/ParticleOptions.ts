@@ -5,9 +5,10 @@
  */
 
 /** types */
-import { TypeThemeMode } from '@module-theme/models';
+import type { IParticlesProps } from '@tsparticles/react';
+import type { TypeThemeMode } from '@module-theme/models';
 
-export const ParticleOptions = (mode: TypeThemeMode) => ({
+export const ParticleOptions = (mode: TypeThemeMode): IParticlesProps['options'] => ({
     autoPlay: true,
     clear: true,
     delay: 0,

@@ -4,14 +4,11 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-
-/** lib icons */
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MessageIcon from '@mui/icons-material/Message';
 

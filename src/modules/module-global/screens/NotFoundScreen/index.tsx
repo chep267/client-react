@@ -4,9 +4,8 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import Box from '@mui/material/Box';
 
 /** components */

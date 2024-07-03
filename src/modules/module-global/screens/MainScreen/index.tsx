@@ -4,9 +4,8 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';

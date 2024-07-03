@@ -15,10 +15,14 @@ import { AppKey } from '@module-base/constants/AppKey.ts';
 /** utils */
 import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
+/** types */
+import type { TypeFormAuth } from '@module-auth/models';
+
 export function useFormAuth({ type }: { type: 'signin' | 'register' | 'recover' }) {
     // @ts-ignore
-    const email = Cookies.get(AppKey.email);
-    return useForm({
+    const email = Cookies.get(AppKey.email) as string;
+
+    return useForm<TypeFormAuth>({
         defaultValues: {
             email: type === 'signin' ? email || 'dong.nguyenthanh@powergatesoftware.com' : '',
             password: type === 'recover' ? 'chep_react@2024' : 'Midom@2024',

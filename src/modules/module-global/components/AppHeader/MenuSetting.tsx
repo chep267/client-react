@@ -4,26 +4,23 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
 import List from '@mui/material/List';
-
-/** lib icons */
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PaletteIcon from '@mui/icons-material/Palette';
 import TranslateIcon from '@mui/icons-material/Translate';
 
-/** components */
-import NestedItem from '@module-base/components/NestedItem';
-
 /** hooks */
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
+
+/** components */
+import NestedItem from '@module-base/components/NestedItem';
 
 /** types */
 import type { NestedItemProps } from '@module-base/models';

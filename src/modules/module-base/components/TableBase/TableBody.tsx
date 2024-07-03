@@ -4,10 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import TableBodyElem from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';

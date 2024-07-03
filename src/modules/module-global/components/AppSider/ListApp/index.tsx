@@ -4,24 +4,21 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
-
-/** lib icons */
 import HomeIcon from '@mui/icons-material/Home';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
+/** constants */
+import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+
 /** components */
 import ListBase from '@module-base/components/ListBase';
 import AppItem from './AppItem';
-
-/** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
 
 /** types */
 import type { ListAppProps, TypeAppItem } from '@module-global/models';

@@ -21,15 +21,8 @@ export const createGradient = (color1: string, color2: string) => {
 export const palette: Record<PaletteMode, DeepPartial<Palette>> = {
     light: {
         mode: themeObject.light,
-        primary: {
-            main: '#038cf5',
-        },
     },
     dark: {
         mode: themeObject.dark,
-        primary: {
-            main: '#038cf5',
-        },
-        background: { paper: '#051E34' },
     },
 };

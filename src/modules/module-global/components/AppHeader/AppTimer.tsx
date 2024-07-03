@@ -4,9 +4,8 @@
  *
  */
 
+/** libs */
 import dayjs from 'dayjs';
-
-/** lib components */
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 

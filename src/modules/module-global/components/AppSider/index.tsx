@@ -4,25 +4,22 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
 import Tooltip from '@mui/material/Tooltip';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-
-/** lib icons */
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
-/** components */
-import ListApp from './ListApp';
-
 /** hooks */
 import { useSider } from '@module-global/hooks/useSider.ts';
+
+/** components */
+import ListApp from './ListApp';
 
 const AppSider = React.memo(function AppSider() {
     const {

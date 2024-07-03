@@ -4,7 +4,7 @@
  *
  */
 
-export const ScreenPath = Object.freeze({
+export const ScreenPath2 = Object.freeze({
     HOME: '/',
     FEED: '/feed',
 
@@ -20,7 +20,7 @@ export const ScreenPath = Object.freeze({
     PROFILE: '/profile',
 });
 
-export const ScreenPath2 = Object.freeze({
+export const ScreenPath = Object.freeze({
     home: '/',
     start: '/start',
     defaultPath: '/calendar',

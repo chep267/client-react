@@ -14,8 +14,8 @@ export const components = {
     MuiAppBar: {
         styleOverrides: {
             root: ({ theme }: { theme: Theme }) => ({
-                color: theme.palette.mode === themeObject.light ? '#038cf5' : '',
-                backgroundColor: theme.palette.mode === themeObject.light ? '#f0f2f5' : '',
+                color: theme.palette.primary.main,
+                backgroundColor: theme.palette.mode === themeObject.light ? theme.palette.grey.A100 : '',
             }),
         },
     },

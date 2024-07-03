@@ -4,10 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
@@ -35,11 +34,11 @@ export default function AppMain() {
             )}>
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={ScreenPath.HOME} element={<Navigate to={ScreenPath.CALENDAR} />} />
-                    <Route path={`${ScreenPath.FEED}/*`} element={<TestScreen />} />
-                    <Route path={`${ScreenPath.MESSENGER}/*`} element={<NotFoundScreen />} />
-                    <Route path={`${ScreenPath.CALENDAR}/*`} element={<NotFoundScreen />} />
-                    <Route path={`${ScreenPath.GAME}/*`} element={<NotFoundScreen />} />
+                    <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.CALENDAR} />} />
+                    <Route path={`${ScreenPath.feed}/*`} element={<TestScreen />} />
+                    <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
+                    <Route path={`${ScreenPath.calendar}/*`} element={<NotFoundScreen />} />
+                    <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />
                 </Routes>
             </React.Suspense>

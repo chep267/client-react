@@ -17,6 +17,9 @@ import InputEmail from '@module-auth/components/InputEmail';
 import ButtonSubmit from '@module-auth/components/ButtonSubmit';
 import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
+/** types */
+import type { TypeFormAuth } from '@module-auth/models';
+
 export default function RecoverForm() {
     const SIGN_IN = useSignIn();
     const {
@@ -31,7 +34,12 @@ export default function RecoverForm() {
             component="form"
             onSubmit={handleSubmit(({ email, password }) => SIGN_IN.mutate({ email, password }))}
             noValidate>
-            <InputEmail name="email" control={control} error={Boolean(errors.email)} errorMessage={errors.email?.message} />
+            <InputEmail<TypeFormAuth>
+                name="email"
+                control={control}
+                error={Boolean(errors.email)}
+                errorMessage={errors.email?.message}
+            />
             <Box className="flex flex-row items-end justify-between">
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={SIGN_IN.isPending} type="recover" />

@@ -4,10 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
+import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -19,20 +19,35 @@ import { AppTimer } from '@module-base/constants/AppTimer.ts';
 /** utils */
 import { useNotify } from '@module-base/hooks/useNotify.ts';
 
-/** styles */
-import { useStyles } from './styles';
-
 /** types */
+import type { SnackbarOrigin } from '@mui/material/Snackbar';
 import type { NotifyBoundaryProps } from '@module-base/models';
 
-const NotifyBoundary = React.memo(function NotifyBoundary(props: NotifyBoundaryProps) {
+/** styles */
+const useStyles = makeStyles(({ palette }) => ({
+    notify: {
+        width: '100%',
+    },
+    default: {
+        color: palette.common.white,
+        backgroundColor: palette.primary.main,
+    },
+    hidden: {
+        display: 'none',
+    },
+    title: {
+        textTransform: 'capitalize',
+    },
+}));
+
+const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
     const NOTIFY = useNotify();
     const { open, message, intlMessage, mode, close, duration = AppTimer.notifyDuration } = NOTIFY.data;
     const classes = useStyles();
 
     const closeSnackbar = React.useCallback(() => NOTIFY.method.toggleNotify(), []);
 
-    const anchorOrigin = React.useRef(Object.freeze({ vertical: 'top', horizontal: 'center' })).current;
+    const anchorOrigin = React.useRef<SnackbarOrigin>(Object.freeze({ vertical: 'top', horizontal: 'center' })).current;
 
     return (
         <Snackbar

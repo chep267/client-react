@@ -4,14 +4,11 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
-
-/** icons */
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 

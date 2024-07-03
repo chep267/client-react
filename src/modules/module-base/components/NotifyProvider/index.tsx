@@ -4,13 +4,14 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** components */
-import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
 /** contexts */
 import { NotifyContext, defaultNotifyState } from '@module-base/contexts/NotifyContext.ts';
+
+/** components */
+import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
 /** types */
 import type { TypeNotifyContext, TypeNotify, NotifyProviderProps } from '@module-base/models';
