@@ -15,6 +15,9 @@ import Button from '@mui/material/Button';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
+/** constants */
+import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+
 /** hooks */
 import { useSider } from '@module-global/hooks/useSider.ts';
 
@@ -31,17 +34,11 @@ const AppSider = React.memo(function AppSider() {
         <Drawer
             variant="permanent"
             open={openSider}
-            className={classnames(
-                'relative max-[567px]:hidden transition-[width] duration-500 h-full',
-                { ['w-app-bar-expand']: openSider },
-                { ['w-app-bar-collapse']: !openSider }
-            )}
+            className={classnames('relative max-sm:hidden transition-[width] duration-500 h-full')}
+            sx={{ width: openSider ? ScreenSize.AppBarExpandWidth : ScreenSize.AppBarCollapseWidth }}
             PaperProps={{
-                className: classnames(
-                    'top-16 left-0 transition-[width] duration-500 z-10',
-                    { ['w-app-bar-expand']: openSider },
-                    { ['w-app-bar-collapse']: !openSider }
-                ),
+                className: classnames('top-16 left-0 transition-[width] duration-500 z-10'),
+                sx: { width: openSider ? ScreenSize.AppBarExpandWidth : ScreenSize.AppBarCollapseWidth },
             }}>
             <Tooltip
                 title={<FormattedMessage id={`module.global.sider.button.${openSider ? 'collapse' : 'expand'}.tooltip`} />}

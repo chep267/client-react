@@ -12,6 +12,7 @@ import Box from '@mui/material/Box';
 
 /** constants */
 import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** hooks */
 import { useSider } from '@module-global/hooks/useSider.ts';
@@ -27,11 +28,8 @@ export default function AppMain() {
 
     return (
         <Box
-            className={classnames(
-                'flex h-full max-[567px]:w-full transition-[width] duration-500 pr-4',
-                { ['w-app-main-app-bar-expand']: openSider },
-                { ['w-app-main-app-bar-collapse']: !openSider }
-            )}>
+            className={classnames('flex h-full max-sm:w-full transition-[width] duration-500 pr-4')}
+            sx={{ width: `calc(100% - ${openSider ? ScreenSize.AppBarExpandWidth : ScreenSize.AppBarCollapseWidth}px)` }}>
             <React.Suspense fallback={null}>
                 <Routes>
                     <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.defaultPath} />} />
