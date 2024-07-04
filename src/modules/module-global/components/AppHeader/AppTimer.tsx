@@ -12,23 +12,17 @@ import Typography from '@mui/material/Typography';
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 
-function TimeToday() {
+export default function AppTimer() {
     const {
         data: { locale },
     } = useLanguage();
 
     return (
-        <Typography variant="body2" fontWeight={600} textTransform="capitalize">
-            {dayjs().locale(locale).format('dddd, DD/MM/YYYY')}
-        </Typography>
-    );
-}
-
-export default function AppTimer() {
-    return (
         <Box className="flex items-center gap-2 invisible md:visible">
             <Box className="w-2 h-2 rounded-full" bgcolor="primary.main" />
-            <TimeToday />
+            <Typography variant="body2" fontWeight={600} textTransform="capitalize">
+                {dayjs().locale(locale).format('dddd, DD/MM/YYYY')}
+            </Typography>
         </Box>
     );
 }

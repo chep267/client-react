@@ -14,6 +14,10 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import PaletteIcon from '@mui/icons-material/Palette';
 import TranslateIcon from '@mui/icons-material/Translate';
 
+/** constants */
+import { localeObject } from '@module-language/constants/localeObject.ts';
+import { themeObject } from '@module-theme/constants/themeObject.ts';
+
 /** hooks */
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
@@ -24,7 +28,6 @@ import NestedItem from '@module-base/components/NestedItem';
 
 /** types */
 import type { NestedItemProps } from '@module-base/models';
-import { localeObject } from '@module-language/constants/localeObject.ts';
 
 type Props = {
     closeMenu(): void;
@@ -48,13 +51,13 @@ export default function MenuSetting(props: Props) {
                     id: 'Theme-Dark',
                     title: <FormattedMessage id="module.theme.text.dark" />,
                     icon: <DarkModeIcon color="disabled" />,
-                    onClick: () => THEME.method.setTheme('dark'),
+                    onClick: () => THEME.method.setTheme(themeObject.dark),
                 },
                 {
                     id: 'Theme-Light',
                     title: <FormattedMessage id="module.theme.text.light" />,
                     icon: <LightModeIcon color="warning" />,
-                    onClick: () => THEME.method.setTheme('light'),
+                    onClick: () => THEME.method.setTheme(themeObject.light),
                 },
             ],
         },
@@ -84,18 +87,19 @@ export default function MenuSetting(props: Props) {
         },
     ]).current;
 
-    const menuSignOut = React.useMemo<NestedItemProps[]>(() => {
-        return [
+    const menuSignOut = React.useMemo<NestedItemProps[]>(
+        () => [
             {
                 id: 'sign-out',
                 title: <FormattedMessage id="module.auth.form.title.signout" />,
                 icon: <LogoutIcon color="primary" />,
-                onClick: () => SIGN_OUT.mutate({}, { onSuccess: closeMenu }),
                 divide: 'bottom',
                 loading: SIGN_OUT.isPending,
+                onClick: () => SIGN_OUT.mutate({}, { onSuccess: closeMenu }),
             },
-        ];
-    }, [SIGN_OUT.isPending]);
+        ],
+        [SIGN_OUT.isPending]
+    );
 
     const renderMenuBase = React.useMemo(() => {
         return menuBase.map((item) => <NestedItem key={item?.id} {...item} />);

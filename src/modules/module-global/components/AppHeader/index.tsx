@@ -16,7 +16,7 @@ import MessageIcon from '@mui/icons-material/Message';
 import AppInfo from './AppInfo.tsx';
 import AppTimer from './AppTimer.tsx';
 import AppButtonDev from './AppButtonDev.tsx';
-import AppButtonMenu from './AppButtonMenu.tsx';
+import ButtonSetting from './ButtonSetting/index.tsx';
 
 const AppHeader = React.memo(function AppHeader() {
     return (
@@ -29,7 +29,7 @@ const AppHeader = React.memo(function AppHeader() {
                 <Box className="flex items-center gap-2">
                     <AppButtonDev tooltip="Messenger" icon={<MessageIcon />} />
                     <AppButtonDev tooltip="Messenger" icon={<NotificationsIcon />} />
-                    <AppButtonMenu />
+                    <ButtonSetting />
                 </Box>
             </Toolbar>
         </AppBar>

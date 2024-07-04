@@ -18,7 +18,7 @@ import MenuSetting from './MenuSetting.tsx';
 /** types */
 import type { ElementClickEvent } from '@module-base/models';
 
-export default function AppButtonMenu() {
+export default function ButtonSetting() {
     const menuId = React.useId();
     const [menuElem, setMenuElem] = React.useState<HTMLElement>(null);
     const open = Boolean(menuElem);

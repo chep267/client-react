@@ -34,7 +34,7 @@ export default function AppMain() {
             )}>
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.CALENDAR} />} />
+                    <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.defaultPath} />} />
                     <Route path={`${ScreenPath.feed}/*`} element={<TestScreen />} />
                     <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
                     <Route path={`${ScreenPath.calendar}/*`} element={<NotFoundScreen />} />
