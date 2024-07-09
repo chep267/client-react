@@ -12,7 +12,7 @@ export type AuthContextProps = {
     data: {
         isAuthentication: boolean;
         prePath: string;
-        user: TypeUser;
+        user: TypeUser | null;
     };
     method: {
         setAuth(options?: Partial<AuthContextProps['data']>): void;

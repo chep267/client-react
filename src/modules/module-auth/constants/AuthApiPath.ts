@@ -4,7 +4,7 @@
  *
  */
 
-export const AuthApi = Object.freeze({
+export const AuthApiPath = Object.freeze({
     signin: '/auth/signin',
     signout: '/auth/signout',
     restart: '/auth/restart',

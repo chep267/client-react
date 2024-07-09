@@ -6,10 +6,12 @@
 
 /** libs */
 import * as React from 'react';
-import useMediaQuery from '@mui/material/useMediaQuery';
+
+/** constants */
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 /** contexts */
-import { SiderContext } from '@module-global/contexts/SiderContext.ts';
+import { defaultSiderState, getSiderState, SiderContext } from '@module-global/contexts/SiderContext.ts';
 
 /** types */
 import type { SiderProviderProps, TypeSiderContext } from '@module-global/models';
@@ -17,21 +19,33 @@ import type { SiderProviderProps, TypeSiderContext } from '@module-global/models
 export default function SiderProvider(props: SiderProviderProps) {
     const { children } = props;
 
-    const isPointMD = useMediaQuery('(max-width:768px)'); // tailwind md
-    const [openSider, setOpenSider] = React.useState(true);
+    const [siderState, setSiderState] = React.useState(defaultSiderState.siderState);
 
-    const store = React.useMemo<TypeSiderContext>(
-        () => ({
+    React.useEffect(() => {
+        window.addEventListener('resize', onResize);
+        return () => {
+            window.removeEventListener('resize', onResize);
+        };
+    }, []);
+
+    const onResize = React.useCallback(() => {
+        setSiderState(() => getSiderState());
+    }, []);
+
+    const onChangeState = React.useCallback(() => {
+        setSiderState((prev) => (prev === SiderState.collapse ? SiderState.expand : SiderState.collapse));
+    }, []);
+
+    const store = React.useMemo<TypeSiderContext>(() => {
+        return {
             data: {
-                openSider: openSider && !isPointMD,
-                isPointMD,
+                siderState,
             },
             method: {
-                setOpenSider,
+                onChangeState: onChangeState,
             },
-        }),
-        [openSider, isPointMD]
-    );
+        };
+    }, [siderState]);
 
     return <SiderContext.Provider value={store}>{children}</SiderContext.Provider>;
 }

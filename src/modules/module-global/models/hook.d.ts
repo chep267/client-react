@@ -5,17 +5,17 @@
  */
 
 /** types */
-import type { Dispatch, SetStateAction, PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
-/** use base */
 export type SiderProviderProps = PropsWithChildren;
+
+export type TypeSiderState = 'collapse' | 'expand' | 'hidden';
 
 export type TypeSiderContext = {
     data: {
-        openSider: boolean;
-        isPointMD: boolean;
+        siderState: TypeSiderState;
     };
     method: {
-        setOpenSider: Dispatch<SetStateAction<boolean>>;
+        onChangeState: () => void;
     };
 };

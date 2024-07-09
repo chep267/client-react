@@ -42,7 +42,7 @@ export default function AuthRoute(props: PropsWithChildren) {
     console.log('uid: ', uid);
 
     React.useEffect(() => {
-        if (accountState === AccountState.reSignin && !pathname.startsWith('AuthScreenPath.start')) {
+        if (accountState === AccountState.reSignin && !pathname.startsWith(AuthScreenPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             navigate(AuthScreenPath.start, { replace: true });
         }

@@ -23,32 +23,45 @@ import { useSider } from '@module-global/hooks/useSider.ts';
 
 /** components */
 import ListApp from './ListApp';
+import { SiderState } from '@module-global/constants/SiderState.ts';
 
 const AppSider = React.memo(function AppSider() {
     const {
-        data: { openSider, isPointMD },
-        method: { setOpenSider },
+        data: { siderState },
     } = useSider();
+
+    const sxStyles = React.useRef({
+        [SiderState.expand]: { width: ScreenSize.AppBarExpandWidth },
+        [SiderState.collapse]: { width: ScreenSize.AppBarCollapseWidth },
+    }).current;
+
+    const [open, setOpen] = React.useState(siderState == SiderState.expand);
+
+    const onChangeOpen = React.useCallback(() => setOpen((prevState) => !prevState), []);
 
     return (
         <Drawer
             variant="permanent"
-            open={openSider}
-            className={classnames('relative max-sm:hidden transition-[width] duration-500 h-full')}
-            sx={{ width: openSider ? ScreenSize.AppBarExpandWidth : ScreenSize.AppBarCollapseWidth }}
+            open={open}
+            className={classnames('relative max-sm:hidden transition-[width] duration-500 h-full', {
+                hidden: siderState === SiderState.hidden,
+            })}
+            sx={sxStyles[open ? siderState : SiderState.collapse]}
             PaperProps={{
                 className: classnames('top-16 left-0 transition-[width] duration-500 z-10'),
-                sx: { width: openSider ? ScreenSize.AppBarExpandWidth : ScreenSize.AppBarCollapseWidth },
+                sx: sxStyles[open ? siderState : SiderState.collapse],
             }}>
-            <Tooltip
-                title={<FormattedMessage id={`module.global.sider.button.${openSider ? 'collapse' : 'expand'}.tooltip`} />}
-                placement="right">
-                <Button size="large" disabled={isPointMD} onClick={() => setOpenSider((prev) => !prev)}>
-                    {openSider ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+            <Tooltip title={<FormattedMessage id={`module.global.sider.button.${siderState}.tooltip`} />} placement="right">
+                <Button className={'min-w-14'} disabled={siderState !== SiderState.expand} onClick={onChangeOpen}>
+                    {!open || siderState === SiderState.collapse ? (
+                        <KeyboardDoubleArrowRightIcon />
+                    ) : (
+                        <KeyboardDoubleArrowLeftIcon />
+                    )}
                 </Button>
             </Tooltip>
             <Divider />
-            <ListApp isTooltip={!openSider} />
+            <ListApp isTooltip={siderState !== SiderState.hidden} />
         </Drawer>
     );
 });

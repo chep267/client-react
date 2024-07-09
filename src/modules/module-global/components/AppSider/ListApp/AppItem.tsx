@@ -13,11 +13,33 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-/** styles */
-import { useStyles } from './styles';
-
 /** types */
 import type { AppItemProps } from '@module-global/models';
+import makeStyles from '@mui/styles/makeStyles';
+
+/** styles */
+const useStyles = makeStyles(({ palette }) => ({
+    listItem: {
+        '& .MuiListItemButton-root': {
+            borderRadius: 8,
+            minHeight: 50,
+            padding: '0 12px',
+        },
+        '& .MuiListItemText-root > .MuiListItemText-primary': {
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+        },
+    },
+    listItemSelected: {
+        '& .MuiListItemButton-root': {
+            backgroundColor: palette.primary.dark,
+            '& .MuiListItemText-root, .MuiSvgIcon-root': {
+                color: palette.common.white,
+            },
+        },
+    },
+}));
 
 const AppItem = React.memo(function AppItem(props: AppItemProps) {
     const { isSelected, isTooltip, item } = props;
@@ -33,7 +55,7 @@ const AppItem = React.memo(function AppItem(props: AppItemProps) {
     }, [item]);
 
     return (
-        <ListItem className={classnames(classes.listItem, { [classes.listItemSelected]: isSelected })}>
+        <ListItem className={classnames('w-full p-1', classes.listItem, { [classes.listItemSelected]: isSelected })}>
             <Tooltip title={item.name} placement="right" disableHoverListener={!isTooltip}>
                 {renderItem}
             </Tooltip>
