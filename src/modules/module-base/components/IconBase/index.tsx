@@ -9,7 +9,7 @@ import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 
 /** types */
-import type { IconBaseProps, TypeIcons } from '@module-base/models';
+import type { IconBaseProps, TypeIcons } from '@module-base/types';
 
 const Icons: TypeIcons = Object.freeze({
     /** app icon */

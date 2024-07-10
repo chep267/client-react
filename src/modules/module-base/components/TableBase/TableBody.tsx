@@ -18,7 +18,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { useStyles } from './styles';
 
 /** types */
-import type { TableBodyProps } from '@module-base/models';
+import type { TableBodyProps } from '@module-base/types';
 
 const TableBody = React.memo(function TableBody(props: TableBodyProps) {
     const { onClickItem, data, rows, tableRowProps } = props;

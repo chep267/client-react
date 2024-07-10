@@ -6,7 +6,7 @@
 
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';
-import type { TypeThemeMode } from '@module-theme/models';
+import type { TypeThemeMode } from '@module-theme/types';
 
 export const ParticleOptions = (mode: TypeThemeMode): IParticlesProps['options'] => ({
     autoPlay: true,

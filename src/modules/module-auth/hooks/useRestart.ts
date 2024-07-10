@@ -22,8 +22,8 @@ import { useNotify } from '@module-base/hooks/useNotify.ts';
 import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
 /** types */
-import type { AxiosError } from '@module-base/models';
-import type { TypeApiAuth } from '@module-auth/models';
+import type { AxiosError } from '@module-base/types';
+import type { TypeApiAuth } from '@module-auth/types';
 
 export function useRestart() {
     const AUTH = useAuth();

@@ -11,7 +11,7 @@ import * as React from 'react';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 /** types */
-import type { AuthContextProps } from '@module-auth/models';
+import type { AuthContextProps } from '@module-auth/types';
 
 export const defaultAuthState = Object.freeze<AuthContextProps['data']>({
     isAuthentication: false,

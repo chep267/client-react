@@ -18,7 +18,7 @@ import ButtonSubmit from '@module-auth/components/ButtonSubmit';
 import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
 /** types */
-import type { TypeFormAuth } from '@module-auth/models';
+import type { TypeFormAuth } from '@module-auth/types';
 
 export default function RecoverForm() {
     const SIGN_IN = useSignIn();

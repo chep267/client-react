@@ -21,7 +21,7 @@ import ListBase from '@module-base/components/ListBase';
 import AppItem from './AppItem';
 
 /** types */
-import type { ListAppProps, TypeAppItem } from '@module-global/models';
+import type { ListAppProps, TypeAppItem } from '@module-global/types';
 
 const ListApp = React.memo(function ListApp(props: ListAppProps) {
     const { isTooltip } = props;

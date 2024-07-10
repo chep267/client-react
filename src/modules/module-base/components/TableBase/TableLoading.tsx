@@ -15,7 +15,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useStyles } from './styles';
 
 /** types */
-import type { TableLoadingProps } from '@module-base/models';
+import type { TableLoadingProps } from '@module-base/types';
 
 const TableLoading = React.memo(function TableLoading(props: TableLoadingProps) {
     const { loading, empty, emptyText } = props;

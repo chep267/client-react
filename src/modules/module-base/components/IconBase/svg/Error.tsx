@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { IconSVGProps } from '@module-base/models';
+import type { IconSVGProps } from '@module-base/types';
 
 export default function Error(props: IconSVGProps) {
     return (

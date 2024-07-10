@@ -15,7 +15,7 @@ import { FormattedMessage } from 'react-intl';
 import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
 
 /** types */
-import type { TypeAuthBreadcrumbsItem } from '@module-auth/models';
+import type { TypeAuthBreadcrumbsItem } from '@module-auth/types';
 
 export default function AuthBreadcrumbs() {
     const { pathname } = useLocation();

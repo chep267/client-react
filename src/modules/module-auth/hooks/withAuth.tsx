@@ -8,7 +8,7 @@
 import { useAuth } from '@module-auth/hooks/useAuth.ts';
 
 /** types */
-import type { ComponentType } from '@module-base/models';
+import type { ComponentType } from '@module-base/types';
 
 export function withAuth<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

@@ -14,7 +14,7 @@ import { NotifyContext, defaultNotifyState } from '@module-base/contexts/NotifyC
 import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
 /** types */
-import type { TypeNotifyContext, TypeNotify, NotifyProviderProps } from '@module-base/models';
+import type { TypeNotifyContext, TypeNotify, NotifyProviderProps } from '@module-base/types';
 
 export default function NotifyProvider(props: NotifyProviderProps) {
     const { children } = props;

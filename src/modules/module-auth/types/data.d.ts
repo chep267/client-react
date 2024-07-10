@@ -6,7 +6,7 @@
 
 /** types */
 import type { PropsWithChildren } from 'react';
-import type { TypeUser } from '@module-user/models';
+import type { TypeUser } from '@module-user/types';
 
 export type AuthContextProps = {
     data: {

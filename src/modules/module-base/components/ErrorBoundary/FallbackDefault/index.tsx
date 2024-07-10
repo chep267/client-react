@@ -16,7 +16,7 @@ import IconBase from '@module-base/components/IconBase';
 import ButtonRetry from './ButtonRetry.tsx';
 
 /** types */
-import type { FallbackDefaultProps } from '@module-base/models';
+import type { FallbackDefaultProps } from '@module-base/types';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));

@@ -11,7 +11,7 @@ import * as React from 'react';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 /** types */
-import type { TypeNotify, TypeNotifyContext } from '@module-base/models';
+import type { TypeNotify, TypeNotifyContext } from '@module-base/types';
 
 export const defaultNotifyState = Object.freeze<TypeNotify>({
     open: false,

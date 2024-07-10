@@ -15,7 +15,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { AppTimer } from '@module-base/constants/AppTimer.ts';
 
 /** types */
-import type { InputSearchProps, InputChangeEvent } from '@module-base/models';
+import type { InputSearchProps, InputChangeEvent } from '@module-base/types';
 
 const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
     const {

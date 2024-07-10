@@ -18,7 +18,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { useStyles } from './styles';
 
 /** types */
-import type { ElementClickEvent, MenuBaseProps } from '@module-base/models';
+import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
 
 const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
     const { iconButtonProps, tooltipProps, menuProps } = props;

@@ -5,7 +5,7 @@
  */
 
 /** types */
-import { TypeSiderState } from '@module-global/models';
+import { TypeSiderState } from '@module-global/types';
 
 export const SiderState = Object.freeze<Record<TypeSiderState, TypeSiderState>>({
     collapse: 'collapse',

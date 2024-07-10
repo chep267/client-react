@@ -18,7 +18,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useStyles } from './styles';
 
 /** types */
-import type { TableHeaderProps } from '@module-base/models';
+import type { TableHeaderProps } from '@module-base/types';
 
 const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
     const { rows, orderType, orderBy, onRequestSort } = props;

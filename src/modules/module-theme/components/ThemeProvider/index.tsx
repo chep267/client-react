@@ -22,7 +22,7 @@ import { components } from '@module-theme/constants/components.ts';
 /** types */
 import type { PropsWithChildren } from 'react';
 import type { ThemeOptions } from '@mui/material/styles';
-import type { TypeThemeMode, ThemeContextProps } from '@module-theme/models';
+import type { TypeThemeMode, ThemeContextProps } from '@module-theme/types';
 
 export default function ThemeProvider(props: PropsWithChildren) {
     const { children } = props;

@@ -12,7 +12,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { themeObject } from '@module-theme/constants/themeObject.ts';
 
 /** types */
-import type { ThemeContextProps } from '@module-theme/models';
+import type { ThemeContextProps } from '@module-theme/types';
 
 export const ThemeContext = React.createContext<ThemeContextProps>({
     data: {

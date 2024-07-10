@@ -27,7 +27,7 @@ import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
 import NestedItem from '@module-base/components/NestedItem';
 
 /** types */
-import type { NestedItemProps } from '@module-base/models';
+import type { NestedItemProps } from '@module-base/types';
 
 type Props = {
     closeMenu(): void;

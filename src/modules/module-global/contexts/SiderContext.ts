@@ -13,7 +13,7 @@ import { SiderState } from '@module-global/constants/SiderState.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** types */
-import type { TypeSiderContext, TypeSiderState } from '@module-global/models';
+import type { TypeSiderContext, TypeSiderState } from '@module-global/types';
 
 export const getSiderState = (): TypeSiderState => {
     switch (true) {

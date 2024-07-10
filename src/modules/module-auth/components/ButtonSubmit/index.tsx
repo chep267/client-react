@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { LoadingButton } from '@mui/lab';
 
 /** types */
-import type { AuthButtonSubmitProps } from '@module-auth/models';
+import type { AuthButtonSubmitProps } from '@module-auth/types';
 
 export default function ButtonSubmit(props: AuthButtonSubmitProps) {
     const { loading, type } = props;

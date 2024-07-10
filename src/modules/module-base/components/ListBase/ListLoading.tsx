@@ -15,7 +15,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useStyles } from './styles';
 
 /** types */
-import type { ListLoadingProps } from '@module-base/models';
+import type { ListLoadingProps } from '@module-base/types';
 
 const ListLoading = React.memo(function ListLoading(props: ListLoadingProps) {
     const { loading, empty, emptyText } = props;

@@ -8,7 +8,7 @@
 import { useNotify } from '@module-base/hooks/useNotify.ts';
 
 /** types */
-import type { ComponentType } from '@module-base/models';
+import type { ComponentType } from '@module-base/types';
 
 export function withNotify<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

@@ -17,7 +17,7 @@ import ListLoading from './ListLoading';
 import { useStyles } from './styles';
 
 /** types */
-import type { ListBaseProps } from '@module-base/models';
+import type { ListBaseProps } from '@module-base/types';
 
 const ListBase = React.memo(function ListBase<T>(props: ListBaseProps<T>) {
     const { listRef, data, renderItem, className, loading, emptyText, ...listProps } = props;

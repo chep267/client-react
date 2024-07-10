@@ -13,7 +13,7 @@ import PasswordField from '@module-base/components/PasswordField';
 
 /** types */
 import type { FieldValues } from 'react-hook-form';
-import type { InputPasswordProps } from '@module-auth/models';
+import type { InputPasswordProps } from '@module-auth/types';
 
 export default function InputPassword<T extends FieldValues>(props: InputPasswordProps<T>) {
     const { name, control, error, errorMessage, setFocus, isConfirm } = props;

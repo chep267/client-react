@@ -8,7 +8,7 @@
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 
 /** types */
-import type { ComponentType } from '@module-base/models';
+import type { ComponentType } from '@module-base/types';
 
 export function withLanguage<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

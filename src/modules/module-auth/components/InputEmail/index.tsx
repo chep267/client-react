@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 
 /** types */
 import type { FieldValues } from 'react-hook-form';
-import type { InputEmailProps } from '@module-auth/models';
+import type { InputEmailProps } from '@module-auth/types';
 
 export default function InputEmail<T extends FieldValues>(props: InputEmailProps<T>) {
     const { name, control, error, errorMessage } = props;

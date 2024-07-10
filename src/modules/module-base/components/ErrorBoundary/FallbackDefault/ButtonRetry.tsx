@@ -19,7 +19,7 @@ import { AppTimer } from '@module-base/constants/AppTimer.ts';
 import { useCountdown } from '@module-base/hooks/useCountdown.ts';
 
 /** types */
-import type { FallbackDefaultProps } from '@module-base/models';
+import type { FallbackDefaultProps } from '@module-base/types';
 
 /** styles */
 const useStyles = makeStyles(({ zIndex }) => ({

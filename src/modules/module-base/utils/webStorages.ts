@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { StorageName, StoreValueType } from '@module-base/models';
+import type { StorageName, StoreValueType } from '@module-base/types';
 
 export class StorageBase {
     constructor(storageName: StorageName) {

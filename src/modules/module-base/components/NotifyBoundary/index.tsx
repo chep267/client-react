@@ -21,7 +21,7 @@ import { useNotify } from '@module-base/hooks/useNotify.ts';
 
 /** types */
 import type { SnackbarOrigin } from '@mui/material/Snackbar';
-import type { NotifyBoundaryProps } from '@module-base/models';
+import type { NotifyBoundaryProps } from '@module-base/types';
 
 /** styles */
 const useStyles = makeStyles(({ palette }) => ({

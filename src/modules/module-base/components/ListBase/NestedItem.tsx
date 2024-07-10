@@ -20,7 +20,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useStyles } from './styles';
 
 /** types */
-import type { ElementClickEvent, NestedItemProps } from '@module-base/models';
+import type { ElementClickEvent, NestedItemProps } from '@module-base/types';
 
 export default function NestedItem(props: NestedItemProps) {
     const { subIndex = 1, divide, loading, onClick, title, icon = ' ', subMenu } = props;

@@ -8,7 +8,7 @@
 import * as React from 'react';
 
 /** types */
-import type { UseListSearchProps, KeyboardEvent } from '@module-base/models';
+import type { UseListSearchProps, KeyboardEvent } from '@module-base/types';
 
 const defaultState: UseListSearchProps = {
     disableEventKey: false, // có tắt phím mũi tên không, mặc định là không

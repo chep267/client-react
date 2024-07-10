@@ -11,7 +11,7 @@ import * as React from 'react';
 import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext.ts';
 
 /** types */
-import type { AuthContextProps, AuthProviderProps } from '@module-auth/models';
+import type { AuthContextProps, AuthProviderProps } from '@module-auth/types';
 
 export default function AuthProvider(props: AuthProviderProps) {
     const { children } = props;

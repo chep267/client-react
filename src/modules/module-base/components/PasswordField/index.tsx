@@ -13,7 +13,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 /** types */
-import type { PasswordFieldProps } from '@module-base/models';
+import type { PasswordFieldProps } from '@module-base/types';
 
 export default function PasswordField(props: PasswordFieldProps) {
     const { InputProps, setFocus, ...inputProps } = props;

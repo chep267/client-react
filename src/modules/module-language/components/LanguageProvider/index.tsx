@@ -20,7 +20,7 @@ import { getDeviceLanguage } from '@module-language/utils/getDeviceLanguage';
 import { getMessage } from '@module-language/utils/getMessage';
 
 /** types */
-import type { TypeLocale, TypeMessages, LanguageProviderProps, LanguageContextProps } from '@module-language/models';
+import type { TypeLocale, TypeMessages, LanguageProviderProps, LanguageContextProps } from '@module-language/types';
 
 export default function LanguageProvider(props: LanguageProviderProps) {
     const { children } = props;

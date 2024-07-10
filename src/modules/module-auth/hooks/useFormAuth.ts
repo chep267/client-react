@@ -16,7 +16,7 @@ import { AppKey } from '@module-base/constants/AppKey.ts';
 import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
 
 /** types */
-import type { TypeFormAuth } from '@module-auth/models';
+import type { TypeFormAuth } from '@module-auth/types';
 
 export function useFormAuth({ type }: { type: 'signin' | 'register' | 'recover' }) {
     // @ts-ignore

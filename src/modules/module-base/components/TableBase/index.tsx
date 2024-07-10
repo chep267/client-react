@@ -20,7 +20,7 @@ import TableBody from './TableBody';
 import { useStyles } from './styles';
 
 /** types */
-import type { TableBaseProps } from '@module-base/models';
+import type { TableBaseProps } from '@module-base/types';
 
 const TableBase = React.memo(function TableBase(props: TableBaseProps) {
     const {

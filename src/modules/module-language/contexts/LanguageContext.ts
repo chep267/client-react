@@ -12,7 +12,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
 
 /** types */
-import type { LanguageContextProps } from '@module-language/models';
+import type { LanguageContextProps } from '@module-language/types';
 
 export const LanguageContext = React.createContext<LanguageContextProps>({
     data: {

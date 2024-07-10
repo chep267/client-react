@@ -5,8 +5,8 @@
  */
 
 /** types */
-import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/models';
-import type { TypeUser } from '@module-user/models/data.d.ts';
+import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/types';
+import type { TypeUser } from '@module-user/types/data.d.ts';
 
 export interface UserApiProps {
     Create: {

@@ -11,7 +11,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import Skeleton from '@mui/material/Skeleton';
 
 /** types */
-import type { ImageBaseProps, ReactEventHandler } from '@module-base/models';
+import type { ImageBaseProps, ReactEventHandler } from '@module-base/types';
 
 /** styles */
 const useStyles = makeStyles({

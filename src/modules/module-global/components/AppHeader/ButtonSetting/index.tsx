@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuSetting from './MenuSetting.tsx';
 
 /** types */
-import type { ElementClickEvent } from '@module-base/models';
+import type { ElementClickEvent } from '@module-base/types';
 
 export default function ButtonSetting() {
     const menuId = React.useId();

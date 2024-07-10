@@ -14,7 +14,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 /** types */
-import type { AppItemProps } from '@module-global/models';
+import type { AppItemProps } from '@module-global/types';
 import makeStyles from '@mui/styles/makeStyles';
 
 /** styles */

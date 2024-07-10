@@ -16,7 +16,7 @@ import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 import { defaultSiderState, SiderContext } from '@module-global/contexts/SiderContext.ts';
 
 /** types */
-import type { SiderProviderProps, TypeSiderContext } from '@module-global/models';
+import type { SiderProviderProps, TypeSiderContext } from '@module-global/types';
 
 export default function SiderProvider(props: SiderProviderProps) {
     const { children } = props;

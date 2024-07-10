@@ -8,7 +8,7 @@
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
 
 /** types */
-import type { ComponentType } from '@module-base/models';
+import type { ComponentType } from '@module-base/types';
 
 export function withTheme<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

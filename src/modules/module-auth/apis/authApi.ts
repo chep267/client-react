@@ -15,7 +15,7 @@ import { AuthApiPath } from '@module-auth/constants/AuthApiPath.ts';
 import { debounce } from '@module-base/utils/debounce.ts';
 
 /** types */
-import type { TypeApiAuth } from '@module-auth/models';
+import type { TypeApiAuth } from '@module-auth/types';
 
 const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
