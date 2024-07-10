@@ -23,5 +23,6 @@ export const AuthContext = React.createContext<AuthContextProps>({
     data: defaultAuthState,
     method: {
         setAuth: AppDefaultValue.emptyFunction,
+        setPrePath: AppDefaultValue.emptyFunction,
     },
 });

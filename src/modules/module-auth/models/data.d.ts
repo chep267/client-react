@@ -11,11 +11,12 @@ import type { TypeUser } from '@module-user/models';
 export type AuthContextProps = {
     data: {
         isAuthentication: boolean;
-        prePath: string;
         user: TypeUser | null;
+        prePath: string;
     };
     method: {
         setAuth(options?: Partial<AuthContextProps['data']>): void;
+        setPrePath: (path: string) => void;
     };
 };
 

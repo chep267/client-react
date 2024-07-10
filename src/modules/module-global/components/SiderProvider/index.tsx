@@ -6,12 +6,14 @@
 
 /** libs */
 import * as React from 'react';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
 import { SiderState } from '@module-global/constants/SiderState.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** contexts */
-import { defaultSiderState, getSiderState, SiderContext } from '@module-global/contexts/SiderContext.ts';
+import { defaultSiderState, SiderContext } from '@module-global/contexts/SiderContext.ts';
 
 /** types */
 import type { SiderProviderProps, TypeSiderContext } from '@module-global/models';
@@ -19,21 +21,25 @@ import type { SiderProviderProps, TypeSiderContext } from '@module-global/models
 export default function SiderProvider(props: SiderProviderProps) {
     const { children } = props;
 
+    const isCollapse = useMediaQuery(`(max-width:${ScreenSize.AppbarCollapseBreakpoint}px)`);
+    const isHidden = useMediaQuery(`(max-width:${ScreenSize.AppbarHiddenBreakpoint}px)`);
+
+    const lastState = React.useRef(
+        defaultSiderState.siderState === SiderState.hidden ? SiderState.collapse : defaultSiderState.siderState
+    );
     const [siderState, setSiderState] = React.useState(defaultSiderState.siderState);
 
     React.useEffect(() => {
-        window.addEventListener('resize', onResize);
-        return () => {
-            window.removeEventListener('resize', onResize);
-        };
-    }, []);
+        setSiderState(() => {
+            return isHidden ? SiderState.hidden : isCollapse ? SiderState.force : lastState.current;
+        });
+    }, [isCollapse, isHidden]);
 
-    const onResize = React.useCallback(() => {
-        setSiderState(() => getSiderState());
-    }, []);
-
-    const onChangeState = React.useCallback(() => {
-        setSiderState((prev) => (prev === SiderState.collapse ? SiderState.expand : SiderState.collapse));
+    const toggleSider = React.useCallback(() => {
+        setSiderState((prevState) => {
+            lastState.current = prevState === SiderState.expand ? SiderState.collapse : SiderState.expand;
+            return lastState.current;
+        });
     }, []);
 
     const store = React.useMemo<TypeSiderContext>(() => {
@@ -42,7 +48,7 @@ export default function SiderProvider(props: SiderProviderProps) {
                 siderState,
             },
             method: {
-                onChangeState: onChangeState,
+                toggleSider,
             },
         };
     }, [siderState]);

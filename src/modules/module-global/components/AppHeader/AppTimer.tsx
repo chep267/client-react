@@ -18,7 +18,7 @@ export default function AppTimer() {
     } = useLanguage();
 
     return (
-        <Box className="flex items-center gap-2 invisible md:visible">
+        <Box className="items-center gap-2 hidden md:flex">
             <Box className="w-2 h-2 rounded-full" bgcolor="primary.main" />
             <Typography variant="body2" fontWeight={600} textTransform="capitalize">
                 {dayjs().locale(locale).format('dddd, DD/MM/YYYY')}

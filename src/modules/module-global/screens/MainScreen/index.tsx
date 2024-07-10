@@ -33,7 +33,7 @@ export default function MainScreen() {
             <Box className="flex w-screen h-screen">
                 <Box className="flex flex-col grow shrink w-auto max-w-full min-h-dvh relative backface-hidden direction-lrt">
                     <AppHeader />
-                    <Box className="grow shrink-0 w-auto max-w-full pt-16 direction-lrt" component="main">
+                    <Box className="flex grow shrink-0 w-auto max-w-full pt-16 direction-lrt" component="main">
                         <Container id="container" className="flex w-full h-full max-w-full mx-auto p-0 direction-lrt">
                             <React.Suspense fallback={<StartLoading />}>
                                 <Routes>

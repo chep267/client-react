@@ -29,26 +29,24 @@ export default function AuthRoute(props: PropsWithChildren) {
 
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    const AUTH = useAuth();
+    const {
+        data: { isAuthentication, prePath },
+        method: { setPrePath },
+    } = useAuth();
 
     // @ts-ignore
-    const uid = Cookies.get(AppKey.uid);
-    const accountState = AUTH.data.isAuthentication
-        ? AccountState.signedIn
-        : uid
-          ? AccountState.reSignin
-          : AccountState.signin;
-
-    console.log('uid: ', uid);
+    const uid = Cookies.get(AppKey.uid) as string;
+    const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
 
     React.useEffect(() => {
         if (accountState === AccountState.reSignin && !pathname.startsWith(AuthScreenPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
+            setPrePath(pathname);
             navigate(AuthScreenPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && Object.values(AuthScreenPath).includes(pathname as any)) {
             /** đã đăng nhập xong, vào home */
-            navigate('/', { replace: true });
+            navigate(prePath, { replace: true });
         }
         if (accountState === AccountState.signin && !Object.values(AuthScreenPath).includes(pathname as any)) {
             /** chưa đăng nhập, trở về đăng nhập  */
@@ -56,17 +54,15 @@ export default function AuthRoute(props: PropsWithChildren) {
         }
     }, [accountState, pathname]);
 
-    return React.useMemo(() => {
-        return (
-            <React.Suspense>
-                {accountState === AccountState.signedIn ? (
-                    children
-                ) : accountState === AccountState.reSignin ? (
-                    <StartScreen />
-                ) : (
-                    <SignInScreen />
-                )}
-            </React.Suspense>
-        );
-    }, [accountState]);
+    return (
+        <React.Suspense>
+            {accountState === AccountState.signedIn ? (
+                children
+            ) : accountState === AccountState.reSignin ? (
+                <StartScreen />
+            ) : (
+                <SignInScreen />
+            )}
+        </React.Suspense>
+    );
 }

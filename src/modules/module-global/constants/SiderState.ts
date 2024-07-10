@@ -11,4 +11,5 @@ export const SiderState = Object.freeze<Record<TypeSiderState, TypeSiderState>>(
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',
+    force: 'force',
 });

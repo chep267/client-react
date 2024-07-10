@@ -25,7 +25,7 @@
         "allowJs": false,
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"],
+    "include": ["./src", "./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.js", "./src/**/*.jsx"],
     "extends": "./tsconfig.path.json",
     "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -15,7 +15,9 @@ import type { AuthContextProps, AuthProviderProps } from '@module-auth/models';
 
 export default function AuthProvider(props: AuthProviderProps) {
     const { children } = props;
+
     const [auth, setAuth] = React.useState<AuthContextProps['data']>(defaultAuthState);
+    const [prePath, setPrePath] = React.useState<AuthContextProps['data']['prePath']>(defaultAuthState.prePath);
 
     const onChangeAuth = React.useCallback<AuthContextProps['method']['setAuth']>((data = defaultAuthState) => {
         setAuth({ ...defaultAuthState, ...data });
@@ -23,12 +25,17 @@ export default function AuthProvider(props: AuthProviderProps) {
 
     const store = React.useMemo<AuthContextProps>(() => {
         return {
-            data: auth,
+            data: {
+                isAuthentication: auth.isAuthentication,
+                user: auth.user,
+                prePath,
+            },
             method: {
                 setAuth: onChangeAuth,
+                setPrePath,
             },
         };
-    }, [auth]);
+    }, [auth, prePath]);
 
     return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>;
 }

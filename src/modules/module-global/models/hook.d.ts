@@ -9,13 +9,13 @@ import type { PropsWithChildren } from 'react';
 
 export type SiderProviderProps = PropsWithChildren;
 
-export type TypeSiderState = 'collapse' | 'expand' | 'hidden';
+export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
 
 export type TypeSiderContext = {
     data: {
         siderState: TypeSiderState;
     };
     method: {
-        onChangeState: () => void;
+        toggleSider: () => void;
     };
 };

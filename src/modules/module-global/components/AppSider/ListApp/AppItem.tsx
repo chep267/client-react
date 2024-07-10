@@ -48,7 +48,7 @@ const AppItem = React.memo(function AppItem(props: AppItemProps) {
     const renderItem = React.useMemo(() => {
         return (
             <ListItemButton onClick={item.onClick}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemIcon className="min-w-10">{item.icon}</ListItemIcon>
                 <ListItemText primary={item.name} />
             </ListItemButton>
         );

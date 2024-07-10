@@ -20,7 +20,7 @@ export const getSiderState = (): TypeSiderState => {
         case window.innerWidth < ScreenSize.AppbarHiddenBreakpoint:
             return SiderState.hidden;
         case window.innerWidth < ScreenSize.AppbarCollapseBreakpoint:
-            return SiderState.collapse;
+            return SiderState.force;
         default:
             return SiderState.expand;
     }
@@ -33,6 +33,6 @@ export const defaultSiderState = Object.freeze<TypeSiderContext['data']>({
 export const SiderContext = React.createContext<TypeSiderContext>({
     data: defaultSiderState,
     method: {
-        setSiderState: AppDefaultValue.emptyFunction,
+        toggleSider: AppDefaultValue.emptyFunction,
     },
 });

@@ -37,6 +37,7 @@ export default ({ mode }) => {
                 babel: {
                     configFile: true, // Use babel.config.js files
                 },
+                include: '**/*.tsx',
             }),
             basicSsl(),
             visualizer(),
