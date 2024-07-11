@@ -129,8 +129,6 @@ export default function MenuSetting(props: Props) {
         },
     ]).current;
 
-    console.log('isOnlyMonth: ', CALENDAR.data.isOnlyMonth);
-
     const menuAuth = React.useMemo<NestedItemProps[]>(() => {
         if (!SIGN_OUT.isAuthentication) {
             return AppDefaultValue.emptyArray;
