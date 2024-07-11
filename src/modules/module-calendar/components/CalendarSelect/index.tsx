@@ -51,7 +51,7 @@ const useStyles = makeStyles({
     },
 });
 
-export default function CalendarSelect() {
+const CalendarSelect = React.memo(function CalendarSelect() {
     const {
         data: { locale },
     } = useLanguage();
@@ -133,4 +133,6 @@ export default function CalendarSelect() {
             </Stack>
         </Stack>
     );
-}
+});
+
+export default CalendarSelect;

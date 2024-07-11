@@ -4,20 +4,17 @@
  *
  */
 
-import dayjs from 'dayjs';
-
 /** lib components */
+import dayjs from 'dayjs';
 import { Typography } from '@mui/material';
 
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 
 /** types */
-type CalendarLabelType = {
-    day: number;
-};
+import type { CalendarLabelProps } from '@module-calendar/types';
 
-export default function CalendarLabel(props: CalendarLabelType) {
+export default function CalendarLabel(props: CalendarLabelProps) {
     const { day } = props;
     const {
         data: { locale },

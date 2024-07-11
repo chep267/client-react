@@ -11,16 +11,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 /** types */
-import type { Dayjs } from '@module-calendar/types';
-
-type CalendarItemType = {
-    day: Dayjs;
-    isHide?: boolean;
-    isToday?: boolean;
-    isInMonth?: boolean;
-    isSelected?: boolean;
-    onSelect(): void;
-};
+import type { CalendarItemProps } from '@module-calendar/types';
 
 /** styles */
 const useStyles = makeStyles(({ palette }) => ({
@@ -56,7 +47,7 @@ const useStyles = makeStyles(({ palette }) => ({
     },
 }));
 
-export default function CalendarItem(props: CalendarItemType) {
+export default function CalendarItem(props: CalendarItemProps) {
     const { day, isHide, isToday, isInMonth, isSelected, onSelect } = props;
 
     const classes = useStyles();

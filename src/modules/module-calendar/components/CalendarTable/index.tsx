@@ -26,9 +26,11 @@ import CalendarItem from '@module-calendar/components/CalendarTable/CalendarItem
 
 /** types */
 import type { TableBaseProps } from '@module-base/types';
-import type { CalendarTableDataType } from '@module-calendar/types';
+import type { CalendarTableDataType, CalendarTableProps } from '@module-calendar/types';
 
-export default function CalendarTable() {
+export default function CalendarTable(props: CalendarTableProps) {
+    const { selectDay } = props;
+
     const {
         data: { day, isOnlyMonth, display },
         method: { isInMonth, isToday, setDay, isSelectedDay },
@@ -58,7 +60,10 @@ export default function CalendarTable() {
             render: (item) => {
                 const thisDay = item[day];
                 const inMonth = isInMonth(thisDay);
-                const onSelect = () => setDay(thisDay);
+                const onSelect = () => {
+                    setDay(thisDay);
+                    selectDay?.(thisDay);
+                };
                 return (
                     <CalendarItem
                         day={thisDay}
