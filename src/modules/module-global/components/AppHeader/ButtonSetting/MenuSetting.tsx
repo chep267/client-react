@@ -81,7 +81,7 @@ export default function MenuSetting(props: Props) {
                     id: 'Language-En',
                     title: <FormattedMessage id="module.language.text.en" />,
                     icon: <span style={{ transform: 'scale(1.2)' }}>🇬🇧</span>,
-                    onClick: () => LANGUAGE.method.setLanguage(localeObject.vi),
+                    onClick: () => LANGUAGE.method.setLanguage(localeObject.en),
                 },
             ],
         },

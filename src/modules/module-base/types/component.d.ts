@@ -28,6 +28,7 @@ import type {
     Theme,
     TooltipProps,
     SnackbarProps,
+    TableCellProps,
 } from '@mui/material';
 import type { ElementClickEvent } from './event.d.ts';
 
@@ -105,6 +106,7 @@ export type PasswordFieldProps = TextFieldProps & {
 type OrderType = 'asc' | 'desc';
 export interface TableBaseProps<T = unknown> {
     className?: string;
+    sx?: any;
 
     data?: T[];
     onScroll?(event: UIEvent<HTMLDivElement>): void;
@@ -124,10 +126,14 @@ export interface TableBaseProps<T = unknown> {
     onRequestSort?: (property: string) => void;
 
     tableRowProps?: TableRowProps;
+    tableCellProps?: TableCellProps;
 }
 export type TableLoadingProps = Pick<TableBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
-export type TableHeaderProps = Pick<TableBaseProps, 'rows' | 'orderBy' | 'orderType' | 'onRequestSort'>;
-export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps'>;
+export type TableHeaderProps = Pick<
+    TableBaseProps,
+    'rows' | 'orderBy' | 'orderType' | 'onRequestSort' | 'tableRowProps' | 'tableCellProps'
+>;
+export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'>;
 
 /** SelectBase */
 export interface SelectBaseProps extends SelectProps {

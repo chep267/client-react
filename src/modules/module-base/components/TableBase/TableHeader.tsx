@@ -21,18 +21,19 @@ import { useStyles } from './styles';
 import type { TableHeaderProps } from '@module-base/types';
 
 const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
-    const { rows, orderType, orderBy, onRequestSort } = props;
+    const { rows, orderType, orderBy, onRequestSort, tableRowProps, tableCellProps } = props;
     const classes = useStyles();
 
     return (
         <TableHead className={classes.tableHead}>
-            <TableRow>
+            <TableRow {...tableRowProps}>
                 {rows?.map((cell) => (
                     <TableCell
                         key={cell.id}
                         align="left"
                         padding="normal"
-                        sortDirection={orderBy === cell.id ? orderType : false}>
+                        sortDirection={orderBy === cell.id ? orderType : false}
+                        {...tableCellProps}>
                         {!cell.isSort || !orderBy || !orderType ? (
                             cell.label
                         ) : (

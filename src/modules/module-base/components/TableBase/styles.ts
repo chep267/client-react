@@ -21,22 +21,22 @@ export const useStyles = makeStyles(({ palette }) => ({
         maxWidth: '100%',
         maxHeight: '100%',
         '&::-webkit-scrollbar': {
-            width: '7px',
-            height: '7px',
+            width: 10,
+            height: 10,
         },
         '&::-webkit-scrollbar-track': {
-            borderRadius: '10px',
-            backgroundColor: alpha(palette.common.black, 0.1),
+            background: alpha(palette.divider, 0.1),
         },
         '&::-webkit-scrollbar-thumb': {
+            minHeight: 50,
             borderRadius: '10px',
-            backgroundColor: alpha(palette.common.black, 0.2),
+            background: alpha(palette.divider, 0.2),
         },
-        '&::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: alpha(palette.common.black, 0.4),
+        '&:hover::-webkit-scrollbar-thumb': {
+            background: alpha(palette.divider, 0.4),
         },
         '&::-webkit-scrollbar-thumb:active': {
-            backgroundColor: alpha(palette.common.black, 0.9),
+            background: alpha(palette.divider, 0.9),
         },
     },
     table: { minHeight: 200, height: '100%' },

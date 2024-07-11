@@ -21,7 +21,10 @@ export default function NotifyProvider(props: NotifyProviderProps) {
 
     const [notify, setNotify] = React.useState<TypeNotify>(defaultNotifyState);
 
-    const toggleNotify = React.useCallback((options: TypeNotify = defaultNotifyState) => setNotify(options), []);
+    const toggleNotify = React.useCallback<TypeNotifyContext['method']['toggleNotify']>(
+        (options = defaultNotifyState) => setNotify(options),
+        []
+    );
 
     const store = React.useMemo<TypeNotifyContext>(
         () => ({

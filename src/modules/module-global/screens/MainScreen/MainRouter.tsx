@@ -20,16 +20,19 @@ import { useSider } from '@module-global/hooks/useSider.ts';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
+import AppSider from '@module-global/components/AppSider';
+import SiderProvider from '@module-global/components/SiderProvider';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
 const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen'));
+const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
 
 const windowHasScroll = () => {
     return document.body.scrollHeight > document.body.clientHeight;
 };
 
-export default function AppMain() {
+export default function MainRouter() {
     const location = useLocation();
     const {
         data: { siderState },
@@ -37,18 +40,18 @@ export default function AppMain() {
 
     const [hasScroll, setHasScroll] = React.useState(false);
 
-    React.useEffect(() => {
-        setTimeout(() => {
-            setHasScroll(windowHasScroll());
-        }, 100);
-    }, [location]);
-
     const sxStyles = React.useRef({
         [SiderState.hidden]: { width: 'calc(100%)' },
         [SiderState.expand]: { width: `calc(100% - ${ScreenSize.AppBarExpandWidth}px)` },
         [SiderState.collapse]: { width: `calc(100% - ${ScreenSize.AppBarCollapseWidth}px)` },
         [SiderState.force]: { width: `calc(100% - ${ScreenSize.AppBarCollapseWidth}px)` },
     }).current;
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setHasScroll(windowHasScroll());
+        }, 100);
+    }, [location]);
 
     return (
         <Box
@@ -62,7 +65,7 @@ export default function AppMain() {
                     <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.defaultPath} />} />
                     <Route path={`${ScreenPath.feed}/*`} element={<TestScreen />} />
                     <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
-                    <Route path={`${ScreenPath.calendar}/*`} element={<NotFoundScreen />} />
+                    <Route path={`${ScreenPath.calendar}/*`} element={<CalendarScreen />} />
                     <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />
                 </Routes>

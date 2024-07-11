@@ -1,0 +1,83 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2023.
+ *
+ */
+
+import * as React from 'react';
+import dayjs from 'dayjs';
+
+/** components */
+import { TableBase } from '@module-base/components';
+import CalendarLabel from './CalendarLabel';
+import CalendarItem from './CalendarItem';
+
+/** utils */
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils';
+
+/** hooks */
+import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+
+/** styles */
+import { useStyles } from './styles';
+
+/** types */
+import type { TableBaseProps } from '@module-base/models';
+import type { CalendarTableDataType } from '@module-calendar/types';
+
+export default function CalendarContent() {
+    const CALENDAR = useCalendar();
+    const classes = useStyles();
+
+    const tableRows = React.useMemo<TableBaseProps<CalendarTableDataType>['rows']>(() => {
+        const TODAY = dayjs();
+        const today =
+            CALENDAR.data.time.year() === TODAY.year() && CALENDAR.data.time.month() === TODAY.month() ? TODAY.date() : 0;
+
+        let output: (keyof CalendarTableDataType)[];
+        switch (CALENDAR.data.display) {
+            case 'sat':
+                output = [6, 0, 1, 2, 3, 4, 5];
+                break;
+            case 'mon':
+                output = [1, 2, 3, 4, 5, 6, 0];
+                break;
+            case 'sun':
+            default:
+                output = [0, 1, 2, 3, 4, 5, 6];
+                break;
+        }
+
+        return output.map((day) => ({
+            id: `${day}`,
+            label: <CalendarLabel day={day} />,
+            render: (item) => {
+                const data = item[day];
+                const isInMonth = data.year() === CALENDAR.data.time.year() && data.month() === CALENDAR.data.time.month();
+                const isToday = isInMonth && data.date() === today;
+                const isSelectedDate = isInMonth && data.date() === CALENDAR.data.time.date();
+                const isHide = CALENDAR.data.isOnlyMonth ? !isInMonth : false;
+
+                const onSelect = () => CALENDAR.method.setTime(data);
+                return (
+                    <CalendarItem
+                        data={data}
+                        isHide={isHide}
+                        isToday={isToday}
+                        isSelectedDate={isSelectedDate}
+                        isInMonth={isInMonth}
+                        onSelect={onSelect}
+                    />
+                );
+            },
+        }));
+    }, [CALENDAR.data.display, CALENDAR.data.time, CALENDAR.data.isOnlyMonth]);
+
+    const tableData = React.useMemo(() => {
+        const matrixCalendar = genMatrixCalendarDayJS(CALENDAR.data.time, CALENDAR.data.display);
+        const output = reverseMatrix(matrixCalendar);
+        return output.map((item) => Object.assign({}, item));
+    }, [CALENDAR.data.time, CALENDAR.data.display]);
+
+    return <TableBase className={classes.calendar} rows={tableRows} data={tableData} />;
+}

@@ -25,7 +25,7 @@ export default function SiderProvider(props: SiderProviderProps) {
     const isHidden = useMediaQuery(`(max-width:${ScreenSize.AppbarHiddenBreakpoint}px)`);
 
     const lastState = React.useRef(
-        defaultSiderState.siderState === SiderState.hidden ? SiderState.collapse : defaultSiderState.siderState
+        defaultSiderState.siderState !== SiderState.expand ? SiderState.collapse : SiderState.expand
     );
     const [siderState, setSiderState] = React.useState(defaultSiderState.siderState);
 

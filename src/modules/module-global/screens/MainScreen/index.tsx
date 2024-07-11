@@ -13,21 +13,13 @@ import Container from '@mui/material/Container';
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
 import AppHeader from '@module-global/components/AppHeader';
-import AppMain from '@module-global/components/AppMain';
 import AppSider from '@module-global/components/AppSider';
-import SiderProvider from '@module-global/components/SiderProvider';
 
 /** screens */
 import AuthRoute from '@module-auth/screens/AuthRoute';
+import MainRouter from '@module-global/screens/MainScreen/MainRouter.tsx';
 
 export default function MainScreen() {
-    const renderMain = () => (
-        <SiderProvider>
-            <AppSider />
-            <AppMain />
-        </SiderProvider>
-    );
-
     return (
         <BrowserRouter>
             <Box className="flex w-screen h-screen">
@@ -37,7 +29,15 @@ export default function MainScreen() {
                         <Container id="container" className="flex w-full h-full max-w-full mx-auto p-0 direction-lrt">
                             <React.Suspense fallback={<StartLoading />}>
                                 <Routes>
-                                    <Route path="*" element={<AuthRoute>{renderMain()}</AuthRoute>} />
+                                    <Route
+                                        path="*"
+                                        element={
+                                            <AuthRoute>
+                                                <AppSider />
+                                                <MainRouter />
+                                            </AuthRoute>
+                                        }
+                                    />
                                 </Routes>
                             </React.Suspense>
                         </Container>

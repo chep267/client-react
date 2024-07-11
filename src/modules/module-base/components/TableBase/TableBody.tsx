@@ -11,9 +11,6 @@ import TableBodyElem from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
-/** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-
 /** styles */
 import { useStyles } from './styles';
 
@@ -21,11 +18,8 @@ import { useStyles } from './styles';
 import type { TableBodyProps } from '@module-base/types';
 
 const TableBody = React.memo(function TableBody(props: TableBodyProps) {
-    const { onClickItem, data, rows, tableRowProps } = props;
-    const { hover, className, onClick, ...other } = tableRowProps ?? AppDefaultValue.emptyObject;
+    const { data, rows, tableRowProps, tableCellProps } = props;
     const classes = useStyles();
-
-    const isHover = hover || !!onClickItem;
 
     return (
         <TableBodyElem>
@@ -35,16 +29,17 @@ const TableBody = React.memo(function TableBody(props: TableBodyProps) {
 
                 return (
                     <TableRow
-                        className={classnames(classes.tableRow, { [classes.tableRowHover]: isHover }, className)}
                         key={rowKey}
-                        onClick={(event) => {
-                            onClick?.(event);
-                            onClickItem?.(item);
-                        }}
-                        hover={isHover}
-                        {...other}>
+                        {...tableRowProps}
+                        className={classnames(
+                            classes.tableRow,
+                            { [classes.tableRowHover]: tableRowProps?.hover },
+                            tableRowProps?.className
+                        )}>
                         {rows?.map((cell, indexCell) => (
-                            <TableCell key={`${rowKey}-${cell.id}`}>{cell.render(item, indexRow, indexCell)}</TableCell>
+                            <TableCell key={`${rowKey}-${cell.id}`} {...tableCellProps}>
+                                {cell.render(item, indexRow, indexCell)}
+                            </TableCell>
                         ))}
                     </TableRow>
                 );
