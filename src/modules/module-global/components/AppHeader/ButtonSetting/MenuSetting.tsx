@@ -13,15 +13,23 @@ import LightModeIcon from '@mui/icons-material/LightMode';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PaletteIcon from '@mui/icons-material/Palette';
 import TranslateIcon from '@mui/icons-material/Translate';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import TodayIcon from '@mui/icons-material/Today';
+import EventIcon from '@mui/icons-material/Event';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 
 /** constants */
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
 import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 
 /** hooks */
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
+import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
 
 /** components */
 import NestedItem from '@module-base/components/NestedItem';
@@ -38,7 +46,41 @@ export default function MenuSetting(props: Props) {
 
     const THEME = useTheme();
     const LANGUAGE = useLanguage();
+    const CALENDAR = useCalendar();
     const SIGN_OUT = useSignOut();
+
+    const calendarSubMenu = React.useRef([
+        {
+            id: 'module.calendar.setting.display.default',
+            title: <FormattedMessage id="module.calendar.setting.display.default" />,
+            icon: <EventNoteIcon color="primary" />,
+            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.sunday),
+        },
+        {
+            id: 'module.calendar.setting.display.mon',
+            title: <FormattedMessage id="module.calendar.setting.display.mon" />,
+            icon: <TodayIcon color="primary" />,
+            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.monday),
+        },
+        {
+            id: 'module.calendar.setting.display.week',
+            title: <FormattedMessage id="module.calendar.setting.display.week" />,
+            icon: <EventIcon color="primary" />,
+            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.weekend),
+        },
+        {
+            id: 'module.calendar.setting.display.only.month',
+            title: <FormattedMessage id="module.calendar.setting.display.only.month" />,
+            icon: <DateRangeIcon color="primary" />,
+            onClick: () => CALENDAR.method.setIsOnlyMonth(true),
+        },
+        {
+            id: 'module.calendar.setting.display.both.month',
+            title: <FormattedMessage id="module.calendar.setting.display.both.month" />,
+            icon: <DateRangeIcon color="primary" />,
+            onClick: () => CALENDAR.method.setIsOnlyMonth(false),
+        },
+    ]).current;
 
     const menuBase = React.useRef<NestedItemProps[]>([
         {
@@ -87,8 +129,28 @@ export default function MenuSetting(props: Props) {
         },
     ]).current;
 
-    const menuSignOut = React.useMemo<NestedItemProps[]>(
-        () => [
+    console.log('isOnlyMonth: ', CALENDAR.data.isOnlyMonth);
+
+    const menuAuth = React.useMemo<NestedItemProps[]>(() => {
+        if (!SIGN_OUT.isAuthentication) {
+            return AppDefaultValue.emptyArray;
+        }
+
+        const menuOnlyMonth = calendarSubMenu[CALENDAR.data.isOnlyMonth ? 4 : 3];
+        const subMenu =
+            CALENDAR.data.display === CalendarDisplay.sunday
+                ? [calendarSubMenu[1], calendarSubMenu[2], menuOnlyMonth]
+                : CALENDAR.data.display === CalendarDisplay.monday
+                  ? [calendarSubMenu[0], calendarSubMenu[2], menuOnlyMonth]
+                  : [calendarSubMenu[0], calendarSubMenu[1], menuOnlyMonth];
+        return [
+            {
+                id: 'Calendar',
+                title: <FormattedMessage id="module.calendar.text.title" />,
+                icon: <CalendarMonthIcon color="primary" />,
+                divide: 'bottom',
+                subMenu,
+            },
             {
                 id: 'sign-out',
                 title: <FormattedMessage id="module.auth.form.title.signout" />,
@@ -97,22 +159,21 @@ export default function MenuSetting(props: Props) {
                 loading: SIGN_OUT.isPending,
                 onClick: () => SIGN_OUT.mutate({}, { onSuccess: closeMenu }),
             },
-        ],
-        [SIGN_OUT.isPending]
-    );
+        ];
+    }, [SIGN_OUT.isPending, SIGN_OUT.isAuthentication, CALENDAR.data.display, CALENDAR.data.isOnlyMonth]);
 
     const renderMenuBase = React.useMemo(() => {
         return menuBase.map((item) => <NestedItem key={item?.id} {...item} />);
     }, []);
 
-    const renderMenuSignOut = React.useMemo(() => {
-        return menuSignOut.map((item) => <NestedItem key={item?.id} {...item} />);
-    }, [menuSignOut]);
+    const renderMenuAuth = React.useMemo(() => {
+        return menuAuth.map((item) => <NestedItem key={item?.id} {...item} />);
+    }, [menuAuth]);
 
     return (
         <List component="nav">
             {renderMenuBase}
-            {SIGN_OUT.isAuthentication ? renderMenuSignOut : null}
+            {renderMenuAuth}
         </List>
     );
 }

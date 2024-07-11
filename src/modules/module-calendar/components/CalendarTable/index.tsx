@@ -70,7 +70,7 @@ export default function CalendarTable(props: CalendarTableProps) {
                         isToday={isToday(thisDay)}
                         isInMonth={inMonth}
                         isSelected={isSelectedDay(thisDay)}
-                        isHide={!inMonth && !isOnlyMonth}
+                        isHide={!inMonth && isOnlyMonth}
                         onSelect={onSelect}
                     />
                 );

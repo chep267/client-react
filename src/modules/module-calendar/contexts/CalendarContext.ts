@@ -29,6 +29,8 @@ export const CalendarContext = React.createContext<CalendarContextProps>({
         setDay: AppDefaultValue.emptyFunction,
         setIsOnlyMonth: AppDefaultValue.emptyFunction,
         isWeekend: () => false,
-        isToday: () => false,
+        isToday: () => true,
+        isInMonth: () => true,
+        isSelectedDay: () => true,
     },
 });
