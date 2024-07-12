@@ -18,24 +18,93 @@ import CardContent from '@mui/material/CardContent';
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject.ts';
 
+/** utils */
+import VietnameseDate from '@module-calendar/utils/Lunar';
+
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { alpha } from '@mui/material/styles';
 
 /** styles */
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
     card: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: 600,
+        width: 'calc(100% - 32px)',
+        height: '90vh',
+        maxWidth: 600,
+        maxHeight: 700,
+        padding: 0,
+        [breakpoints.up('md')]: {
+            width: 600,
+        },
+        border: 'none',
+        outline: 'none',
+        overflow: 'auto',
+        '&::-webkit-scrollbar': {
+            width: 10,
+            height: 10,
+        },
+        '&::-webkit-scrollbar-track': {
+            borderRadius: 6,
+            background: alpha(palette.divider, 0.1),
+        },
+        '&::-webkit-scrollbar-thumb': {
+            minHeight: 100,
+            borderRadius: 6,
+            background: alpha(palette.divider, 0.2),
+        },
+        '&:hover::-webkit-scrollbar-thumb': {
+            background: alpha(palette.divider, 0.3),
+        },
+        '&::-webkit-scrollbar-thumb:active': {
+            background: alpha(palette.divider, 0.4),
+        },
     },
     cardHeader: {
         textAlign: 'right',
     },
     weekend: {
         color: palette.error.main,
+    },
+    solar: {
+        display: 'flex',
+        flex: 1,
+        height: 'fit-content',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        gap: spacing(2),
+        minHeight: 300,
+    },
+    solarItem: {
+        display: 'flex',
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lunar: {
+        display: 'flex',
+        padding: '0 !important',
+        borderTop: `1px solid ${palette.divider}`,
+    },
+    lunarItem: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: spacing(1),
+        gap: spacing(2),
+    },
+    lunarItemCenter: {
+        borderLeft: `1px solid ${palette.divider}`,
+        borderRight: `1px solid ${palette.divider}`,
     },
 }));
 export default function CalendarModal() {
@@ -49,9 +118,10 @@ export default function CalendarModal() {
     const classes = useStyles();
 
     const isWeekend = calendarMethod.isWeekend(day);
+    const lunarDay = new VietnameseDate(new Date(`${day.year()}-${day.month() + 1}-${day.date()}`));
 
     return (
-        <Modal open={openCalendarModal} onClose={() => calendarMethod.setOpenCalendarModal(false)}>
+        <Modal className={classes.modal} open={openCalendarModal} onClose={() => calendarMethod.setOpenCalendarModal(false)}>
             <Card className={classnames(classes.card)}>
                 <CardHeader
                     className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}
@@ -65,23 +135,48 @@ export default function CalendarModal() {
                         />
                     }
                 />
-                <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Word of the Day
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                        aaaaaaaaaaaaaaaa
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                        adjective
-                    </Typography>
-                    <Typography variant="body2">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
-                    </Typography>
+                {/*     solar    */}
+                <CardContent className={classes.solar}>
+                    <Stack className={classnames(classes.solarItem, { [classes.weekend]: isWeekend })}>
+                        <Typography variant="h1" fontSize="10rem">
+                            {day.date()}
+                        </Typography>
+                    </Stack>
+                    <Stack className={classnames({ [classes.weekend]: isWeekend })}>
+                        <Typography variant="h5">{day.locale(locale).format('dddd')}</Typography>
+                    </Stack>
                 </CardContent>
-                <CardContent></CardContent>
+
+                {/*     lunar    */}
+                <CardContent className={classes.lunar}>
+                    <Stack className={classes.lunarItem}>
+                        <Typography variant="h5">
+                            <FormattedMessage id="module.calendar.text.day" />
+                        </Typography>
+                        <Typography variant="h2">{lunarDay.day}</Typography>
+                        <Typography variant="h5">
+                            {`${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}`}
+                        </Typography>
+                    </Stack>
+                    <Stack className={classnames(classes.lunarItem, classes.lunarItemCenter)}>
+                        <Typography variant="h5">
+                            <FormattedMessage id="module.calendar.text.month" />
+                        </Typography>
+                        <Typography variant="h2">{lunarDay.month}</Typography>
+                        <Typography variant="h5">
+                            {`${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}`}
+                        </Typography>
+                    </Stack>
+                    <Stack className={classes.lunarItem}>
+                        <Typography variant="h5">
+                            <FormattedMessage id="module.calendar.text.year" />
+                        </Typography>
+                        <Typography variant="h2">{lunarDay.year}</Typography>
+                        <Typography variant="h5">
+                            {`${lunarDay.celestialStemOfYear} ${lunarDay.terrestrialBranchOfYear}`}
+                        </Typography>
+                    </Stack>
+                </CardContent>
             </Card>
         </Modal>
     );
