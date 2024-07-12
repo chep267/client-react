@@ -16,7 +16,7 @@ export const useStyles = makeStyles(({ palette }) => ({
         position: 'relative',
     },
     tableContainer: {
-        borderRadius: '8px',
+        borderRadius: 6,
         border: `2px solid ${palette.divider}`,
         maxWidth: '100%',
         maxHeight: '100%',
@@ -25,18 +25,19 @@ export const useStyles = makeStyles(({ palette }) => ({
             height: 10,
         },
         '&::-webkit-scrollbar-track': {
+            borderRadius: 6,
             background: alpha(palette.divider, 0.1),
         },
         '&::-webkit-scrollbar-thumb': {
-            minHeight: 50,
-            borderRadius: '10px',
+            minHeight: 100,
+            borderRadius: 6,
             background: alpha(palette.divider, 0.2),
         },
         '&:hover::-webkit-scrollbar-thumb': {
-            background: alpha(palette.divider, 0.4),
+            background: alpha(palette.divider, 0.3),
         },
         '&::-webkit-scrollbar-thumb:active': {
-            background: alpha(palette.divider, 0.9),
+            background: alpha(palette.divider, 0.4),
         },
     },
     table: { minHeight: 200, height: '100%' },
