@@ -143,7 +143,9 @@ export default function CalendarModal() {
                         </Typography>
                     </Stack>
                     <Stack className={classnames({ [classes.weekend]: isWeekend })}>
-                        <Typography variant="h5">{day.locale(locale).format('dddd')}</Typography>
+                        <Typography variant="h5" textTransform="capitalize">
+                            {day.locale(locale).format('dddd')}
+                        </Typography>
                     </Stack>
                 </CardContent>
 
