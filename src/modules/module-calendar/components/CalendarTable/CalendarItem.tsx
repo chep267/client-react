@@ -5,17 +5,21 @@
  */
 
 /** libs */
+import * as React from 'react';
 import classnames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+
+/** hooks */
+import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
 
 /** types */
 import type { CalendarItemProps } from '@module-calendar/types';
 
 /** styles */
 const useStyles = makeStyles(({ palette }) => ({
-    itemHover: {
+    item: {
         cursor: 'pointer',
         '&:hover': {
             backgroundColor: palette.divider,
@@ -32,6 +36,10 @@ const useStyles = makeStyles(({ palette }) => ({
             backgroundColor: palette.error.main,
         },
     },
+    itemWeekendSelected: {
+        color: palette.common.white,
+        backgroundColor: palette.error.main,
+    },
     itemDifferentMonth: {
         color: palette.text.disabled,
     },
@@ -45,28 +53,47 @@ const useStyles = makeStyles(({ palette }) => ({
             backgroundColor: palette.primary.main,
         },
     },
+    itemTodaySelected: {
+        color: palette.common.white,
+        backgroundColor: palette.primary.main,
+    },
 }));
 
 export default function CalendarItem(props: CalendarItemProps) {
-    const { day, isHide, isToday, isInMonth, isSelected, onSelect } = props;
+    const { day } = props;
 
+    const {
+        data: { isOnlyMonth },
+        method: calendarMethod,
+    } = useCalendar();
     const classes = useStyles();
-    const date = day.date();
-    const isWeekend = day.day() === 0 || day.day() === 6;
+    const isSelectedDay = calendarMethod.isSelectedDay(day);
 
-    return isHide ? null : (
-        <Stack
-            className={classnames(
-                'flex-row m-auto justify-center items-center w-12 h-12 rounded-full',
-                { [classes.itemHover]: !!date },
-                { [classes.itemToday]: isToday },
-                { [classes.itemSelected]: isSelected },
-                { [classes.itemDifferentMonth]: !isInMonth },
-                { [classes.itemWeekend]: isWeekend },
-                { hidden: isHide }
-            )}
-            onClick={onSelect}>
-            <Typography variant="h6">{date}</Typography>
-        </Stack>
-    );
+    return React.useMemo(() => {
+        const date = day.date();
+        const isWeekend = day.day() === 0 || day.day() === 6;
+        const isInMonth = calendarMethod.isInMonth(day);
+        const isToday = calendarMethod.isToday(day);
+        const onSelect = () => {
+            calendarMethod.setDay(day);
+            calendarMethod.setOpenCalendarModal(true);
+        };
+        return (
+            <Stack
+                className={classnames(
+                    'flex-row m-auto justify-center items-center w-12 h-12 rounded-full',
+                    classes.item,
+                    { [classes.itemSelected]: isSelectedDay },
+                    { [classes.itemWeekend]: isWeekend },
+                    { [classes.itemToday]: isToday },
+                    { [classes.itemTodaySelected]: isToday && isSelectedDay },
+                    { [classes.itemWeekendSelected]: isWeekend && isSelectedDay },
+                    { [classes.itemDifferentMonth]: !isInMonth },
+                    { hidden: !isInMonth && isOnlyMonth }
+                )}
+                onClick={onSelect}>
+                <Typography variant="h6">{date}</Typography>
+            </Stack>
+        );
+    }, [isSelectedDay, isOnlyMonth]);
 }

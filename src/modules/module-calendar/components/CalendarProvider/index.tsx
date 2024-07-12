@@ -29,6 +29,9 @@ export default function CalendarProvider(props: PropsWithChildren) {
     const [display, setDisplay] = React.useState<CalendarContextProps['data']['display']>(defaultCalendarState.display);
     const [isOnlyMonth, setIsOnlyMonth] = React.useState(defaultCalendarState.isOnlyMonth);
     const [day, setDay] = React.useState<CalendarContextProps['data']['day']>(defaultCalendarState.day);
+    const [openCalendarModal, setOpenCalendarModal] = React.useState<CalendarContextProps['data']['openCalendarModal']>(
+        defaultCalendarState.openCalendarModal
+    );
 
     const isToday = React.useCallback<CalendarContextProps['method']['isToday']>((data) => {
         const today = defaultCalendarState.today;
@@ -61,18 +64,20 @@ export default function CalendarProvider(props: PropsWithChildren) {
                 display,
                 day,
                 isOnlyMonth,
+                openCalendarModal,
             },
             method: {
                 setDisplay,
                 setDay,
                 setIsOnlyMonth,
+                setOpenCalendarModal,
                 isWeekend,
                 isToday,
                 isInMonth,
                 isSelectedDay,
             },
         }),
-        [display, day, isOnlyMonth]
+        [display, day, isOnlyMonth, openCalendarModal]
     );
 
     return (

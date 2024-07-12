@@ -57,17 +57,31 @@ const CalendarSelect = React.memo(function CalendarSelect() {
     } = useLanguage();
     const {
         data: { day, today },
-        method: { setDay, isToday },
+        method: calendarMethod,
     } = useCalendar();
     const classes = useStyles();
 
-    const onToday = React.useCallback(() => {
-        setDay(today);
-    }, []);
+    const isToday = calendarMethod.isToday(day);
+    const timeMonthYear = React.useMemo(() => {
+        return { month: day.format(locale === 'en' ? 'MMMM' : 'MM'), year: day.format('YYYY') };
+    }, [day.month(), day.year()]);
 
     const onChangeTime = React.useCallback((mode: 'prev' | 'next', type: 'month' | 'year') => {
-        setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
+        calendarMethod.setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
     }, []);
+
+    const ButtonToday = React.useMemo(() => {
+        return (
+            <Button
+                variant="contained"
+                size="large"
+                className="rounded-md capitalize truncate"
+                onClick={() => calendarMethod.setDay(today)}
+                disabled={isToday}>
+                <FormattedMessage id="module.calendar.text.today" />
+            </Button>
+        );
+    }, [isToday]);
 
     const ButtonLeft = React.useMemo(() => {
         return (
@@ -95,40 +109,36 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         );
     }, []);
 
+    const DateTimePicker = React.useMemo(() => {
+        return (
+            <Stack
+                className={classnames(
+                    'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center md:min-w-[300px]'
+                )}>
+                <Typography variant="h5" color="primary.main">
+                    <FormattedMessage id="module.calendar.component.calendar.title.text" values={timeMonthYear} />
+                </Typography>
+                <DatePicker
+                    className={classnames(
+                        'absolute opacity-0 top-0 left-0 right-0 bottom-0 cursor-pointer',
+                        classes.datePiker
+                    )}
+                    views={['month', 'year']}
+                    value={day}
+                    onChange={calendarMethod.setDay}
+                />
+            </Stack>
+        );
+    }, [timeMonthYear]);
+
     return (
         <Stack
             className="flex-row justify-between items-center w-full p-3 gap-2"
             sx={{ height: ScreenSize.CalendarSelectHeight }}>
-            <Button
-                variant="contained"
-                size="large"
-                className="rounded-md capitalize truncate"
-                onClick={onToday}
-                disabled={isToday(day)}>
-                <FormattedMessage id="module.calendar.text.today" />
-            </Button>
+            {ButtonToday}
             <Stack className="flex-row justify-between items-center gap-2">
                 {ButtonLeft}
-                <Stack
-                    className={classnames(
-                        'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center md:min-w-[300px]'
-                    )}>
-                    <Typography variant="h5" color="primary.main">
-                        <FormattedMessage
-                            id="module.calendar.component.calendar.title.text"
-                            values={{ month: day.format(locale === 'en' ? 'MMMM' : 'MM'), year: day.format('YYYY') }}
-                        />
-                    </Typography>
-                    <DatePicker
-                        className={classnames(
-                            'absolute opacity-0 top-0 left-0 right-0 bottom-0 cursor-pointer',
-                            classes.datePiker
-                        )}
-                        views={['month', 'year']}
-                        value={day}
-                        onChange={setDay}
-                    />
-                </Stack>
+                {DateTimePicker}
                 {ButtonRight}
             </Stack>
         </Stack>

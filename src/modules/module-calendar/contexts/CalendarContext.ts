@@ -20,6 +20,7 @@ export const defaultCalendarState = Object.freeze<CalendarContextProps['data']>(
     today: dayjs(),
     day: dayjs(),
     isOnlyMonth: false,
+    openCalendarModal: false,
 });
 
 export const CalendarContext = React.createContext<CalendarContextProps>({
@@ -28,6 +29,7 @@ export const CalendarContext = React.createContext<CalendarContextProps>({
         setDisplay: AppDefaultValue.emptyFunction,
         setDay: AppDefaultValue.emptyFunction,
         setIsOnlyMonth: AppDefaultValue.emptyFunction,
+        setOpenCalendarModal: AppDefaultValue.emptyFunction,
         isWeekend: () => false,
         isToday: () => true,
         isInMonth: () => true,

@@ -26,14 +26,11 @@ import CalendarItem from '@module-calendar/components/CalendarTable/CalendarItem
 
 /** types */
 import type { TableBaseProps } from '@module-base/types';
-import type { CalendarTableDataType, CalendarTableProps } from '@module-calendar/types';
+import type { CalendarTableDataType } from '@module-calendar/types';
 
-export default function CalendarTable(props: CalendarTableProps) {
-    const { selectDay } = props;
-
+export default function CalendarTable() {
     const {
-        data: { day, isOnlyMonth, display },
-        method: { isInMonth, isToday, setDay, isSelectedDay },
+        data: { day, display },
     } = useCalendar();
     const {
         data: { siderState },
@@ -54,35 +51,18 @@ export default function CalendarTable(props: CalendarTableProps) {
                 break;
         }
 
-        return output.map((day) => ({
-            id: `${day}`,
-            label: <CalendarLabel day={day} />,
-            render: (item) => {
-                const thisDay = item[day];
-                const inMonth = isInMonth(thisDay);
-                const onSelect = () => {
-                    setDay(thisDay);
-                    selectDay?.(thisDay);
-                };
-                return (
-                    <CalendarItem
-                        day={thisDay}
-                        isToday={isToday(thisDay)}
-                        isInMonth={inMonth}
-                        isSelected={isSelectedDay(thisDay)}
-                        isHide={!inMonth && isOnlyMonth}
-                        onSelect={onSelect}
-                    />
-                );
-            },
+        return output.map((id) => ({
+            id: `${id}`,
+            label: <CalendarLabel day={id} />,
+            render: (item) => <CalendarItem day={item[id]} />,
         }));
-    }, [display, day, isOnlyMonth]);
+    }, [display]);
 
     const tableData = React.useMemo(() => {
         const matrixCalendar = genMatrixCalendarDayJS(day, display);
         const output = reverseMatrix(matrixCalendar);
         return output.map((item) => Object.assign({}, item));
-    }, [day, display]);
+    }, [day.month(), day.year(), display]);
 
     const sxTable = React.useMemo(() => {
         const headerHeight = ScreenSize.HeaderHeight;
@@ -100,13 +80,15 @@ export default function CalendarTable(props: CalendarTableProps) {
         };
     }, [siderState]);
 
-    return (
-        <TableBase
-            className="w-full p-3"
-            sx={sxTable}
-            rows={tableRows}
-            data={tableData}
-            tableCellProps={{ align: 'center' }}
-        />
-    );
+    return React.useMemo(() => {
+        return (
+            <TableBase
+                className="w-full p-3"
+                sx={sxTable}
+                rows={tableRows}
+                data={tableData}
+                tableCellProps={{ align: 'center' }}
+            />
+        );
+    }, [tableRows, tableData]);
 }
