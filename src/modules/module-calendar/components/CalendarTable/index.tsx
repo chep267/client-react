@@ -90,5 +90,5 @@ export default function CalendarTable() {
                 tableCellProps={{ align: 'center' }}
             />
         );
-    }, [tableRows, tableData]);
+    }, [tableRows, tableData, sxTable]);
 }
