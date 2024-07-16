@@ -12,7 +12,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
 import { AccountState } from '@module-auth/constants/AccountState';
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
 
 /** hooks */
 import { useAuth } from '@module-auth/hooks/useAuth.ts';
@@ -39,18 +39,18 @@ export default function AuthRoute(props: PropsWithChildren) {
     const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
 
     React.useEffect(() => {
-        if (accountState === AccountState.reSignin && !pathname.startsWith(AuthScreenPath.start)) {
+        if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             setPrePath(pathname);
-            navigate(AuthScreenPath.start, { replace: true });
+            navigate(AuthRouterPath.start, { replace: true });
         }
-        if (accountState === AccountState.signedIn && Object.values(AuthScreenPath).includes(pathname as any)) {
+        if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname as any)) {
             /** đã đăng nhập xong, vào home */
             navigate(prePath, { replace: true });
         }
-        if (accountState === AccountState.signin && !Object.values(AuthScreenPath).includes(pathname as any)) {
+        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname as any)) {
             /** chưa đăng nhập, trở về đăng nhập  */
-            navigate(AuthScreenPath.signin, { replace: true });
+            navigate(AuthRouterPath.signin, { replace: true });
         }
     }, [accountState, pathname]);
 

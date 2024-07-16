@@ -19,7 +19,7 @@ import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
 import { SiderState } from '@module-global/constants/SiderState.ts';
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 
 /** hooks */
@@ -34,32 +34,32 @@ const AppSiderMini = React.memo(function AppSiderMini() {
 
     const sxStyles = React.useRef({ top: ScreenSize.HeaderHeight }).current;
 
-    const MENU_ROUTER = React.useRef([
+    const apps = React.useRef([
         {
-            path: ScreenPath.feed,
+            path: GlobalRouterPath.feed,
             name: <FormattedMessage id="module.global.sider.app.feed.tooltip" />,
             icon: <HomeIcon />,
         },
         {
-            path: ScreenPath.messenger,
+            path: GlobalRouterPath.messenger,
             name: <FormattedMessage id="module.global.sider.app.messenger.tooltip" />,
             icon: <TelegramIcon />,
         },
         {
-            path: ScreenPath.calendar,
+            path: GlobalRouterPath.calendar,
             name: <FormattedMessage id="module.global.sider.app.calendar.tooltip" />,
             icon: <CalendarMonthIcon />,
         },
         {
-            path: ScreenPath.game,
+            path: GlobalRouterPath.game,
             name: <FormattedMessage id="module.global.sider.app.game.tooltip" />,
             icon: <GamesIcon />,
         },
     ]).current;
 
     const tabValue = React.useMemo(() => {
-        const value = MENU_ROUTER.find((item) => pathname.startsWith(item.path));
-        return value?.path || ScreenPath.defaultPath;
+        const value = apps.find((item) => pathname.startsWith(item.path));
+        return value?.path || GlobalRouterPath.defaultPath;
     }, [pathname]);
 
     const handleChange = React.useCallback((event: React.SyntheticEvent, path: string) => {
@@ -69,7 +69,7 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar position="sticky" className={classnames('z-10', { hidden: siderState !== SiderState.hidden })} sx={sxStyles}>
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">
-                {MENU_ROUTER.map((menu) => (
+                {apps.map((menu) => (
                     <Tab key={menu.path} id={menu.path} value={menu.path} label={menu.icon} />
                 ))}
             </Tabs>

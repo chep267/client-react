@@ -11,7 +11,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
 import { SiderState } from '@module-global/constants/SiderState.ts';
 
@@ -25,6 +25,7 @@ import AppSiderMini from '@module-global/components/AppSiderMini';
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
 const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen'));
 const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
+const GameCenterScreen = React.lazy(() => import('@module-game/screens/GameCenterScreen'));
 
 const windowHasScroll = () => {
     return document.body.scrollHeight > document.body.clientHeight;
@@ -60,11 +61,11 @@ export default function MainRouter() {
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={ScreenPath.home} element={<Navigate to={ScreenPath.defaultPath} />} />
-                    <Route path={`${ScreenPath.feed}/*`} element={<TestScreen />} />
-                    <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
-                    <Route path={`${ScreenPath.calendar}/*`} element={<CalendarScreen />} />
-                    <Route path={`${ScreenPath.messenger}/*`} element={<NotFoundScreen />} />
+                    <Route path={GlobalRouterPath.home} element={<Navigate to={GlobalRouterPath.defaultPath} />} />
+                    <Route path={`${GlobalRouterPath.feed}/*`} element={<TestScreen />} />
+                    <Route path={`${GlobalRouterPath.messenger}/*`} element={<NotFoundScreen />} />
+                    <Route path={`${GlobalRouterPath.calendar}/*`} element={<CalendarScreen />} />
+                    <Route path={`${GlobalRouterPath.game}/*`} element={<GameCenterScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />
                 </Routes>
             </React.Suspense>

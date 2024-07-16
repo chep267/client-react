@@ -10,7 +10,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
 
 /** components */
 import AuthTitle from '@module-auth/components/AuthTitle';
@@ -27,10 +27,10 @@ export default function SignInScreen() {
             <AuthTitle />
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={AuthScreenPath.signin} element={<SignInForm />} />
-                    <Route path={AuthScreenPath.register} element={<RegisterForm />} />
-                    <Route path={AuthScreenPath.recover} element={<RecoverForm />} />
-                    <Route path="*" element={<Navigate to={AuthScreenPath.signin} replace />} />
+                    <Route path={AuthRouterPath.signin} element={<SignInForm />} />
+                    <Route path={AuthRouterPath.register} element={<RegisterForm />} />
+                    <Route path={AuthRouterPath.recover} element={<RecoverForm />} />
+                    <Route path="*" element={<Navigate to={AuthRouterPath.signin} replace />} />
                 </Routes>
             </React.Suspense>
             <React.Suspense fallback={null}>

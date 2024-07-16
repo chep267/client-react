@@ -14,7 +14,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants/ScreenPath.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
 
 /** components */
 import ListBase from '@module-base/components/ListBase';
@@ -28,30 +28,30 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
-    const MENU_ROUTER = React.useRef<TypeAppItem[]>([
+    const apps = React.useRef<TypeAppItem[]>([
         {
-            path: ScreenPath.feed,
+            path: GlobalRouterPath.feed,
             name: <FormattedMessage id="module.global.sider.app.feed.tooltip" />,
             icon: <HomeIcon />,
-            onClick: () => navigate(ScreenPath.feed),
+            onClick: () => navigate(GlobalRouterPath.feed),
         },
         {
-            path: ScreenPath.messenger,
+            path: GlobalRouterPath.messenger,
             name: <FormattedMessage id="module.global.sider.app.messenger.tooltip" />,
             icon: <TelegramIcon />,
-            onClick: () => navigate(ScreenPath.messenger),
+            onClick: () => navigate(GlobalRouterPath.messenger),
         },
         {
-            path: ScreenPath.calendar,
+            path: GlobalRouterPath.calendar,
             name: <FormattedMessage id="module.global.sider.app.calendar.tooltip" />,
             icon: <CalendarMonthIcon />,
-            onClick: () => navigate(ScreenPath.calendar),
+            onClick: () => navigate(GlobalRouterPath.calendar),
         },
         {
-            path: ScreenPath.game,
+            path: GlobalRouterPath.game,
             name: <FormattedMessage id="module.global.sider.app.game.tooltip" />,
             icon: <GamesIcon />,
-            onClick: () => navigate(ScreenPath.game),
+            onClick: () => navigate(GlobalRouterPath.game),
         },
     ]).current;
 
@@ -61,7 +61,7 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
         return <AppItem key={item.path} isSelected={item.path === router} isTooltip={isTooltip} item={item} />;
     };
 
-    return <ListBase data={MENU_ROUTER} renderItem={renderItem} />;
+    return <ListBase data={apps} renderItem={renderItem} />;
 });
 
 export default ListApp;

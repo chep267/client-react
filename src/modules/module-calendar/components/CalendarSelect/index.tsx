@@ -60,6 +60,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         method: calendarMethod,
     } = useCalendar();
     const classes = useStyles();
+    const sxStyles = React.useRef({ height: ScreenSize.CalendarSelectHeight }).current;
 
     const isToday = calendarMethod.isToday(day);
     const timeMonthYear = React.useMemo(() => {
@@ -113,7 +114,10 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         return (
             <Stack
                 className={classnames(
-                    'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center'
+                    'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center',
+                    {
+                        'sm:min-w-[300px]': true, // pc
+                    }
                 )}>
                 <Typography variant="h5" color="primary.main">
                     <FormattedMessage id="module.calendar.component.calendar.title.text" values={timeMonthYear} />
@@ -131,14 +135,12 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         );
     }, [timeMonthYear]);
 
-    const sxHeight = React.useMemo(() => ({ height: ScreenSize.CalendarSelectHeight }), []);
-
     return (
         <Stack
             className={classnames('flex-row justify-between items-center w-full p-3 gap-2', {
                 'max-sm:flex-col': true, // mobile
             })}
-            sx={sxHeight}>
+            sx={sxStyles}>
             {ButtonToday}
             <Stack
                 className={classnames('flex-row justify-between items-center gap-2', {

@@ -11,19 +11,19 @@ import { FormattedMessage } from 'react-intl';
 import Typography from '@mui/material/Typography';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
 
 export default function AuthTitle() {
     const { pathname } = useLocation();
 
     const mode = React.useMemo(() => {
-        if (pathname.startsWith(AuthScreenPath.signin)) {
+        if (pathname.startsWith(AuthRouterPath.signin)) {
             return 'signin';
         }
-        if (pathname.startsWith(AuthScreenPath.register)) {
+        if (pathname.startsWith(AuthRouterPath.register)) {
             return 'register';
         }
-        if (pathname.startsWith(AuthScreenPath.recover)) {
+        if (pathname.startsWith(AuthRouterPath.recover)) {
             return 'recover';
         }
         return '';

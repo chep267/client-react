@@ -12,7 +12,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 /** constants */
-import { AuthScreenPath } from '@module-auth/constants/AuthScreenPath.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
 
 /** types */
 import type { TypeAuthBreadcrumbsItem } from '@module-auth/types';
@@ -24,18 +24,18 @@ export default function AuthBreadcrumbs() {
         return [
             {
                 title: 'module.auth.form.title.signin',
-                path: AuthScreenPath.signin,
-                hidden: pathname.startsWith(AuthScreenPath.signin),
+                path: AuthRouterPath.signin,
+                hidden: pathname.startsWith(AuthRouterPath.signin),
             },
             {
                 title: 'module.auth.form.title.register',
-                path: AuthScreenPath.register,
-                hidden: pathname.startsWith(AuthScreenPath.register),
+                path: AuthRouterPath.register,
+                hidden: pathname.startsWith(AuthRouterPath.register),
             },
             {
                 title: 'module.auth.form.title.recover',
-                path: AuthScreenPath.recover,
-                hidden: pathname.startsWith(AuthScreenPath.recover),
+                path: AuthRouterPath.recover,
+                hidden: pathname.startsWith(AuthRouterPath.recover),
             },
         ];
     }, [pathname]);

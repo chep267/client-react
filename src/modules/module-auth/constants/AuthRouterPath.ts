@@ -4,7 +4,7 @@
  *
  */
 
-export const AuthScreenPath = Object.freeze({
+export const AuthRouterPath = Object.freeze({
     start: '/start',
     signin: '/signin',
     register: '/register',
