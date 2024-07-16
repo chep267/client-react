@@ -4,18 +4,19 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-
-/** lib components */
 import { Stack } from '@mui/material';
 
+/** constants */
+import { PokemonLine } from '@module-game/constants/PokemonLine.ts';
+
 /** hooks */
-import { usePokemon } from '@module-game/hooks';
+import { usePokemon } from '@module-game/hooks/usePokemon.ts';
 
 /** styles */
 import useStyles from './styles';
-import { POKEMON_LINE } from '@module-game/constants';
 
 /** types */
 type PokemonTimerProps = {
@@ -42,7 +43,7 @@ export default function PokemonLineAnimation(props: PokemonTimerProps) {
     const offsets = document.getElementById('pokemon-item-0-0')?.getBoundingClientRect();
 
     const itemStyle = React.useMemo(() => {
-        return { backgroundImage: `url(${POKEMON_LINE.vertical})`, top: offsets?.top };
+        return { backgroundImage: `url(${PokemonLine.vertical})`, top: offsets?.top };
     }, [offsets]);
 
     return <Stack className={classnames(classes.line, { [classes.lineShow]: start }, className)} style={itemStyle} />;
