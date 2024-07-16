@@ -20,8 +20,6 @@ import { useSider } from '@module-global/hooks/useSider.ts';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
-import AppSider from '@module-global/components/AppSider';
-import SiderProvider from '@module-global/components/SiderProvider';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
@@ -56,7 +54,7 @@ export default function MainRouter() {
     return (
         <Box
             className={classnames('flex flex-col h-full max-sm:w-full transition-[width] duration-500', {
-                'pr-4': hasScroll,
+                'pr-4 max-sm:pr-0': hasScroll,
             })}
             sx={sxStyles[siderState]}>
             <AppSiderMini />

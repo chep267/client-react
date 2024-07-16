@@ -7,6 +7,7 @@
 /** libs */
 import classnames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
+import { alpha } from '@mui/material/styles';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -24,7 +25,6 @@ import VietnameseDate from '@module-calendar/utils/Lunar';
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
 import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
-import { alpha } from '@mui/material/styles';
 
 /** styles */
 const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
@@ -37,7 +37,7 @@ const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         width: 'calc(100% - 32px)',
-        height: '90vh',
+        height: '70vh',
         maxWidth: 600,
         maxHeight: 700,
         padding: 0,
@@ -98,13 +98,21 @@ const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
         padding: spacing(1),
         gap: spacing(2),
     },
     lunarItemCenter: {
         borderLeft: `1px solid ${palette.divider}`,
         borderRight: `1px solid ${palette.divider}`,
+    },
+    mobileText: {
+        textAlign: 'center',
+        [breakpoints.down('md')]: {
+            '& .MuiTypography-root': {
+                fontSize: '1.5rem' /* 20px */,
+                lineHeight: '1.75rem' /* 20px */,
+            },
+        },
     },
 }));
 export default function CalendarModal() {
@@ -151,7 +159,7 @@ export default function CalendarModal() {
 
                 {/*     lunar    */}
                 <CardContent className={classes.lunar}>
-                    <Stack className={classes.lunarItem}>
+                    <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
                         <Typography variant="h5">
                             <FormattedMessage id="module.calendar.text.day" />
                         </Typography>
@@ -160,7 +168,7 @@ export default function CalendarModal() {
                             {`${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}`}
                         </Typography>
                     </Stack>
-                    <Stack className={classnames(classes.lunarItem, classes.lunarItemCenter)}>
+                    <Stack className={classnames(classes.lunarItem, classes.lunarItemCenter, classes.mobileText)}>
                         <Typography variant="h5">
                             <FormattedMessage id="module.calendar.text.month" />
                         </Typography>
@@ -169,7 +177,7 @@ export default function CalendarModal() {
                             {`${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}`}
                         </Typography>
                     </Stack>
-                    <Stack className={classes.lunarItem}>
+                    <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
                         <Typography variant="h5">
                             <FormattedMessage id="module.calendar.text.year" />
                         </Typography>

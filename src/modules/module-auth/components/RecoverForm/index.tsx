@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
@@ -40,7 +41,10 @@ export default function RecoverForm() {
                 error={Boolean(errors.email)}
                 errorMessage={errors.email?.message}
             />
-            <Box className="flex flex-row items-end justify-between">
+            <Box
+                className={classnames('flex flex-row items-end justify-between', {
+                    'max-sm:flex-col max-sm:items-start max-sm:gap-2': true, // mobile
+                })}>
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={SIGN_IN.isPending} type="recover" />
             </Box>

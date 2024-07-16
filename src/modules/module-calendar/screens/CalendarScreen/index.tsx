@@ -19,7 +19,6 @@ export default function CalendarScreen() {
             <Paper className="flex flex-col w-full h-full justify-center items-center rounded-md overflow-hidden">
                 <CalendarSelect />
                 <CalendarTable />
-                <CalendarModal />
             </Paper>
         </Stack>
     );
