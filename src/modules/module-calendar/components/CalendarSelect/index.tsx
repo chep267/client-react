@@ -21,6 +21,7 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 
 /** constants */
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage.ts';
@@ -79,7 +80,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 className="rounded-md capitalize truncate"
                 onClick={() => calendarMethod.setDay(today)}
                 disabled={isToday}>
-                <FormattedMessage id="module.calendar.text.today" />
+                <FormattedMessage id={CalendarLanguage.component.label.today} />
             </Button>
         );
     }, [isToday]);
@@ -120,7 +121,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                     }
                 )}>
                 <Typography variant="h5" color="primary.main">
-                    <FormattedMessage id="module.calendar.component.calendar.title.text" values={timeMonthYear} />
+                    <FormattedMessage id={CalendarLanguage.component.label.calendarInfo.title} values={timeMonthYear} />
                 </Typography>
                 <DatePicker
                     className={classnames(

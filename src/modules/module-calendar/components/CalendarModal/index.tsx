@@ -18,6 +18,7 @@ import CardContent from '@mui/material/CardContent';
 
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 /** utils */
 import VietnameseDate from '@module-calendar/utils/Lunar';
@@ -135,7 +136,7 @@ export default function CalendarModal() {
                     className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}
                     title={
                         <FormattedMessage
-                            id="module.calendar.component.calendar.title.text"
+                            id={CalendarLanguage.component.label.calendarInfo.title}
                             values={{
                                 month: day.format(locale === localeObject.en ? 'MMMM' : 'MM'),
                                 year: day.format('YYYY'),
@@ -161,7 +162,7 @@ export default function CalendarModal() {
                 <CardContent className={classes.lunar}>
                     <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
                         <Typography variant="h5">
-                            <FormattedMessage id="module.calendar.text.day" />
+                            <FormattedMessage id={CalendarLanguage.component.label.day} />
                         </Typography>
                         <Typography variant="h2">{lunarDay.day}</Typography>
                         <Typography variant="h5">
@@ -170,7 +171,7 @@ export default function CalendarModal() {
                     </Stack>
                     <Stack className={classnames(classes.lunarItem, classes.lunarItemCenter, classes.mobileText)}>
                         <Typography variant="h5">
-                            <FormattedMessage id="module.calendar.text.month" />
+                            <FormattedMessage id={CalendarLanguage.component.label.month} />
                         </Typography>
                         <Typography variant="h2">{lunarDay.month}</Typography>
                         <Typography variant="h5">
@@ -179,7 +180,7 @@ export default function CalendarModal() {
                     </Stack>
                     <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
                         <Typography variant="h5">
-                            <FormattedMessage id="module.calendar.text.year" />
+                            <FormattedMessage id={CalendarLanguage.component.label.year} />
                         </Typography>
                         <Typography variant="h2">{lunarDay.year}</Typography>
                         <Typography variant="h5">

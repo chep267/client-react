@@ -27,6 +27,7 @@ import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
 import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
 
 /** hooks */
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
@@ -54,32 +55,32 @@ export default function MenuSetting(props: Props) {
 
     const calendarSubMenu = React.useRef([
         {
-            id: 'module.calendar.setting.display.default',
-            title: <FormattedMessage id="module.calendar.setting.display.default" />,
+            id: 'default',
+            title: <FormattedMessage id={CalendarLanguage.component.label.display.default} />,
             icon: <EventNoteIcon color="primary" />,
             onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.sunday),
         },
         {
-            id: 'module.calendar.setting.display.mon',
-            title: <FormattedMessage id="module.calendar.setting.display.mon" />,
+            id: 'monday',
+            title: <FormattedMessage id={CalendarLanguage.component.label.display.monday} />,
             icon: <TodayIcon color="primary" />,
             onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.monday),
         },
         {
-            id: 'module.calendar.setting.display.week',
-            title: <FormattedMessage id="module.calendar.setting.display.week" />,
+            id: 'weekend',
+            title: <FormattedMessage id={CalendarLanguage.component.label.display.weekend} />,
             icon: <EventIcon color="primary" />,
             onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.weekend),
         },
         {
-            id: 'module.calendar.setting.display.only.month',
-            title: <FormattedMessage id="module.calendar.setting.display.only.month" />,
+            id: 'onlyMonth',
+            title: <FormattedMessage id={CalendarLanguage.component.label.display.onlyMonth} />,
             icon: <DateRangeIcon color="primary" />,
             onClick: () => CALENDAR.method.setIsOnlyMonth(true),
         },
         {
-            id: 'module.calendar.setting.display.both.month',
-            title: <FormattedMessage id="module.calendar.setting.display.both.month" />,
+            id: 'bothMonth',
+            title: <FormattedMessage id={CalendarLanguage.component.label.display.bothMonth} />,
             icon: <DateRangeIcon color="primary" />,
             onClick: () => CALENDAR.method.setIsOnlyMonth(false),
         },
@@ -143,7 +144,7 @@ export default function MenuSetting(props: Props) {
         return [
             {
                 id: 'Calendar',
-                title: <FormattedMessage id="module.calendar.text.title" />,
+                title: <FormattedMessage id={CalendarLanguage.component.label.router} />,
                 icon: <CalendarMonthIcon color="primary" />,
                 divide: 'bottom',
                 subMenu,
