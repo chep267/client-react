@@ -7,8 +7,8 @@
 /** types */
 import type { TypePokemonGameLevel } from '@module-game/types';
 
-export const PokemonGameLevel = Object.freeze<Record<TypePokemonGameLevel, TypePokemonGameLevel>>({
+export const PokemonGameLevel: Readonly<Record<TypePokemonGameLevel, TypePokemonGameLevel>> = {
     easy: 'easy',
     normal: 'normal',
     hard: 'hard',
-});
+};

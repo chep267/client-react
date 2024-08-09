@@ -4,7 +4,7 @@
  *
  */
 
-export const vi = Object.freeze({
+export const vi = {
     'module.game.pokemon.title': 'Pokemon',
     'module.game.pokemon.button.restart': 'Chơi lại',
     'module.game.pokemon.button.exit': 'Thoát',
@@ -12,4 +12,4 @@ export const vi = Object.freeze({
     'module.game.pokemon.text.point': 'Điểm: {point}',
     'module.game.pokemon.text.gameOver': 'Kết thúc!',
     'module.game.pokemon.text.victory': 'Chiến thắng!',
-});
+} as const;

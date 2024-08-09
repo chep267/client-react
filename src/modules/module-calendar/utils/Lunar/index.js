@@ -114,7 +114,7 @@ function GetLeapMonthOffset(a11, timeZone) {
     let arc = GetSunLongitude(GetNewMoonDay(k + i, timeZone), timeZone);
     do {
         last = arc;
-        i++;
+        ++i;
         arc = GetSunLongitude(GetNewMoonDay(k + i, timeZone), timeZone);
     } while (arc !== last && i < 14);
     return i - 1;

@@ -8,9 +8,9 @@
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 
 /** types */
-import type { TypeCalendarStore, Dayjs } from '@module-calendar/types';
+import type { TypeCalendarDisplay, Dayjs } from '@module-calendar/types';
 
-export function genMatrixCalendar(time: Dayjs, display: TypeCalendarStore['display']) {
+export function genMatrixCalendar(time: Dayjs, display: TypeCalendarDisplay) {
     const matrixCalendar: number[][] = Array.from({ length: 7 }, () => []);
     const firstDay = time.set('date', 1);
     const totalDate = time.daysInMonth();
@@ -61,7 +61,7 @@ export function genMatrixCalendar(time: Dayjs, display: TypeCalendarStore['displ
     return matrixCalendar;
 }
 
-export function genMatrixCalendarDayJS(time: Dayjs, display: TypeCalendarStore['display']) {
+export function genMatrixCalendarDayJS(time: Dayjs, display: TypeCalendarDisplay) {
     const matrixCalendar: Dayjs[][] = Array.from({ length: 7 }, () => []);
     const firstDay = time.set('date', 1);
     const totalDate = time.daysInMonth();
@@ -122,9 +122,9 @@ export function genMatrixCalendarDayJS(time: Dayjs, display: TypeCalendarStore['
 
 export function reverseMatrix<T extends unknown[][]>(matrix: T) {
     const output: any[] = [];
-    for (let j = 0; j < matrix[0].length; j++) {
+    for (let j = 0; j < matrix[0].length; ++j) {
         output.push([]);
-        for (let i = 0; i < matrix.length; i++) {
+        for (let i = 0; i < matrix.length; ++i) {
             output[j].push(matrix[i][j]);
         }
     }

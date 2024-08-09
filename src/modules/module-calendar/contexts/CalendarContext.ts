@@ -15,13 +15,13 @@ import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
 /** types */
 import type { CalendarContextProps } from '@module-calendar/types';
 
-export const defaultCalendarState = Object.freeze<CalendarContextProps['data']>({
+export const defaultCalendarState: Readonly<CalendarContextProps['data']> = {
     display: CalendarDisplay.sunday,
     today: dayjs(),
     day: dayjs(),
     isOnlyMonth: false,
     openCalendarModal: false,
-});
+};
 
 export const CalendarContext = React.createContext<CalendarContextProps>({
     data: defaultCalendarState,

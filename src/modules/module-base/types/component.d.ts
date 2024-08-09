@@ -123,7 +123,7 @@ export interface TableBaseProps<T = unknown> {
     }[];
     orderType?: OrderType;
     orderBy?: string;
-    onRequestSort?: (property: string) => void;
+    onRequestSort?(property: string): void;
 
     tableRowProps?: TableRowProps;
     tableCellProps?: TableCellProps;

@@ -8,7 +8,7 @@
 import { CalendarRouterPath } from '@module-calendar/constants/CalendarRouterPath.ts';
 import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
 
-export const GlobalRouterPath = Object.freeze({
+export const GlobalRouterPath = {
     home: '/',
     start: '/start',
     notFound: '/not-found',
@@ -17,4 +17,4 @@ export const GlobalRouterPath = Object.freeze({
     game: GameRouterPath.game,
     feed: '/feed',
     messenger: '/messenger',
-});
+};

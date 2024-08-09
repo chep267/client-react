@@ -13,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 
 /** constants */
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** types */
 import type { TypeAuthBreadcrumbsItem } from '@module-auth/types';
@@ -23,17 +24,17 @@ export default function AuthBreadcrumbs() {
     const breadcrumbs: TypeAuthBreadcrumbsItem[] = React.useMemo(() => {
         return [
             {
-                title: 'module.auth.form.title.signin',
+                title: AuthLanguage.component.title.signin,
                 path: AuthRouterPath.signin,
                 hidden: pathname.startsWith(AuthRouterPath.signin),
             },
             {
-                title: 'module.auth.form.title.register',
+                title: AuthLanguage.component.title.register,
                 path: AuthRouterPath.register,
                 hidden: pathname.startsWith(AuthRouterPath.register),
             },
             {
-                title: 'module.auth.form.title.recover',
+                title: AuthLanguage.component.title.recover,
                 path: AuthRouterPath.recover,
                 hidden: pathname.startsWith(AuthRouterPath.recover),
             },

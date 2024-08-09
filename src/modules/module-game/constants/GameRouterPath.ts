@@ -4,7 +4,7 @@
  *
  */
 
-export const GameRouterPath = Object.freeze({
+export const GameRouterPath = {
     game: '/game',
     pokemon: '/pokemon',
-});
+} as const;

@@ -12,6 +12,7 @@ import Typography from '@mui/material/Typography';
 
 /** constants */
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 export default function AuthTitle() {
     const { pathname } = useLocation();
@@ -31,7 +32,7 @@ export default function AuthTitle() {
 
     return (
         <Typography variant="h3" color="primary.main">
-            {mode && <FormattedMessage id={`module.auth.form.title.${mode}`} />}
+            {mode && <FormattedMessage id={AuthLanguage.component.title[mode]} />}
         </Typography>
     );
 }

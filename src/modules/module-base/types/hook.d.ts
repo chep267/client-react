@@ -21,7 +21,7 @@ export type NotifyProviderProps = PropsWithChildren;
 export type TypeNotify = {
     open?: boolean;
     message?: ReactNode;
-    intlMessage?: string;
+    messageIntl?: string;
     mode?: AlertColor;
     close?: boolean;
     duration?: number;

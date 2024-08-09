@@ -26,9 +26,9 @@ export const getSiderState = (): TypeSiderState => {
     }
 };
 
-export const defaultSiderState = Object.freeze<TypeSiderContext['data']>({
+export const defaultSiderState: Readonly<TypeSiderContext['data']> = {
     siderState: getSiderState(),
-});
+};
 
 export const SiderContext = React.createContext<TypeSiderContext>({
     data: defaultSiderState,

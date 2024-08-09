@@ -7,7 +7,7 @@
 /** types */
 import type { PaletteMode } from '@mui/material';
 
-export const themeObject: Readonly<Record<PaletteMode, PaletteMode>> = Object.freeze({
+export const themeObject: Readonly<Record<PaletteMode, PaletteMode>> = {
     light: 'light',
     dark: 'dark',
-});
+};

@@ -4,7 +4,7 @@
  *
  */
 
-export const vi = Object.freeze({
+export const vi = {
     'module.base.error.server.busy': 'Máy chủ không phản hồi!',
     'module.base.error.fallback.title': 'Đã xảy ra lỗi',
     'module.base.error.fallback.content': 'Bạn hãy thử chạy lại ứng dụng',
@@ -28,4 +28,4 @@ export const vi = Object.freeze({
     'module.base.component.sider.button.collapse.tooltip': 'Thu lại',
     'module.base.component.sider.button.open.tooltip': 'Mở rộng',
     'module.base.component.table.empty.text': 'No data!',
-});
+} as const;

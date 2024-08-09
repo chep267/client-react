@@ -42,12 +42,12 @@ const useStyles = makeStyles(({ palette }) => ({
 
 const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
     const NOTIFY = useNotify();
-    const { open, message, intlMessage, mode, close, duration = AppTimer.notifyDuration } = NOTIFY.data;
+    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration } = NOTIFY.data;
     const classes = useStyles();
 
     const closeSnackbar = React.useCallback(() => NOTIFY.method.toggleNotify(), []);
 
-    const anchorOrigin = React.useRef<SnackbarOrigin>(Object.freeze({ vertical: 'top', horizontal: 'center' })).current;
+    const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'center' }).current;
 
     return (
         <Snackbar
@@ -64,7 +64,7 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
                 elevation={6}
                 variant="filled">
                 <AlertTitle className={classes.title}>{mode}!</AlertTitle>
-                {intlMessage ? <FormattedMessage id={intlMessage} /> : message}
+                {messageIntl ? <FormattedMessage id={messageIntl} /> : message}
             </Alert>
         </Snackbar>
     );

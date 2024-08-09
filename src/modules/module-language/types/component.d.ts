@@ -13,7 +13,7 @@ export type LanguageContextProps = {
         locale: TypeLocale;
     };
     method: {
-        setLanguage: (value: TypeLocale) => void;
+        setLanguage(value: TypeLocale): void;
     };
 };
 

@@ -19,21 +19,25 @@ import { useStyles } from './styles';
 
 /** types */
 import type { TableHeaderProps } from '@module-base/types';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 
 const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
     const { rows, orderType, orderBy, onRequestSort, tableRowProps, tableCellProps } = props;
     const classes = useStyles();
 
+    const rowProps = (tableRowProps ?? AppDefaultValue.emptyObject) as NonNullable<TableHeaderProps['tableRowProps']>;
+    const cellProps = (tableCellProps ?? AppDefaultValue.emptyObject) as NonNullable<TableHeaderProps['tableCellProps']>;
+
     return (
         <TableHead className={classes.tableHead}>
-            <TableRow {...tableRowProps}>
+            <TableRow {...rowProps}>
                 {rows?.map((cell) => (
                     <TableCell
                         key={cell.id}
                         align="left"
                         padding="normal"
                         sortDirection={orderBy === cell.id ? orderType : false}
-                        {...tableCellProps}>
+                        {...cellProps}>
                         {!cell.isSort || !orderBy || !orderType ? (
                             cell.label
                         ) : (

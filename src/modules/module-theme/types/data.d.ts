@@ -14,6 +14,6 @@ export type ThemeContextProps = {
         mode: TypeThemeMode;
     };
     method: {
-        setTheme: (value: TypeThemeMode) => void;
+        setTheme(value: TypeThemeMode): void;
     };
 };

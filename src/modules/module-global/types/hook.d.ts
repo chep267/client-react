@@ -16,6 +16,6 @@ export type TypeSiderContext = {
         siderState: TypeSiderState;
     };
     method: {
-        toggleSider: () => void;
+        toggleSider(): void;
     };
 };

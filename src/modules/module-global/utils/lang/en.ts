@@ -4,7 +4,7 @@
  *
  */
 
-export const en = Object.freeze({
+export const en = {
     'module.global.header.button.menu.tooltip': 'Setting',
     'module.global.sider.button.collapse.tooltip': 'Collapse',
     'module.global.sider.button.expand.tooltip': 'Expand',
@@ -13,4 +13,4 @@ export const en = Object.freeze({
     'module.global.sider.app.messenger.tooltip': 'Messenger',
     'module.global.sider.app.calendar.tooltip': 'Calendar',
     'module.global.sider.app.game.tooltip': 'Game',
-});
+} as const;

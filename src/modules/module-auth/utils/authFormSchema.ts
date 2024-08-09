@@ -9,17 +9,18 @@ import * as yup from 'yup';
 
 /** constants */
 import { Regex } from '@module-auth/constants/Regex.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 export const authFormSchema = yup
     .object({
-        email: yup.string().required('module.auth.status.email.empty').email('module.auth.status.email.invalid'),
+        email: yup.string().required(AuthLanguage.status.email.empty).email(AuthLanguage.status.email.invalid),
         password: yup
             .string()
-            .required('module.auth.status.password.empty')
-            .matches(Regex.password, 'module.auth.status.password.invalid'),
+            .required(AuthLanguage.status.password.empty)
+            .matches(Regex.password, AuthLanguage.status.password.invalid),
         confirm_password: yup
             .string()
-            .required('module.auth.status.password.empty')
-            .matches(Regex.password, 'module.auth.status.password.invalid'),
+            .required(AuthLanguage.status.password.empty)
+            .matches(Regex.password, AuthLanguage.status.password.invalid),
     })
     .required();

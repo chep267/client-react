@@ -5,12 +5,15 @@
  */
 
 /** libs */
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { LoadingButton } from '@mui/lab';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** types */
 import type { AuthButtonSubmitProps } from '@module-auth/types';
-import classnames from 'classnames';
 
 export default function ButtonSubmit(props: AuthButtonSubmitProps) {
     const { loading, type } = props;
@@ -24,7 +27,7 @@ export default function ButtonSubmit(props: AuthButtonSubmitProps) {
             className={classnames('rounded-lg w-1/3', {
                 'max-sm:w-full': true, // mobile
             })}>
-            <FormattedMessage id={`module.auth.button.${type}`} />
+            <FormattedMessage id={AuthLanguage.component.button[type]} />
         </LoadingButton>
     );
 }

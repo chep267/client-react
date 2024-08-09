@@ -4,7 +4,7 @@
  *
  */
 
-export const en = Object.freeze({
+export const en = {
     'module.base.error.server.busy': 'Server busy!',
     'module.base.error.fallback.title': 'An error occurred',
     'module.base.error.fallback.content': 'Please try to run the application again',
@@ -27,4 +27,4 @@ export const en = Object.freeze({
     'module.base.component.sider.button.collapse.tooltip': 'Collapse',
     'module.base.component.sider.button.open.tooltip': 'Open',
     'module.base.component.table.empty.text': 'No data!',
-});
+} as const;

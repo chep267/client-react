@@ -8,6 +8,9 @@
 import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** components */
 import PasswordField from '@module-base/components/PasswordField';
 
@@ -26,7 +29,9 @@ export default function InputPassword<T extends FieldValues>(props: InputPasswor
                 return (
                     <PasswordField
                         inputRef={field.ref}
-                        label={<FormattedMessage id={`module.auth.input.label.${isConfirm ? 'confirm.' : ''}password`} />}
+                        label={
+                            <FormattedMessage id={AuthLanguage.component.label[isConfirm ? 'confirmPassword' : 'password']} />
+                        }
                         value={field.value}
                         name={field.name}
                         disabled={field.disabled}

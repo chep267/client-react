@@ -41,7 +41,7 @@ import pokemon_34 from '@module-game/assets/images/pokemon_34.png';
 import pokemon_35 from '@module-game/assets/images/pokemon_35.png';
 import pokemon_36 from '@module-game/assets/images/pokemon_36.png';
 
-export const PokemonLogo = Object.freeze<Record<number, any>>({
+export const PokemonLogo: Readonly<Record<number, any>> = {
     1: pokemon_1,
     2: pokemon_2,
     3: pokemon_3,
@@ -78,4 +78,4 @@ export const PokemonLogo = Object.freeze<Record<number, any>>({
     34: pokemon_34,
     35: pokemon_35,
     36: pokemon_36,
-});
+};

@@ -4,6 +4,6 @@
  *
  */
 
-export const CalendarRouterPath = Object.freeze({
+export const CalendarRouterPath = {
     calendar: '/calendar',
-});
+} as const;

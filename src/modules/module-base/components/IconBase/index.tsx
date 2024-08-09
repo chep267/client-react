@@ -11,13 +11,13 @@ import Skeleton from '@mui/material/Skeleton';
 /** types */
 import type { IconBaseProps, TypeIcons } from '@module-base/types';
 
-const Icons: TypeIcons = Object.freeze({
+const Icons: Readonly<TypeIcons> = {
     /** app icon */
     appLogo: React.lazy(() => import('./svg/AppLogo')),
 
     error: React.lazy(() => import('./svg/Error')),
     notFound: React.lazy(() => import('./svg/NotFound')),
-});
+};
 
 const IconBase = React.memo(function IconBase(props: IconBaseProps) {
     const { name, size = 24, ...iconProps } = props;

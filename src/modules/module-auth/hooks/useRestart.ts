@@ -13,6 +13,7 @@ import { authApi } from '@module-auth/apis/authApi.ts';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** utils */
 import { debounce } from '@module-base/utils/debounce.ts';
@@ -36,23 +37,21 @@ export function useRestart() {
             debounce(response.data.token.exp, () => RESTART.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
-            let intlMessage = '';
-            const code = Number(error?.response?.status);
             Cookies.remove(AppKey.uid);
+            const code = Number(error?.response?.status);
+            let messageIntl;
             switch (true) {
-                case !code || code >= 500:
-                    intlMessage = 'module.auth.notify.server.error';
-                    break;
-                case code >= 400:
-                    intlMessage = 'module.auth.notify.refresh.error';
+                case code >= 400 && code < 500:
+                    messageIntl = AuthLanguage.notify.refresh.error;
                     break;
                 default:
+                    messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
             NOTIFY.method.toggleNotify({
                 open: true,
                 mode: 'error',
-                intlMessage,
+                messageIntl,
             });
             AUTH.method.setAuth();
         },

@@ -16,7 +16,7 @@ export type AuthContextProps = {
     };
     method: {
         setAuth(options?: Partial<AuthContextProps['data']>): void;
-        setPrePath: (path: string) => void;
+        setPrePath(path: string): void;
     };
 };
 

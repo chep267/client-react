@@ -73,10 +73,10 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
     return res;
 };
 
-export const authApi = Object.freeze({
+export const authApi = {
     signin: apiSignin,
     signout: apiSignout,
     restart: apiRestart,
     register: apiRegister,
     recover: apiRecover,
-});
+} as const;

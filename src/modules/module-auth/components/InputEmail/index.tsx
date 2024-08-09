@@ -9,6 +9,9 @@ import { Controller } from 'react-hook-form';
 import { FormattedMessage } from 'react-intl';
 import TextField from '@mui/material/TextField';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** types */
 import type { FieldValues } from 'react-hook-form';
 import type { InputEmailProps } from '@module-auth/types';
@@ -25,7 +28,7 @@ export default function InputEmail<T extends FieldValues>(props: InputEmailProps
                     <TextField
                         inputRef={field.ref}
                         type="email"
-                        label={<FormattedMessage id="module.auth.input.label.email" />}
+                        label={<FormattedMessage id={AuthLanguage.component.label.email} />}
                         value={field.value}
                         name={field.name}
                         disabled={field.disabled}

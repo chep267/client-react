@@ -4,10 +4,11 @@
  *
  */
 
-export const en = Object.freeze({
-    'module.theme.text.title': 'Theme',
-    'module.theme.text.light': 'Light',
-    'module.theme.text.purple': 'Purple',
-    'module.theme.text.dark': 'Dark',
-    'module.theme.text.system': 'System',
-});
+/** constants */
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
+
+export const en = {
+    [ThemeLanguage.component.label.router]: 'Theme',
+    [ThemeLanguage.component.label.dark]: 'Dark',
+    [ThemeLanguage.component.label.light]: 'Light',
+} as const;

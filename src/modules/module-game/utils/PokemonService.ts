@@ -7,7 +7,7 @@
 /** types */
 import type { PokemonContextProps, TypePokemonItem, TypePokemonGameLevel } from '@module-game/types';
 
-const GameLevel = Object.freeze<Record<TypePokemonGameLevel, Record<'row' | 'col' | 'duration' | 'point', number>>>({
+const GameLevel: Readonly<Record<TypePokemonGameLevel, Record<'row' | 'col' | 'duration' | 'point', number>>> = {
     easy: {
         row: 7,
         col: 14,
@@ -26,7 +26,7 @@ const GameLevel = Object.freeze<Record<TypePokemonGameLevel, Record<'row' | 'col
         duration: 360,
         point: 10 * 20,
     },
-});
+};
 
 const MAX_IMG = 36;
 

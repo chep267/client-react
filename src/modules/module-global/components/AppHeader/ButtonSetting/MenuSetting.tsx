@@ -24,6 +24,9 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 import { localeObject } from '@module-language/constants/localeObject.ts';
 import { themeObject } from '@module-theme/constants/themeObject.ts';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
+import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
 
 /** hooks */
 import { useTheme } from '@module-theme/hooks/useTheme.ts';
@@ -85,19 +88,19 @@ export default function MenuSetting(props: Props) {
     const menuBase = React.useRef<NestedItemProps[]>([
         {
             id: 'Theme',
-            title: <FormattedMessage id="module.theme.text.title" />,
+            title: <FormattedMessage id={ThemeLanguage.component.label.router} />,
             icon: <PaletteIcon color="primary" />,
             divide: 'top-bottom',
             subMenu: [
                 {
                     id: 'Theme-Dark',
-                    title: <FormattedMessage id="module.theme.text.dark" />,
+                    title: <FormattedMessage id={ThemeLanguage.component.label.dark} />,
                     icon: <DarkModeIcon color="disabled" />,
                     onClick: () => THEME.method.setTheme(themeObject.dark),
                 },
                 {
                     id: 'Theme-Light',
-                    title: <FormattedMessage id="module.theme.text.light" />,
+                    title: <FormattedMessage id={ThemeLanguage.component.label.light} />,
                     icon: <LightModeIcon color="warning" />,
                     onClick: () => THEME.method.setTheme(themeObject.light),
                 },
@@ -105,24 +108,20 @@ export default function MenuSetting(props: Props) {
         },
         {
             id: 'Language',
-            title: <FormattedMessage id="module.language.text.title" />,
+            title: <FormattedMessage id={LangLanguage.component.label.router} />,
             icon: <TranslateIcon color="primary" />,
             divide: 'bottom',
             subMenu: [
                 {
                     id: 'Language-Vi',
-                    title: <FormattedMessage id="module.language.text.vi" />,
-                    icon: (
-                        <span style={{ transform: 'scale(1.2)' }} className="w-screen">
-                            🇻🇳
-                        </span>
-                    ),
+                    title: <FormattedMessage id={LangLanguage.component.label.vi} />,
+                    icon: <span style={{ transform: 'scale(1.25)' }}>🇻🇳</span>,
                     onClick: () => LANGUAGE.method.setLanguage(localeObject.vi),
                 },
                 {
                     id: 'Language-En',
-                    title: <FormattedMessage id="module.language.text.en" />,
-                    icon: <span style={{ transform: 'scale(1.2)' }}>🇬🇧</span>,
+                    title: <FormattedMessage id={LangLanguage.component.label.en} />,
+                    icon: <span style={{ transform: 'scale(1.25)' }}>🇬🇧</span>,
                     onClick: () => LANGUAGE.method.setLanguage(localeObject.en),
                 },
             ],
@@ -151,7 +150,7 @@ export default function MenuSetting(props: Props) {
             },
             {
                 id: 'sign-out',
-                title: <FormattedMessage id="module.auth.form.title.signout" />,
+                title: <FormattedMessage id={AuthLanguage.component.title.signout} />,
                 icon: <LogoutIcon color="primary" />,
                 divide: 'bottom',
                 loading: SIGN_OUT.isPending,

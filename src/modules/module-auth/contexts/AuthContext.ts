@@ -13,11 +13,11 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
 /** types */
 import type { AuthContextProps } from '@module-auth/types';
 
-export const defaultAuthState = Object.freeze<AuthContextProps['data']>({
+export const defaultAuthState: Readonly<AuthContextProps['data']> = {
     isAuthentication: false,
     user: null,
     prePath: '/',
-});
+};
 
 export const AuthContext = React.createContext<AuthContextProps>({
     data: defaultAuthState,

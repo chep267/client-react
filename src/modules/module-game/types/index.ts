@@ -28,11 +28,11 @@ export type PokemonContextProps = {
         point: number;
     };
     method: {
-        initGame: (level: TypePokemonGameLevel) => void;
-        stopGame: () => void;
-        restartGame: () => void;
-        nextGame: () => void;
-        chooseItem: (item: TypePokemonItem) => void;
-        getItemStatus: (item: TypePokemonItem) => TypePokemonItemStatus | undefined;
+        initGame(level: TypePokemonGameLevel): void;
+        stopGame(): void;
+        restartGame(): void;
+        nextGame(): void;
+        chooseItem(item: TypePokemonItem): void;
+        getItemStatus(item: TypePokemonItem): TypePokemonItemStatus | undefined;
     };
 };

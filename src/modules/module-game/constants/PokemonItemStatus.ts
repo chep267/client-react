@@ -7,8 +7,8 @@
 /** types */
 import type { TypePokemonItemStatus } from '@module-game/types';
 
-export const PokemonItemStatus = Object.freeze<Record<TypePokemonItemStatus, TypePokemonItemStatus>>({
+export const PokemonItemStatus: Readonly<Record<TypePokemonItemStatus, TypePokemonItemStatus>> = {
     select: 'select',
     success: 'success',
     error: 'error',
-});
+};
