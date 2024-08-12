@@ -7,7 +7,7 @@
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
 
-export const en = {
+export const vi = {
     [BaseLanguage.component.label.error.server]: 'Máy chủ không phản hồi!',
     [BaseLanguage.component.label.error.fallback.title]: 'Đã xảy ra lỗi',
     [BaseLanguage.component.label.error.fallback.content]: 'Bạn hãy thử chạy lại ứng dụng',
