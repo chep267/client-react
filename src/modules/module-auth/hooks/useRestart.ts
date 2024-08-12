@@ -25,6 +25,7 @@ import { useAuth } from '@module-auth/hooks/useAuth.ts';
 /** types */
 import type { AxiosError } from '@module-base/types';
 import type { TypeApiAuth } from '@module-auth/types';
+import { AppTimer } from '@module-base/constants/AppTimer.ts';
 
 export function useRestart() {
     const AUTH = useAuth();
@@ -33,8 +34,9 @@ export function useRestart() {
     const RESTART = useMutation({
         mutationFn: authApi.restart,
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
+            const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
-            debounce(response.data.token.exp, () => RESTART.mutate({})).then();
+            debounce(exp, () => RESTART.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
             Cookies.remove(AppKey.uid);
