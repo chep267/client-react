@@ -4,12 +4,15 @@
  *
  */
 
+/** constants */
+import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+
 export const en = {
-    'module.game.pokemon.title': 'Pokemon',
-    'module.game.pokemon.button.restart': 'Restart',
-    'module.game.pokemon.button.exit': 'Exit',
-    'module.game.pokemon.button.next': 'Next',
-    'module.game.pokemon.text.point': 'Point: {point}',
-    'module.game.pokemon.text.gameOver': 'Game Over!',
-    'module.game.pokemon.text.victory': 'Victory!',
+    [GameLanguage.component.label.router]: 'Pokemon',
+    [GameLanguage.component.label.point]: 'Point: {point}',
+    [GameLanguage.component.label.gameOver]: 'Game Over!',
+    [GameLanguage.component.label.victory]: 'Victory!',
+    [GameLanguage.component.button.restart]: 'Restart',
+    [GameLanguage.component.button.exit]: 'Exit',
+    [GameLanguage.component.button.next]: 'Next',
 } as const;

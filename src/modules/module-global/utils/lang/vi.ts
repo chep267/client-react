@@ -4,13 +4,17 @@
  *
  */
 
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+
 export const vi = {
-    'module.global.header.button.menu.tooltip': 'Cài đặt',
-    'module.global.sider.button.collapse.tooltip': 'Thu lại',
-    'module.global.sider.button.expand.tooltip': 'Mở rộng',
-    'module.global.sider.button.hidden.tooltip': 'Ẩn',
-    'module.global.sider.app.feed.tooltip': 'Bảng tin',
-    'module.global.sider.app.messenger.tooltip': 'Trò chuyện',
-    'module.global.sider.app.calendar.tooltip': 'Lịch',
-    'module.global.sider.app.game.tooltip': 'Trò chơi',
+    [GlobalLanguage.component.label.collapse]: 'Thu nhỏ',
+    [GlobalLanguage.component.label.expand]: 'Mở rộng',
+    [GlobalLanguage.component.label.feed]: 'Bảng tin',
+    [GlobalLanguage.component.label.messenger]: 'Trò chuyện',
+    [GlobalLanguage.component.label.calendar]: 'Lịch',
+    [GlobalLanguage.component.label.game]: 'Trò chơi',
+    [GlobalLanguage.component.label.setting]: 'Cài đặt',
+    [GlobalLanguage.component.label.otherSetting]: 'Cài đặt khác',
+    [GlobalLanguage.component.label.signout]: 'Đăng xuất',
 } as const;

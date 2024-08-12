@@ -23,6 +23,7 @@ import { useSider } from '@module-global/hooks/useSider.ts';
 
 /** components */
 import ListApp from './ListApp';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
 const AppSider = React.memo(function AppSider() {
     const {
@@ -47,7 +48,11 @@ const AppSider = React.memo(function AppSider() {
                 className: 'top-16 left-0 transition-[width] duration-500 z-10',
                 sx: sxStyles[siderState],
             }}>
-            <Tooltip title={<FormattedMessage id={`module.global.sider.button.${siderState}.tooltip`} />} placement="right">
+            <Tooltip
+                title={
+                    <FormattedMessage id={GlobalLanguage.component.label[siderState === 'expand' ? 'collapse' : 'expand']} />
+                }
+                placement="right">
                 <div className={'w-full'}>
                     <Button className={'min-w-14 w-full'} disabled={siderState === SiderState.force} onClick={toggleSider}>
                         {siderState === SiderState.expand ? (

@@ -15,6 +15,7 @@ import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
 import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
 /** components */
 import ListBase from '@module-base/components/ListBase';
@@ -31,25 +32,25 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
     const apps = React.useRef<TypeAppItem[]>([
         {
             path: GlobalRouterPath.feed,
-            name: <FormattedMessage id="module.global.sider.app.feed.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
             icon: <HomeIcon />,
             onClick: () => navigate(GlobalRouterPath.feed),
         },
         {
             path: GlobalRouterPath.messenger,
-            name: <FormattedMessage id="module.global.sider.app.messenger.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
             icon: <TelegramIcon />,
             onClick: () => navigate(GlobalRouterPath.messenger),
         },
         {
             path: GlobalRouterPath.calendar,
-            name: <FormattedMessage id="module.global.sider.app.calendar.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
             icon: <CalendarMonthIcon />,
             onClick: () => navigate(GlobalRouterPath.calendar),
         },
         {
             path: GlobalRouterPath.game,
-            name: <FormattedMessage id="module.global.sider.app.game.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
             icon: <GamesIcon />,
             onClick: () => navigate(GlobalRouterPath.game),
         },

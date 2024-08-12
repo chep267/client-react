@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 
 /** constants */
 import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
+import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
 
 /** utils */
 import PokemonLogo from '@module-game/assets/images/pokemon_logo.png';
@@ -50,7 +51,7 @@ export default function GameScreen() {
         {
             id: GameRouterPath.pokemon,
             path: `${GameRouterPath.game}${GameRouterPath.pokemon}`,
-            name: <FormattedMessage id="module.game.pokemon.title" />,
+            name: <FormattedMessage id={GameLanguage.component.label.router} />,
             icon: PokemonLogo,
         },
     ]).current;

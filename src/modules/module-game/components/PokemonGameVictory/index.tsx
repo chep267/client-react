@@ -11,6 +11,7 @@ import { Stack, Typography, Button } from '@mui/material';
 
 /** constants */
 import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
+import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
 
 /** hooks */
 import { usePokemon } from '@module-game/hooks/usePokemon.ts';
@@ -33,14 +34,14 @@ export default function PokemonGameOver(props: PokemonTimerProps) {
                 className
             )}>
             <Typography variant="h1" color="warning.main" textAlign="center">
-                <FormattedMessage id="module.game.pokemon.text.victory" />
+                <FormattedMessage id={GameLanguage.component.label.victory} />
             </Typography>
             <Stack direction="row" gap={2}>
                 <Button variant="contained" onClick={method.restartGame}>
-                    <FormattedMessage id="module.game.pokemon.button.restart" />
+                    <FormattedMessage id={GameLanguage.component.button.restart} />
                 </Button>
                 <Button variant="contained" color="success" onClick={method.nextGame}>
-                    <FormattedMessage id="module.game.pokemon.button.next" />
+                    <FormattedMessage id={GameLanguage.component.button.next} />
                 </Button>
             </Stack>
         </Stack>

@@ -11,6 +11,9 @@ import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+/** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+
 /** components */
 import IconBase from '@module-base/components/IconBase';
 import ButtonRetry from './ButtonRetry.tsx';
@@ -51,10 +54,10 @@ export default function FallbackDefault(props: FallbackDefaultProps) {
             <Stack className={classes.content}>
                 <IconBase name="error" width={237} height={213} />
                 <Typography variant="h1" fontWeight={600} color="error.main">
-                    <FormattedMessage id="module.base.error.fallback.title" />
+                    <FormattedMessage id={BaseLanguage.component.label.error.fallback.title} />
                 </Typography>
                 <Typography variant="h6" fontWeight={600} py={2} color="error.main">
-                    <FormattedMessage id="module.base.error.fallback.content" />
+                    <FormattedMessage id={BaseLanguage.component.label.error.fallback.content} />
                 </Typography>
                 <ButtonRetry isAutoReload={isAutoReload} />
             </Stack>

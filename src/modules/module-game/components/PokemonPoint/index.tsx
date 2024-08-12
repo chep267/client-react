@@ -8,6 +8,9 @@
 import { FormattedMessage } from 'react-intl';
 import { Typography } from '@mui/material';
 
+/** constants */
+import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+
 /** hooks */
 import { usePokemon } from '@module-game/hooks/usePokemon.ts';
 
@@ -25,7 +28,7 @@ export default function PokemonPoint(props: PokemonTimerProps) {
 
     return (
         <Typography className={className} variant="h5" color="primary.main">
-            <FormattedMessage id="module.game.pokemon.text.point" values={{ point }} />
+            <FormattedMessage id={GameLanguage.component.label.point} values={{ point }} />
         </Typography>
     );
 }

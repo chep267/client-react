@@ -12,6 +12,9 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+
 /** components */
 import MenuSetting from './MenuSetting.tsx';
 
@@ -29,7 +32,7 @@ export default function ButtonSetting() {
 
     return (
         <>
-            <Tooltip title={<FormattedMessage id="module.global.header.button.menu.tooltip" />}>
+            <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />}>
                 <Button
                     className="w-10 min-w-10 h-10 rounded-full p-0 m-0 border-0 hover:border"
                     variant="outlined"

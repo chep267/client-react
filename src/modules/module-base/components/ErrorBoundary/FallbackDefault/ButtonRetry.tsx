@@ -14,6 +14,7 @@ import Button from '@mui/material/Button';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
 
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown.ts';
@@ -46,7 +47,7 @@ export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoRel
     const renderContent = React.useMemo(() => {
         return (
             <Button onClick={reloadWindow} variant="outlined" size="large" color="error">
-                <FormattedMessage id="module.base.error.fallback.retry" />
+                <FormattedMessage id={BaseLanguage.component.button.retry} />
             </Button>
         );
     }, []);
@@ -56,7 +57,7 @@ export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoRel
             {renderContent}
             {isAutoReload ? (
                 <Typography variant="subtitle1" fontWeight={600} color="error.main" pt={3}>
-                    <FormattedMessage id="module.base.error.fallback.autoReload" values={{ second }} />
+                    <FormattedMessage id={BaseLanguage.component.label.error.fallback.autoReload} values={{ second }} />
                 </Typography>
             ) : null}
         </Stack>

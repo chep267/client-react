@@ -11,6 +11,9 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
+/** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+
 /** styles */
 import { useStyles } from './styles';
 
@@ -26,7 +29,7 @@ const TableLoading = React.memo(function TableLoading(props: TableLoadingProps) 
             {loading ? (
                 <CircularProgress color="primary" />
             ) : (
-                <Typography>{emptyText || <FormattedMessage id="module.base.component.table.empty.text" />}</Typography>
+                <Typography>{emptyText || <FormattedMessage id={BaseLanguage.component.table.empty} />}</Typography>
             )}
         </Stack>
     );

@@ -21,6 +21,7 @@ import GamesIcon from '@mui/icons-material/Games';
 import { SiderState } from '@module-global/constants/SiderState.ts';
 import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
 import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
 /** hooks */
 import { useSider } from '@module-global/hooks/useSider.ts';
@@ -37,22 +38,22 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     const apps = React.useRef([
         {
             path: GlobalRouterPath.feed,
-            name: <FormattedMessage id="module.global.sider.app.feed.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
             icon: <HomeIcon />,
         },
         {
             path: GlobalRouterPath.messenger,
-            name: <FormattedMessage id="module.global.sider.app.messenger.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
             icon: <TelegramIcon />,
         },
         {
             path: GlobalRouterPath.calendar,
-            name: <FormattedMessage id="module.global.sider.app.calendar.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
             icon: <CalendarMonthIcon />,
         },
         {
             path: GlobalRouterPath.game,
-            name: <FormattedMessage id="module.global.sider.app.game.tooltip" />,
+            name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
             icon: <GamesIcon />,
         },
     ]).current;
