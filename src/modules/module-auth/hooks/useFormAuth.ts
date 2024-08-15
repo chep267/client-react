@@ -25,7 +25,7 @@ export function useFormAuth({ type }: { type: 'signin' | 'register' | 'recover' 
     return useForm<TypeFormAuth>({
         defaultValues: {
             email: type === 'signin' ? email || 'dong.nguyenthanh@powergatesoftware.com' : '',
-            password: type === 'recover' ? 'chep_react@2024' : 'Midom@2024',
+            password: type === 'register' ? '' : type === 'recover' ? 'chep_react@2024' : 'Midom@2024',
             confirm_password: type === 'register' ? '' : 'chep_react@2024',
         },
         mode: 'onSubmit',

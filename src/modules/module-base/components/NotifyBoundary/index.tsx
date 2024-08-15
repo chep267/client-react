@@ -25,6 +25,9 @@ import type { NotifyBoundaryProps } from '@module-base/types';
 
 /** styles */
 const useStyles = makeStyles(({ palette }) => ({
+    snackbar: {
+        top: 70,
+    },
     notify: {
         width: '100%',
     },
@@ -47,11 +50,12 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
 
     const closeSnackbar = React.useCallback(() => NOTIFY.method.toggleNotify(), []);
 
-    const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'center' }).current;
+    const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
 
     return (
         <Snackbar
             key="base-notify-boundary-app"
+            className={classes.snackbar}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
             open={open}
