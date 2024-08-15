@@ -24,9 +24,7 @@ const TableBody = React.memo(function TableBody(props: TableBodyProps) {
     return (
         <TableBodyElem>
             {data?.map((item, indexRow) => {
-                // @ts-ignore
                 const rowKey = `${item?.key || item?.id || `${indexRow}-${Date.now()}`}`;
-
                 return (
                     <TableRow
                         key={rowKey}

@@ -22,9 +22,6 @@ export default [
             '@tanstack/query': pluginQuery,
         },
         rules: {
-            'no-unused-vars': 'warn',
-            'no-undef': 'warn',
-
             // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
             // Tắt rule yêu cầu import React trong file jsx
             'react/jsx-uses-react': 'off',

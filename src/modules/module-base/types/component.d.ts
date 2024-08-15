@@ -95,7 +95,7 @@ export type MenuBaseProps = PropsWithChildren<{
 }>;
 
 /** NotifyBoundary */
-export type NotifyBoundaryProps = SnackbarProps;
+export type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
 /** PasswordField */
 export type PasswordFieldProps = TextFieldProps & {
