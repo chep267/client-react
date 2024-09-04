@@ -7,11 +7,10 @@
 import { QueryClient } from '@tanstack/react-query';
 
 declare global {
-    interface WindowType {
+    interface Window {
         checkMobile(): boolean;
         isMobile: boolean;
     }
-    interface Window extends WindowType {}
 }
 
 window.checkMobile = () => /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent);

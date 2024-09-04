@@ -47,11 +47,13 @@ declare module '@mui/material' {
         | 'A400'
         | 'A700'
         | 'bgColor';
-    interface Color extends Record<ColorType, string> {}
+    // interface Color extends Record<ColorType, string> {}
+    type Color = Record<ColorType, string>;
 }
 
 declare module '@mui/material/styles' {
-    interface Color extends Record<ColorType, string> {}
+    // interface Color extends Record<ColorType, string> {}
+    type Color = Record<ColorType, string>;
 
     interface PaletteColor {
         light: string;
@@ -74,5 +76,5 @@ declare module '@mui/material/styles' {
 }
 
 declare module '@mui/styles/defaultTheme' {
-    interface DefaultTheme extends Theme {}
+    type DefaultTheme = Theme;
 }

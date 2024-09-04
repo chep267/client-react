@@ -23,6 +23,7 @@ export default function AppTimer() {
             <Typography variant="body2" fontWeight={600} textTransform="capitalize">
                 {dayjs().locale(locale).format('dddd, DD/MM/YYYY')}
             </Typography>
+            <Box className="w-2 h-2 rounded-full" bgcolor="primary.main" />
         </Box>
     );
 }

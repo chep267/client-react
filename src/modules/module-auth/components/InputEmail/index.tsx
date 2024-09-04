@@ -38,7 +38,7 @@ export default function InputEmail<T extends FieldValues>(props: InputEmailProps
                         spellCheck={false}
                         fullWidth
                         autoComplete="email"
-                        autoFocus // eslint-disable-line jsx-a11y/no-autofocus
+                        autoFocus
                         error={error}
                         helperText={errorMessage ? <FormattedMessage id={errorMessage} /> : undefined}
                     />
