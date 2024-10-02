@@ -8,12 +8,18 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior: none;
-    box-sizing: border-box;
+    overflow: hidden auto;
     @media screen and (max-width: 640px /* sm */) {
         &::-webkit-scrollbar {
             display: none;
@@ -28,8 +34,7 @@ html {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     font-size: 16px;
-    overflow-x: hidden;
-    box-sizing: border-box;
+    overflow: hidden;
 }
 
 a {
