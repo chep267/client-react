@@ -44,9 +44,11 @@ export default function PasswordField(props: PasswordFieldProps) {
     return (
         <TextField
             {...inputProps}
-            InputProps={{
-                ...InputProps,
-                endAdornment,
+            slotProps={{
+                input: {
+                    ...InputProps,
+                    endAdornment,
+                },
             }}
             type={showPassword === 1 ? 'text' : 'password'}
         />
