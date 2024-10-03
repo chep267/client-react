@@ -43,7 +43,7 @@ export default function RecoverForm() {
             />
             <Box
                 className={classnames('flex flex-row items-end justify-between', {
-                    'max-sm:flex-col max-sm:items-start max-sm:gap-2': true, // mobile
+                    ['max-sm:flex-col max-sm:items-start max-sm:gap-2']: true, // mobile
                 })}>
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={SIGN_IN.isPending} type="recover" />

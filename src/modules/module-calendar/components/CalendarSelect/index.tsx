@@ -66,7 +66,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
     const isToday = calendarMethod.isToday(day);
     const timeMonthYear = React.useMemo(() => {
         return { month: day.format(locale === 'en' ? 'MMMM' : 'MM'), year: day.format('YYYY') };
-    }, [day.month(), day.year()]);
+    }, [day.month(), day.year(), locale]);
 
     const onChangeTime = React.useCallback((mode: 'prev' | 'next', type: 'month' | 'year') => {
         calendarMethod.setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
@@ -117,7 +117,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 className={classnames(
                     'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center',
                     {
-                        'sm:min-w-[300px]': true, // pc
+                        ['sm:min-w-[300px]']: true, // pc
                     }
                 )}>
                 <Typography variant="h5" color="primary.main">
@@ -129,7 +129,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                         classes.datePiker
                     )}
                     views={['month', 'year']}
-                    value={day}
+                    value={day as any}
                     onChange={calendarMethod.setDay}
                 />
             </Stack>
@@ -139,13 +139,13 @@ const CalendarSelect = React.memo(function CalendarSelect() {
     return (
         <Stack
             className={classnames('flex-row justify-between items-center w-full p-3 gap-2', {
-                'max-sm:flex-col': true, // mobile
+                ['max-sm:flex-col']: true, // mobile
             })}
             sx={sxStyles}>
             {ButtonToday}
             <Stack
                 className={classnames('flex-row justify-between items-center gap-2', {
-                    'max-sm:w-full': true, // mobile
+                    ['max-sm:w-full']: true, // mobile
                 })}>
                 {ButtonLeft}
                 {DateTimePicker}

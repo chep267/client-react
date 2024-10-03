@@ -25,7 +25,7 @@ export default function ButtonSubmit(props: AuthButtonSubmitProps) {
             size="large"
             variant="contained"
             className={classnames('rounded-lg w-1/3', {
-                'max-sm:w-full': true, // mobile
+                ['max-sm:w-full']: true, // mobile
             })}>
             <FormattedMessage id={AuthLanguage.component.button[type]} />
         </LoadingButton>
