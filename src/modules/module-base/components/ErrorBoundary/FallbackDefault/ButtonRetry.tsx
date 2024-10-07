@@ -56,7 +56,7 @@ export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoRel
         <Stack className={classes.content}>
             {renderContent}
             {isAutoReload ? (
-                <Typography variant="subtitle1" fontWeight={600} color="error.main" pt={3}>
+                <Typography className="text-base" fontWeight={600} color="error.main" pt={3}>
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.autoReload} values={{ second }} />
                 </Typography>
             ) : null}

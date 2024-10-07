@@ -105,12 +105,13 @@ const useStyles = makeStyles(({ palette, zIndex }) => {
 
 export default function StartLoading() {
     const classes = useStyles();
+    const title = 'start';
 
     return (
         <Stack className={classes.screen}>
             <Stack className={classes.startElement}>
                 <Typography variant="h5" className={classes.textStart}>
-                    start
+                    {title}
                 </Typography>
                 <Typography className={classes.textLoading} />
             </Stack>
