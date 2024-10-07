@@ -27,11 +27,11 @@ export default function AuthTitle() {
         if (pathname.startsWith(AuthRouterPath.recover)) {
             return 'recover';
         }
-        return '';
+        return 'signin';
     }, [pathname]);
 
     return (
-        <Typography variant="h3" color="primary.main">
+        <Typography color="primary.main" className="text-3xl md:text-5xl">
             {mode && <FormattedMessage id={AuthLanguage.component.title[mode]} />}
         </Typography>
     );

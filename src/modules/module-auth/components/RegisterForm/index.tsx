@@ -65,7 +65,7 @@ export default function RegisterForm() {
 
     return (
         <Paper
-            className="flex flex-col w-10/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
+            className="flex flex-col w-11/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
             onSubmit={onSubmit}
             noValidate>
