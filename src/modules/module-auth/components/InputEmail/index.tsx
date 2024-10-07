@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import makeStyles from '@mui/styles/makeStyles';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 import type { FieldValues } from 'react-hook-form';

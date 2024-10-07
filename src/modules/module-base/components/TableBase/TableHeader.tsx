@@ -19,7 +19,7 @@ import { useStyles } from './styles';
 
 /** types */
 import type { TableHeaderProps } from '@module-base/types';
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
     const { rows, orderType, orderBy, onRequestSort, tableRowProps, tableCellProps } = props;

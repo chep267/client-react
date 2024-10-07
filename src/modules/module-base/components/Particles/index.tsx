@@ -11,7 +11,7 @@ import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@mui/material/styles';
 
 /** constants */
-import { ParticleOptions } from '@module-base/constants/ParticleOptions.ts';
+import { ParticleOptions } from '@module-base/constants/ParticleOptions';
 
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';

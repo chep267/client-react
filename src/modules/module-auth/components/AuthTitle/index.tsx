@@ -11,8 +11,8 @@ import { FormattedMessage } from 'react-intl';
 import Typography from '@mui/material/Typography';
 
 /** constants */
-import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export default function AuthTitle() {
     const { pathname } = useLocation();

@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
 
 /** hooks */

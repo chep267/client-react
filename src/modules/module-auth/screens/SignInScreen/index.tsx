@@ -10,7 +10,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 
 /** components */
 import AuthTitle from '@module-auth/components/AuthTitle';

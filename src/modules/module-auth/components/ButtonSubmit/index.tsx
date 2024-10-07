@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import { LoadingButton } from '@mui/lab';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 import type { AuthButtonSubmitProps } from '@module-auth/types';

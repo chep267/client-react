@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 export const vi = {
     [BaseLanguage.component.label.error.server]: 'Máy chủ không phản hồi!',

@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks/useLanguage.ts';
+import { useLanguage } from '@module-language/hooks/useLanguage';
 
 export default function AppTimer() {
     const {

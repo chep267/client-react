@@ -8,8 +8,8 @@
 import * as yup from 'yup';
 
 /** constants */
-import { Regex } from '@module-auth/constants/Regex.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { Regex } from '@module-auth/constants/Regex';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export const authFormSchema = yup
     .object({

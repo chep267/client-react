@@ -12,7 +12,7 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
 /** constants */
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** styles */
 import { useStyles } from './styles';

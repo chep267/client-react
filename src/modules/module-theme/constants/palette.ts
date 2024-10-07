@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { themeObject } from '@module-theme/constants/themeObject';
 
 /** types */
 import type { Palette, PaletteMode } from '@mui/material';

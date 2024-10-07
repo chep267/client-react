@@ -12,7 +12,7 @@ import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** styles */
 import { useStyles } from './styles';

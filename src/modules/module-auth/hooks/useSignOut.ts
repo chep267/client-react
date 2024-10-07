@@ -9,13 +9,13 @@ import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { authApi } from '@module-auth/apis/authApi.ts';
+import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks/useAuth.ts';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 export function useSignOut() {
     const AUTH = useAuth();

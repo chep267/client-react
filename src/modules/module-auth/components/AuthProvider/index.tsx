@@ -8,7 +8,7 @@
 import * as React from 'react';
 
 /** hooks */
-import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext.ts';
+import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext';
 
 /** types */
 import type { AuthContextProps, AuthProviderProps } from '@module-auth/types';

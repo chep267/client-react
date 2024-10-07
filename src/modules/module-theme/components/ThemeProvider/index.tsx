@@ -12,12 +12,12 @@ import { StyledEngineProvider, createTheme, ThemeProvider as ThemeProviderMUI } 
 import CssBaseline from '@mui/material/CssBaseline';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { themeObject } from '@module-theme/constants/themeObject.ts';
-import { breakpoints } from '@module-theme/constants/breakpoints.ts';
-import { palette } from '@module-theme/constants/palette.ts';
-import { ThemeContext } from '@module-theme/contexts/ThemeContext.ts';
-import { components } from '@module-theme/constants/components.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { themeObject } from '@module-theme/constants/themeObject';
+import { breakpoints } from '@module-theme/constants/breakpoints';
+import { palette } from '@module-theme/constants/palette';
+import { ThemeContext } from '@module-theme/contexts/ThemeContext';
+import { components } from '@module-theme/constants/components';
 
 /** types */
 import type { PropsWithChildren } from 'react';

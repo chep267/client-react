@@ -9,23 +9,23 @@ import Cookies from 'js-cookie';
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { authApi } from '@module-auth/apis/authApi.ts';
+import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AppKey } from '@module-base/constants/AppKey';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks/useNotify.ts';
-import { useAuth } from '@module-auth/hooks/useAuth.ts';
+import { useNotify } from '@module-base/hooks/useNotify';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
 import type { AxiosError } from '@module-base/types';
 import type { TypeApiAuth } from '@module-auth/types';
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 export function useRestart() {
     const AUTH = useAuth();

@@ -8,7 +8,7 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 
 /** utils */
-import { queryClient } from '@root/utils/queryClient.ts';
+import { queryClient } from '@root/utils/queryClient';
 
 /** providers */
 import NotifyProvider from '@module-base/components/NotifyProvider';

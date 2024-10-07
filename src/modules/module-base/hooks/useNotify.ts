@@ -8,6 +8,6 @@
 import * as React from 'react';
 
 /** hooks */
-import { NotifyContext } from '@module-base/contexts/NotifyContext.ts';
+import { NotifyContext } from '@module-base/contexts/NotifyContext';
 
 export const useNotify = () => React.useContext(NotifyContext);

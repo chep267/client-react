@@ -8,7 +8,7 @@
 import * as React from 'react';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** types */
 import type { AuthContextProps } from '@module-auth/types';

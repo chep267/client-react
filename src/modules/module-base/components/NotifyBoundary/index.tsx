@@ -14,10 +14,10 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
-import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useNotify } from '@module-base/hooks/useNotify';
 
 /** types */
 import type { SnackbarOrigin } from '@mui/material/Snackbar';

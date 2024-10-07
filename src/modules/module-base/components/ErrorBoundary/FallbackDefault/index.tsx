@@ -12,11 +12,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 /** constants */
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';
-import ButtonRetry from './ButtonRetry.tsx';
+import ButtonRetry from './ButtonRetry';
 
 /** types */
 import type { FallbackDefaultProps } from '@module-base/types';

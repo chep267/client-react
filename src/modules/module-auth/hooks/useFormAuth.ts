@@ -10,10 +10,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 
 /** utils */
-import { authFormSchema } from '@module-auth/utils/authFormSchema.ts';
+import { authFormSchema } from '@module-auth/utils/authFormSchema';
 
 /** types */
 import type { TypeFormAuth } from '@module-auth/types';

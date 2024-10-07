@@ -12,8 +12,8 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 /** constants */
-import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 import type { TypeAuthBreadcrumbsItem } from '@module-auth/types';

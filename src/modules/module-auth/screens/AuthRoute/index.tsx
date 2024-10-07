@@ -10,12 +10,12 @@ import Cookies from 'js-cookie';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 import { AccountState } from '@module-auth/constants/AccountState';
-import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath.ts';
+import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks/useAuth.ts';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
 import type { PropsWithChildren } from 'react';

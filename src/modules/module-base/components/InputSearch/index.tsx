@@ -12,7 +12,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** types */
 import type { InputSearchProps, InputChangeEvent } from '@module-base/types';

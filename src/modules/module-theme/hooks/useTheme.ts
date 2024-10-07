@@ -8,6 +8,6 @@
 import * as React from 'react';
 
 /** constants */
-import { ThemeContext } from '@module-theme/contexts/ThemeContext.ts';
+import { ThemeContext } from '@module-theme/contexts/ThemeContext';
 
 export const useTheme = () => React.useContext(ThemeContext);

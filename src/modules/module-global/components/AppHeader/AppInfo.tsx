@@ -10,8 +10,8 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
-import { AppName } from '@module-global/constants/AppName.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { AppName } from '@module-global/constants/AppName';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';

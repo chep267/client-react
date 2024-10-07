@@ -10,11 +10,11 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useRecover } from '@module-auth/hooks/useRecover.ts';
-import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
+import { useRecover } from '@module-auth/hooks/useRecover';
+import { useFormAuth } from '@module-auth/hooks/useFormAuth';
 
 /** components */
 import InputEmail from '@module-auth/components/InputEmail';

@@ -5,7 +5,7 @@
  */
 
 /** hooks */
-import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useNotify } from '@module-base/hooks/useNotify';
 
 /** types */
 import type { ComponentType } from '@module-base/types';

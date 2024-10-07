@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import makeStyles from '@mui/styles/makeStyles';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** components */
 import PasswordField from '@module-base/components/PasswordField';

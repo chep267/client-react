@@ -16,7 +16,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
 
 /** components */
-import MenuSetting from './MenuSetting.tsx';
+import MenuSetting from './MenuSetting';
 
 /** types */
 import type { ElementClickEvent } from '@module-base/types';

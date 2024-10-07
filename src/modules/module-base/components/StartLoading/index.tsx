@@ -10,7 +10,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 /** constants */
-import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { themeObject } from '@module-theme/constants/themeObject';
 
 /** styles */
 const useStyles = makeStyles(({ palette, zIndex }) => {

@@ -12,10 +12,10 @@ import Toolbar from '@mui/material/Toolbar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 /** components */
-import AppInfo from './AppInfo.tsx';
-import AppTimer from './AppTimer.tsx';
-import AppButtonDev from './AppButtonDev.tsx';
-import ButtonSetting from './ButtonSetting/index.tsx';
+import AppInfo from './AppInfo';
+import AppTimer from './AppTimer';
+import AppButtonDev from './AppButtonDev';
+import ButtonSetting from './ButtonSetting/index';
 
 const AppHeader = React.memo(function AppHeader() {
     return (

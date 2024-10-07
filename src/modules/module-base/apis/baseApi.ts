@@ -9,7 +9,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 import { AppEnv } from '@module-base/constants/AppEnv.ts';
 import { AppTimer } from '@module-base/constants/AppTimer.ts';
 

@@ -9,7 +9,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 
 /** utils */
-import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useNotify } from '@module-base/hooks/useNotify';
 
 export default function AppButtonDev(props: any) {
     const { tooltip, icon } = props;

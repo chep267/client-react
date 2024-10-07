@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 export const en = {
     [BaseLanguage.component.label.error.server]: 'Server busy!',

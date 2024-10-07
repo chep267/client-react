@@ -8,7 +8,7 @@
 import * as React from 'react';
 
 /** contexts */
-import { NotifyContext, defaultNotifyState } from '@module-base/contexts/NotifyContext.ts';
+import { NotifyContext, defaultNotifyState } from '@module-base/contexts/NotifyContext';
 
 /** components */
 import ErrorBoundary from '@module-base/components/ErrorBoundary';
