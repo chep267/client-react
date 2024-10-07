@@ -12,11 +12,12 @@ import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus.ts';
 import { PokemonGameLevel } from '@module-game/constants/PokemonGameLevel.ts';
 import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
 
-/** utils */
-import { PokemonService } from '@module-game/utils/PokemonService.ts';
-
 /** constants */
 import { defaultPokemonState, PokemonContext } from '@module-game/contexts/PokemonContext.ts';
+
+/** utils */
+import { PokemonService } from '@module-game/utils/PokemonService.ts';
+import { debounce } from '@module-base/utils/debounce.ts';
 
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown.ts';
@@ -66,13 +67,11 @@ export default function PokemonProvider(props: PropsWithChildren) {
                     : PokemonItemStatus.error
                 : PokemonItemStatus.select;
         if (statusPresent === PokemonItemStatus.error) {
-            setTimeout(() => {
-                setItems([]);
-            }, 1000);
+            debounce(1000, () => setItems([])).then();
         } else if (statusPresent === PokemonItemStatus.success) {
             const item1 = items[0];
             const item2 = items[1];
-            setTimeout(() => {
+            debounce(1000, () => {
                 setBoardGame((prev) => {
                     const board = [...prev];
                     board[item1.x][item1.y].value = 0;
@@ -80,11 +79,11 @@ export default function PokemonProvider(props: PropsWithChildren) {
                     return board;
                 });
                 setItems([]);
-            }, 1000);
+            }).then();
         }
         setItemStatus(statusPresent);
         if (statusPresent === PokemonItemStatus.success) {
-            setTimeout(() => setPoint((prev) => prev + 2), 1200);
+            debounce(1200, () => setPoint((prev) => prev + 2)).then();
         }
     }, [items]);
 

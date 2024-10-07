@@ -18,6 +18,9 @@ import { SiderState } from '@module-global/constants/SiderState.ts';
 /** hooks */
 import { useSider } from '@module-global/hooks/useSider.ts';
 
+/** utils */
+import { debounce } from '@module-base/utils/debounce.ts';
+
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
 
@@ -47,15 +50,13 @@ export default function MainRouter() {
     }).current;
 
     React.useEffect(() => {
-        setTimeout(() => {
-            setHasScroll(windowHasScroll());
-        }, 100);
+        debounce(100, () => setHasScroll(windowHasScroll())).then();
     }, [location]);
 
     return (
         <Box
             className={classnames('flex flex-col h-full max-sm:w-full transition-[width] duration-500', {
-                'pr-4 max-sm:pr-0': hasScroll,
+                ['pr-4 max-sm:pr-0']: hasScroll,
             })}
             sx={sxStyles[siderState]}>
             <AppSiderMini />

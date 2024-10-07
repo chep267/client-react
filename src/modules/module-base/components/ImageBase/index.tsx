@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 export default function ImageBase(props: ImageBaseProps) {
-    const { alt = '', loading = 'lazy' as const, onLoad, ...imageProps } = props;
+    const { alt = '', loading, onLoad, ...imageProps } = props;
     const classes = useStyles();
 
     const [isLoading, setLoading] = React.useState(true);
@@ -46,7 +46,7 @@ export default function ImageBase(props: ImageBaseProps) {
             {isLoading ? (
                 <Skeleton className={classnames(classes.loading, 'image-base-loading')} variant="rectangular" />
             ) : null}
-            <img alt={alt} onLoad={onLoadImage} loading={loading} {...imageProps} />
+            <img alt={alt} onLoad={onLoadImage} loading={loading || 'lazy'} {...imageProps} />
         </>
     );
 }

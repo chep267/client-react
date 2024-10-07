@@ -14,8 +14,9 @@ import pluginQuery from '@tanstack/eslint-plugin-query';
 export default tsEslint.config({
     ignores: ['dist/*', 'node_modules/*'],
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx,vue}'],
-    extends: [eslint.configs.recommended, ...tsEslint.configs.recommended, pluginReact.configs.flat.recommended],
+    extends: [eslint.configs.recommended, ...tsEslint.configs.recommended],
     plugins: {
+        react: pluginReact,
         prettier: pluginPrettier,
         '@tanstack/query': pluginQuery,
     },

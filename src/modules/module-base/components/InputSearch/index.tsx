@@ -24,7 +24,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         onLoading,
         type = 'text',
         spellCheck = false,
-        size = 'small' as const,
+        size,
         InputProps,
         ...inputProps
     } = props;
@@ -92,11 +92,13 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
             spellCheck={spellCheck}
             value={value}
             onChange={onChange}
-            size={size}
-            InputProps={{
-                ...InputProps,
-                startAdornment,
-                endAdornment,
+            size={size || 'small'}
+            slotProps={{
+                htmlInput: {
+                    ...InputProps,
+                    startAdornment,
+                    endAdornment,
+                },
             }}
             {...inputProps}
         />

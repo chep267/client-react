@@ -129,7 +129,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                         classes.datePiker
                     )}
                     views={['month', 'year']}
-                    value={day as any}
+                    value={day}
                     onChange={calendarMethod.setDay}
                 />
             </Stack>

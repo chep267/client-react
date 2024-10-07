@@ -27,7 +27,7 @@ const SignInScreen = React.lazy(() => import('@module-auth/screens/SignInScreen'
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
 
-    const { pathname } = useLocation();
+    const { pathname }: { pathname: (typeof AuthRouterPath)[keyof typeof AuthRouterPath] } = useLocation();
     const navigate = useNavigate();
     const {
         data: { isAuthentication, prePath },
@@ -44,11 +44,11 @@ export default function AuthRoute(props: PropsWithChildren) {
             setPrePath(pathname);
             navigate(AuthRouterPath.start, { replace: true });
         }
-        if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname as any)) {
+        if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname)) {
             /** đã đăng nhập xong, vào home */
             navigate(prePath, { replace: true });
         }
-        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname as any)) {
+        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
             /** chưa đăng nhập, trở về đăng nhập  */
             navigate(AuthRouterPath.signin, { replace: true });
         }

@@ -33,6 +33,7 @@ export const AuthLanguage = {
         password: {
             empty: 'module.auth.status.password.empty',
             invalid: 'module.auth.status.password.invalid',
+            different: 'module.auth.status.password.different',
         },
     },
     notify: {

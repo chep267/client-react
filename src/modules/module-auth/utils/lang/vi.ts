@@ -26,6 +26,7 @@ export const vi = {
     [AuthLanguage.status.email.invalid]: 'Email không hợp lệ!',
     [AuthLanguage.status.password.invalid]:
         'Tối thiểu 8 kí tự, bao gồm ít nhất 1 chữ thường, 1 chữ hoa, 1 số, 1 kí tự đặc biệt',
+    [AuthLanguage.status.password.different]: 'Mật khẩu xác nhận không khớp!',
 
     // button
     [AuthLanguage.component.button.signin]: 'Đăng nhập',

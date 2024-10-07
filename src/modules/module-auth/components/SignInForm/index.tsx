@@ -9,6 +9,9 @@ import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** hooks */
 import { useSignIn } from '@module-auth/hooks/useSignIn.ts';
 import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
@@ -21,6 +24,7 @@ import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
 /** types */
 import type { TypeFormAuth } from '@module-auth/types';
+import type { AxiosError } from '@module-base/types';
 
 export default function SignInForm() {
     const SIGN_IN = useSignIn();
@@ -29,13 +33,34 @@ export default function SignInForm() {
         control,
         formState: { errors },
         setFocus,
+        setError,
     } = useFormAuth({ type: 'signin' });
+
+    const onSubmit = handleSubmit((data) => {
+        SIGN_IN.mutate(data, {
+            onError: (error: AxiosError) => {
+                const code = Number(error?.response?.status);
+                let messageIntl;
+                switch (true) {
+                    case code >= 400 && code < 500:
+                        messageIntl = AuthLanguage.notify.signin.error;
+                        break;
+                    default:
+                        messageIntl = AuthLanguage.notify.server.error;
+                        break;
+                }
+                setError('email', { message: messageIntl });
+                setError('password', { message: messageIntl });
+                setFocus('email');
+            },
+        });
+    });
 
     return (
         <Paper
             className="flex flex-col w-10/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
-            onSubmit={handleSubmit(({ email, password }) => SIGN_IN.mutate({ email, password }))}
+            onSubmit={onSubmit}
             noValidate>
             <InputEmail<TypeFormAuth>
                 name="email"

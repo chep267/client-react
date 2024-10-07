@@ -9,8 +9,11 @@ import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
+/** constants */
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+
 /** hooks */
-import { useSignIn } from '@module-auth/hooks/useSignIn.ts';
+import { useRecover } from '@module-auth/hooks/useRecover.ts';
 import { useFormAuth } from '@module-auth/hooks/useFormAuth.ts';
 
 /** components */
@@ -22,18 +25,30 @@ import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 import type { TypeFormAuth } from '@module-auth/types';
 
 export default function RecoverForm() {
-    const SIGN_IN = useSignIn();
+    const RECOVER = useRecover();
     const {
         handleSubmit,
         control,
         formState: { errors },
+        setFocus,
+        setError,
     } = useFormAuth({ type: 'recover' });
+
+    const onSubmit = handleSubmit((data) => {
+        RECOVER.mutate(data, {
+            onError: () => {
+                const messageIntl = AuthLanguage.notify.recover.error;
+                setError('email', { message: messageIntl });
+                setFocus('email');
+            },
+        });
+    });
 
     return (
         <Paper
             className="flex flex-col w-10/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
-            onSubmit={handleSubmit(({ email, password }) => SIGN_IN.mutate({ email, password }))}
+            onSubmit={onSubmit}
             noValidate>
             <InputEmail<TypeFormAuth>
                 name="email"
@@ -46,7 +61,7 @@ export default function RecoverForm() {
                     ['max-sm:flex-col max-sm:items-start max-sm:gap-2']: true, // mobile
                 })}>
                 <AuthBreadcrumbs />
-                <ButtonSubmit loading={SIGN_IN.isPending} type="recover" />
+                <ButtonSubmit loading={RECOVER.isPending} type="recover" />
             </Box>
         </Paper>
     );
