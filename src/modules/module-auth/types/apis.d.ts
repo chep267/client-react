@@ -10,7 +10,7 @@ import type { TypeUser } from '@module-user/types';
 
 export interface TypeApiAuth {
     Signin: {
-        Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
+        Payload: TypeCallApiPayload<{ email: NonNullable<TypeUser['email']>; password: string }>;
         Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
     };
     Signout: {
@@ -22,11 +22,11 @@ export interface TypeApiAuth {
         Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
     };
     Register: {
-        Payload: TypeCallApiPayload<{ email: TypeUser['email']; password: string }>;
+        Payload: TypeCallApiPayload<{ email: NonNullable<TypeUser['email']>; password: string }>;
         Response: TypeResponseApi;
     };
     Recover: {
-        Payload: TypeCallApiPayload<{ email: TypeUser['email'] }>;
+        Payload: TypeCallApiPayload<{ email: NonNullable<TypeUser['email']> }>;
         Response: TypeResponseApi;
     };
 }

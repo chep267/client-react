@@ -36,8 +36,9 @@ export function useSignIn() {
             AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
         },
         onError: (error: AxiosError) => {
-            const code = Number(error?.response?.status);
+            const code = Number(error?.response?.status || error?.code);
             let messageIntl: string;
+            console.log('code: ', error);
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.signin.error;

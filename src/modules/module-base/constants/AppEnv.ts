@@ -6,4 +6,5 @@
 
 export const AppEnv = {
     apiHost: import.meta.env.VITE_APP_API_HOST,
+    apiType: import.meta.env.VITE_APP_API_TYPE,
 };
