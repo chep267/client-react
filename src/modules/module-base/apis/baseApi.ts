@@ -10,11 +10,11 @@ import Cookies from 'js-cookie';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { AppEnv } from '@module-base/constants/AppEnv.ts';
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppEnv } from '@module-base/constants/AppEnv';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** types */
 import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/types';

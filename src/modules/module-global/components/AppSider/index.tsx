@@ -15,15 +15,15 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider.ts';
+import { useSider } from '@module-global/hooks/useSider';
 
 /** components */
 import ListApp from './ListApp';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 const AppSider = React.memo(function AppSider() {
     const {

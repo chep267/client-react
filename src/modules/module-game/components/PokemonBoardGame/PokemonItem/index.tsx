@@ -11,8 +11,8 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Button } from '@mui/material';
 
 /** constants */
-import { PokemonLogo } from '@module-game/constants/PokemonLogo.ts';
-import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus.ts';
+import { PokemonLogo } from '@module-game/constants/PokemonLogo';
+import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus';
 
 /** types */
 import type { TypePokemonItem, TypePokemonItemStatus } from '@module-game/types';

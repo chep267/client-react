@@ -12,7 +12,7 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { firebaseRef } from '@module-base/constants/firebaseRef';
 
 /** utils */
-import { firestore } from '@module-base/utils/firebaseApp.ts';
+import { firestore } from '@module-base/utils/firebaseApp';
 import { debounce } from '@module-base/utils/debounce';
 
 /** types */

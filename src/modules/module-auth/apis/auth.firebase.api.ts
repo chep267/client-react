@@ -10,38 +10,25 @@ import {
     signOut,
     onAuthStateChanged,
     sendPasswordResetEmail,
-    getAuth,
 } from 'firebase/auth';
 
 /** apis */
 import { userFirebaseApi } from '@module-user/apis/api.firebase';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
 import { debounce } from '@module-base/utils/debounce';
-import { validateId } from '@module-base/utils/validateId.ts';
-import { firebaseApp } from '@module-base/utils/firebaseApp.ts';
+import { validateId } from '@module-base/utils/validateId';
+import { authentication } from '@module-base/utils/firebaseApp';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
 
-export const authentication = getAuth(firebaseApp);
-
 const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
-    console.log('apiSignIn: ');
-    const callSignIn = () => {
-        try {
-            return signInWithEmailAndPassword(authentication, email, password);
-        } catch (error) {
-            console.log('error: ', error);
-            return error;
-        }
-    };
-    const [response] = await Promise.all([callSignIn(), debounce(timer)]);
-    console.log('response: ', response);
+    const [response] = await Promise.all([signInWithEmailAndPassword(authentication, email, password), debounce(timer)]);
     if (response?.user) {
         const uid = validateId(response.user.uid, 'uid');
         let user = await userFirebaseApi.get({ uid, timer: 0 });

@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 /** hooks */
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** types */
 import type { CalendarItemProps } from '@module-calendar/types';

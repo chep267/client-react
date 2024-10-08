@@ -14,8 +14,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
 import ListBase from '@module-base/components/ListBase';

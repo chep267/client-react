@@ -11,9 +11,9 @@ import { IntlProvider } from 'react-intl';
 import 'dayjs/locale/vi';
 
 /** constants */
-import { AppKey } from '@module-base/constants/AppKey.ts';
+import { AppKey } from '@module-base/constants/AppKey';
 import { localeObject } from '@module-language/constants/localeObject';
-import { LanguageContext } from '@module-language/contexts/LanguageContext.ts';
+import { LanguageContext } from '@module-language/contexts/LanguageContext';
 
 /** utils */
 import { getDeviceLanguage } from '@module-language/utils/getDeviceLanguage';

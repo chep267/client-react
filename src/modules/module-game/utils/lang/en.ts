@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+import { GameLanguage } from '@module-game/constants/GameLanguage';
 
 export const en = {
     [GameLanguage.component.label.router]: 'Pokemon',

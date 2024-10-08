@@ -9,11 +9,11 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
-import { SiderState } from '@module-global/constants/SiderState.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 
 /** contexts */
-import { defaultSiderState, SiderContext } from '@module-global/contexts/SiderContext.ts';
+import { defaultSiderState, SiderContext } from '@module-global/contexts/SiderContext';
 
 /** types */
 import type { SiderProviderProps, TypeSiderContext } from '@module-global/types';

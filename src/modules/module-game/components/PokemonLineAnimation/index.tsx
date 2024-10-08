@@ -10,13 +10,13 @@ import classnames from 'classnames';
 import { Stack } from '@mui/material';
 
 /** constants */
-import { PokemonLine } from '@module-game/constants/PokemonLine.ts';
+import { PokemonLine } from '@module-game/constants/PokemonLine';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** styles */
 import useStyles from './styles';

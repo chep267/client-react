@@ -8,13 +8,13 @@
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { authApi } from '@module-auth/apis/authApi.ts';
+import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks/useNotify.ts';
+import { useNotify } from '@module-base/hooks/useNotify';
 
 /** types */
 import type { AxiosError } from '@module-base/types';

@@ -8,6 +8,6 @@
 import * as React from 'react';
 
 /** contexts */
-import { PokemonContext } from '@module-game/contexts/PokemonContext.ts';
+import { PokemonContext } from '@module-game/contexts/PokemonContext';
 
 export const usePokemon = () => React.useContext(PokemonContext);

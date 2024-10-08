@@ -10,10 +10,10 @@ import makeStyles from '@mui/styles/makeStyles';
 import { Stack } from '@mui/material';
 
 /** constants */
-import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
+import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** types */
 type PokemonTimerProps = {

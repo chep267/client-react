@@ -8,16 +8,16 @@
 import * as React from 'react';
 
 /** constants */
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** utils */
-import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices.ts';
+import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices';
 
 /** hooks */
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
-import { useSider } from '@module-global/hooks/useSider.ts';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
+import { useSider } from '@module-global/hooks/useSider';
 
 /** components */
 import TableBase from '@module-base/components/TableBase';

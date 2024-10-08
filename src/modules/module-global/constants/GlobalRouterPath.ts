@@ -5,8 +5,8 @@
  */
 
 /** constants */
-import { CalendarRouterPath } from '@module-calendar/constants/CalendarRouterPath.ts';
-import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
+import { CalendarRouterPath } from '@module-calendar/constants/CalendarRouterPath';
+import { GameRouterPath } from '@module-game/constants/GameRouterPath';
 
 export const GlobalRouterPath = {
     home: '/',

@@ -10,11 +10,11 @@ import { FormattedMessage } from 'react-intl';
 import { Stack, Typography, Button } from '@mui/material';
 
 /** constants */
-import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
-import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
+import { GameLanguage } from '@module-game/constants/GameLanguage';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** types */
 type PokemonTimerProps = {

@@ -13,6 +13,7 @@ import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppEnv } from '@module-base/constants/AppEnv';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -36,9 +37,12 @@ export function useSignIn() {
             hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
         },
         onError: (error: AxiosError) => {
-            const code = Number(error?.response?.status || error?.code);
+            const code = Number(error?.response?.status) || error?.code;
             let messageIntl: string;
             switch (true) {
+                case AppEnv.apiType === 'firebase':
+                    messageIntl = AuthLanguage.notify.signIn.error;
+                    break;
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.signIn.error;
                     break;

@@ -8,8 +8,8 @@
 import * as React from 'react';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { localeObject } from '@module-language/constants/localeObject.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import { localeObject } from '@module-language/constants/localeObject';
 
 /** types */
 import type { LanguageContextProps } from '@module-language/types';

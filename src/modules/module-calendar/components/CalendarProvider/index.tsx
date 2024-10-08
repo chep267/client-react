@@ -10,10 +10,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 /** contexts */
-import { CalendarContext, defaultCalendarState } from '@module-calendar/contexts/CalendarContext.ts';
+import { CalendarContext, defaultCalendarState } from '@module-calendar/contexts/CalendarContext';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks/useLanguage.ts';
+import { useLanguage } from '@module-language/hooks/useLanguage';
 
 /** types */
 import type { PropsWithChildren } from 'react';

@@ -16,8 +16,8 @@ import { debounce } from '@module-base/utils/debounce';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
-import { AppEnv } from '@module-base/constants/AppEnv.ts';
-import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api.ts';
+import { AppEnv } from '@module-base/constants/AppEnv';
+import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api';
 
 const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;

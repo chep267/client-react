@@ -14,10 +14,10 @@ import Button from '@mui/material/Button';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** hooks */
-import { useCountdown } from '@module-base/hooks/useCountdown.ts';
+import { useCountdown } from '@module-base/hooks/useCountdown';
 
 /** types */
 import type { FallbackDefaultProps } from '@module-base/types';

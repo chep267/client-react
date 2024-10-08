@@ -5,7 +5,7 @@
  */
 
 /** hooks */
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** types */
 import type { ComponentType } from '@module-base/types';

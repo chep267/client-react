@@ -9,10 +9,10 @@ import { FormattedMessage } from 'react-intl';
 import { Typography } from '@mui/material';
 
 /** constants */
-import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+import { GameLanguage } from '@module-game/constants/GameLanguage';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** types */
 type PokemonTimerProps = {

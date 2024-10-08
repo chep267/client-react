@@ -8,19 +8,19 @@
 import * as React from 'react';
 
 /** constants */
-import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus.ts';
-import { PokemonGameLevel } from '@module-game/constants/PokemonGameLevel.ts';
-import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
+import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus';
+import { PokemonGameLevel } from '@module-game/constants/PokemonGameLevel';
+import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
 
 /** constants */
-import { defaultPokemonState, PokemonContext } from '@module-game/contexts/PokemonContext.ts';
+import { defaultPokemonState, PokemonContext } from '@module-game/contexts/PokemonContext';
 
 /** utils */
-import { PokemonService } from '@module-game/utils/PokemonService.ts';
-import { debounce } from '@module-base/utils/debounce.ts';
+import { PokemonService } from '@module-game/utils/PokemonService';
+import { debounce } from '@module-base/utils/debounce';
 
 /** hooks */
-import { useCountdown } from '@module-base/hooks/useCountdown.ts';
+import { useCountdown } from '@module-base/hooks/useCountdown';
 
 /** types */
 import type { PropsWithChildren } from 'react';

@@ -12,8 +12,8 @@ import { Stack, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 /** constants */
-import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
-import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+import { GameRouterPath } from '@module-game/constants/GameRouterPath';
+import { GameLanguage } from '@module-game/constants/GameLanguage';
 
 /** utils */
 import PokemonLogo from '@module-game/assets/images/pokemon_logo.png';

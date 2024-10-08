@@ -12,7 +12,7 @@ import { Stack, Paper } from '@mui/material';
 import PokemonItem from './PokemonItem';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 type PokemonBoardGameProps = {
     className?: string;

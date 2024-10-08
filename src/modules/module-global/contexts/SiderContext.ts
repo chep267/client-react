@@ -8,9 +8,9 @@
 import * as React from 'react';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 
 /** types */
 import type { TypeSiderContext, TypeSiderState } from '@module-global/types';

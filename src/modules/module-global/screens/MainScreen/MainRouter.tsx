@@ -11,15 +11,15 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { SiderState } from '@module-global/constants/SiderState.ts';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider.ts';
+import { useSider } from '@module-global/hooks/useSider';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';

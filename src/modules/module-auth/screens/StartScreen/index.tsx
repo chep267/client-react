@@ -8,7 +8,7 @@
 import * as React from 'react';
 
 /** hooks */
-import { useRestart } from '@module-auth/hooks/useRestart.ts';
+import { useRestart } from '@module-auth/hooks/useRestart';
 
 /** components */
 const StartLoading = React.lazy(() => import('@module-base/components/StartLoading'));

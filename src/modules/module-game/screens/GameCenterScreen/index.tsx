@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 /** constants */
-import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
+import { GameRouterPath } from '@module-game/constants/GameRouterPath';
 
 /** screens */
 const GameScreen = React.lazy(() => import('@module-game/screens/GameScreen'));

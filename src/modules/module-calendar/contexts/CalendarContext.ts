@@ -9,8 +9,8 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
 
 /** types */
 import type { CalendarContextProps } from '@module-calendar/types';

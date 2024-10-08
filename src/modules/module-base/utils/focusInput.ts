@@ -5,7 +5,7 @@
  */
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce.ts';
+import { debounce } from '@module-base/utils/debounce';
 
 export const focusInput = (payload: { elem?: HTMLInputElement | null; fnCallback?(): void }) => {
     const { elem, fnCallback } = payload;

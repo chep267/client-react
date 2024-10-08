@@ -20,20 +20,20 @@ import EventIcon from '@mui/icons-material/Event';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { localeObject } from '@module-language/constants/localeObject.ts';
-import { themeObject } from '@module-theme/constants/themeObject.ts';
-import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay.ts';
-import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage.ts';
-import { LangLanguage } from '@module-language/constants/LangLanguage.ts';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import { localeObject } from '@module-language/constants/localeObject';
+import { themeObject } from '@module-theme/constants/themeObject';
+import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
+import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
+import { LangLanguage } from '@module-language/constants/LangLanguage';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** hooks */
-import { useTheme } from '@module-theme/hooks/useTheme.ts';
-import { useLanguage } from '@module-language/hooks/useLanguage.ts';
-import { useSignOut } from '@module-auth/hooks/useSignOut.ts';
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { useTheme } from '@module-theme/hooks/useTheme';
+import { useLanguage } from '@module-language/hooks/useLanguage';
+import { useSignOut } from '@module-auth/hooks/useSignOut';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** components */
 import NestedItem from '@module-base/components/NestedItem';

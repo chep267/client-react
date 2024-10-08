@@ -18,13 +18,13 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { SiderState } from '@module-global/constants/SiderState.ts';
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath.ts';
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage.ts';
+import { SiderState } from '@module-global/constants/SiderState';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider.ts';
+import { useSider } from '@module-global/hooks/useSider';
 
 const AppSiderMini = React.memo(function AppSiderMini() {
     const {

@@ -8,8 +8,8 @@
 import * as React from 'react';
 
 /** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue.ts';
-import { themeObject } from '@module-theme/constants/themeObject.ts';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import { themeObject } from '@module-theme/constants/themeObject';
 
 /** types */
 import type { ThemeContextProps } from '@module-theme/types';

@@ -11,12 +11,12 @@ import { Link } from 'react-router-dom';
 import { Stack, Typography, Button } from '@mui/material';
 
 /** constants */
-import { GameRouterPath } from '@module-game/constants/GameRouterPath.ts';
-import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus.ts';
-import { GameLanguage } from '@module-game/constants/GameLanguage.ts';
+import { GameRouterPath } from '@module-game/constants/GameRouterPath';
+import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
+import { GameLanguage } from '@module-game/constants/GameLanguage';
 
 /** hooks */
-import { usePokemon } from '@module-game/hooks/usePokemon.ts';
+import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** types */
 type PokemonTimerProps = {

@@ -20,12 +20,12 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks/useLanguage.ts';
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { useLanguage } from '@module-language/hooks/useLanguage';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** styles */
 const useStyles = makeStyles({

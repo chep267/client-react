@@ -17,15 +17,15 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject.ts';
-import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage.ts';
+import { localeObject } from '@module-language/constants/localeObject';
+import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
 import VietnameseDate from '@module-calendar/utils/Lunar';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks/useLanguage.ts';
-import { useCalendar } from '@module-calendar/hooks/useCalendar.ts';
+import { useLanguage } from '@module-language/hooks/useLanguage';
+import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** styles */
 const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
