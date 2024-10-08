@@ -6,7 +6,7 @@
 
 /** types */
 import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/types';
-import type { TypeUser } from '@module-user/types/data.d.ts';
+import type { TypeUser } from '@module-user/types/data.d';
 
 export interface TypeUserApi {
     Create: {

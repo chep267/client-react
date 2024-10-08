@@ -5,8 +5,8 @@
  */
 
 /** types */
-export * from './event.d.ts';
-export * from './data.d.ts';
-export * from './apis.d.ts';
-export * from './component.d.ts';
-export * from './hook.d.ts';
+export * from './event.d';
+export * from './data.d';
+export * from './apis.d';
+export * from './component.d';
+export * from './hook.d';

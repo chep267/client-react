@@ -5,6 +5,6 @@
  */
 
 /** types */
-export * from './apis.d.ts';
-export * from './data.d.ts';
-export * from './component.d.ts';
+export * from './apis.d';
+export * from './data.d';
+export * from './component.d';

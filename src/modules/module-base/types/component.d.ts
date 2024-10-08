@@ -30,7 +30,7 @@ import type {
     SnackbarProps,
     TableCellProps,
 } from '@mui/material';
-import type { ElementClickEvent } from './event.d.ts';
+import type { ElementClickEvent } from './event.d';
 
 /** ErrorBoundary */
 export type ErrorBoundaryProps = PropsWithChildren<{

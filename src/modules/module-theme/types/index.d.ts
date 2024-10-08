@@ -7,7 +7,7 @@
 /** types */
 import type { ColorType, Theme } from '@mui/material';
 
-export * from './data.d.ts';
+export * from './data.d';
 
 declare module '*.ttf';
 declare module '*.woff';
