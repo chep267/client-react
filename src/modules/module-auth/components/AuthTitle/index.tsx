@@ -18,8 +18,8 @@ export default function AuthTitle() {
     const { pathname } = useLocation();
 
     const mode = React.useMemo(() => {
-        if (pathname.startsWith(AuthRouterPath.signin)) {
-            return 'signin';
+        if (pathname.startsWith(AuthRouterPath.signIn)) {
+            return 'signIn';
         }
         if (pathname.startsWith(AuthRouterPath.register)) {
             return 'register';
@@ -27,7 +27,7 @@ export default function AuthTitle() {
         if (pathname.startsWith(AuthRouterPath.recover)) {
             return 'recover';
         }
-        return 'signin';
+        return 'signIn';
     }, [pathname]);
 
     return (

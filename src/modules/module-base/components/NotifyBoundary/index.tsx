@@ -44,11 +44,11 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
-    const NOTIFY = useNotify();
-    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration } = NOTIFY.data;
+    const hookNotify = useNotify();
+    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration } = hookNotify.data;
     const classes = useStyles();
 
-    const closeSnackbar = React.useCallback(() => NOTIFY.method.toggleNotify(), []);
+    const closeSnackbar = React.useCallback(() => hookNotify.method.toggleNotify(), []);
 
     const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
 

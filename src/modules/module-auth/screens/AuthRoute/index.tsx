@@ -36,10 +36,10 @@ export default function AuthRoute(props: PropsWithChildren) {
 
     // @ts-ignore
     const uid = Cookies.get(AppKey.uid) as string;
-    const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
+    const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignIn : AccountState.signIn;
 
     React.useEffect(() => {
-        if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
+        if (accountState === AccountState.reSignIn && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             setPrePath(pathname);
             navigate(AuthRouterPath.start, { replace: true });
@@ -48,9 +48,9 @@ export default function AuthRoute(props: PropsWithChildren) {
             /** đã đăng nhập xong, vào home */
             navigate(prePath, { replace: true });
         }
-        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
+        if (accountState === AccountState.signIn && !Object.values(AuthRouterPath).includes(pathname)) {
             /** chưa đăng nhập, trở về đăng nhập  */
-            navigate(AuthRouterPath.signin, { replace: true });
+            navigate(AuthRouterPath.signIn, { replace: true });
         }
     }, [accountState, pathname]);
 
@@ -58,7 +58,7 @@ export default function AuthRoute(props: PropsWithChildren) {
         <React.Suspense>
             {accountState === AccountState.signedIn ? (
                 children
-            ) : accountState === AccountState.reSignin ? (
+            ) : accountState === AccountState.reSignIn ? (
                 <StartScreen />
             ) : (
                 <SignInScreen />

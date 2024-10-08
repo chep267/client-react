@@ -29,9 +29,19 @@ import type { TypeApiAuth } from '@module-auth/types';
 
 export const authentication = getAuth(firebaseApp);
 
-const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
+const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
-    const [response] = await Promise.all([signInWithEmailAndPassword(authentication, email, password), debounce(timer)]);
+    console.log('apiSignIn: ');
+    const callSignIn = () => {
+        try {
+            return signInWithEmailAndPassword(authentication, email, password);
+        } catch (error) {
+            console.log('error: ', error);
+            return error;
+        }
+    };
+    const [response] = await Promise.all([callSignIn(), debounce(timer)]);
+    console.log('response: ', response);
     if (response?.user) {
         const uid = validateId(response.user.uid, 'uid');
         let user = await userFirebaseApi.get({ uid, timer: 0 });
@@ -47,12 +57,10 @@ const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<Typ
             await userFirebaseApi.create({ user });
         }
     }
-
-    console.log('response: ', response);
     return response;
 };
 
-const apiSignout = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
+const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const [response] = await Promise.all([signOut(authentication), debounce(timer)]);
     return response;
@@ -81,8 +89,8 @@ const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<T
 };
 
 export const authFirebaseApi = {
-    signin: apiSignin,
-    signout: apiSignout,
+    signIn: apiSignIn,
+    signOut: apiSignOut,
     restart: apiRestart,
     register: apiRegister,
     recover: apiRecover,

@@ -24,30 +24,29 @@ import type { AxiosError } from '@module-base/types';
 import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignIn() {
-    const AUTH = useAuth();
-    const NOTIFY = useNotify();
+    const hookAuth = useAuth();
+    const hookNotify = useNotify();
 
     return useMutation({
-        mutationFn: authApi.signin,
-        onSuccess: async (response: TypeApiAuth['Signin']['Response']) => {
+        mutationFn: authApi.signIn,
+        onSuccess: async (response: TypeApiAuth['SignIn']['Response']) => {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);
-            AUTH.method.setAuth({ isAuthentication: true, user: response.data.user });
+            hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
         },
         onError: (error: AxiosError) => {
             const code = Number(error?.response?.status || error?.code);
             let messageIntl: string;
-            console.log('code: ', error);
             switch (true) {
                 case code >= 400 && code < 500:
-                    messageIntl = AuthLanguage.notify.signin.error;
+                    messageIntl = AuthLanguage.notify.signIn.error;
                     break;
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            NOTIFY.method.toggleNotify({
+            hookNotify.method.toggleNotify({
                 open: true,
                 mode: 'error',
                 messageIntl,

@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -27,7 +28,7 @@ import type { TypeFormAuth } from '@module-auth/types';
 import type { AxiosError } from '@module-base/types';
 
 export default function RegisterForm() {
-    const REGISTER = useRegister();
+    const hookRegister = useRegister();
     const {
         handleSubmit,
         control,
@@ -36,15 +37,14 @@ export default function RegisterForm() {
         setError,
     } = useFormAuth({ type: 'register' });
 
-    const onSubmit = handleSubmit((data) => {
+    const onSubmit = React.useCallback((data) => {
         if (data.password !== data.confirm_password) {
             const messageIntl = AuthLanguage.status.password.different;
             setError('password', { message: messageIntl });
             setFocus('confirm_password');
             return;
         }
-
-        REGISTER.mutate(data, {
+        hookRegister.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
                 let messageIntl;
@@ -61,13 +61,13 @@ export default function RegisterForm() {
                 setFocus('email');
             },
         });
-    });
+    }, []);
 
     return (
         <Paper
             className="flex flex-col w-11/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             noValidate>
             <InputEmail<TypeFormAuth>
                 name="email"
@@ -95,7 +95,7 @@ export default function RegisterForm() {
                     ['max-sm:flex-col max-sm:items-start max-sm:gap-2']: true, // mobile
                 })}>
                 <AuthBreadcrumbs />
-                <ButtonSubmit loading={REGISTER.isPending} type="register" />
+                <ButtonSubmit loading={hookRegister.isPending} type="register" />
             </Box>
         </Paper>
     );

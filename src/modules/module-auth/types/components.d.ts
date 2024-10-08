@@ -16,7 +16,7 @@ export type TypeAuthBreadcrumbsItem = {
 
 export type AuthButtonSubmitProps = {
     loading?: boolean;
-    type: 'signin' | 'register' | 'recover';
+    type: 'signIn' | 'register' | 'recover';
 };
 
 export type InputEmailProps<T extends FieldValues> = {

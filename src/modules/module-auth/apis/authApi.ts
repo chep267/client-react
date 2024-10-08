@@ -19,12 +19,12 @@ import type { TypeApiAuth } from '@module-auth/types';
 import { AppEnv } from '@module-base/constants/AppEnv.ts';
 import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api.ts';
 
-const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
+const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<TypeApiAuth['Signin']['Response']>({
+        return baseApi<TypeApiAuth['SignIn']['Response']>({
             method: 'post',
-            url: AuthApiPath.signin,
+            url: AuthApiPath.signIn,
             data: { email, password },
         });
     };
@@ -32,10 +32,10 @@ const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<Typ
     return res;
 };
 
-const apiSignout = async (payload: TypeApiAuth['Signout']['Payload']): Promise<TypeApiAuth['Signout']['Response']> => {
+const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => {
-        return baseApi<Promise<TypeApiAuth['Signout']['Response']>>({ method: 'post', url: AuthApiPath.signout });
+        return baseApi<Promise<TypeApiAuth['SignOut']['Response']>>({ method: 'post', url: AuthApiPath.signOut });
     };
     await Promise.all([callApi(), debounce(timer)]);
 };
@@ -79,8 +79,8 @@ export const authApi =
     AppEnv.apiType === 'firebase'
         ? authFirebaseApi
         : ({
-              signin: apiSignin,
-              signout: apiSignout,
+              signIn: apiSignIn,
+              signOut: apiSignOut,
               restart: apiRestart,
               register: apiRegister,
               recover: apiRecover,

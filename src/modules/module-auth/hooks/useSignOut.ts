@@ -18,16 +18,16 @@ import { AppKey } from '@module-base/constants/AppKey';
 import { useAuth } from '@module-auth/hooks/useAuth';
 
 export function useSignOut() {
-    const AUTH = useAuth();
+    const hookAuth = useAuth();
 
     const SIGN_OUT = useMutation({
-        mutationFn: authApi.signout,
+        mutationFn: authApi.signOut,
         retry: 3,
         onSettled: () => {
             Cookies.remove(AppKey.uid);
-            AUTH.method.setAuth();
+            hookAuth.method.setAuth();
         },
     });
 
-    return { isAuthentication: AUTH.data.isAuthentication, ...SIGN_OUT };
+    return { isAuthentication: hookAuth.data.isAuthentication, ...SIGN_OUT };
 }

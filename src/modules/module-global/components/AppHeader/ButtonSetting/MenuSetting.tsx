@@ -151,7 +151,7 @@ export default function MenuSetting(props: Props) {
             },
             {
                 id: 'sign-out',
-                title: <FormattedMessage id={AuthLanguage.component.title.signout} />,
+                title: <FormattedMessage id={AuthLanguage.component.title.signOut} />,
                 icon: <LogoutIcon color="primary" />,
                 divide: 'bottom',
                 loading: SIGN_OUT.isPending,

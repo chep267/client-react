@@ -20,12 +20,12 @@ import { useNotify } from '@module-base/hooks/useNotify.ts';
 import type { AxiosError } from '@module-base/types';
 
 export function useRegister() {
-    const NOTIFY = useNotify();
+    const hookNotify = useNotify();
 
     return useMutation({
         mutationFn: authApi.register,
         onSuccess: () => {
-            NOTIFY.method.toggleNotify({
+            hookNotify.method.toggleNotify({
                 open: true,
                 mode: 'success',
                 messageIntl: AuthLanguage.notify.register.success,
@@ -41,7 +41,7 @@ export function useRegister() {
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
             }
-            NOTIFY.method.toggleNotify({
+            hookNotify.method.toggleNotify({
                 open: true,
                 mode: 'error',
                 messageIntl,

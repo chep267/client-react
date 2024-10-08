@@ -27,10 +27,10 @@ export default function SignInScreen() {
             <AuthTitle />
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={AuthRouterPath.signin} element={<SignInForm />} />
+                    <Route path={AuthRouterPath.signIn} element={<SignInForm />} />
                     <Route path={AuthRouterPath.register} element={<RegisterForm />} />
                     <Route path={AuthRouterPath.recover} element={<RecoverForm />} />
-                    <Route path="*" element={<Navigate to={AuthRouterPath.signin} replace />} />
+                    <Route path="*" element={<Navigate to={AuthRouterPath.signIn} replace />} />
                 </Routes>
             </React.Suspense>
             <React.Suspense fallback={null}>

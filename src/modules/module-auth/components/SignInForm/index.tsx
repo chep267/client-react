@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -27,23 +28,23 @@ import type { TypeFormAuth } from '@module-auth/types';
 import type { AxiosError } from '@module-base/types';
 
 export default function SignInForm() {
-    const SIGN_IN = useSignIn();
+    const hookSignIn = useSignIn();
     const {
         handleSubmit,
         control,
         formState: { errors },
         setFocus,
         setError,
-    } = useFormAuth({ type: 'signin' });
+    } = useFormAuth({ type: 'signIn' });
 
-    const onSubmit = handleSubmit((data) => {
-        SIGN_IN.mutate(data, {
+    const onSubmit = React.useCallback((data) => {
+        hookSignIn.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
                 let messageIntl;
                 switch (true) {
                     case code >= 400 && code < 500:
-                        messageIntl = AuthLanguage.notify.signin.error;
+                        messageIntl = AuthLanguage.notify.signIn.error;
                         break;
                     default:
                         messageIntl = AuthLanguage.notify.server.error;
@@ -54,13 +55,13 @@ export default function SignInForm() {
                 setFocus('email');
             },
         });
-    });
+    }, []);
 
     return (
         <Paper
             className="flex flex-col w-11/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
-            onSubmit={onSubmit}
+            onSubmit={handleSubmit(onSubmit)}
             noValidate>
             <InputEmail<TypeFormAuth>
                 name="email"
@@ -80,7 +81,7 @@ export default function SignInForm() {
                     ['max-sm:flex-col max-sm:items-start max-sm:gap-2']: true, // mobile
                 })}>
                 <AuthBreadcrumbs />
-                <ButtonSubmit loading={SIGN_IN.isPending} type="signin" />
+                <ButtonSubmit loading={hookSignIn.isPending} type="signIn" />
             </Box>
         </Paper>
     );

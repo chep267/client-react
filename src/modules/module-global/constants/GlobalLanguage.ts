@@ -15,7 +15,7 @@ export const GlobalLanguage = {
             game: 'module.global.component.label.game',
             setting: 'module.global.component.label.setting',
             otherSetting: 'module.global.component.label.otherSetting',
-            signout: 'module.global.component.label.signout',
+            signOut: 'module.global.component.label.signOut',
         },
     },
 } as const;

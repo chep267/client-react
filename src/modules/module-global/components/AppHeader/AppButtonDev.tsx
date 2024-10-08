@@ -13,10 +13,10 @@ import { useNotify } from '@module-base/hooks/useNotify';
 
 export default function AppButtonDev(props: any) {
     const { tooltip, icon } = props;
-    const NOTIFY = useNotify();
+    const hookNotify = useNotify();
 
     const onDev = () => {
-        NOTIFY.method.toggleNotify({ open: true, mode: 'warning', message: 'In developing!' });
+        hookNotify.method.toggleNotify({ open: true, mode: 'warning', message: 'In developing!' });
     };
 
     return (

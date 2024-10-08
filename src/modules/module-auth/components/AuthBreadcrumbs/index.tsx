@@ -24,9 +24,9 @@ export default function AuthBreadcrumbs() {
     const breadcrumbs: TypeAuthBreadcrumbsItem[] = React.useMemo(() => {
         return [
             {
-                title: AuthLanguage.component.title.signin,
-                path: AuthRouterPath.signin,
-                hidden: pathname.startsWith(AuthRouterPath.signin),
+                title: AuthLanguage.component.title.signIn,
+                path: AuthRouterPath.signIn,
+                hidden: pathname.startsWith(AuthRouterPath.signIn),
             },
             {
                 title: AuthLanguage.component.title.register,
