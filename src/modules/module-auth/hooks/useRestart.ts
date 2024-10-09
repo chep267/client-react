@@ -13,6 +13,7 @@ import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
@@ -25,7 +26,6 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 /** types */
 import type { AxiosError } from '@module-base/types';
 import type { TypeApiAuth } from '@module-auth/types';
-import { AppTimer } from '@module-base/constants/AppTimer';
 
 export function useRestart() {
     const hookAuth = useAuth();
@@ -36,7 +36,7 @@ export function useRestart() {
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
-            debounce(exp, () => hookRestart.mutate({})).then();
+            debounce(exp - 3000 * 60, () => hookRestart.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
             Cookies.remove(AppKey.uid);

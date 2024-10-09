@@ -75,9 +75,22 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
 
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
-    const [user] = await Promise.all([onAuthStateChanged(authentication), debounce(timer)]);
-    if (user) {
-        console.log('apiRestart: ', user);
+    const [response] = await Promise.all([onAuthStateChanged(authentication, () => {}), debounce(timer)]);
+    if (response) {
+        const currentUser = authentication.currentUser;
+        const uid = validateId(currentUser?.uid, 'uid');
+        let user = await userFirebaseApi.get({ uid, timer: 0 });
+        if (!user) {
+            user = {
+                uid,
+                email: response.user.email,
+                displayName: response.user.displayName,
+                providerId: response.user.providerId,
+                photoURL: response.user.photoURL,
+                phoneNumber: response.user.phoneNumber,
+            };
+            await userFirebaseApi.create({ user });
+        }
         return {
             data: {
                 user,
@@ -85,7 +98,6 @@ const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<T
             },
         };
     }
-    console.log('apiRestart: error');
     throw new Error('restart error!');
 };
 

@@ -29,10 +29,9 @@ export default function AuthRoute(props: PropsWithChildren) {
 
     const { pathname }: { pathname: (typeof AuthRouterPath)[keyof typeof AuthRouterPath] } = useLocation();
     const navigate = useNavigate();
-    const {
-        data: { isAuthentication, prePath },
-        method: { setPrePath },
-    } = useAuth();
+    const hookAuth = useAuth();
+
+    const { isAuthentication, prePath } = hookAuth.data;
 
     // @ts-ignore
     const uid = Cookies.get(AppKey.uid) as string;
@@ -41,7 +40,7 @@ export default function AuthRoute(props: PropsWithChildren) {
     React.useEffect(() => {
         if (accountState === AccountState.reSignIn && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-            setPrePath(pathname);
+            hookAuth.method.setPrePath(pathname);
             navigate(AuthRouterPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname)) {
