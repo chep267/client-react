@@ -48,41 +48,43 @@ type Props = {
 export default function MenuSetting(props: Props) {
     const { closeMenu } = props;
 
-    const THEME = useTheme();
-    const LANGUAGE = useLanguage();
-    const CALENDAR = useCalendar();
-    const SIGN_OUT = useSignOut();
+    const hookTheme = useTheme();
+    const hookLanguage = useLanguage();
+    const hookCalendar = useCalendar();
+    const hookSignOut = useSignOut();
+
+    const { isOnlyMonth, display } = hookCalendar.data;
 
     const calendarSubMenu = React.useRef([
         {
             id: 'default',
             title: <FormattedMessage id={CalendarLanguage.component.label.display.default} />,
             icon: <EventNoteIcon color="primary" />,
-            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.sunday),
+            onClick: () => hookCalendar.method.setDisplay(CalendarDisplay.sunday),
         },
         {
             id: 'monday',
             title: <FormattedMessage id={CalendarLanguage.component.label.display.monday} />,
             icon: <TodayIcon color="primary" />,
-            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.monday),
+            onClick: () => hookCalendar.method.setDisplay(CalendarDisplay.monday),
         },
         {
             id: 'weekend',
             title: <FormattedMessage id={CalendarLanguage.component.label.display.weekend} />,
             icon: <EventIcon color="primary" />,
-            onClick: () => CALENDAR.method.setDisplay(CalendarDisplay.weekend),
+            onClick: () => hookCalendar.method.setDisplay(CalendarDisplay.weekend),
         },
         {
             id: 'onlyMonth',
             title: <FormattedMessage id={CalendarLanguage.component.label.display.onlyMonth} />,
             icon: <DateRangeIcon color="primary" />,
-            onClick: () => CALENDAR.method.setIsOnlyMonth(true),
+            onClick: () => hookCalendar.method.setIsOnlyMonth(true),
         },
         {
             id: 'bothMonth',
             title: <FormattedMessage id={CalendarLanguage.component.label.display.bothMonth} />,
             icon: <DateRangeIcon color="primary" />,
-            onClick: () => CALENDAR.method.setIsOnlyMonth(false),
+            onClick: () => hookCalendar.method.setIsOnlyMonth(false),
         },
     ]).current;
 
@@ -97,13 +99,13 @@ export default function MenuSetting(props: Props) {
                     id: 'Theme-Dark',
                     title: <FormattedMessage id={ThemeLanguage.component.label.dark} />,
                     icon: <DarkModeIcon color="disabled" />,
-                    onClick: () => THEME.method.setTheme(themeObject.dark),
+                    onClick: () => hookTheme.method.setTheme(themeObject.dark),
                 },
                 {
                     id: 'Theme-Light',
                     title: <FormattedMessage id={ThemeLanguage.component.label.light} />,
                     icon: <LightModeIcon color="warning" />,
-                    onClick: () => THEME.method.setTheme(themeObject.light),
+                    onClick: () => hookTheme.method.setTheme(themeObject.light),
                 },
             ],
         },
@@ -117,28 +119,28 @@ export default function MenuSetting(props: Props) {
                     id: 'Language-Vi',
                     title: <FormattedMessage id={LangLanguage.component.label.vi} />,
                     icon: <span style={{ transform: 'scale(1.25)' }}>🇻🇳</span>,
-                    onClick: () => LANGUAGE.method.setLanguage(localeObject.vi),
+                    onClick: () => hookLanguage.method.setLanguage(localeObject.vi),
                 },
                 {
                     id: 'Language-En',
                     title: <FormattedMessage id={LangLanguage.component.label.en} />,
                     icon: <span style={{ transform: 'scale(1.25)' }}>🇬🇧</span>,
-                    onClick: () => LANGUAGE.method.setLanguage(localeObject.en),
+                    onClick: () => hookLanguage.method.setLanguage(localeObject.en),
                 },
             ],
         },
     ]).current;
 
     const menuAuth = React.useMemo<NestedItemProps[]>(() => {
-        if (!SIGN_OUT.isAuthentication) {
+        if (!hookSignOut.isAuthentication) {
             return AppDefaultValue.emptyArray;
         }
 
-        const menuOnlyMonth = calendarSubMenu[CALENDAR.data.isOnlyMonth ? 4 : 3];
+        const menuOnlyMonth = calendarSubMenu[isOnlyMonth ? 4 : 3];
         const subMenu =
-            CALENDAR.data.display === CalendarDisplay.sunday
+            display === CalendarDisplay.sunday
                 ? [calendarSubMenu[1], calendarSubMenu[2], menuOnlyMonth]
-                : CALENDAR.data.display === CalendarDisplay.monday
+                : display === CalendarDisplay.monday
                   ? [calendarSubMenu[0], calendarSubMenu[2], menuOnlyMonth]
                   : [calendarSubMenu[0], calendarSubMenu[1], menuOnlyMonth];
         return [
@@ -154,11 +156,11 @@ export default function MenuSetting(props: Props) {
                 title: <FormattedMessage id={AuthLanguage.component.title.signOut} />,
                 icon: <LogoutIcon color="primary" />,
                 divide: 'bottom',
-                loading: SIGN_OUT.isPending,
-                onClick: () => SIGN_OUT.mutate({}, { onSuccess: closeMenu }),
+                loading: hookSignOut.isPending,
+                onClick: () => hookSignOut.mutate({}, { onSuccess: closeMenu }),
             },
         ];
-    }, [SIGN_OUT.isPending, SIGN_OUT.isAuthentication, CALENDAR.data.display, CALENDAR.data.isOnlyMonth]);
+    }, [hookSignOut.isPending, hookSignOut.isAuthentication, display, isOnlyMonth]);
 
     const renderMenuBase = React.useMemo(() => {
         return menuBase.map((item) => <NestedItem key={item?.id} {...item} />);

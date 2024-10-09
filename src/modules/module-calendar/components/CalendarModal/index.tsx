@@ -117,20 +117,20 @@ const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
     },
 }));
 export default function CalendarModal() {
-    const {
-        data: { locale },
-    } = useLanguage();
-    const {
-        data: { day, openCalendarModal },
-        method: calendarMethod,
-    } = useCalendar();
+    const hookLanguage = useLanguage();
+    const hookCalendar = useCalendar();
     const classes = useStyles();
 
-    const isWeekend = calendarMethod.isWeekend(day);
+    const { locale } = hookLanguage.data;
+    const { day, openCalendarModal } = hookCalendar.data;
+    const isWeekend = hookCalendar.method.isWeekend(day);
     const lunarDay = new VietnameseDate(new Date(`${day.year()}-${day.month() + 1}-${day.date()}`));
 
     return (
-        <Modal className={classes.modal} open={openCalendarModal} onClose={() => calendarMethod.setOpenCalendarModal(false)}>
+        <Modal
+            className={classes.modal}
+            open={openCalendarModal}
+            onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
             <Card className={classnames(classes.card)}>
                 <CardHeader
                     className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}

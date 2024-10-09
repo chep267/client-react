@@ -20,7 +20,7 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 export function useSignOut() {
     const hookAuth = useAuth();
 
-    const SIGN_OUT = useMutation({
+    const hookSignOut = useMutation({
         mutationFn: authApi.signOut,
         retry: 3,
         onSettled: () => {
@@ -29,5 +29,5 @@ export function useSignOut() {
         },
     });
 
-    return { isAuthentication: hookAuth.data.isAuthentication, ...SIGN_OUT };
+    return { isAuthentication: hookAuth.data.isAuthentication, ...hookSignOut };
 }

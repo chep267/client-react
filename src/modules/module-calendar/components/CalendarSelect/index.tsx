@@ -53,23 +53,24 @@ const useStyles = makeStyles({
 });
 
 const CalendarSelect = React.memo(function CalendarSelect() {
-    const {
-        data: { locale },
-    } = useLanguage();
-    const {
-        data: { day, today },
-        method: calendarMethod,
-    } = useCalendar();
     const classes = useStyles();
+    const hookLanguage = useLanguage();
+    const hookCalendar = useCalendar();
     const sxStyles = React.useRef({ height: ScreenSize.CalendarSelectHeight }).current;
 
-    const isToday = calendarMethod.isToday(day);
+    const { locale } = hookLanguage.data;
+    const { day } = hookCalendar.data;
+    const isToday = hookCalendar.method.isToday(day);
+
     const timeMonthYear = React.useMemo(() => {
-        return { month: day.format(locale === 'en' ? 'MMMM' : 'MM'), year: day.format('YYYY') };
+        return {
+            month: day.format(locale === 'en' ? 'MMMM' : 'MM'),
+            year: day.format('YYYY'),
+        };
     }, [day.month(), day.year(), locale]);
 
     const onChangeTime = React.useCallback((mode: 'prev' | 'next', type: 'month' | 'year') => {
-        calendarMethod.setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
+        hookCalendar.method.setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
     }, []);
 
     const ButtonToday = React.useMemo(() => {
@@ -78,7 +79,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 variant="contained"
                 size="large"
                 className="rounded-md capitalize truncate w-max"
-                onClick={() => calendarMethod.setDay(today)}
+                onClick={() => hookCalendar.method.setDay(hookCalendar.data.today)}
                 disabled={isToday}>
                 <FormattedMessage id={CalendarLanguage.component.label.today} />
             </Button>
@@ -130,7 +131,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                     )}
                     views={['month', 'year']}
                     value={day}
-                    onChange={calendarMethod.setDay}
+                    onChange={hookCalendar.method.setDay}
                 />
             </Stack>
         );

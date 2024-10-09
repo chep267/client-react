@@ -12,7 +12,7 @@ import type { ComponentType } from '@module-base/types';
 
 export function withLanguage<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {
-        const language = useLanguage();
-        return <WrappedComponent {...props} language={language} />;
+        const hookLanguage = useLanguage();
+        return <WrappedComponent {...props} language={hookLanguage} />;
     };
 }

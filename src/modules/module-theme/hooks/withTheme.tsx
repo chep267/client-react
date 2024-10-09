@@ -12,7 +12,7 @@ import type { ComponentType } from '@module-base/types';
 
 export function withTheme<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {
-        const theme = useTheme();
-        return <WrappedComponent {...props} theme={theme} />;
+        const hookTheme = useTheme();
+        return <WrappedComponent {...props} theme={hookTheme} />;
     };
 }

@@ -13,9 +13,8 @@ import Typography from '@mui/material/Typography';
 import { useLanguage } from '@module-language/hooks/useLanguage';
 
 export default function AppTimer() {
-    const {
-        data: { locale },
-    } = useLanguage();
+    const hookLanguage = useLanguage();
+    const { locale } = hookLanguage.data;
 
     return (
         <Box className="items-center gap-2 hidden md:flex">
