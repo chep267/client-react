@@ -117,7 +117,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 className={classnames(
                     'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center',
                     {
-                        ['sm:min-w-[300px]']: true, // pc
+                        ['sm:min-w-[300px]']: true, // desktop
                     }
                 )}>
                 <Typography variant="h5" color="primary.main">
@@ -138,14 +138,16 @@ const CalendarSelect = React.memo(function CalendarSelect() {
 
     return (
         <Stack
-            className={classnames('flex-row justify-between items-center w-full p-3 gap-2', {
-                ['max-sm:flex-col']: true, // mobile
+            className={classnames('justify-between items-center w-full p-3 gap-2', {
+                ['flex-col']: true, // mobile
+                ['sm:flex-row']: true, // desktop
             })}
             sx={sxStyles}>
             {ButtonToday}
             <Stack
                 className={classnames('flex-row justify-between items-center gap-2', {
-                    ['max-sm:w-full']: true, // mobile
+                    ['w-full']: true, // mobile
+                    ['sm:w-fit']: true, // desktop
                 })}>
                 {ButtonLeft}
                 {DateTimePicker}

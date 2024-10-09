@@ -91,8 +91,9 @@ export default function RegisterForm() {
                 isConfirm={true}
             />
             <Box
-                className={classnames('flex flex-row items-end justify-between', {
-                    ['max-sm:flex-col max-sm:items-start max-sm:gap-2']: true, // mobile
+                className={classnames('flex', {
+                    ['flex-col items-start gap-2']: true, // mobile
+                    ['sm:flex-row sm:items-end sm:justify-between']: true, // desktop
                 })}>
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={hookRegister.isPending} type="register" />

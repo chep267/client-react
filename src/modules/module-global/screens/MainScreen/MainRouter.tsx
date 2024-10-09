@@ -55,8 +55,10 @@ export default function MainRouter() {
 
     return (
         <Box
-            className={classnames('flex flex-col h-full max-sm:w-full transition-[width] duration-500', {
-                ['pr-4 max-sm:pr-0']: hasScroll,
+            className={classnames('flex flex-col h-full transition-[width] duration-500', {
+                ['w-full']: true, // mobile
+                ['sm:w-fit']: true, // desktop
+                ['pr-0 sm:pr-4']: hasScroll,
             })}
             sx={sxStyles[siderState]}>
             <AppSiderMini />
