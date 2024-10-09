@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { PaletteMode } from '@mui/material';
+import type { PaletteMode } from '@mui/material/styles';
 
 export type TypeThemeMode = PaletteMode;
 

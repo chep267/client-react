@@ -7,7 +7,7 @@
 /** libs */
 import classnames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 /** constants */
 import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';

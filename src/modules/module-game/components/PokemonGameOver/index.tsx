@@ -8,7 +8,9 @@
 import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Stack, Typography, Button } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 /** constants */
 import { GameRouterPath } from '@module-game/constants/GameRouterPath';

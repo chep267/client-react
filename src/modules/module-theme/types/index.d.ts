@@ -4,9 +4,6 @@
  *
  */
 
-/** types */
-import type { ColorType, Theme } from '@mui/material';
-
 export * from './data.d';
 
 declare module '*.ttf';
@@ -26,55 +23,4 @@ declare module '@mui/material/styles' {
         laptop: true;
         desktop: true;
     }
-}
-
-declare module '@mui/material' {
-    type ColorType =
-        | '50'
-        | '100'
-        | '200'
-        | '300'
-        | '400'
-        | '500'
-        | '600'
-        | '700'
-        | '800'
-        | '900'
-        | '1000'
-        | '1100'
-        | 'A100'
-        | 'A200'
-        | 'A400'
-        | 'A700'
-        | 'bgColor';
-    // interface Color extends Record<ColorType, string> {}
-    type Color = Record<ColorType, string>;
-}
-
-declare module '@mui/material/styles' {
-    // interface Color extends Record<ColorType, string> {}
-    type Color = Record<ColorType, string>;
-
-    interface PaletteColor {
-        light: string;
-        main: string;
-        dark: string;
-        contrastText: string;
-    }
-
-    interface Palette {
-        gradients: any;
-        chart: any;
-    }
-
-    // allow configuration using `createTheme`
-    interface PaletteOptions {
-        neutral?: PaletteOptions['primary'];
-        purple?: PaletteOptions['primary'];
-        mint?: PaletteOptions['primary'];
-    }
-}
-
-declare module '@mui/styles/defaultTheme' {
-    type DefaultTheme = Theme;
 }

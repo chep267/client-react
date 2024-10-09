@@ -8,7 +8,7 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 /** constants */
 import { PokemonLogo } from '@module-game/constants/PokemonLogo';

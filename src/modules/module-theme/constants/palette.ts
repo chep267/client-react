@@ -8,7 +8,7 @@
 import { themeObject } from '@module-theme/constants/themeObject';
 
 /** types */
-import type { Palette, PaletteMode } from '@mui/material';
+import type { Palette, PaletteMode } from '@mui/material/styles';
 
 type DeepPartial<T> = {
     [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];

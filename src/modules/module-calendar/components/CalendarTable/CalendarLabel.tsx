@@ -6,7 +6,7 @@
 
 /** lib components */
 import dayjs from 'dayjs';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage';

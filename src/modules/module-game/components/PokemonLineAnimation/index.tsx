@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 /** constants */
 import { PokemonLine } from '@module-game/constants/PokemonLine';

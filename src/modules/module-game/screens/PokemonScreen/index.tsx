@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import { Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
 
 /** components */
 import PokemonProvider from '@module-game/components/PokemonProvider';

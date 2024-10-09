@@ -17,19 +17,17 @@ import type {
     ElementType,
     ErrorInfo,
 } from 'react';
-import type {
-    TextFieldProps,
-    ListProps,
-    IconButtonProps,
-    MenuProps,
-    SelectProps,
-    SxProps,
-    TableRowProps,
-    Theme,
-    TooltipProps,
-    SnackbarProps,
-    TableCellProps,
-} from '@mui/material';
+
+import type { TextFieldProps } from '@mui/material/TextField';
+import type { ListProps } from '@mui/material/List';
+import type { IconButtonProps } from '@mui/material/IconButton';
+import type { MenuProps } from '@mui/material/Menu';
+import type { SelectProps } from '@mui/material/Select';
+import type { TableRowProps } from '@mui/material/TableRow';
+import type { TableCellProps } from '@mui/material/TableCell';
+import type { TooltipProps } from '@mui/material/Tooltip';
+import type { SnackbarProps } from '@mui/material/Snackbar';
+import type { Theme, SxProps } from '@mui/material/styles';
 import type { ElementClickEvent } from './event.d';
 
 /** ErrorBoundary */

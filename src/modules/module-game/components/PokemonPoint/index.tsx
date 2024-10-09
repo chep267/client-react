@@ -6,7 +6,7 @@
 
 /** libs */
 import { FormattedMessage } from 'react-intl';
-import { Typography } from '@mui/material';
+import Typography from '@mui/material/Typography';
 
 /** constants */
 import { GameLanguage } from '@module-game/constants/GameLanguage';

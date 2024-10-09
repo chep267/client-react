@@ -6,7 +6,8 @@
 
 /** libs */
 import classnames from 'classnames';
-import { Stack, Paper } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
 
 /** components */
 import PokemonItem from './PokemonItem';
