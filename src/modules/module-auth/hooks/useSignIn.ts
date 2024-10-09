@@ -34,15 +34,13 @@ export function useSignIn() {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);
-            hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
+            hookAuth.method.setAuth({ isAuthentication: true, user });
         },
         onError: (error: AxiosError) => {
-            const code = Number(error?.response?.status) || error?.code;
+            const code = Number(error?.response?.status);
             let messageIntl: string;
             switch (true) {
-                case AppEnv.apiType === 'firebase':
-                    messageIntl = AuthLanguage.notify.signIn.error;
-                    break;
+                case AppEnv.isFirebase:
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.signIn.error;
                     break;

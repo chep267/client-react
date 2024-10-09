@@ -75,13 +75,12 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
     return res;
 };
 
-export const authApi =
-    AppEnv.apiType === 'firebase'
-        ? authFirebaseApi
-        : ({
-              signIn: apiSignIn,
-              signOut: apiSignOut,
-              restart: apiRestart,
-              register: apiRegister,
-              recover: apiRecover,
-          } as const);
+export const authApi = AppEnv.isFirebase
+    ? authFirebaseApi
+    : ({
+          signIn: apiSignIn,
+          signOut: apiSignOut,
+          restart: apiRestart,
+          register: apiRegister,
+          recover: apiRecover,
+      } as const);

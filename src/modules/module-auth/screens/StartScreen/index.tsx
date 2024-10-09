@@ -14,10 +14,10 @@ import { useRestart } from '@module-auth/hooks/useRestart';
 const StartLoading = React.lazy(() => import('@module-base/components/StartLoading'));
 
 export default function StartScreen() {
-    const RESTART = useRestart();
+    const hookRestart = useRestart();
 
     React.useEffect(() => {
-        RESTART.mutate({});
+        hookRestart.mutate({});
     }, []);
 
     return <StartLoading />;

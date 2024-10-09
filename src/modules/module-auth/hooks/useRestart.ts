@@ -31,12 +31,12 @@ export function useRestart() {
     const hookAuth = useAuth();
     const hookNotify = useNotify();
 
-    const RESTART = useMutation({
+    const hookRestart = useMutation({
         mutationFn: authApi.restart,
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
-            debounce(exp, () => RESTART.mutate({})).then();
+            debounce(exp, () => hookRestart.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
             Cookies.remove(AppKey.uid);
@@ -59,5 +59,5 @@ export function useRestart() {
         },
     });
 
-    return RESTART;
+    return hookRestart;
 }

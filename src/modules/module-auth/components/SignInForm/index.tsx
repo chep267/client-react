@@ -11,6 +11,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 /** constants */
+import { AppEnv } from '@module-base/constants/AppEnv.ts';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -43,6 +44,7 @@ export default function SignInForm() {
                 const code = Number(error?.response?.status);
                 let messageIntl;
                 switch (true) {
+                    case AppEnv.isFirebase:
                     case code >= 400 && code < 500:
                         messageIntl = AuthLanguage.notify.signIn.error;
                         break;

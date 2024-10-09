@@ -25,10 +25,12 @@ import { authentication } from '@module-base/utils/firebaseApp';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
+import dayjs from 'dayjs';
 
 const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const [response] = await Promise.all([signInWithEmailAndPassword(authentication, email, password), debounce(timer)]);
+
     if (response?.user) {
         const uid = validateId(response.user.uid, 'uid');
         let user = await userFirebaseApi.get({ uid, timer: 0 });
@@ -43,8 +45,14 @@ const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<Typ
             };
             await userFirebaseApi.create({ user });
         }
+        return {
+            data: {
+                user,
+                token: dayjs().set('month', 1).unix(),
+            },
+        };
     }
-    return response;
+    throw new Error('sign in error!');
 };
 
 const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
@@ -66,13 +74,19 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
 };
 
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
-    const { timer = AppTimer.pendingApi, fnCallback } = payload;
-    return onAuthStateChanged(authentication, async (user) => {
-        if (user) {
-            await debounce(timer);
-            fnCallback(user);
-        }
-    });
+    const { timer = AppTimer.pendingApi } = payload;
+    const [user] = await Promise.all([onAuthStateChanged(authentication), debounce(timer)]);
+    if (user) {
+        console.log('apiRestart: ', user);
+        return {
+            data: {
+                user,
+                token: dayjs().set('month', 1).unix(),
+            },
+        };
+    }
+    console.log('apiRestart: error');
+    throw new Error('restart error!');
 };
 
 export const authFirebaseApi = {

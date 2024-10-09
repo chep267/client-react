@@ -55,9 +55,7 @@ export default function MainRouter() {
 
     return (
         <Box
-            className={classnames('flex flex-col h-full transition-[width] duration-500', {
-                ['w-full']: true, // mobile
-                ['sm:w-fit']: true, // desktop
+            className={classnames('flex flex-col w-full h-full transition-[width] duration-500', {
                 ['pr-0 sm:pr-4']: hasScroll,
             })}
             sx={sxStyles[siderState]}>

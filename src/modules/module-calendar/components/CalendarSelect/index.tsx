@@ -77,7 +77,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
             <Button
                 variant="contained"
                 size="large"
-                className="rounded-md capitalize truncate"
+                className="rounded-md capitalize truncate w-max"
                 onClick={() => calendarMethod.setDay(today)}
                 disabled={isToday}>
                 <FormattedMessage id={CalendarLanguage.component.label.today} />
@@ -138,16 +138,16 @@ const CalendarSelect = React.memo(function CalendarSelect() {
 
     return (
         <Stack
-            className={classnames('justify-between items-center w-full p-3 gap-2', {
-                ['flex-col']: true, // mobile
-                ['sm:flex-row']: true, // desktop
+            className={classnames('justify-between w-full p-3 gap-2', {
+                ['flex-col-reverse']: true, // mobile
+                ['md:flex-row md:items-center']: true, // desktop
             })}
             sx={sxStyles}>
             {ButtonToday}
             <Stack
                 className={classnames('flex-row justify-between items-center gap-2', {
                     ['w-full']: true, // mobile
-                    ['sm:w-fit']: true, // desktop
+                    ['md:w-fit']: true, // desktop
                 })}>
                 {ButtonLeft}
                 {DateTimePicker}
