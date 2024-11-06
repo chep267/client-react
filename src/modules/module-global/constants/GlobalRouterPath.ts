@@ -7,6 +7,7 @@
 /** constants */
 import { CalendarRouterPath } from '@module-calendar/constants/CalendarRouterPath';
 import { GameRouterPath } from '@module-game/constants/GameRouterPath';
+import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 export const GlobalRouterPath = {
     home: '/',
@@ -16,5 +17,5 @@ export const GlobalRouterPath = {
     calendar: CalendarRouterPath.calendar,
     game: GameRouterPath.game,
     feed: '/feed',
-    messenger: '/messenger',
+    messenger: MessengerRouterPath.messenger,
 };

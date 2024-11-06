@@ -26,6 +26,7 @@
 In the project directory, you can run:
 
 ### `npm run dev`
+
 ### `pnpm dev`
 
 Runs the app in the development mode.\

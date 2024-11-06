@@ -7,9 +7,12 @@
 /** libs */
 import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
+import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
 import pluginPrettier from 'eslint-plugin-prettier';
 import pluginQuery from '@tanstack/eslint-plugin-query';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
 
 export default tsEslint.config({
     ignores: ['dist/*', 'node_modules/*'],
@@ -18,20 +21,23 @@ export default tsEslint.config({
     plugins: {
         react: pluginReact,
         prettier: pluginPrettier,
+        'react-hooks': reactHooks,
+        'react-refresh': reactRefresh,
         '@tanstack/query': pluginQuery,
     },
     languageOptions: {
+        ecmaVersion: 2020,
+        globals: globals.browser,
         parserOptions: {
             parser: '@typescript-eslint/parser',
         },
     },
     rules: {
-        // 'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-        // Tắt rule yêu cầu import React trong file jsx
-        'react/jsx-uses-react': 'off',
+        ...reactHooks.configs.recommended.rules,
+        'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+        'react/jsx-uses-react': 'off', // Tắt rule yêu cầu import React trong file jsx
         'react/react-in-jsx-scope': 'off',
-        // Cảnh báo khi thẻ <a target='_blank'> mà không có rel="noreferrer"
-        // 'react/jsx-no-target-blank': 'warn',
+        'react/jsx-no-target-blank': 'warn', // Cảnh báo khi thẻ <a target='_blank'> mà không có rel="noreferrer"
         '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         'import/no-named-as-default': 'off',

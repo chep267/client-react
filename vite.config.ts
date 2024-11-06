@@ -5,18 +5,18 @@
  */
 
 import { resolve } from 'node:path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
+import react from '@vitejs/plugin-react-swc';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { visualizer } from 'rollup-plugin-visualizer';
 
 /** module path */
-import tsPaths from './tsconfig.path.json' with { type: 'json' };
+import tsPaths from './tsconfig.app.json' with { type: 'json' };
 
 /** Resolve tsconfig.json paths to alias key */
 function resolveAlias() {
     const paths = tsPaths.compilerOptions.paths;
-    const alias = {};
+    const alias = {} as Record<string, string>;
     for (const [key, value] of Object.entries(paths)) {
         const aKey = key.replace('/*', '');
         alias[aKey] = resolve(__dirname, value[0].replace('/*', ''));
@@ -25,29 +25,29 @@ function resolveAlias() {
 }
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
+export default ({ mode }: ConfigEnv) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
     const isDevMode = process.env.VITE_APP_MODE === 'dev';
     const port = Number(process.env.VITE_APP_PORT) || 8080;
     const host = process.env.VITE_APP_HOST;
 
     return defineConfig({
-        plugins: [
-            react({
-                babel: {
-                    configFile: true, // Use babel.config.js files
-                },
-                include: '**/*.tsx',
-            }),
-            basicSsl(),
-            visualizer(),
-        ],
+        plugins: [react(), basicSsl(), visualizer()],
         resolve: {
             alias: resolveAlias(),
             extensions: ['.tsx', '.ts', '.js', '.jsx'],
         },
         build: {
+            target: 'esnext',
             sourcemap: isDevMode,
+            rollupOptions: {
+                output: {
+                    manualChunks: {
+                        'start-screen': ['./src/modules/module-auth/screens/StartScreen.vue'],
+                        'auth-screen': ['./src/modules/module-auth/screens/AuthScreen.vue'],
+                    },
+                },
+            },
         },
         server: {
             host,

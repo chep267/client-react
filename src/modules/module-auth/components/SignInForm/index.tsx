@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 /** constants */
-import { AppEnv } from '@module-base/constants/AppEnv.ts';
+import { AppEnv } from '@module-base/constants/AppEnv';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
