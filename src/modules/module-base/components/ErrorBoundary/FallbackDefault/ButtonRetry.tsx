@@ -21,9 +21,10 @@ import { useCountdown } from '@module-base/hooks/useCountdown';
 
 /** types */
 import type { FallbackDefaultProps } from '@module-base/types';
+import type { TypeTheme } from '@module-theme/types';
 
 /** styles */
-const useStyles = makeStyles(({ zIndex }) => ({
+const useStyles = makeStyles(({ zIndex }: TypeTheme) => ({
     content: {
         justifyContent: 'center',
         alignItems: 'center',

@@ -20,11 +20,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
     overscroll-behavior: none;
     overflow: hidden auto;
-    @media screen and (max-width: 640px /* sm */) {
-        &::-webkit-scrollbar {
-            display: none;
-        }
-    }
 }
 
 html {

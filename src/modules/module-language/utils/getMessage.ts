@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -13,8 +13,7 @@ import type { TypeLocale, TypeMessages } from '@module-language/types';
 const messagesCache = {} as Record<TypeLocale, TypeMessages>;
 
 async function loadMessages(locale: TypeLocale): Promise<TypeMessages> {
-    // dynamic import syntax tells webpack to split this module into its own chunk
-    let module, messages;
+    let module: Record<'vi', TypeMessages> | Record<'en', TypeMessages>, messages: TypeMessages;
     switch (locale) {
         case localeObject.vi:
             module = await import(/* @vite-ignore */ '@lang/vi.ts');

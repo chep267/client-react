@@ -25,7 +25,6 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         type = 'text',
         spellCheck = false,
         size,
-        InputProps,
         ...inputProps
     } = props;
 
@@ -36,7 +35,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
     const onChange = React.useCallback((event: InputChangeEvent) => setValue(event?.target?.value || ''), []);
 
     React.useEffect(() => {
-        let timeout: number;
+        let timeout: NodeJS.Timeout;
         const nextValue = value.trim();
 
         if (nextValue !== prevValue.current) {
@@ -64,26 +63,22 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
 
     const startAdornment = React.useMemo(() => {
         return (
-            InputProps?.startAdornment || (
-                <InputAdornment position="start">
-                    <SearchIcon color="primary" />
-                </InputAdornment>
-            )
+            <InputAdornment position="start">
+                <SearchIcon color="primary" />
+            </InputAdornment>
         );
-    }, [InputProps?.startAdornment]);
+    }, []);
 
     const endAdornment = React.useMemo(() => {
         return (
-            InputProps?.endAdornment || (
-                <InputAdornment
-                    position="end"
-                    style={{ visibility: value ? 'visible' : 'hidden', cursor: 'pointer' }}
-                    onClick={onClear}>
-                    <ClearIcon color="primary" />
-                </InputAdornment>
-            )
+            <InputAdornment
+                position="end"
+                style={{ visibility: value ? 'visible' : 'hidden', cursor: 'pointer' }}
+                onClick={onClear}>
+                <ClearIcon color="primary" />
+            </InputAdornment>
         );
-    }, [InputProps?.endAdornment, value]);
+    }, [value]);
 
     return (
         <TextField
@@ -95,7 +90,6 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
             size={size || 'small'}
             slotProps={{
                 htmlInput: {
-                    ...InputProps,
                     startAdornment,
                     endAdornment,
                 },

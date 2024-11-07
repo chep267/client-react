@@ -20,12 +20,13 @@ import ButtonRetry from './ButtonRetry';
 
 /** types */
 import type { FallbackDefaultProps } from '@module-base/types';
+import type { TypeTheme } from '@module-theme/types';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));
 
 /** styles */
-const useStyles = makeStyles(({ zIndex }) => ({
+const useStyles = makeStyles(({ zIndex }: TypeTheme) => ({
     fallback: {
         justifyContent: 'center',
         alignItems: 'center',

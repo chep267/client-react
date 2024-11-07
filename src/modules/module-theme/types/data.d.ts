@@ -5,9 +5,11 @@
  */
 
 /** types */
-import type { PaletteMode } from '@mui/material/styles';
+import type { PaletteMode, Theme } from '@mui/material/styles';
 
 export type TypeThemeMode = PaletteMode;
+
+export type TypeTheme = Theme;
 
 export type ThemeContextProps = {
     data: {

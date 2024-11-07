@@ -6,6 +6,10 @@
 
 /// <reference types="vite/client" />
 
+/** types */
+import type { TypeLocale } from '@module-language/types';
+import type { TypeTheme } from '@module-theme/types';
+
 declare module '*.svg' {
     const ReactComponent: any;
     export const ReactComponent;
@@ -25,6 +29,8 @@ interface ImportMetaEnv {
     readonly VITE_APP_HOST: string;
     readonly VITE_APP_PORT: string;
     readonly VITE_APP_HTTPS: 'true' | 'false';
+    readonly VITE_APP_LOCALE: TypeLocale;
+    readonly VITE_APP_THEME: TypeTheme;
 }
 
 interface ImportMeta {

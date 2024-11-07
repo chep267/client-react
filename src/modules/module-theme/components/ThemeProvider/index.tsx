@@ -34,7 +34,6 @@ export default function ThemeProvider(props: PropsWithChildren) {
     }).current;
 
     const [mode, setMode] = React.useState<TypeThemeMode>(() => {
-        // @ts-ignore
         const modeLocal = Cookies.get(AppKey.theme) as TypeThemeMode;
         if (modeLocal in themeObject) {
             return modeLocal;

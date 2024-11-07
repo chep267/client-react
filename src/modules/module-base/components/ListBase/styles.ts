@@ -9,7 +9,10 @@ import makeStyles from '@mui/styles/makeStyles';
 /** constants */
 import { alpha } from '@mui/material/styles';
 
-export const useStyles = makeStyles(({ palette, spacing }) => ({
+/** types */
+import type { TypeTheme } from '@module-theme/types';
+
+export const useStyles = makeStyles(({ palette, spacing }: TypeTheme) => ({
     list_wrap: {
         position: 'relative',
         width: '100%',

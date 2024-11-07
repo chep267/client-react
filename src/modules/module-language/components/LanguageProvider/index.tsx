@@ -9,6 +9,7 @@ import * as React from 'react';
 import Cookies from 'js-cookie';
 import { IntlProvider } from 'react-intl';
 import 'dayjs/locale/vi';
+import 'dayjs/locale/en';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -26,7 +27,6 @@ export default function LanguageProvider(props: LanguageProviderProps) {
     const { children } = props;
 
     const [locale, setLocale] = React.useState<TypeLocale>(() => {
-        // @ts-ignore
         const localeCookie = Cookies.get(AppKey.locale) as TypeLocale;
         if (localeCookie && localeCookie in localeObject) {
             return localeCookie;
