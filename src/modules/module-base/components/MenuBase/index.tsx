@@ -45,7 +45,8 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
                     aria-controls={open ? `menu-${menuId}` : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    onClick={openMenu}>
+                    onClick={openMenu}
+                >
                     {tooltipChildren || iconButtonChildren}
                 </IconButton>
             </Tooltip>
@@ -58,7 +59,8 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
                 onClose={closeMenu}
                 MenuListProps={{
                     'aria-labelledby': `button-menu-${menuId}`,
-                }}>
+                }}
+            >
                 {menuChildren}
             </Menu>
         </div>

@@ -26,7 +26,8 @@ export default function ConversationRight() {
         <Paper
             className={classnames(classes.layoutDefault, classes.right, {
                 [classes.right_hidden]: !ui.openThreadInfo,
-            })}>
+            })}
+        >
             <ThreadInfo />
         </Paper>
     );

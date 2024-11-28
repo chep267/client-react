@@ -10,7 +10,7 @@ import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks';
+import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useTheme } from '@module-theme/hooks/useTheme';
 
 type EmojiPickerProps = {

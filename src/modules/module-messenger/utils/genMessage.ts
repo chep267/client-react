@@ -5,7 +5,7 @@
  */
 
 /** utils */
-import { Crypto } from '@module-base/utils/Crypto.ts';
+import { Crypto } from '@module-base/utils/Crypto';
 
 /** types */
 import type { TypeDocumentMessageData } from '@module-messenger/types';

@@ -2,22 +2,22 @@
 
 ## Installing project
 
--   Run `npm run update`
--   Or run `pnpm up --latest`
+- Run `npm run update`
+- Or run `pnpm up --latest`
 
 ## Config Project
 
 ### Development/ Production Env
 
--   Config API Endpoint: `.env`
+- Config API Endpoint: `.env`
 
 ### File env template: `.env.example`
 
--   VITE_APP_NAME='app name'
--   VITE_APP_API_HOST='https://api.com'
--   VITE_APP_HOST='localhost'
--   VITE_APP_PORT=8080
--   VITE_APP_HTTPS=false
+- VITE_APP_NAME='app name'
+- VITE_APP_API_HOST='https://api.com'
+- VITE_APP_HOST='localhost'
+- VITE_APP_PORT=8080
+- VITE_APP_HTTPS=false
 
 ---
 

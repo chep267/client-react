@@ -47,13 +47,15 @@ export default function Message(props: MessageProps) {
             {isMe ? <OptionMessage /> : null}
             <Tooltip
                 title={dayjs(data.createdTime).locale(LANGUAGE.data.locale).format('hh:mm dddd, DD/MM/YYYY')}
-                placement={isMe ? 'right-end' : 'left-end'}>
+                placement={isMe ? 'right-end' : 'left-end'}
+            >
                 <Stack
                     className={classnames(
                         classes.message,
                         { [classes.meMessage]: isMe },
                         { [classes.partnerMessage]: !isMe }
-                    )}>
+                    )}
+                >
                     <React.Suspense>
                         {data.type === 'emoji' ? <EmojiMessage /> : null}
                         {data.type === 'text' && data.text ? <TextMessage isMe={isMe} text={data.text} /> : null}

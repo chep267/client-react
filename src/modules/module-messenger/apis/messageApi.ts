@@ -9,12 +9,12 @@ import { collection, doc, onSnapshot, query, setDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 /** constants */
-import { AppTimer } from '@module-base/constants/AppTimer.ts';
-import { firebaseRef } from '@module-base/constants/firebaseRef.ts';
+import { AppTimer } from '@module-base/constants/AppTimer';
+import { firebaseRef } from '@module-base/constants/firebaseRef';
 
 /** utils */
-import { firestore, storage } from '@module-base/utils/firebaseApp.ts';
-import { debounce } from '@module-base/utils/debounce.ts';
+import { firestore, storage } from '@module-base/utils/firebaseApp';
+import { debounce } from '@module-base/utils/debounce';
 
 /** types */
 import type { MessengerApiProps, TypeDocumentMessageData } from '@module-messenger/types';

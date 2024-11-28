@@ -91,7 +91,8 @@ export default function CalendarItem(props: CalendarItemProps) {
                     { [classes.itemDifferentMonth]: !isInMonth },
                     { hidden: !isInMonth && isOnlyMonth }
                 )}
-                onClick={onSelect}>
+                onClick={onSelect}
+            >
                 <Typography variant="h6">{date}</Typography>
             </Stack>
         );

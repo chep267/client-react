@@ -40,7 +40,8 @@ export default function ButtonSetting() {
                     aria-controls={open ? `menu-${menuId}` : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    onClick={openMenu}>
+                    onClick={openMenu}
+                >
                     <MenuIcon />
                 </Button>
             </Tooltip>
@@ -54,7 +55,8 @@ export default function ButtonSetting() {
                 onClose={closeMenu}
                 MenuListProps={{
                     'aria-labelledby': `button-${menuId}`,
-                }}>
+                }}
+            >
                 <MenuSetting closeMenu={closeMenu} />
             </Menu>
         </>

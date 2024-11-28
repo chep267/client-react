@@ -54,7 +54,8 @@ export default function ButtonChooseEmoji() {
     return (
         <>
             <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.chooseEmoji.tooltip']} />}>
+                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.chooseEmoji.tooltip']} />}
+            >
                 <IconButton aria-describedby={id} onClick={openMenu}>
                     <EmojiEmotionsIcon color="primary" />
                 </IconButton>
@@ -72,7 +73,8 @@ export default function ButtonChooseEmoji() {
                 transformOrigin={{
                     vertical: 'bottom',
                     horizontal: 'center',
-                }}>
+                }}
+            >
                 <EmojiPicker onEmojiSelect={onEmojiSelect} />
             </Popover>
         </>

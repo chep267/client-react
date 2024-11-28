@@ -80,7 +80,8 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 size="large"
                 className="rounded-md capitalize truncate w-max"
                 onClick={() => hookCalendar.method.setDay(hookCalendar.data.today)}
-                disabled={isToday}>
+                disabled={isToday}
+            >
                 <FormattedMessage id={CalendarLanguage.component.label.today} />
             </Button>
         );
@@ -120,7 +121,8 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                     {
                         ['sm:min-w-[300px]']: true, // desktop
                     }
-                )}>
+                )}
+            >
                 <Typography variant="h5" color="primary.main">
                     <FormattedMessage id={CalendarLanguage.component.label.calendarInfo.title} values={timeMonthYear} />
                 </Typography>
@@ -143,13 +145,15 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 ['flex-col-reverse']: true, // mobile
                 ['md:flex-row md:items-center']: true, // desktop
             })}
-            sx={sxStyles}>
+            sx={sxStyles}
+        >
             {ButtonToday}
             <Stack
                 className={classnames('flex-row justify-between items-center gap-2', {
                     ['w-full']: true, // mobile
                     ['md:w-fit']: true, // desktop
-                })}>
+                })}
+            >
                 {ButtonLeft}
                 {DateTimePicker}
                 {ButtonRight}

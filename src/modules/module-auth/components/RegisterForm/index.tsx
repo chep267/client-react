@@ -68,7 +68,8 @@ export default function RegisterForm() {
             className="flex flex-col w-11/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
             component="form"
             onSubmit={handleSubmit(onSubmit)}
-            noValidate>
+            noValidate
+        >
             <InputEmail<TypeFormAuth>
                 name="email"
                 control={control}
@@ -94,7 +95,8 @@ export default function RegisterForm() {
                 className={classnames('flex', {
                     ['flex-col items-start gap-2']: true, // mobile
                     ['sm:flex-row sm:items-end sm:justify-between']: true, // desktop
-                })}>
+                })}
+            >
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={hookRegister.isPending} type="register" />
             </Box>

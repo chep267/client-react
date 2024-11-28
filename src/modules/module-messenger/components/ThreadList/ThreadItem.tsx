@@ -64,7 +64,8 @@ const ThreadItem = React.memo(
                     className={classnames('.ThreadItem', classes.listItem, {
                         [classes.listItemSelected]: isSelected,
                     })}
-                    onClick={onClick}>
+                    onClick={onClick}
+                >
                     {renderItem}
                 </ListItem>
             </Tooltip>

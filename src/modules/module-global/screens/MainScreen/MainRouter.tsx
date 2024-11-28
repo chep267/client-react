@@ -59,7 +59,8 @@ export default function MainRouter() {
             className={classnames('flex flex-col w-full h-full transition-[width] duration-500', {
                 ['pr-0 sm:pr-4']: hasScroll,
             })}
-            sx={sxStyles[siderState]}>
+            sx={sxStyles[siderState]}
+        >
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>

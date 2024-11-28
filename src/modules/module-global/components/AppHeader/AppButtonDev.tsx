@@ -24,7 +24,8 @@ export default function AppButtonDev(props: any) {
             <Button
                 className="w-10 min-w-10 h-10 rounded-full p-0 m-0 border-0 hover:border"
                 variant="outlined"
-                onClick={onDev}>
+                onClick={onDev}
+            >
                 {icon}
             </Button>
         </Tooltip>

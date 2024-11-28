@@ -51,20 +51,24 @@ export default function ButtonSendMessage() {
     return (
         <>
             <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendMessage.tooltip']} />}>
+                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendMessage.tooltip']} />}
+            >
                 <IconButton
                     disabled={SEND_MESSAGE.isPending}
                     onClick={onSendMessage}
-                    className={classnames(classes.btnSend, { [classes.btnVisible]: hasContent })}>
+                    className={classnames(classes.btnSend, { [classes.btnVisible]: hasContent })}
+                >
                     <SendIcon color="primary" />
                 </IconButton>
             </Tooltip>
             <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendEmoji.tooltip']} />}>
+                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendEmoji.tooltip']} />}
+            >
                 <IconButton
                     disabled={SEND_MESSAGE.isPending}
                     onClick={onSendEmoji}
-                    className={classnames(classes.btnSend, { [classes.btnVisible]: !hasContent })}>
+                    className={classnames(classes.btnSend, { [classes.btnVisible]: !hasContent })}
+                >
                     <FavoriteIcon color="primary" />
                 </IconButton>
             </Tooltip>

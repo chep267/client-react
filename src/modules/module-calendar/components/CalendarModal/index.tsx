@@ -130,7 +130,8 @@ export default function CalendarModal() {
         <Modal
             className={classes.modal}
             open={openCalendarModal}
-            onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
+            onClose={() => hookCalendar.method.setOpenCalendarModal(false)}
+        >
             <Card className={classnames(classes.card)}>
                 <CardHeader
                     className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}

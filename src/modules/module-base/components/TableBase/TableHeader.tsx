@@ -37,7 +37,8 @@ const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
                         align="left"
                         padding="normal"
                         sortDirection={orderBy === cell.id ? orderType : false}
-                        {...cellProps}>
+                        {...cellProps}
+                    >
                         {!cell.isSort || !orderBy || !orderType ? (
                             cell.label
                         ) : (
@@ -45,7 +46,8 @@ const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
                                 active={orderBy === cell.id}
                                 direction={orderBy === cell.id ? orderType : 'asc'}
                                 IconComponent={ArrowDropDownIcon}
-                                onClick={() => onRequestSort?.(cell.id)}>
+                                onClick={() => onRequestSort?.(cell.id)}
+                            >
                                 {cell.label}
                                 {orderBy === cell.id ? (
                                     <Box component="span" sx={visuallyHidden}>

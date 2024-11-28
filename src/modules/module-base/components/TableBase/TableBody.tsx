@@ -33,7 +33,8 @@ const TableBody = React.memo(function TableBody(props: TableBodyProps) {
                             classes.tableRow,
                             { [classes.tableRowHover]: tableRowProps?.hover },
                             tableRowProps?.className
-                        )}>
+                        )}
+                    >
                         {rows?.map((cell, indexCell) => (
                             <TableCell key={`${rowKey}-${cell.id}`} {...tableCellProps}>
                                 {cell.render(item, indexRow, indexCell)}

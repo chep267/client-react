@@ -34,7 +34,8 @@ export default function PokemonGameOver(props: PokemonTimerProps) {
                 'absolute items-center justify-center -z-10 top-0 left-0 right-0 bottom-0 invisible gap-2 bg-black bg-opacity-70',
                 { '!visible !z-10': data.status === PokemonGameStatus.next },
                 className
-            )}>
+            )}
+        >
             <Typography variant="h1" color="warning.main" textAlign="center">
                 <FormattedMessage id={GameLanguage.component.label.victory} />
             </Typography>

@@ -74,7 +74,8 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
             <InputAdornment
                 position="end"
                 style={{ visibility: value ? 'visible' : 'hidden', cursor: 'pointer' }}
-                onClick={onClear}>
+                onClick={onClear}
+            >
                 <ClearIcon color="primary" />
             </InputAdornment>
         );

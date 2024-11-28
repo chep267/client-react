@@ -60,13 +60,15 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
             anchorOrigin={anchorOrigin}
             open={open}
             onClose={closeSnackbar}
-            {...props}>
+            {...props}
+        >
             <Alert
                 className={classnames(classes.notify, { [classes.default]: !mode }, { [classes.hidden]: !open })}
                 onClose={close ? closeSnackbar : undefined}
                 severity={mode}
                 elevation={6}
-                variant="filled">
+                variant="filled"
+            >
                 <AlertTitle className={classes.title}>{mode}!</AlertTitle>
                 {messageIntl ? <FormattedMessage id={messageIntl} /> : message}
             </Alert>
