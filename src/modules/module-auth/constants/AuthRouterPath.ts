@@ -6,7 +6,7 @@
 
 export const AuthRouterPath = {
     start: '/start',
-    signIn: '/signIn',
+    signIn: '/signin',
     register: '/register',
     recover: '/recover',
 } as const;

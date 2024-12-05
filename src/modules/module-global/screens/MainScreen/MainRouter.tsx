@@ -31,10 +31,6 @@ const ConversationScreen = React.lazy(() => import('@module-messenger/screens/Co
 const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
 const GameCenterScreen = React.lazy(() => import('@module-game/screens/GameCenterScreen'));
 
-const windowHasScroll = () => {
-    return document.body.scrollHeight > document.body.clientHeight;
-};
-
 export default function MainRouter() {
     const location = useLocation();
     const {
@@ -51,7 +47,10 @@ export default function MainRouter() {
     }).current;
 
     React.useEffect(() => {
-        debounce(100, () => setHasScroll(windowHasScroll())).then();
+        debounce(100, () => {
+            const hasScroll = document.body.scrollHeight > document.body.clientHeight;
+            setHasScroll(hasScroll);
+        }).then();
     }, [location]);
 
     return (

@@ -7,9 +7,12 @@
 import makeStyles from '@mui/styles/makeStyles';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants';
+import { ScreenSize } from '@module-global/constants/ScreenSize';
 
-const useStyles = makeStyles(({ palette, breakpoints, zIndex }) => ({
+/** types */
+import type { TypeTheme } from '@module-theme/types';
+
+const useStyles = makeStyles(({ palette, breakpoints, zIndex }: TypeTheme) => ({
     screen: {
         position: 'relative',
         flexDirection: 'row',

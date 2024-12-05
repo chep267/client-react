@@ -1,11 +1,14 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
-export const debounce = (timer = 1000, callback?: () => void) => {
+/** constants */
+import { AppTimer } from '@module-base/constants/AppTimer';
+
+export const debounce = (timer: number = AppTimer.debounce, cb?: () => void) => {
     return new Promise((resolve) => {
-        setTimeout(() => resolve(callback?.()), timer);
+        setTimeout(() => resolve(cb?.()), timer);
     });
 };

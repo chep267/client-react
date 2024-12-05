@@ -27,14 +27,13 @@ const SignInScreen = React.lazy(() => import('@module-auth/screens/SignInScreen'
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
 
-    const { pathname }: { pathname: (typeof AuthRouterPath)[keyof typeof AuthRouterPath] } = useLocation();
+    const { pathname } = useLocation() as { pathname: (typeof AuthRouterPath)[keyof typeof AuthRouterPath] };
     const navigate = useNavigate();
     const hookAuth = useAuth();
 
     const { isAuthentication, prePath } = hookAuth.data;
 
-    // @ts-ignore
-    const uid = Cookies.get(AppKey.uid) as string;
+    const uid = Cookies.get(AppKey.uid);
     const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignIn : AccountState.signIn;
 
     React.useEffect(() => {
