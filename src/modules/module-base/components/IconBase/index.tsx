@@ -15,6 +15,7 @@ const Icons: Readonly<TypeIcons> = {
     /** app icon */
     appLogo: React.lazy(() => import('./svg/AppLogo')),
 
+    /** other icon */
     error: React.lazy(() => import('./svg/Error')),
     notFound: React.lazy(() => import('./svg/NotFound')),
 };

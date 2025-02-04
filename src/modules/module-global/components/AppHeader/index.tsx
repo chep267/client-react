@@ -20,7 +20,7 @@ import ButtonSetting from './ButtonSetting/index';
 const AppHeader = React.memo(function AppHeader() {
     return (
         <AppBar position="fixed">
-            <Toolbar className="flex flex-row justify-between items-center w-full h-16 py-0 px-6">
+            <Toolbar className="flex h-16 w-full flex-row items-center justify-between px-6 py-0">
                 <Box className="flex items-center gap-5">
                     <AppInfo />
                     <AppTimer />

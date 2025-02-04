@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com on 26/07/2024.
  *
  */
 
@@ -17,7 +17,7 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { debounce } from '@module-base/utils/debounce';
 
 /** types */
-import type { AxiosError, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults } from '@module-base/types';
+import type { AxiosError, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
 
 /** for default api */
 const axiosDefaultConfig: CreateAxiosDefaults = {
@@ -42,24 +42,23 @@ const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 /** Add a request interceptor */
 axiosClient.interceptors.request.use(
     (config) => config,
-    (error) => Promise.reject(error)
+    (error: AxiosError) => Promise.reject(error)
 );
 
 /** Add a response interceptor */
 axiosClient.interceptors.response.use(
-    (response: AxiosResponse) => {
+    (response) => {
         return {
             ...response.data,
             status: response.status,
         };
     },
     async (error: AxiosError) => {
-        /** khoan, dừng khoảng chừng là 600ms */
-        await debounce(AppTimer.pendingApi);
         if (error.response?.status === 401) {
             Cookies.remove(AppKey.uid);
-            window.location.href = '/';
         }
+        /** khoan, dừng khoảng chừng là 600ms */
+        await debounce(AppTimer.pendingApi);
         return Promise.reject(error);
     }
 );

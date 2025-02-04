@@ -67,12 +67,12 @@ const useStyles = makeStyles(({ palette, breakpoints, zIndex }: TypeTheme) => ({
         },
         [breakpoints.down('lg')]: {
             position: 'fixed',
-            top: ScreenSize.HEADER_HEIGHT + ScreenSize.MESSENGER_CENTER_HEADER_HEIGHT,
+            top: ScreenSize.HeaderHeight + ScreenSize.MESSENGER_CENTER_HeaderHeight,
             right: 0,
             zIndex: zIndex.drawer,
             minWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
             maxWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
-            maxHeight: `calc(100% - ${ScreenSize.HEADER_HEIGHT + ScreenSize.MESSENGER_CENTER_HEADER_HEIGHT}px)`,
+            maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.MESSENGER_CENTER_HeaderHeight}px)`,
         },
     },
     center: {

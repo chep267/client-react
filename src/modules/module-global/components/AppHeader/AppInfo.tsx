@@ -20,7 +20,7 @@ export default function AppInfo() {
     return (
         <Box className="flex items-center gap-2" component={Link} to={GlobalRouterPath.home}>
             <IconBase name="appLogo" />
-            <Typography variant="h6" fontWeight={600}>
+            <Typography variant="h6" fontWeight={600} className="dark:text-white">
                 {AppName}
             </Typography>
         </Box>

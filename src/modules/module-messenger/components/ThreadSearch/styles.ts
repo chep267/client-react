@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ zIndex, spacing }) => ({
+const useStyles = makeStyles(({ zIndex, spacing }: any) => ({
     inputSearch: {
         position: 'relative',
         top: 0,

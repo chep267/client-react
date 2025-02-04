@@ -43,6 +43,11 @@ export default function ThemeProvider(props: PropsWithChildren) {
 
     const setTheme = React.useCallback<ThemeContextProps['method']['setTheme']>((value) => {
         Cookies.set(AppKey.theme, value);
+        if (value === themeObject.dark) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
         setMode(value);
     }, []);
 

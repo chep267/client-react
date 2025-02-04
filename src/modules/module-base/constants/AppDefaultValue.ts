@@ -5,7 +5,7 @@
  */
 
 export const AppDefaultValue = {
-    emptyArray: [],
+    emptyArray: [] as any,
     emptyFunction: () => {},
     emptyObject: {} as Record<any, any>,
 } as const;

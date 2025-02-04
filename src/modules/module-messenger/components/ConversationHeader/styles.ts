@@ -17,9 +17,9 @@ const useStyles = makeStyles(({ spacing, palette }) => ({
         width: '100%',
         padding: `${spacing(3)} ${spacing(2)}`,
         borderBottom: `1px solid ${palette.divider}`,
-        height: ScreenSize.MESSENGER_CENTER_HEADER_HEIGHT,
-        minHeight: ScreenSize.MESSENGER_CENTER_HEADER_HEIGHT,
-        maxHeight: ScreenSize.MESSENGER_CENTER_HEADER_HEIGHT,
+        height: ScreenSize.MESSENGER_CENTER_HeaderHeight,
+        minHeight: ScreenSize.MESSENGER_CENTER_HeaderHeight,
+        maxHeight: ScreenSize.MESSENGER_CENTER_HeaderHeight,
     },
     header_left: {
         width: '100%',

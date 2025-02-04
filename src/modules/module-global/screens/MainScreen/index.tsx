@@ -5,43 +5,20 @@
  */
 
 /** libs */
-import * as React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 
 /** components */
-import StartLoading from '@module-base/components/StartLoading';
 import AppHeader from '@module-global/components/AppHeader';
-import AppSider from '@module-global/components/AppSider';
-
-/** screens */
-import AuthRoute from '@module-auth/screens/AuthRoute';
-import MainRouter from '@module-global/screens/MainScreen/MainRouter';
+import AppMain from '@module-global/components/AppMain';
 
 export default function MainScreen() {
     return (
         <BrowserRouter>
-            <Box className="flex w-screen h-screen">
-                <Box className="flex flex-col grow shrink w-auto max-w-full min-h-dvh relative backface-hidden direction-lrt">
+            <Box className="flex h-screen w-screen">
+                <Box className="direction-lrt relative flex min-h-dvh w-auto max-w-full shrink grow flex-col backface-hidden">
                     <AppHeader />
-                    <Box className="flex grow shrink-0 w-auto max-w-full pt-16 direction-lrt" component="main">
-                        <Container id="container" className="flex w-full h-full max-w-full mx-auto p-0 direction-lrt">
-                            <React.Suspense fallback={<StartLoading />}>
-                                <Routes>
-                                    <Route
-                                        path="*"
-                                        element={
-                                            <AuthRoute>
-                                                <AppSider />
-                                                <MainRouter />
-                                            </AuthRoute>
-                                        }
-                                    />
-                                </Routes>
-                            </React.Suspense>
-                        </Container>
-                    </Box>
+                    <AppMain />
                 </Box>
             </Box>
         </BrowserRouter>

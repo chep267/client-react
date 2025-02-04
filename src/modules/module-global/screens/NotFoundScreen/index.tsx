@@ -16,8 +16,8 @@ const Particle = React.lazy(() => import('@module-base/components/Particles'));
 
 export default function NotFoundScreen() {
     return (
-        <Box className="flex items-center justify-center w-full h-full">
-            <IconBase name="notFound" className="w-auto h-full" />
+        <Box className="flex h-full w-full items-center justify-center">
+            <IconBase name="notFound" className="h-full w-auto" />
             <React.Suspense fallback={null}>
                 <Particle />
             </React.Suspense>

@@ -4,9 +4,12 @@
  *
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-cam: #ff7f50;
+}
 
 * {
     padding: 0;
@@ -30,11 +33,6 @@ html {
     user-select: none; /* Standard syntax */
     font-size: 16px;
     overflow: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: unset;
 }
 
 code {

@@ -10,6 +10,7 @@ import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { visualizer } from 'rollup-plugin-visualizer';
+import tailwindcss from '@tailwindcss/vite';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -34,7 +35,7 @@ export default ({ mode }: ConfigEnv) => {
     const host = process.env.VITE_APP_HOST || 'localhost';
 
     return defineConfig({
-        plugins: [react(), basicSsl(), visualizer()],
+        plugins: [react(), basicSsl(), visualizer(), tailwindcss()],
         resolve: {
             alias: resolveAlias(),
             extensions: ['.tsx', '.ts', '.js', '.jsx'],
@@ -66,13 +67,6 @@ export default ({ mode }: ConfigEnv) => {
             target: 'esnext',
             legalComments: 'none',
             format: 'esm',
-        },
-        css: {
-            preprocessorOptions: {
-                scss: {
-                    silenceDeprecations: ['legacy-js-api'],
-                },
-            },
         },
     });
 };
