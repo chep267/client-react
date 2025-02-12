@@ -9,11 +9,11 @@ import * as React from 'react';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
-import { SiderState } from '@module-global/constants/SiderState';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 
 /** contexts */
-import { defaultSiderState, SiderContext } from '@module-global/contexts/SiderContext';
+import { defaultSiderState, SiderContext } from '@module-base/contexts/SiderContext';
 
 /** types */
 import type { SiderProviderProps, TypeSiderContext } from '@module-global/types';
@@ -31,7 +31,14 @@ export default function SiderProvider(props: SiderProviderProps) {
 
     React.useEffect(() => {
         setSiderState(() => {
-            return isHidden ? SiderState.hidden : isCollapse ? SiderState.force : lastState.current;
+            switch (true) {
+                case isHidden:
+                    return SiderState.hidden;
+                case isCollapse:
+                    return SiderState.force;
+                default:
+                    return lastState.current;
+            }
         });
     }, [isCollapse, isHidden]);
 

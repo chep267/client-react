@@ -17,14 +17,14 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** hooks */
 import { useNotify } from '@module-base/hooks/useNotify';
 import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
 import type { TypeApiAuth } from '@module-auth/types';
 
 export function useRestart() {
@@ -36,12 +36,12 @@ export function useRestart() {
         onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
-            debounce(exp - 3000 * 60, () => hookRestart.mutate({})).then();
+            delay(exp - 3000 * 60, () => hookRestart.mutate({})).then();
         },
         onError: async (error: AxiosError) => {
             Cookies.remove(AppKey.uid);
             const code = Number(error?.response?.status);
-            let messageIntl;
+            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.refresh.error;

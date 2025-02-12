@@ -5,7 +5,7 @@
  */
 
 /** types */
-import { TypeSiderState } from '@module-global/types';
+import { TypeSiderState } from '@module-base/types';
 
 export const SiderState: Readonly<Record<TypeSiderState, TypeSiderState>> = {
     collapse: 'collapse',

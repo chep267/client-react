@@ -16,6 +16,7 @@ import type { TypeNotify, TypeNotifyContext } from '@module-base/types';
 export const defaultNotifyState: Readonly<TypeNotify> = {
     open: false,
     message: '',
+    messageIntl: '',
     mode: undefined,
     close: false,
     duration: undefined,

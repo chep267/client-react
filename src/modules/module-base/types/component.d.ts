@@ -30,6 +30,8 @@ import type { SnackbarProps } from '@mui/material/Snackbar';
 import type { Theme, SxProps } from '@mui/material/styles';
 import type { ElementClickEvent } from './event.d';
 
+export type TypeInputElem = HTMLInputElement | null;
+
 /** ErrorBoundary */
 export type ErrorBoundaryProps = PropsWithChildren<{
     fallback?: FunctionComponent;

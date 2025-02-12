@@ -18,22 +18,20 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider';
+import { useSider } from '@module-base/hooks/useSider';
 
 const AppSiderMini = React.memo(function AppSiderMini() {
-    const {
-        data: { siderState },
-    } = useSider();
     const { pathname } = useLocation();
     const navigate = useNavigate();
+    const hookSider = useSider();
 
-    const sxStyles = React.useRef({ top: ScreenSize.HeaderHeight }).current;
+    const appbarStyles = React.useRef({ top: ScreenSize.HeaderHeight }).current;
 
     const apps = React.useRef([
         {
@@ -63,12 +61,16 @@ const AppSiderMini = React.memo(function AppSiderMini() {
         return value?.path || GlobalRouterPath.defaultPath;
     }, [pathname]);
 
-    const handleChange = React.useCallback((event: React.SyntheticEvent, path: string) => {
+    const handleChange = React.useCallback((_event: React.SyntheticEvent, path: string) => {
         navigate(path);
     }, []);
 
     return (
-        <AppBar position="sticky" className={classnames('z-10', { hidden: siderState !== SiderState.hidden })} sx={sxStyles}>
+        <AppBar
+            position="sticky"
+            className={classnames('z-10', { ['!hidden']: hookSider.data.siderState !== SiderState.hidden })}
+            sx={appbarStyles}
+        >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">
                 {apps.map((menu) => (
                     <Tab key={menu.path} id={menu.path} value={menu.path} label={menu.icon} />

@@ -8,16 +8,16 @@
 import * as React from 'react';
 
 /** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { CalendarDisplay } from '@module-calendar/constants/CalendarDisplay';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { SiderState } from '@module-base/constants/SiderState';
 
 /** utils */
 import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/CalendarServices';
 
 /** hooks */
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
-import { useSider } from '@module-global/hooks/useSider';
+import { useSider } from '@module-base/hooks/useSider';
 
 /** components */
 import TableBase from '@module-base/components/TableBase';
@@ -29,12 +29,14 @@ import type { TableBaseProps } from '@module-base/types';
 import type { CalendarTableDataType } from '@module-calendar/types';
 
 export default function CalendarTable() {
+    const hookCalendar = useCalendar();
+    const hookSider = useSider();
     const {
         data: { day, display },
-    } = useCalendar();
+    } = hookCalendar;
     const {
         data: { siderState },
-    } = useSider();
+    } = hookSider;
 
     const tableRows = React.useMemo<TableBaseProps<CalendarTableDataType>['rows']>(() => {
         let output: (keyof CalendarTableDataType)[];

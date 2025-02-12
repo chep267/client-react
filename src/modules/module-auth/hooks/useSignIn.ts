@@ -21,7 +21,7 @@ import { useNotify } from '@module-base/hooks/useNotify';
 import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
 import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignIn() {

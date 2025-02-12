@@ -13,11 +13,11 @@ import type { IconBaseProps, TypeIcons } from '@module-base/types';
 
 const Icons: Readonly<TypeIcons> = {
     /** app icon */
-    appLogo: React.lazy(() => import('./svg/AppLogo')),
+    appLogo: React.lazy(() => import('@module-base/components/IconBase/svg/AppLogo')),
 
     /** other icon */
-    error: React.lazy(() => import('./svg/Error')),
-    notFound: React.lazy(() => import('./svg/NotFound')),
+    error: React.lazy(() => import('@module-base/components/IconBase/svg/Error')),
+    notFound: React.lazy(() => import('@module-base/components/IconBase/svg/NotFound')),
 };
 
 const IconBase = React.memo(function IconBase(props: IconBaseProps) {

@@ -12,7 +12,7 @@ export class StorageBase {
         this.storageName = storageName;
     }
 
-    public storageName;
+    public storageName: StorageName;
 
     private checkParams = (method: string, variable: any, name: string) => {
         if (!variable) {

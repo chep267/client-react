@@ -8,6 +8,6 @@
 import * as React from 'react';
 
 /** constants */
-import { SiderContext } from '@module-global/contexts/SiderContext';
+import { SiderContext } from '@module-base/contexts/SiderContext';
 
 export const useSider = () => React.useContext(SiderContext);

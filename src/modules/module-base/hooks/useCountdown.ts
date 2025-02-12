@@ -13,7 +13,7 @@ import type { UseCountdownProps } from '@module-base/types';
 export const useCountdown = (props: UseCountdownProps) => {
     const { numberCountdown = 10, timer = 1000, callback, isContinue } = props;
 
-    const countdownRef = React.useRef<NodeJS.Timeout>();
+    const countdownRef = React.useRef<NodeJS.Timeout>(undefined);
     const [second, setSecond] = React.useState(numberCountdown);
     const [refresh, setRefresh] = React.useState(0);
 

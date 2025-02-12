@@ -14,7 +14,7 @@ import { AppEnv } from '@module-base/constants/AppEnv';
 import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { AxiosError, AxiosRequestConfig, CreateAxiosDefaults } from 'axios';
@@ -47,18 +47,17 @@ axiosClient.interceptors.request.use(
 
 /** Add a response interceptor */
 axiosClient.interceptors.response.use(
-    (response) => {
-        return {
+    (response) =>
+        Promise.resolve({
             ...response.data,
             status: response.status,
-        };
-    },
+        }),
     async (error: AxiosError) => {
         if (error.response?.status === 401) {
             Cookies.remove(AppKey.uid);
         }
         /** khoan, dừng khoảng chừng là 600ms */
-        await debounce(AppTimer.pendingApi);
+        await delay(AppTimer.pendingApi);
         return Promise.reject(error);
     }
 );

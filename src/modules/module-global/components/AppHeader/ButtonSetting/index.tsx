@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
@@ -13,6 +14,7 @@ import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
 
 /** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
@@ -23,7 +25,11 @@ import type { ElementClickEvent } from '@module-base/types';
 
 export default function ButtonSetting() {
     const menuId = React.useId();
-    const [menuElem, setMenuElem] = React.useState<HTMLElement>(null);
+    const menuStyle = React.useRef({
+        '& .MuiPaper-root': { top: `${ScreenSize.HeaderHeight + 4}px !important` },
+    }).current;
+
+    const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
     const open = Boolean(menuElem);
 
     const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
@@ -31,12 +37,12 @@ export default function ButtonSetting() {
     const closeMenu = React.useCallback(() => setMenuElem(null), []);
 
     return (
-        <>
+        <div>
             <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />}>
                 <Button
-                    className="w-10 min-w-10 h-10 rounded-full p-0 m-0 border-0 hover:border"
-                    variant="outlined"
                     id={`button-${menuId}`}
+                    className={classnames('m-0 h-10 w-10 !min-w-10 !rounded-full !border-0 p-0', 'hover:!border')}
+                    variant="outlined"
                     aria-controls={open ? `menu-${menuId}` : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
@@ -45,20 +51,9 @@ export default function ButtonSetting() {
                     <MenuIcon />
                 </Button>
             </Tooltip>
-            <Menu
-                id={`menu-${menuId}`}
-                anchorEl={menuElem}
-                open={open}
-                sx={{
-                    '& .MuiPaper-root': { top: `70px !important` },
-                }}
-                onClose={closeMenu}
-                MenuListProps={{
-                    'aria-labelledby': `button-${menuId}`,
-                }}
-            >
+            <Menu id={`menu-${menuId}`} anchorEl={menuElem} open={open} sx={menuStyle} onClose={closeMenu}>
                 <MenuSetting closeMenu={closeMenu} />
             </Menu>
-        </>
+        </div>
     );
 }

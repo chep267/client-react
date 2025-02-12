@@ -8,12 +8,14 @@
 import makeStyles from '@mui/styles/makeStyles';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { FormattedMessage } from 'react-intl';
 
 /** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { themeObject } from '@module-theme/constants/themeObject';
 
 /** styles */
-const useStyles = makeStyles(({ palette, zIndex }) => {
+const useStyles = makeStyles(({ palette, zIndex }: any) => {
     const color = palette.mode === themeObject.dark ? palette.warning.main : palette.primary.main;
 
     return {
@@ -105,13 +107,12 @@ const useStyles = makeStyles(({ palette, zIndex }) => {
 
 export default function StartLoading() {
     const classes = useStyles();
-    const title = 'start';
 
     return (
         <Stack className={classes.screen}>
             <Stack className={classes.startElement}>
                 <Typography variant="h5" className={classes.textStart}>
-                    {title}
+                    <FormattedMessage id={BaseLanguage.component.label.start} />
                 </Typography>
                 <Typography className={classes.textLoading} />
             </Stack>

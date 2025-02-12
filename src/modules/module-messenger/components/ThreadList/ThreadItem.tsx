@@ -25,11 +25,11 @@ import useStyles from './styles';
 /** types */
 import { TypeDocumentThreadData } from '@module-messenger/types';
 
-type ThreadItemProps = { item?: TypeDocumentThreadData; isSelected: boolean; onClick(): void; isTooltip?: boolean };
+type ThreadItemProps = { item?: TypeDocumentThreadData; isSelected: boolean; onClick(): void; hasTooltip?: boolean };
 
 const ThreadItem = React.memo(
     (props: ThreadItemProps) => {
-        const { item = emptyObject, isSelected, isTooltip, onClick } = props;
+        const { item = emptyObject, isSelected, hasTooltip, onClick } = props;
         const classes = useStyles();
 
         const stopPropagation = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
@@ -59,7 +59,7 @@ const ThreadItem = React.memo(
         }, []);
 
         return (
-            <Tooltip title={renderName} placement="right" disableHoverListener={!isTooltip}>
+            <Tooltip title={renderName} placement="right" disableHoverListener={!hasTooltip}>
                 <ListItem
                     className={classnames('.ThreadItem', classes.listItem, {
                         [classes.listItemSelected]: isSelected,
@@ -74,7 +74,7 @@ const ThreadItem = React.memo(
     (prevProps, nextProps) =>
         prevProps.isSelected === nextProps.isSelected &&
         prevProps.item === nextProps.item &&
-        prevProps.isTooltip === nextProps.isTooltip
+        prevProps.hasTooltip === nextProps.hasTooltip
 );
 
 ThreadItem.displayName = 'ThreadItem';

@@ -23,7 +23,7 @@ const RecoverForm = React.lazy(() => import('@module-auth/components/RecoverForm
 
 export default function SignInScreen() {
     return (
-        <Box className="flex flex-col justify-center items-center w-full h-full gap-y-10">
+        <Box className="flex h-full w-full flex-col items-center justify-center gap-y-10">
             <AuthTitle />
             <React.Suspense fallback={null}>
                 <Routes>

@@ -17,7 +17,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useNotify } from '@module-base/hooks/useNotify';
 
 /** types */
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
 
 export function useRecover() {
     const hookNotify = useNotify();

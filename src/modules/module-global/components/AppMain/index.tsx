@@ -16,12 +16,12 @@ import AppSider from '@module-global/components/AppSider';
 
 /** screens */
 import AuthRoute from '@module-auth/screens/AuthRoute';
-import MainRouter from '@module-global/screens/MainScreen/MainRouter';
+import MainRouter from '@module-global/components/AppMain/MainRouter.tsx';
 
 export default function AppMain() {
     return (
         <Box className="direction-lrt flex w-auto max-w-full shrink-0 grow pt-16" component="main">
-            <Container id="container" className="direction-lrt mx-auto flex h-full w-full max-w-full p-0">
+            <Container id="container" className="direction-lrt mx-auto flex h-full w-full max-w-full !p-0">
                 <React.Suspense fallback={<StartLoading />}>
                     <Routes>
                         <Route

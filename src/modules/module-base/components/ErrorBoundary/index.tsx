@@ -11,17 +11,13 @@ import * as React from 'react';
 import type { ErrorBoundaryProps, ErrorBoundaryStates, ErrorInfo } from '@module-base/types';
 
 /** lazy components */
-const FallbackDefault = React.lazy(() => import('./FallbackDefault'));
+const FallbackDefault = React.lazy(() => import('@module-base/components/ErrorBoundary/FallbackDefault'));
 const NotifyBoundary = React.lazy(() => import('@module-base/components/NotifyBoundary'));
 
 class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryStates> {
     constructor(props: ErrorBoundaryProps) {
         super(props);
         this.state = { hasError: false };
-    }
-
-    static get propTypes() {
-        return {} as ErrorBoundaryProps;
     }
 
     static getDerivedStateFromError() {

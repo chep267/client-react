@@ -20,7 +20,7 @@ import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** hooks */
@@ -78,7 +78,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
             <Button
                 variant="contained"
                 size="large"
-                className="rounded-md capitalize truncate w-max"
+                className="w-max truncate rounded-md capitalize"
                 onClick={() => hookCalendar.method.setDay(hookCalendar.data.today)}
                 disabled={isToday}
             >
@@ -117,7 +117,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         return (
             <Stack
                 className={classnames(
-                    'flex-row justify-center items-center relative w-full rounded-md cursor-pointer line-clamp-2 text-center',
+                    'relative line-clamp-2 w-full cursor-pointer flex-row items-center justify-center rounded-md text-center',
                     {
                         ['sm:min-w-[300px]']: true, // desktop
                     }
@@ -128,12 +128,12 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                 </Typography>
                 <DatePicker
                     className={classnames(
-                        'absolute opacity-0 top-0 left-0 right-0 bottom-0 cursor-pointer',
+                        'absolute top-0 right-0 bottom-0 left-0 cursor-pointer opacity-0',
                         classes.datePiker
                     )}
                     views={['month', 'year']}
                     value={day}
-                    onChange={hookCalendar.method.setDay}
+                    onChange={(value) => value && hookCalendar.method.setDay(value)}
                 />
             </Stack>
         );
@@ -141,7 +141,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
 
     return (
         <Stack
-            className={classnames('justify-between w-full p-3 gap-2', {
+            className={classnames('w-full justify-between gap-2 p-3', {
                 ['flex-col-reverse']: true, // mobile
                 ['md:flex-row md:items-center']: true, // desktop
             })}
@@ -149,7 +149,7 @@ const CalendarSelect = React.memo(function CalendarSelect() {
         >
             {ButtonToday}
             <Stack
-                className={classnames('flex-row justify-between items-center gap-2', {
+                className={classnames('flex-row items-center justify-between gap-2', {
                     ['w-full']: true, // mobile
                     ['md:w-fit']: true, // desktop
                 })}

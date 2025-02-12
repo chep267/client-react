@@ -7,7 +7,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** types */
 import type { TypeTheme } from '@module-theme/types';

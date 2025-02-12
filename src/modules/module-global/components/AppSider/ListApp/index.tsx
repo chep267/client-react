@@ -25,7 +25,7 @@ import AppItem from './AppItem';
 import type { ListAppProps, TypeAppItem } from '@module-global/types';
 
 const ListApp = React.memo(function ListApp(props: ListAppProps) {
-    const { isTooltip } = props;
+    const { hasTooltip } = props;
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
     const router = `/${pathname.split('/')[1]}`;
 
     const renderItem = (item: TypeAppItem) => {
-        return <AppItem key={item.path} isSelected={item.path === router} isTooltip={isTooltip} item={item} />;
+        return <AppItem key={item.path} isSelected={item.path === router} hasTooltip={hasTooltip} item={item} />;
     };
 
     return <ListBase data={apps} renderItem={renderItem} />;

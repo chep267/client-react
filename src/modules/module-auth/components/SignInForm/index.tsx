@@ -26,7 +26,7 @@ import AuthBreadcrumbs from '@module-auth/components/AuthBreadcrumbs';
 
 /** types */
 import type { TypeFormAuth } from '@module-auth/types';
-import type { AxiosError } from '@module-base/types';
+import type { AxiosError } from 'axios';
 
 export default function SignInForm() {
     const hookSignIn = useSignIn();
@@ -42,7 +42,7 @@ export default function SignInForm() {
         hookSignIn.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
-                let messageIntl;
+                let messageIntl: string;
                 switch (true) {
                     case AppEnv.isFirebase:
                     case code >= 400 && code < 500:
@@ -61,7 +61,7 @@ export default function SignInForm() {
 
     return (
         <Paper
-            className="flex flex-col w-11/12 md:max-w-xl gap-y-5 p-6 shadow-lg shadow-gray-500/40 rounded-md z-10"
+            className="z-10 flex w-11/12 flex-col gap-y-5 rounded-md p-6 shadow-lg shadow-gray-500/40 md:max-w-xl"
             component="form"
             onSubmit={handleSubmit(onSubmit)}
             noValidate

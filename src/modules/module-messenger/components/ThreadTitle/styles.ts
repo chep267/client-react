@@ -7,7 +7,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 const useStyles = makeStyles(({ spacing }) => ({
     thread_title: {

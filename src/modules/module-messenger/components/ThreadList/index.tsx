@@ -32,7 +32,7 @@ const ThreadList = React.memo(() => {
     const navigate = useNavigate();
     const { tid: currentTid } = useParams();
     const classes = useStyles();
-    const isTooltip = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'));
+    const hasTooltip = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'));
     const LIST_THREAD = useListenListThread();
 
     const firstId = LIST_THREAD.data.itemIds[0];
@@ -54,7 +54,7 @@ const ThreadList = React.memo(() => {
                 key={item.tid}
                 item={item}
                 isSelected={item.tid === currentTid}
-                isTooltip={isTooltip}
+                hasTooltip={hasTooltip}
                 onClick={() => onClickItem(item.tid)}
             />
         );

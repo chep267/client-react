@@ -81,7 +81,7 @@ export default function CalendarItem(props: CalendarItemProps) {
         return (
             <Stack
                 className={classnames(
-                    'flex-row m-auto justify-center items-center w-12 h-12 rounded-full',
+                    'm-auto h-12 w-12 flex-row items-center justify-center rounded-full',
                     classes.item,
                     { [classes.itemSelected]: isSelectedDay },
                     { [classes.itemWeekend]: isWeekend },

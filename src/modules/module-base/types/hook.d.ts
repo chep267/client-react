@@ -25,6 +25,7 @@ export type TypeNotify = {
     mode?: AlertColor;
     close?: boolean;
     duration?: number;
+    top?: number;
 };
 export type TypeNotifyContext = {
     data: TypeNotify;
@@ -40,4 +41,18 @@ type UseListSearchProps = {
     indexSelect: number; // vị trí đang select, mặc định là chưa chọn
     indexHover: number; // ví trí đang hover, mặc định là chưa chọn
     idSelect: string; // id đang select, mặc định là chưa chọn
+};
+
+/** useSider */
+export type SiderProviderProps = PropsWithChildren;
+
+export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
+
+export type TypeSiderContext = {
+    data: {
+        siderState: TypeSiderState;
+    };
+    method: {
+        toggleSider(): void;
+    };
 };

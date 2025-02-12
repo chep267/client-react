@@ -16,7 +16,7 @@ import ThemeProvider from '@module-theme/components/ThemeProvider';
 import LanguageProvider from '@module-language/components/LanguageProvider';
 import AuthProvider from '@module-auth/components/AuthProvider';
 import CalendarProvider from '@module-calendar/components/CalendarProvider';
-import SiderProvider from '@module-global/components/SiderProvider';
+import SiderProvider from '@module-base/components/SiderProvider';
 
 /** screens */
 import MainScreen from '@module-global/screens/MainScreen';

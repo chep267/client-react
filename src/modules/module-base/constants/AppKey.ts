@@ -5,8 +5,8 @@
  */
 
 export const AppKey = {
-    uid: 'client_react_local_uid',
-    email: 'client_react_local_email',
-    theme: 'client_react_local_theme',
-    locale: 'client_react_local_locale',
+    uid: 'chep_client_react_local_uid',
+    email: 'chep_client_react_local_email',
+    theme: 'chep_client_react_local_theme',
+    locale: 'chep_client_react_local_locale',
 } as const;

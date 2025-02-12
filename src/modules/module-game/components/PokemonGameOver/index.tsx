@@ -33,7 +33,7 @@ export default function PokemonGameOver(props: PokemonTimerProps) {
     return (
         <Stack
             className={classnames(
-                'absolute items-center justify-center -z-10 top-0 left-0 right-0 bottom-0 invisible gap-2 bg-black bg-opacity-70',
+                'bg-opacity-70 invisible absolute top-0 right-0 bottom-0 left-0 -z-10 items-center justify-center gap-2 bg-black',
                 { '!visible !z-10': data.status === PokemonGameStatus.stop },
                 className
             )}

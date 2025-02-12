@@ -41,13 +41,16 @@ export default function ThemeProvider(props: PropsWithChildren) {
         return prefersDarkMode ? themeObject.dark : themeObject.light;
     });
 
-    const setTheme = React.useCallback<ThemeContextProps['method']['setTheme']>((value) => {
-        Cookies.set(AppKey.theme, value);
-        if (value === themeObject.dark) {
+    React.useEffect(() => {
+        if (mode === themeObject.dark) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
+    }, [mode]);
+
+    const setTheme = React.useCallback<ThemeContextProps['method']['setTheme']>((value) => {
+        Cookies.set(AppKey.theme, value);
         setMode(value);
     }, []);
 
@@ -64,7 +67,7 @@ export default function ThemeProvider(props: PropsWithChildren) {
         <ThemeContext.Provider value={store}>
             <StyledEngineProvider injectFirst>
                 <ThemeProviderMUI theme={theme}>
-                    <CssBaseline />
+                    <CssBaseline enableColorScheme />
                     {children}
                 </ThemeProviderMUI>
             </StyledEngineProvider>

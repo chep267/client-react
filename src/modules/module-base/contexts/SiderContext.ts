@@ -9,11 +9,11 @@ import * as React from 'react';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
-import { SiderState } from '@module-global/constants/SiderState';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 
 /** types */
-import type { TypeSiderContext, TypeSiderState } from '@module-global/types';
+import type { TypeSiderContext, TypeSiderState } from '@module-base/types';
 
 export const getSiderState = (): TypeSiderState => {
     switch (true) {

@@ -6,10 +6,10 @@
 
 export default function TestScreen() {
     return (
-        <div className="flex flex-col w-full h-full" style={{ border: '1px solid red' }}>
+        <div className="flex h-full w-full flex-col" style={{ border: '1px solid red' }}>
             Test
             {Array.from({ length: 20 }).map((_i, key) => {
-                return <div key={key} className="w-full h-20 bg-amber-600 mt-10" />;
+                return <div key={key} className="mt-10 h-20 w-full bg-amber-600" />;
             })}
         </div>
     );

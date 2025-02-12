@@ -15,23 +15,24 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 /** constants */
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider';
+import { useSider } from '@module-base/hooks/useSider';
 
 /** components */
 import ListApp from './ListApp';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 const AppSider = React.memo(function AppSider() {
+    const hookSider = useSider();
     const {
         data: { siderState },
         method: { toggleSider },
-    } = useSider();
+    } = hookSider;
 
-    const sxStyles = React.useRef({
+    const siderStyles = React.useRef({
         [SiderState.hidden]: { width: 0, display: 'none' },
         [SiderState.expand]: { width: ScreenSize.AppBarExpandWidth },
         [SiderState.collapse]: { width: ScreenSize.AppBarCollapseWidth },
@@ -42,21 +43,27 @@ const AppSider = React.memo(function AppSider() {
         <Drawer
             variant="permanent"
             open={siderState !== SiderState.hidden}
-            className="relative transition-[width] duration-500 h-full"
-            sx={sxStyles[siderState]}
+            className="!relative !h-full transition-[width] duration-500"
+            sx={siderStyles[siderState]}
             PaperProps={{
-                className: 'top-16 left-0 transition-[width] duration-500 z-10',
-                sx: sxStyles[siderState],
+                className: '!top-16 !left-0 transition-[width] duration-500 !z-10',
+                sx: siderStyles[siderState],
             }}
         >
             <Tooltip
                 title={
-                    <FormattedMessage id={GlobalLanguage.component.label[siderState === 'expand' ? 'collapse' : 'expand']} />
+                    <FormattedMessage
+                        id={
+                            GlobalLanguage.component.label[
+                                siderState === SiderState.expand ? SiderState.collapse : SiderState.expand
+                            ]
+                        }
+                    />
                 }
                 placement="right"
             >
-                <div className={'w-full'}>
-                    <Button className={'min-w-14 w-full'} disabled={siderState === SiderState.force} onClick={toggleSider}>
+                <div className="w-full">
+                    <Button className="w-full !min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
                         {siderState === SiderState.expand ? (
                             <KeyboardDoubleArrowLeftIcon />
                         ) : (
@@ -66,7 +73,7 @@ const AppSider = React.memo(function AppSider() {
                 </div>
             </Tooltip>
             <Divider />
-            <ListApp isTooltip={siderState !== SiderState.hidden} />
+            <ListApp hasTooltip={siderState === SiderState.collapse} />
         </Drawer>
     );
 });

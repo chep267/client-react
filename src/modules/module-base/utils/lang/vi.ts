@@ -8,6 +8,9 @@
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 export const vi = {
+    [BaseLanguage.component.label.default]: '',
+    [BaseLanguage.component.label.start]: 'start',
+    [BaseLanguage.component.label.develop]: 'On develop!',
     [BaseLanguage.component.label.error.server]: 'Máy chủ không phản hồi!',
     [BaseLanguage.component.label.error.fallback.title]: 'Đã xảy ra lỗi',
     [BaseLanguage.component.label.error.fallback.content]: 'Bạn hãy thử chạy lại ứng dụng',

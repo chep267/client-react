@@ -7,7 +7,6 @@
 /** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -23,30 +22,9 @@ import { useNotify } from '@module-base/hooks/useNotify';
 import type { SnackbarOrigin } from '@mui/material/Snackbar';
 import type { NotifyBoundaryProps } from '@module-base/types';
 
-/** styles */
-const useStyles = makeStyles(({ palette }) => ({
-    snackbar: {
-        top: 70,
-    },
-    notify: {
-        width: '100%',
-    },
-    default: {
-        color: palette.common.white,
-        backgroundColor: palette.primary.main,
-    },
-    hidden: {
-        display: 'none',
-    },
-    title: {
-        textTransform: 'capitalize',
-    },
-}));
-
 const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
     const hookNotify = useNotify();
-    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration } = hookNotify.data;
-    const classes = useStyles();
+    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
 
     const closeSnackbar = React.useCallback(() => hookNotify.method.toggleNotify(), []);
 
@@ -55,21 +33,21 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
     return (
         <Snackbar
             key="base-notify-boundary-app"
-            className={classes.snackbar}
+            open={open}
+            style={{ top }}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
-            open={open}
             onClose={closeSnackbar}
             {...props}
         >
             <Alert
-                className={classnames(classes.notify, { [classes.default]: !mode }, { [classes.hidden]: !open })}
+                className={classnames('w-full', { hidden: !open })}
                 onClose={close ? closeSnackbar : undefined}
                 severity={mode}
                 elevation={6}
                 variant="filled"
             >
-                <AlertTitle className={classes.title}>{mode}!</AlertTitle>
+                <AlertTitle className="capitalize">{mode}!</AlertTitle>
                 {messageIntl ? <FormattedMessage id={messageIntl} /> : message}
             </Alert>
         </Snackbar>

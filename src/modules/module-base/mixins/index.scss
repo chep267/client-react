@@ -1,0 +1,17 @@
+/**
+ *
+ * @author dongntd267@gmail.com on 26/07/2024.
+ *
+ */
+
+@mixin mixin-mobile-screen {
+    @media only screen and (max-width: 400px /* mobile */) {
+        @content;
+    }
+}
+
+@mixin mixin-sm-screen {
+    @media only screen and (max-width: 640px /* sm */) {
+        @content;
+    }
+}

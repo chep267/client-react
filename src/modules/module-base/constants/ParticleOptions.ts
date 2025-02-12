@@ -4,6 +4,12 @@
  *
  */
 
+/** libs */
+import { blue, orange } from '@mui/material/colors';
+
+/** constants */
+import { themeObject } from '@module-theme/constants/themeObject';
+
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';
 import type { TypeThemeMode } from '@module-theme/types';
@@ -49,7 +55,7 @@ export const ParticleOptions = (mode: TypeThemeMode): IParticlesProps['options']
             },
         },
         color: {
-            value: mode === 'light' ? '#038cf5' : '#ff7f50',
+            value: mode === themeObject.light ? blue[500] : orange[500],
             animation: {
                 h: {
                     count: 0,

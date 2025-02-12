@@ -21,7 +21,7 @@ declare module '*.png' {
 }
 
 interface ImportMetaEnv {
-    readonly VITE_APP_MODE: 'dev' | 'build';
+    readonly VITE_APP_MODE: 'dev' | 'prod';
     readonly VITE_APP_TITLE: string;
     readonly VITE_APP_API_HOST: string;
     readonly VITE_APP_API_TYPE: 'firebase' | 'express';

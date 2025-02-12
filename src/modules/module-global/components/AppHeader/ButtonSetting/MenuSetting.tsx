@@ -45,7 +45,7 @@ type Props = {
     closeMenu(): void;
 };
 
-export default function MenuSetting(props: Props) {
+const MenuSetting = React.memo(function MenuSetting(props: Props) {
     const { closeMenu } = props;
 
     const hookTheme = useTheme();
@@ -118,13 +118,13 @@ export default function MenuSetting(props: Props) {
                 {
                     id: 'Language-Vi',
                     title: <FormattedMessage id={LangLanguage.component.label.vi} />,
-                    icon: <span style={{ transform: 'scale(1.25)' }}>🇻🇳</span>,
+                    icon: <span className="scale-125">🇻🇳</span>,
                     onClick: () => hookLanguage.method.setLanguage(localeObject.vi),
                 },
                 {
                     id: 'Language-En',
                     title: <FormattedMessage id={LangLanguage.component.label.en} />,
-                    icon: <span style={{ transform: 'scale(1.25)' }}>🇬🇧</span>,
+                    icon: <span className="scale-125">🇬🇧</span>,
                     onClick: () => hookLanguage.method.setLanguage(localeObject.en),
                 },
             ],
@@ -176,4 +176,6 @@ export default function MenuSetting(props: Props) {
             {renderMenuAuth}
         </List>
     );
-}
+});
+
+export default MenuSetting;

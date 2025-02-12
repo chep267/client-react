@@ -8,11 +8,17 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 
-/** App */
+/** constants */
+import { AppEnv } from '@module-base/constants/AppEnv';
+
+/** components */
 import App from '@root/components';
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+if (AppEnv.appMode === 'dev') {
+    root.render(
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    );
+} else root.render(<App />);

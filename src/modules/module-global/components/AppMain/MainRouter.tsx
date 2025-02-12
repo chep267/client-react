@@ -11,15 +11,15 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
-import { ScreenSize } from '@module-global/constants/ScreenSize';
-import { SiderState } from '@module-global/constants/SiderState';
 
 /** hooks */
-import { useSider } from '@module-global/hooks/useSider';
+import { useSider } from '@module-base/hooks/useSider';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
@@ -27,15 +27,13 @@ import AppSiderMini from '@module-global/components/AppSiderMini';
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
 const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen'));
-const ConversationScreen = React.lazy(() => import('@module-messenger/screens/ConversationScreen'));
+// const ConversationScreen = React.lazy(() => import('@module-messenger/screens/ConversationScreen'));
 const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
 const GameCenterScreen = React.lazy(() => import('@module-game/screens/GameCenterScreen'));
 
 export default function MainRouter() {
     const location = useLocation();
-    const {
-        data: { siderState },
-    } = useSider();
+    const hookSider = useSider();
 
     const [hasScroll, setHasScroll] = React.useState(false);
 
@@ -47,7 +45,7 @@ export default function MainRouter() {
     }).current;
 
     React.useEffect(() => {
-        debounce(100, () => {
+        delay(100, () => {
             const hasScroll = document.body.scrollHeight > document.body.clientHeight;
             setHasScroll(hasScroll);
         }).then();
@@ -55,17 +53,17 @@ export default function MainRouter() {
 
     return (
         <Box
-            className={classnames('flex flex-col w-full h-full transition-[width] duration-500', {
+            className={classnames('flex h-full w-full flex-col transition-[width] duration-500', {
                 ['pr-0 sm:pr-4']: hasScroll,
             })}
-            sx={sxStyles[siderState]}
+            sx={sxStyles[hookSider.data.siderState]}
         >
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>
                     <Route path={GlobalRouterPath.home} element={<Navigate to={GlobalRouterPath.defaultPath} />} />
                     <Route path={`${GlobalRouterPath.feed}/*`} element={<TestScreen />} />
-                    <Route path={`${GlobalRouterPath.messenger}/*`} element={<ConversationScreen />} />
+                    <Route path={`${GlobalRouterPath.messenger}/*`} element={<TestScreen />} />
                     <Route path={`${GlobalRouterPath.calendar}/*`} element={<CalendarScreen />} />
                     <Route path={`${GlobalRouterPath.game}/*`} element={<GameCenterScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />

@@ -58,7 +58,7 @@ export default function GameScreen() {
     ]).current;
 
     return (
-        <Stack className="flex-row w-full h-full gap-5 p-5">
+        <Stack className="h-full w-full flex-row gap-5 p-5">
             {games.map((game) => {
                 return (
                     <Link key={game.id} to={game.path} className={classes.gameItem}>

@@ -15,11 +15,11 @@ export interface TypeAppItem {
 }
 
 export interface ListAppProps {
-    isTooltip: boolean;
+    hasTooltip: boolean;
 }
 
 export interface AppItemProps {
     item: TypeAppItem;
     isSelected: boolean;
-    isTooltip: boolean;
+    hasTooltip: boolean;
 }
