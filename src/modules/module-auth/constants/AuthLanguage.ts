@@ -7,7 +7,7 @@
 export const AuthLanguage = {
     component: {
         button: {
-            signIn: 'module.auth.component.button.signIn.text',
+            signin: 'module.auth.component.button.signin.text',
             register: 'module.auth.component.button.register.text',
             recover: 'module.auth.component.button.recover.text',
             clear: 'module.auth.component.button.clear.text',
@@ -18,7 +18,7 @@ export const AuthLanguage = {
             confirmPassword: 'module.auth.component.label.confirmPassword',
         },
         title: {
-            signIn: 'module.auth.component.title.signIn',
+            signin: 'module.auth.component.title.signin',
             register: 'module.auth.component.title.register',
             recover: 'module.auth.component.title.recover',
             verifyOTP: 'module.auth.component.title.verifyOTP',
@@ -43,8 +43,8 @@ export const AuthLanguage = {
         refresh: {
             error: 'module.auth.notify.refresh.error',
         },
-        signIn: {
-            error: 'module.auth.notify.signIn.error',
+        signin: {
+            error: 'module.auth.notify.signin.error',
         },
         register: {
             success: 'module.auth.notify.register.success',

@@ -18,8 +18,8 @@ export default function AuthTitle() {
     const { pathname } = useLocation();
 
     const mode = React.useMemo(() => {
-        if (pathname.startsWith(AuthRouterPath.signIn)) {
-            return 'signIn';
+        if (pathname.startsWith(AuthRouterPath.signin)) {
+            return 'signin';
         }
         if (pathname.startsWith(AuthRouterPath.register)) {
             return 'register';
@@ -27,11 +27,11 @@ export default function AuthTitle() {
         if (pathname.startsWith(AuthRouterPath.recover)) {
             return 'recover';
         }
-        return 'signIn';
+        return 'signin';
     }, [pathname]);
 
     return (
-        <Typography color="primary.main" className="text-3xl md:text-5xl">
+        <Typography color="primary.main" className="z-10 !text-4xl">
             {mode && <FormattedMessage id={AuthLanguage.component.title[mode]} />}
         </Typography>
     );

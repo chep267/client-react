@@ -6,29 +6,29 @@
 
 /** apis */
 import { baseApi } from '@module-base/apis/baseApi';
+import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
+import { AppEnv } from '@module-base/constants/AppEnv';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
-import { AppEnv } from '@module-base/constants/AppEnv';
-import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api';
 
-const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
+const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
-        return baseApi<TypeApiAuth['SignIn']['Response']>({
+        return baseApi<TypeApiAuth['Signin']['Response']>({
             method: 'post',
-            url: AuthApiPath.signIn,
+            url: AuthApiPath.signin,
             data: { email, password },
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
@@ -37,7 +37,7 @@ const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<T
     const callApi = () => {
         return baseApi<Promise<TypeApiAuth['SignOut']['Response']>>({ method: 'post', url: AuthApiPath.signOut });
     };
-    await Promise.all([callApi(), debounce(timer)]);
+    await Promise.all([callApi(), delay(timer)]);
 };
 
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
@@ -45,7 +45,7 @@ const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<T
     const callApi = () => {
         return baseApi<TypeApiAuth['Restart']['Response']>({ method: 'post', url: AuthApiPath.restart });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
@@ -58,7 +58,7 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
             data: { email, password },
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
@@ -71,16 +71,16 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
             data: { email },
         });
     };
-    const [res] = await Promise.all([callApi(), debounce(timer)]);
+    const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
 };
 
-export const authApi = AppEnv.isFirebase
-    ? authFirebaseApi
-    : ({
-          signIn: apiSignIn,
+export const authApi = !AppEnv.isFirebase
+    ? ({
+          signin: apiSignin,
           signOut: apiSignOut,
           restart: apiRestart,
           register: apiRegister,
           recover: apiRecover,
-      } as const);
+      } as const)
+    : authFirebaseApi;

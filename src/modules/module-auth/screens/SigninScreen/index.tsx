@@ -17,20 +17,20 @@ import AuthTitle from '@module-auth/components/AuthTitle';
 
 /** lazy components */
 const Particle = React.lazy(() => import('@module-base/components/Particles'));
-const SignInForm = React.lazy(() => import('@module-auth/components/SignInForm'));
-const RegisterForm = React.lazy(() => import('@module-auth/components/RegisterForm'));
-const RecoverForm = React.lazy(() => import('@module-auth/components/RecoverForm'));
+const SigninForm = React.lazy(() => import('@module-auth/components/form/SigninForm'));
+const RegisterForm = React.lazy(() => import('@module-auth/components/form/RegisterForm'));
+const RecoverForm = React.lazy(() => import('@module-auth/components/form/RecoverForm'));
 
-export default function SignInScreen() {
+export default function SigninScreen() {
     return (
         <Box className="flex h-full w-full flex-col items-center justify-center gap-y-10">
             <AuthTitle />
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={AuthRouterPath.signIn} element={<SignInForm />} />
+                    <Route path={AuthRouterPath.signin} element={<SigninForm />} />
                     <Route path={AuthRouterPath.register} element={<RegisterForm />} />
                     <Route path={AuthRouterPath.recover} element={<RecoverForm />} />
-                    <Route path="*" element={<Navigate to={AuthRouterPath.signIn} replace />} />
+                    <Route path="*" element={<Navigate to={AuthRouterPath.signin} replace />} />
                 </Routes>
             </React.Suspense>
             <React.Suspense fallback={null}>

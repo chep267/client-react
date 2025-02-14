@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { Control, FieldPath, FieldValues, UseFormSetFocus } from 'react-hook-form';
+import type { Control, FieldPath, FieldValues, UseFormSetFocus, UseFormReturn } from 'react-hook-form';
 
 export type TypeAuthBreadcrumbsItem = {
     title: string;
@@ -16,23 +16,25 @@ export type TypeAuthBreadcrumbsItem = {
 
 export type AuthButtonSubmitProps = {
     loading?: boolean;
-    type: 'signIn' | 'register' | 'recover';
+    type: 'signin' | 'register' | 'recover';
 };
 
-export type InputEmailProps<T extends FieldValues> = {
+export type FieldEmailProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;
     errorMessage?: string;
+    clearErrors: UseFormReturn<T>['clearErrors'];
 };
 
-export type InputPasswordProps<T extends FieldValues> = {
+export type FieldPasswordProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;
     errorMessage?: string;
     setFocus: UseFormSetFocus<T>;
     isConfirm?: boolean;
+    clearErrors: UseFormReturn<T>['clearErrors'];
 };
 
 export type TypeFormAuth = {

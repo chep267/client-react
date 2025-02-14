@@ -14,7 +14,7 @@ import { firebaseRef } from '@module-base/constants/firebaseRef';
 
 /** utils */
 import { firestore, storage } from '@module-base/utils/firebaseApp';
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { MessengerApiProps, TypeDocumentMessageData } from '@module-messenger/types';

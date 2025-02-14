@@ -9,7 +9,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export const vi = {
     // title
-    [AuthLanguage.component.title.signIn]: 'Đăng nhập',
+    [AuthLanguage.component.title.signin]: 'Đăng nhập',
     [AuthLanguage.component.title.register]: 'Đăng kí',
     [AuthLanguage.component.title.recover]: 'Quên mật khẩu',
     [AuthLanguage.component.title.verifyOTP]: 'Mã xác thực',
@@ -29,14 +29,14 @@ export const vi = {
     [AuthLanguage.status.password.different]: 'Mật khẩu xác nhận không khớp!',
 
     // button
-    [AuthLanguage.component.button.signIn]: 'Đăng nhập',
+    [AuthLanguage.component.button.signin]: 'Đăng nhập',
     [AuthLanguage.component.button.register]: 'Đăng kí',
     [AuthLanguage.component.button.recover]: 'Xác thực',
     [AuthLanguage.component.button.clear]: 'Làm mới',
 
     // notify
     [AuthLanguage.notify.refresh.error]: 'Phiên đăng nhập đã hết hạn!',
-    [AuthLanguage.notify.signIn.error]: 'Tài khoản hoặc mật khẩu không chính xác!',
+    [AuthLanguage.notify.signin.error]: 'Tài khoản hoặc mật khẩu không chính xác!',
     [AuthLanguage.notify.register.success]: 'Tài khoản đăng kí thành công!',
     [AuthLanguage.notify.register.error]: 'Tài khoản đã tồn tại!',
     [AuthLanguage.notify.recover.success]: 'Tài khoản xác thực thành công!',

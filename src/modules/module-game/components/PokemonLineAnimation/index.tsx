@@ -16,7 +16,7 @@ import { PokemonLine } from '@module-game/constants/PokemonLine';
 import { usePokemon } from '@module-game/hooks/usePokemon';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** styles */
 import useStyles from './styles';
@@ -39,7 +39,7 @@ export default function PokemonLineAnimation(props: PokemonTimerProps) {
     React.useEffect(() => {
         if (point > 0) {
             setStart(true);
-            debounce(1500, () => setStart(false)).then();
+            delay(1500, () => setStart(false)).then();
         }
     }, [point]);
 

@@ -13,7 +13,7 @@ import { firebaseRef } from '@module-base/constants/firebaseRef';
 
 /** utils */
 import { firestore } from '@module-base/utils/firebaseApp';
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 
 /** types */
 import type { TypeItemIds, TypeItems } from '@module-base/types';
@@ -23,13 +23,13 @@ const apiCreateUser = async (payload: TypeUserApi['Create']['Payload']): Promise
     const { timer = AppTimer.pendingApi, user } = payload;
     const docRef = doc(firestore, firebaseRef.user, user.uid);
     const create = () => setDoc(docRef, user, { merge: true });
-    await Promise.all([create(), debounce(timer)]);
+    await Promise.all([create(), delay(timer)]);
 };
 
 const apiGetUser = async (payload: TypeUserApi['Get']['Payload']): Promise<TypeUserApi['Get']['Response']> => {
     const { timer = AppTimer.pendingApi, uid } = payload;
     const docRef = doc(firestore, firebaseRef.user, uid);
-    const [response] = await Promise.all([getDoc(docRef), debounce(timer)]);
+    const [response] = await Promise.all([getDoc(docRef), delay(timer)]);
     return response.exists() ? (response.data() as TypeUser) : undefined;
 };
 
@@ -47,7 +47,7 @@ const apiGetListUser = async (payload: TypeUserApi['GetList']['Payload']): Promi
         });
         return { itemIds, items };
     };
-    const [response] = await Promise.all([getListUser(), debounce(timer)]);
+    const [response] = await Promise.all([getListUser(), delay(timer)]);
     return response;
 };
 

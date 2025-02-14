@@ -17,11 +17,10 @@ import { AppEnv } from '@module-base/constants/AppEnv';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks/useSignin';
+import { useRecover } from '@module-auth/hooks/useRecover';
 
 /** components */
 import FieldEmail from '@module-auth/components/general/FieldEmail';
-import FieldPassword from '@module-auth/components/general/FieldPassword';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
 import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 
@@ -29,18 +28,17 @@ import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 import type { SubmitHandler } from 'react-hook-form';
 import type { AxiosError } from 'axios';
 
-type TypeFormFieldsName = 'email' | 'password';
+type TypeFormFieldsName = 'email';
 type TypeFormData = {
     [Key in TypeFormFieldsName]: string;
 };
 
-export default function SigninForm() {
+export default function RecoverForm() {
     const FormFieldsName = React.useRef<Readonly<{ [Key in TypeFormFieldsName]: Key }>>({
         email: 'email',
-        password: 'password',
     }).current;
 
-    const hookSignin = useSignin();
+    const hookRecover = useRecover();
     const {
         handleSubmit,
         control,
@@ -50,15 +48,14 @@ export default function SigninForm() {
         setError,
     } = useForm<TypeFormData>({
         defaultValues: {
-            [FormFieldsName.email]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
-            [FormFieldsName.password]: 'Midom@2024',
+            [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
         },
         mode: 'onSubmit',
         reValidateMode: 'onSubmit',
     });
 
     const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
-        hookSignin.mutate(data, {
+        hookRecover.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
                 let messageIntl: string;
@@ -72,7 +69,6 @@ export default function SigninForm() {
                         break;
                 }
                 setError(FormFieldsName.email, { message: messageIntl });
-                setError(FormFieldsName.password, { message: messageIntl });
                 setFocus(FormFieldsName.email);
             },
         });
@@ -92,17 +88,9 @@ export default function SigninForm() {
                 errorMessage={errors.email?.message}
                 clearErrors={clearErrors}
             />
-            <FieldPassword
-                name={FormFieldsName.password}
-                control={control}
-                error={Boolean(errors.password)}
-                errorMessage={errors.password?.message}
-                clearErrors={clearErrors}
-                setFocus={setFocus}
-            />
             <Box className="mt-2 flex w-full items-end justify-between">
                 <AuthBreadcrumbs />
-                <ButtonSubmit loading={hookSignin.isPending} type="signin" />
+                <ButtonSubmit loading={hookRecover.isPending} type="recover" />
             </Box>
         </Paper>
     );

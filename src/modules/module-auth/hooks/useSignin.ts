@@ -24,13 +24,13 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 import type { AxiosError } from 'axios';
 import type { TypeApiAuth } from '@module-auth/types';
 
-export function useSignIn() {
+export function useSignin() {
     const hookAuth = useAuth();
     const hookNotify = useNotify();
 
     return useMutation({
-        mutationFn: authApi.signIn,
-        onSuccess: async (response: TypeApiAuth['SignIn']['Response']) => {
+        mutationFn: authApi.signin,
+        onSuccess: async (response: TypeApiAuth['Signin']['Response']) => {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);
@@ -42,7 +42,7 @@ export function useSignIn() {
             switch (true) {
                 case AppEnv.isFirebase:
                 case code >= 400 && code < 500:
-                    messageIntl = AuthLanguage.notify.signIn.error;
+                    messageIntl = AuthLanguage.notify.signin.error;
                     break;
                 default:
                     messageIntl = AuthLanguage.notify.server.error;

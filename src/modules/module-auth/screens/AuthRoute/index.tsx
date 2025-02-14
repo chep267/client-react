@@ -22,7 +22,7 @@ import type { PropsWithChildren } from 'react';
 
 /** screens */
 const StartScreen = React.lazy(() => import('@module-auth/screens/StartScreen'));
-const SignInScreen = React.lazy(() => import('@module-auth/screens/SignInScreen'));
+const SigninScreen = React.lazy(() => import('@module-auth/screens/SigninScreen'));
 
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
@@ -34,10 +34,10 @@ export default function AuthRoute(props: PropsWithChildren) {
     const { isAuthentication, prePath } = hookAuth.data;
 
     const uid = Cookies.get(AppKey.uid);
-    const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignIn : AccountState.signIn;
+    const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
 
     React.useEffect(() => {
-        if (accountState === AccountState.reSignIn && !pathname.startsWith(AuthRouterPath.start)) {
+        if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             hookAuth.method.setPrePath(pathname);
             navigate(AuthRouterPath.start, { replace: true });
@@ -46,9 +46,9 @@ export default function AuthRoute(props: PropsWithChildren) {
             /** đã đăng nhập xong, vào home */
             navigate(prePath, { replace: true });
         }
-        if (accountState === AccountState.signIn && !Object.values(AuthRouterPath).includes(pathname)) {
+        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
             /** chưa đăng nhập, trở về đăng nhập  */
-            navigate(AuthRouterPath.signIn, { replace: true });
+            navigate(AuthRouterPath.signin, { replace: true });
         }
     }, [accountState, pathname]);
 
@@ -56,10 +56,10 @@ export default function AuthRoute(props: PropsWithChildren) {
         <React.Suspense>
             {accountState === AccountState.signedIn ? (
                 children
-            ) : accountState === AccountState.reSignIn ? (
+            ) : accountState === AccountState.reSignin ? (
                 <StartScreen />
             ) : (
-                <SignInScreen />
+                <SigninScreen />
             )}
         </React.Suspense>
     );

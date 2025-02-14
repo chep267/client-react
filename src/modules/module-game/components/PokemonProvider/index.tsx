@@ -16,8 +16,8 @@ import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
 import { defaultPokemonState, PokemonContext } from '@module-game/contexts/PokemonContext';
 
 /** utils */
+import { delay } from '@module-base/utils/delay';
 import { PokemonService } from '@module-game/utils/PokemonService';
-import { debounce } from '@module-base/utils/debounce';
 
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown';
@@ -67,11 +67,11 @@ export default function PokemonProvider(props: PropsWithChildren) {
                     : PokemonItemStatus.error
                 : PokemonItemStatus.select;
         if (statusPresent === PokemonItemStatus.error) {
-            debounce(1000, () => setItems([])).then();
+            delay(1000, () => setItems([])).then();
         } else if (statusPresent === PokemonItemStatus.success) {
             const item1 = items[0];
             const item2 = items[1];
-            debounce(1000, () => {
+            delay(1000, () => {
                 setBoardGame((prev) => {
                     const board = [...prev];
                     board[item1.x][item1.y].value = 0;
@@ -83,7 +83,7 @@ export default function PokemonProvider(props: PropsWithChildren) {
         }
         setItemStatus(statusPresent);
         if (statusPresent === PokemonItemStatus.success) {
-            debounce(1200, () => setPoint((prev) => prev + 2)).then();
+            delay(1200, () => setPoint((prev) => prev + 2)).then();
         }
     }, [items]);
 

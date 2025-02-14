@@ -20,16 +20,16 @@ import { userFirebaseApi } from '@module-user/apis/api.firebase';
 import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** utils */
-import { debounce } from '@module-base/utils/debounce';
+import { delay } from '@module-base/utils/delay';
 import { validateId } from '@module-base/utils/validateId';
 import { authentication } from '@module-base/utils/firebaseApp';
 
 /** types */
 import type { TypeApiAuth } from '@module-auth/types';
 
-const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<TypeApiAuth['SignIn']['Response']> => {
+const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<TypeApiAuth['Signin']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
-    const [response] = await Promise.all([signInWithEmailAndPassword(authentication, email, password), debounce(timer)]);
+    const [response] = await Promise.all([signInWithEmailAndPassword(authentication, email, password), delay(timer)]);
     if (!response?.user) {
         throw new Error('sign in error!');
     }
@@ -61,13 +61,13 @@ const apiSignIn = async (payload: TypeApiAuth['SignIn']['Payload']): Promise<Typ
 
 const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
-    const [response] = await Promise.all([signOut(authentication), debounce(timer)]);
+    const [response] = await Promise.all([signOut(authentication), delay(timer)]);
     return response;
 };
 
 const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise<TypeApiAuth['Register']['Response']> => {
     const { timer = AppTimer.pendingApi, email, password } = payload;
-    const [response] = await Promise.all([createUserWithEmailAndPassword(authentication, email, password), debounce(timer)]);
+    const [response] = await Promise.all([createUserWithEmailAndPassword(authentication, email, password), delay(timer)]);
     return {
         data: response,
         message: '',
@@ -77,7 +77,7 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
 
 const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<TypeApiAuth['Recover']['Response']> => {
     const { timer = AppTimer.pendingApi, email } = payload;
-    const [response] = await Promise.all([sendPasswordResetEmail(authentication, email), debounce(timer)]);
+    const [response] = await Promise.all([sendPasswordResetEmail(authentication, email), delay(timer)]);
     return {
         data: response,
         message: '',
@@ -87,7 +87,7 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
 
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
-    const [response] = await Promise.all([onAuthStateChanged(authentication, () => {}), debounce(timer)]);
+    const [response] = await Promise.all([onAuthStateChanged(authentication, () => {}), delay(timer)]);
     const currentUser = authentication.currentUser;
     if (!response || !currentUser) {
         throw new Error('restart error!');
@@ -119,7 +119,7 @@ const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<T
 };
 
 export const authFirebaseApi = {
-    signIn: apiSignIn,
+    signin: apiSignin,
     signOut: apiSignOut,
     restart: apiRestart,
     register: apiRegister,

@@ -14,7 +14,7 @@ import { firebaseRef, timePendingApi } from '@module-base/constants';
 import { ChatBotGPT, MessageGPT } from '@module-messenger/constants';
 
 /** utils */
-import { firestore, debounce, checkId } from '@module-base/utils';
+import { firestore, delay, checkId } from '@module-base/utils';
 import { genMessage } from '@module-messenger/utils';
 
 /** types */
@@ -66,7 +66,7 @@ export const apiOnGetListThread = async (
         });
         return { unsubscribe };
     };
-    const [response] = await Promise.all([onGet(), debounce(timer)]);
+    const [response] = await Promise.all([onGet(), delay(timer)]);
     return response;
 };
 

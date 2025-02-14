@@ -11,7 +11,7 @@ import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { timePendingApi, firebaseRef } from '@module-base/constants';
 
 /** utils */
-import { firestore, storage, debounce } from '@module-base/utils';
+import { firestore, storage, delay } from '@module-base/utils';
 
 /** types */
 import type { MessengerApiProps, TypeDocumentMessageData } from '@module-messenger/types';
@@ -44,7 +44,7 @@ export const apiOnGetListMessage = async (
         return { unsubscribe };
     };
 
-    const [response] = await Promise.all([onGet(), debounce(timer)]);
+    const [response] = await Promise.all([onGet(), delay(timer)]);
     return response;
 };
 

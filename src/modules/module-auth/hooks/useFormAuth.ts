@@ -18,13 +18,13 @@ import { authFormSchema } from '@module-auth/utils/authFormSchema';
 /** types */
 import type { TypeFormAuth } from '@module-auth/types';
 
-export function useFormAuth({ type }: { type: 'signIn' | 'register' | 'recover' }) {
+export function useFormAuth({ type }: { type: 'signin' | 'register' | 'recover' }) {
     // @ts-ignore
     const email = Cookies.get(AppKey.email) as string;
 
     return useForm<TypeFormAuth>({
         defaultValues: {
-            email: type === 'signIn' ? email || 'dong.nguyenthanh@powergatesoftware.com' : '',
+            email: type === 'signin' ? email || 'dong.nguyenthanh@powergatesoftware.com' : '',
             password: type === 'register' ? '' : type === 'recover' ? 'chep_react@2024' : 'Midom@2024',
             confirm_password: type === 'register' ? '' : 'chep_react@2024',
         },
