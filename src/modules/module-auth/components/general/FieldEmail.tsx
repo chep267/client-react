@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import TextField from '@mui/material/TextField';
 import { useController } from 'react-hook-form';
@@ -19,6 +20,12 @@ import type { FieldEmailProps } from '@module-auth/types';
 
 export default function FieldEmail<T extends FieldValues>(props: FieldEmailProps<T>) {
     const { name, control, error, errorMessage, clearErrors } = props;
+    const fieldStyle = React.useRef({
+        '& .MuiFormHelperText-root': {
+            textAlign: 'right',
+        },
+    }).current;
+
     const { field } = useController({
         name,
         control,
@@ -33,11 +40,7 @@ export default function FieldEmail<T extends FieldValues>(props: FieldEmailProps
 
     return (
         <TextField
-            sx={{
-                '& .MuiFormHelperText-root': {
-                    textAlign: 'right',
-                },
-            }}
+            sx={fieldStyle}
             type="email"
             label={<FormattedMessage id={AuthLanguage.component.label.email} />}
             disabled={field.disabled}

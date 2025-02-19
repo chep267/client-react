@@ -16,7 +16,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import type { PasswordFieldProps } from '@module-base/types';
 
 export default function PasswordField(props: PasswordFieldProps) {
-    const { InputProps, setFocus, ...inputProps } = props;
+    const { setFocus, ...inputProps } = props;
     const [showPassword, setShowPassword] = React.useState(-1);
 
     React.useEffect(() => {
@@ -31,22 +31,19 @@ export default function PasswordField(props: PasswordFieldProps) {
 
     const endAdornment = React.useMemo(() => {
         return (
-            InputProps?.endAdornment || (
-                <InputAdornment position="end">
-                    <IconButton onClick={toggleShowPassword}>
-                        {showPassword === 1 ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    </IconButton>
-                </InputAdornment>
-            )
+            <InputAdornment position="end">
+                <IconButton onClick={toggleShowPassword}>
+                    {showPassword === 1 ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                </IconButton>
+            </InputAdornment>
         );
-    }, [InputProps?.endAdornment, showPassword]);
+    }, [showPassword]);
 
     return (
         <TextField
             {...inputProps}
             slotProps={{
                 input: {
-                    ...InputProps,
                     endAdornment,
                 },
             }}

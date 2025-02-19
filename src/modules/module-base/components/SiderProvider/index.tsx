@@ -16,7 +16,7 @@ import { SiderState } from '@module-base/constants/SiderState';
 import { defaultSiderState, SiderContext } from '@module-base/contexts/SiderContext';
 
 /** types */
-import type { SiderProviderProps, TypeSiderContext } from '@module-global/types';
+import type { SiderProviderProps, TypeSiderContext } from '@module-base/types';
 
 export default function SiderProvider(props: SiderProviderProps) {
     const { children } = props;

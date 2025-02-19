@@ -20,7 +20,7 @@ import { GameLanguage } from '@module-game/constants/GameLanguage';
 import PokemonLogo from '@module-game/assets/images/pokemon_logo.png';
 
 /** styles */
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette }: any) => ({
     gameItem: {
         display: 'flex',
         flexDirection: 'column',

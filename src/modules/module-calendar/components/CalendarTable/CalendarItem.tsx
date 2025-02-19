@@ -18,7 +18,7 @@ import { useCalendar } from '@module-calendar/hooks/useCalendar';
 import type { CalendarItemProps } from '@module-calendar/types';
 
 /** styles */
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette }: any) => ({
     item: {
         cursor: 'pointer',
         '&:hover': {

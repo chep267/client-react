@@ -25,7 +25,7 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
     const classes = useStyles();
 
     const menuId = React.useId();
-    const [menuElem, setMenuElem] = React.useState<HTMLElement>(null);
+    const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
     const open = Boolean(menuElem);
 
     const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);

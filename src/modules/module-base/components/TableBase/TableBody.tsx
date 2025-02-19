@@ -20,11 +20,12 @@ import type { TableBodyProps } from '@module-base/types';
 const TableBody = React.memo(function TableBody(props: TableBodyProps) {
     const { data, rows, tableRowProps, tableCellProps } = props;
     const classes = useStyles();
+    const rowId = React.useId();
 
     return (
         <TableBodyElem>
             {data?.map((item, indexRow) => {
-                const rowKey = `${item?.key || item?.id || `${indexRow}-${Date.now()}`}`;
+                const rowKey = `${rowId}-${indexRow}`;
                 return (
                     <TableRow
                         key={rowKey}

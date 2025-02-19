@@ -28,7 +28,7 @@ import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** styles */
-const useStyles = makeStyles(({ palette, spacing, breakpoints }) => ({
+const useStyles = makeStyles(({ palette, spacing, breakpoints }: any) => ({
     card: {
         display: 'flex',
         flexDirection: 'column',
@@ -128,7 +128,7 @@ export default function CalendarModal() {
 
     return (
         <Modal
-            className={classes.modal}
+            className={classes.card}
             open={openCalendarModal}
             onClose={() => hookCalendar.method.setOpenCalendarModal(false)}
         >

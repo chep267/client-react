@@ -9,7 +9,7 @@ import makeStyles from '@mui/styles/makeStyles';
 /** constants */
 import { alpha } from '@mui/material/styles';
 
-export const useStyles = makeStyles(({ palette }) => ({
+export const useStyles = makeStyles(({ palette }: any) => ({
     menu: {
         '& .MuiPaper-root': {
             '&::-webkit-scrollbar': {

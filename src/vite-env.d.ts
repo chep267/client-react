@@ -20,6 +20,13 @@ declare module '*.png' {
     export const ReactComponent;
 }
 
+declare global {
+    interface Window {
+        checkMobile(): boolean;
+        isMobile: boolean;
+    }
+}
+
 interface ImportMetaEnv {
     readonly VITE_APP_MODE: 'dev' | 'prod';
     readonly VITE_APP_TITLE: string;

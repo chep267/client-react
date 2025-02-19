@@ -18,7 +18,7 @@ import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus';
 import type { TypePokemonItem, TypePokemonItemStatus } from '@module-game/types';
 
 /** styles */
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette }: any) => ({
     '@keyframes success': {
         '0%': {
             transform: 'scale(1)',
@@ -112,7 +112,7 @@ export default function PokemonItem(props: PokemonItemProps) {
                 classes.item,
                 { [classes.itemEmpty]: isEmpty },
                 {
-                    [classes.itemSelected]: status in PokemonItemStatus,
+                    [classes.itemSelected]: status && status in PokemonItemStatus,
                 },
                 { [classes.itemError]: status === PokemonItemStatus.error },
                 { [classes.itemSuccess]: status === PokemonItemStatus.success }
