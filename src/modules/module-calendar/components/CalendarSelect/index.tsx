@@ -9,7 +9,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
@@ -89,35 +89,35 @@ const CalendarSelect = React.memo(function CalendarSelect() {
 
     const ButtonLeft = React.useMemo(() => {
         return (
-            <Stack className="flex-row items-center gap-1">
+            <Box className="flex flex-row items-center gap-1">
                 <IconButton onClick={() => onChangeTime('prev', 'year')}>
                     <KeyboardDoubleArrowLeft color="primary" />
                 </IconButton>
                 <IconButton onClick={() => onChangeTime('prev', 'month')}>
                     <KeyboardArrowLeft color="primary" />
                 </IconButton>
-            </Stack>
+            </Box>
         );
     }, []);
 
     const ButtonRight = React.useMemo(() => {
         return (
-            <Stack className="flex-row items-center gap-1">
+            <Box className="flex flex-row items-center gap-1">
                 <IconButton onClick={() => onChangeTime('next', 'month')}>
                     <KeyboardArrowRight color="primary" />
                 </IconButton>
                 <IconButton onClick={() => onChangeTime('next', 'year')}>
                     <KeyboardDoubleArrowRight color="primary" />
                 </IconButton>
-            </Stack>
+            </Box>
         );
     }, []);
 
     const DateTimePicker = React.useMemo(() => {
         return (
-            <Stack
+            <Box
                 className={classnames(
-                    'relative line-clamp-2 w-full cursor-pointer flex-row items-center justify-center rounded-md text-center',
+                    'relative line-clamp-2 flex w-full cursor-pointer flex-row items-center justify-center rounded-md text-center',
                     {
                         ['sm:min-w-[300px]']: true, // desktop
                     }
@@ -135,30 +135,22 @@ const CalendarSelect = React.memo(function CalendarSelect() {
                     value={day}
                     onChange={(value) => value && hookCalendar.method.setDay(value)}
                 />
-            </Stack>
+            </Box>
         );
     }, [timeMonthYear]);
 
     return (
-        <Stack
-            className={classnames('w-full justify-between gap-2 p-3', {
-                ['flex-col-reverse']: true, // mobile
-                ['md:flex-row md:items-center']: true, // desktop
-            })}
+        <Box
+            className={classnames('flex w-full justify-between gap-2 p-3', 'flex-col-reverse', 'md:flex-row md:items-center')}
             sx={sxStyles}
         >
             {ButtonToday}
-            <Stack
-                className={classnames('flex-row items-center justify-between gap-2', {
-                    ['w-full']: true, // mobile
-                    ['md:w-fit']: true, // desktop
-                })}
-            >
+            <Box className={classnames('flex flex-row items-center justify-between gap-2', 'w-full', 'md:w-fit')}>
                 {ButtonLeft}
                 {DateTimePicker}
                 {ButtonRight}
-            </Stack>
-        </Stack>
+            </Box>
+        </Box>
     );
 });
 

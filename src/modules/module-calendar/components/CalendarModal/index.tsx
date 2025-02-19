@@ -127,11 +127,7 @@ export default function CalendarModal() {
     const lunarDay = new VietnameseDate(new Date(`${day.year()}-${day.month() + 1}-${day.date()}`));
 
     return (
-        <Modal
-            className={classes.card}
-            open={openCalendarModal}
-            onClose={() => hookCalendar.method.setOpenCalendarModal(false)}
-        >
+        <Modal open={openCalendarModal} onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
             <Card className={classnames(classes.card)}>
                 <CardHeader
                     className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}
