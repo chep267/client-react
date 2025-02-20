@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Cookie from 'js-cookie';
 import { useForm } from 'react-hook-form';
+import classnames from 'classnames';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
@@ -76,7 +77,7 @@ export default function RecoverForm() {
 
     return (
         <Paper
-            className="z-10 flex w-full max-w-xl flex-col !gap-y-5 rounded-md !p-6 shadow-lg shadow-gray-500/40"
+            className="z-10 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg shadow-gray-500/40"
             component="form"
             onSubmit={handleSubmit(onSubmit)}
             noValidate
@@ -88,7 +89,7 @@ export default function RecoverForm() {
                 errorMessage={errors.email?.message}
                 clearErrors={clearErrors}
             />
-            <Box className="mt-2 flex w-full items-end justify-between">
+            <Box className={classnames('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={hookRecover.isPending} type="recover" />
             </Box>

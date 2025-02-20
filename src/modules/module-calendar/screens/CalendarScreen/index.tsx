@@ -16,7 +16,7 @@ import CalendarModal from '@module-calendar/components/CalendarModal';
 export default function CalendarScreen() {
     return (
         <Stack className="h-full w-full p-1 sm:p-2">
-            <Paper className="flex h-full w-full flex-col items-center justify-end overflow-hidden rounded-md">
+            <Paper className="flex h-full w-full flex-col items-center !overflow-hidden rounded-md">
                 <CalendarSelect />
                 <CalendarTable />
                 <CalendarModal />

@@ -36,7 +36,7 @@ export default function LanguageProvider(props: LanguageProviderProps) {
     const [messages, setMessages] = React.useState<TypeMessages | null>(null);
 
     React.useEffect(() => {
-        getMessage(locale).then((data) => setMessages(data));
+        getMessage(locale).then(setMessages);
     }, [locale]);
 
     const setLanguage = React.useCallback<LanguageContextProps['method']['setLanguage']>((value) => {

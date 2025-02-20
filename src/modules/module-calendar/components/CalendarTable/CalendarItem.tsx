@@ -71,7 +71,7 @@ export default function CalendarItem(props: CalendarItemProps) {
 
     return React.useMemo(() => {
         const date = day.date();
-        const isWeekend = day.day() === 0 || day.day() === 6;
+        const isWeekend = calendarMethod.isWeekend(day);
         const isInMonth = calendarMethod.isInMonth(day);
         const isToday = calendarMethod.isToday(day);
         const onSelect = () => {
@@ -81,7 +81,7 @@ export default function CalendarItem(props: CalendarItemProps) {
         return (
             <Stack
                 className={classnames(
-                    'm-auto h-12 w-12 flex-row items-center justify-center rounded-full',
+                    'm-auto h-12 w-12 items-center justify-center rounded-full',
                     classes.item,
                     { [classes.itemSelected]: isSelectedDay },
                     { [classes.itemWeekend]: isWeekend },
@@ -89,7 +89,7 @@ export default function CalendarItem(props: CalendarItemProps) {
                     { [classes.itemTodaySelected]: isToday && isSelectedDay },
                     { [classes.itemWeekendSelected]: isWeekend && isSelectedDay },
                     { [classes.itemDifferentMonth]: !isInMonth },
-                    { hidden: !isInMonth && isOnlyMonth }
+                    { invisible: !isInMonth && isOnlyMonth }
                 )}
                 onClick={onSelect}
             >

@@ -70,7 +70,7 @@ export default function CalendarTable() {
         const headerHeight = ScreenSize.HeaderHeight;
         const appBarMiniHeight = siderState === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0;
         const calendarSelectHeight = ScreenSize.CalendarSelectHeight;
-        const paddingHeight = 2 * 16;
+        const paddingHeight = 2 * 8;
         const borderHeight = 2;
         return {
             height: `calc(100vh - ${headerHeight + appBarMiniHeight + calendarSelectHeight + paddingHeight + borderHeight}px)`,

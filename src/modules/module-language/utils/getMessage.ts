@@ -29,9 +29,9 @@ async function loadMessages(locale: TypeLocale): Promise<TypeMessages> {
     return messages;
 }
 
-export function getMessage(locale: TypeLocale): Promise<TypeMessages> {
+export async function getMessage(locale: TypeLocale): Promise<TypeMessages> {
     if (messagesCache[locale]) {
         return Promise.resolve(messagesCache[locale]);
     }
-    return loadMessages(locale);
+    return await loadMessages(locale);
 }

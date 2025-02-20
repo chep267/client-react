@@ -16,7 +16,7 @@ export default function MainScreen() {
     return (
         <BrowserRouter>
             <Box className="flex h-screen w-screen">
-                <Box className="direction-lrt relative flex min-h-dvh w-auto max-w-full shrink grow flex-col backface-hidden">
+                <Box className="relative flex min-h-dvh w-auto max-w-full shrink grow flex-col">
                     <AppHeader />
                     <AppMain />
                 </Box>

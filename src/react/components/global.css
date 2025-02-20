@@ -14,48 +14,47 @@
 @custom-variant hover (&:hover);
 
 @theme {
+    --breakpoint-xs: 30rem; /* 480px */
+    --breakpoint-mobile: 30rem; /* 480px */
+    --breakpoint-tablet: 40rem; /* 640px */
+    --breakpoint-laptop: 64rem; /* 1024px */
+    --breakpoint-desktop: 80rem; /* 1280px */
     --color-cam: #ff7f50;
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+@layer base {
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overscroll-behavior: none;
+        scroll-behavior: smooth;
+    }
+    html {
+        overflow: hidden auto;
+        overscroll-behavior: none;
+        scroll-behavior: smooth;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10 and IE 11 */
+        user-select: none; /* Standard syntax */
+        font-size: 16px; /* 1rem */
+    }
+    :root {
+        font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-text-size-adjust: 100%;
+        user-select: none;
+        font-size: 16px; /* 1rem */
+    }
+    code {
+        font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+    }
 }
 
-body {
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overscroll-behavior: none;
-    overflow: hidden auto;
-}
-
-html {
-    overscroll-behavior: none;
-    scroll-behavior: smooth;
-    -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
-    font-size: 16px; /* 1rem */
-    overflow: hidden;
-}
-
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-:root {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
-    font-size: 16px;
-}
-
-.backface-hidden {
-    backface-visibility: hidden;
-}
-.direction-lrt {
-    direction: ltr;
-}
