@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 
-/** hooks */
+/** contexts */
 import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext';
 
 /** types */

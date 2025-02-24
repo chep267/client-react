@@ -16,8 +16,10 @@ import { AppKey } from '@module-base/constants/AppKey';
 import { themeObject } from '@module-theme/constants/themeObject';
 import { breakpoints } from '@module-theme/constants/breakpoints';
 import { palette } from '@module-theme/constants/palette';
-import { ThemeContext } from '@module-theme/contexts/ThemeContext';
 import { components } from '@module-theme/constants/components';
+
+/** contexts */
+import { ThemeContext } from '@module-theme/contexts/ThemeContext';
 
 /** types */
 import type { PropsWithChildren } from 'react';

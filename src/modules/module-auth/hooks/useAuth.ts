@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 
-/** constants */
+/** contexts */
 import { AuthContext } from '@module-auth/contexts/AuthContext';
 
 export const useAuth = () => React.useContext(AuthContext);

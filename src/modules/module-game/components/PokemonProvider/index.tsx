@@ -12,7 +12,7 @@ import { PokemonItemStatus } from '@module-game/constants/PokemonItemStatus';
 import { PokemonGameLevel } from '@module-game/constants/PokemonGameLevel';
 import { PokemonGameStatus } from '@module-game/constants/PokemonGameStatus';
 
-/** constants */
+/** contexts */
 import { defaultPokemonState, PokemonContext } from '@module-game/contexts/PokemonContext';
 
 /** utils */

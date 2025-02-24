@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 
-/** constants */
+/** contexts */
 import { ThemeContext } from '@module-theme/contexts/ThemeContext';
 
 export const useTheme = () => React.useContext(ThemeContext);

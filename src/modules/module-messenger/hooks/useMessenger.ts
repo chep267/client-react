@@ -4,7 +4,10 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-import { MessengerContext } from '../contexts/MessengerContext';
+
+/** contexts */
+import { MessengerContext } from '@module-messenger/contexts/MessengerContext';
 
 export const useMessenger = () => React.useContext(MessengerContext);

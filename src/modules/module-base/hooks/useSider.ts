@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 
-/** constants */
+/** contexts */
 import { SiderContext } from '@module-base/contexts/SiderContext';
 
 export const useSider = () => React.useContext(SiderContext);

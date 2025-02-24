@@ -7,5 +7,4 @@
 /** constants */
 export * from './MessageGPT';
 export * from './ChatBotGPT';
-export * from '../contexts/MessengerContext';
 export * from './ThreadSearchContext';
