@@ -46,13 +46,12 @@ export default ({ mode }: ConfigEnv) => {
             rollupOptions: {
                 output: {
                     manualChunks: {
-                        'start-screen': ['./src/modules/module-auth/screens/StartScreen.vue'],
-                        'auth-screen': ['./src/modules/module-auth/screens/AuthScreen.vue'],
-                        'main-screen': ['./src/modules/module-global/screens/MainScreen.vue'],
-                        'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen.vue'],
-                        'feed-screen': ['./src/modules/module-global/screens/FeedScreen.vue'],
-                        'messenger-screen': ['./src/modules/module-global/screens/MessengerScreen.vue'],
-                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.vue'],
+                        'start-screen': ['./src/modules/module-auth/screens/StartScreen/index.tsx'],
+                        'auth-screen': ['./src/modules/module-auth/screens/AuthScreen/index.tsx'],
+                        'main-screen': ['./src/modules/module-global/screens/MainScreen/index.tsx'],
+                        'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen/index.tsx'],
+                        'feed-screen': ['./src/modules/module-global/screens/TestScreen/index.tsx'],
+                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.tsx'],
                     },
                 },
             },

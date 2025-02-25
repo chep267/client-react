@@ -22,7 +22,7 @@ import type { PropsWithChildren } from 'react';
 
 /** screens */
 const StartScreen = React.lazy(() => import('@module-auth/screens/StartScreen'));
-const SigninScreen = React.lazy(() => import('@module-auth/screens/SigninScreen'));
+const AuthScreen = React.lazy(() => import('@module-auth/screens/AuthScreen'));
 
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
@@ -59,7 +59,7 @@ export default function AuthRoute(props: PropsWithChildren) {
             ) : accountState === AccountState.reSignin ? (
                 <StartScreen />
             ) : (
-                <SigninScreen />
+                <AuthScreen />
             )}
         </React.Suspense>
     );
