@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ spacing }: any) => ({
     body: {
         '& > ul': {
             scrollBehavior: 'smooth',

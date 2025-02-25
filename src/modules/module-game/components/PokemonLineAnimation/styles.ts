@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ zIndex }) => ({
+const useStyles = makeStyles(({ zIndex }: any) => ({
     line: {
         position: 'fixed',
         width: 0,

@@ -9,7 +9,7 @@ import makeStyles from '@mui/styles/makeStyles';
 /** constants */
 import { ScreenSize } from '@module-base/constants/ScreenSize';
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
+const useStyles = makeStyles(({ spacing, palette }: any) => ({
     header: {
         flexDirection: 'row',
         alignItems: 'center',

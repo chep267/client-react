@@ -26,11 +26,17 @@ export default function NotifyProvider(props: NotifyProviderProps) {
         []
     );
 
+    const closeNotify = React.useCallback<TypeNotifyContext['method']['closeNotify']>(
+        () => setNotify((prev) => ({ ...prev, open: false })),
+        []
+    );
+
     const store = React.useMemo<TypeNotifyContext>(
         () => ({
             data: notify,
             method: {
                 toggleNotify,
+                closeNotify,
             },
         }),
         [notify]

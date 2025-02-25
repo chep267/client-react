@@ -31,6 +31,7 @@ export type TypeNotifyContext = {
     data: TypeNotify;
     method: {
         toggleNotify(notify?: TypeNotify): void;
+        closeNotify(): void;
     };
 };
 

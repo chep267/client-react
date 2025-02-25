@@ -26,5 +26,6 @@ export const NotifyContext = React.createContext<TypeNotifyContext>({
     data: defaultNotifyState,
     method: {
         toggleNotify: AppDefaultValue.emptyFunction,
+        closeNotify: AppDefaultValue.emptyFunction,
     },
 });

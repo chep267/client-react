@@ -26,8 +26,6 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
     const hookNotify = useNotify();
     const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
 
-    const closeSnackbar = React.useCallback(() => hookNotify.method.toggleNotify(), []);
-
     const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
 
     return (
@@ -37,12 +35,12 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
             style={{ top }}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
-            onClose={closeSnackbar}
+            onClose={hookNotify.method.closeNotify}
             {...props}
         >
             <Alert
                 className={classnames('w-full', { hidden: !open })}
-                onClose={close ? closeSnackbar : undefined}
+                onClose={close ? hookNotify.method.closeNotify : undefined}
                 severity={mode}
                 elevation={6}
                 variant="filled"
