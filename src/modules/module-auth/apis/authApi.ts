@@ -9,6 +9,7 @@ import { baseApi } from '@module-base/apis/baseApi';
 import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api';
 
 /** constants */
+import { ApiMethod } from '@module-base/constants/Status';
 import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 import { AppEnv } from '@module-base/constants/AppEnv';
@@ -23,7 +24,7 @@ const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<Typ
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
         return baseApi<TypeApiAuth['Signin']['Response']>({
-            method: 'post',
+            method: ApiMethod.post,
             url: AuthApiPath.signin,
             data: { email, password },
         });
@@ -35,7 +36,7 @@ const apiSignin = async (payload: TypeApiAuth['Signin']['Payload']): Promise<Typ
 const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<TypeApiAuth['SignOut']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => {
-        return baseApi<Promise<TypeApiAuth['SignOut']['Response']>>({ method: 'post', url: AuthApiPath.signOut });
+        return baseApi<Promise<TypeApiAuth['SignOut']['Response']>>({ method: ApiMethod.post, url: AuthApiPath.signOut });
     };
     await Promise.all([callApi(), delay(timer)]);
 };
@@ -43,7 +44,7 @@ const apiSignOut = async (payload: TypeApiAuth['SignOut']['Payload']): Promise<T
 const apiRestart = async (payload: TypeApiAuth['Restart']['Payload']): Promise<TypeApiAuth['Restart']['Response']> => {
     const { timer = AppTimer.pendingApi } = payload;
     const callApi = () => {
-        return baseApi<TypeApiAuth['Restart']['Response']>({ method: 'post', url: AuthApiPath.restart });
+        return baseApi<TypeApiAuth['Restart']['Response']>({ method: ApiMethod.post, url: AuthApiPath.restart });
     };
     const [res] = await Promise.all([callApi(), delay(timer)]);
     return res;
@@ -53,7 +54,7 @@ const apiRegister = async (payload: TypeApiAuth['Register']['Payload']): Promise
     const { timer = AppTimer.pendingApi, email, password } = payload;
     const callApi = () => {
         return baseApi<TypeApiAuth['Register']['Response']>({
-            method: 'post',
+            method: ApiMethod.post,
             url: AuthApiPath.register,
             data: { email, password },
         });
@@ -66,7 +67,7 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
     const { timer = AppTimer.pendingApi, email } = payload;
     const callApi = () => {
         return baseApi<TypeApiAuth['Recover']['Response']>({
-            method: 'post',
+            method: ApiMethod.post,
             url: AuthApiPath.recover,
             data: { email },
         });

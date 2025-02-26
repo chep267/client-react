@@ -21,12 +21,12 @@ const Icons: Readonly<TypeIcons> = {
 };
 
 const IconBase = React.memo(function IconBase(props: IconBaseProps) {
-    const { name, size = 24, ...iconProps } = props;
+    const { name, width, height, size = 24, ...iconProps } = props;
     const Icon = Icons[name];
 
     return (
-        <React.Suspense fallback={<Skeleton width={size} height={size} variant="circular" />}>
-            <Icon name={name} width={size} height={size} {...iconProps} />
+        <React.Suspense fallback={<Skeleton width={width || size} height={height || size} variant="circular" />}>
+            <Icon name={name} width={width || size} height={height || size} {...iconProps} />
         </React.Suspense>
     );
 });

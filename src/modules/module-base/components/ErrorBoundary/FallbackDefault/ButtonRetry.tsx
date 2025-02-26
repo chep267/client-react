@@ -37,10 +37,10 @@ export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoRel
     }, []);
 
     return (
-        <Stack className="items-center justify-center">
+        <Stack className="items-center justify-center pt-3">
             {renderContent}
             {isAutoReload ? (
-                <Typography className="text-base" fontWeight={600} color="error.main" pt={3}>
+                <Typography className="pt-3 text-base" color="error">
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.autoReload} values={{ second }} />
                 </Typography>
             ) : null}

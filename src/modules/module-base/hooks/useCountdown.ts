@@ -40,9 +40,7 @@ export const useCountdown = (props: UseCountdownProps) => {
 
     React.useEffect(() => {
         countdownRef.current = setInterval(countdownEffect, timer);
-        return () => {
-            clearInterval(countdownRef.current);
-        };
+        return onStop;
     }, [refresh]);
 
     return {

@@ -90,8 +90,10 @@ export type NestedItemProps = {
 export type MenuBaseProps = PropsWithChildren<{
     mode?: 'button' | 'icon';
     menuProps?: Omit<MenuProps, 'open'>;
-    tooltipProps?: TooltipProps;
-    iconButtonProps?: Omit<IconButtonProps, 'onClick'>;
+    tooltipProps?: Omit<TooltipProps, 'children'>;
+    iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
+    buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
+    menuChildren?: MenuProps['children'];
 }>;
 
 /** NotifyBoundary */

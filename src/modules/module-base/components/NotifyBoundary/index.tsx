@@ -39,7 +39,7 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
             {...props}
         >
             <Alert
-                className={classnames('w-full', { hidden: !open })}
+                className={classnames('w-full', { ['hidden']: !open })}
                 onClose={close ? hookNotify.method.closeNotify : undefined}
                 severity={mode}
                 elevation={6}

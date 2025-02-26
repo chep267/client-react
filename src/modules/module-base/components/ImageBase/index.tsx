@@ -28,7 +28,11 @@ export default function ImageBase(props: ImageBaseProps) {
         <>
             {isLoading ? (
                 <Skeleton
-                    className={classnames('absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full', 'image-base-loading')}
+                    className={classnames(
+                        'absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full',
+                        'image-base-loading',
+                        `${imageProps.className || ''}`
+                    )}
                     variant="rectangular"
                 />
             ) : null}

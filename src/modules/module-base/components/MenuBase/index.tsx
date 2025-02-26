@@ -6,23 +6,39 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
-
-/** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
-
-/** styles */
-import { useStyles } from './styles';
+import { styled, alpha } from '@mui/material/styles';
 
 /** types */
 import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
 
+const StyledMenu = styled(Menu)(({ theme }) => ({
+    '& .MuiPaper-root': {
+        '&::-webkit-scrollbar': {
+            width: '7px',
+            height: '7px',
+        },
+        '&::-webkit-scrollbar-track': {
+            borderRadius: '10px',
+            backgroundColor: alpha(theme.palette.common.black, 0.1),
+        },
+        '&::-webkit-scrollbar-thumb': {
+            borderRadius: '10px',
+            backgroundColor: alpha(theme.palette.common.black, 0.2),
+        },
+        '&::-webkit-scrollbar-thumb:hover': {
+            backgroundColor: alpha(theme.palette.common.black, 0.4),
+        },
+        '&::-webkit-scrollbar-thumb:active': {
+            backgroundColor: alpha(theme.palette.common.black, 0.9),
+        },
+    },
+}));
+
 const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
-    const { iconButtonProps, tooltipProps, menuProps } = props;
-    const classes = useStyles();
+    const { buttonChildren, menuChildren, iconButtonProps, tooltipProps, menuProps } = props;
 
     const menuId = React.useId();
     const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
@@ -30,39 +46,31 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
 
     const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
 
-    const closeMenu = React.useCallback(() => setMenuElem(null), []);
+    const closeMenu: NonNullable<MenuBaseProps['menuProps']>['onClose'] = (event, reason) => {
+        setMenuElem(null);
+        menuProps?.onClose?.(event, reason);
+    };
 
-    const { children: tooltipChildren, title, ...tooltipOther } = tooltipProps ?? AppDefaultValue.emptyObject;
-    const { children: iconButtonChildren, ...iconButtonOther } = iconButtonProps ?? AppDefaultValue.emptyObject;
-    const { children: menuChildren, ...menuOther } = menuProps ?? AppDefaultValue.emptyObject;
+    const renderButton = () => {
+        const Button = () => {
+            return (
+                <IconButton {...iconButtonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
+                    {buttonChildren}
+                </IconButton>
+            );
+        };
+        if (!tooltipProps) {
+            return Button();
+        }
+        return <Tooltip {...tooltipProps}>{Button()}</Tooltip>;
+    };
 
     return (
         <div>
-            <Tooltip title={title} {...tooltipOther}>
-                <IconButton
-                    {...iconButtonOther}
-                    id={`button-menu-${menuId}`}
-                    aria-controls={open ? `menu-${menuId}` : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? 'true' : undefined}
-                    onClick={openMenu}
-                >
-                    {tooltipChildren || iconButtonChildren}
-                </IconButton>
-            </Tooltip>
-            <Menu
-                {...menuOther}
-                id={`menu-${menuId}`}
-                className={classnames(classes.menu, menuProps?.className)}
-                anchorEl={menuElem}
-                open={open}
-                onClose={closeMenu}
-                MenuListProps={{
-                    'aria-labelledby': `button-menu-${menuId}`,
-                }}
-            >
+            {renderButton()}
+            <StyledMenu {...menuProps} id={`menu-${menuId}`} anchorEl={menuElem} open={open} onClose={closeMenu}>
                 {menuChildren}
-            </Menu>
+            </StyledMenu>
         </div>
     );
 });

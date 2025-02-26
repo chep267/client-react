@@ -16,6 +16,7 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** types */
 import type { InputSearchProps, InputChangeEvent } from '@module-base/types';
+import classnames from 'classnames';
 
 const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
     const {
@@ -24,7 +25,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         onLoading,
         type = 'text',
         spellCheck = false,
-        size,
+        size = 'small',
         ...inputProps
     } = props;
 
@@ -73,7 +74,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         return (
             <InputAdornment
                 position="end"
-                style={{ visibility: value ? 'visible' : 'hidden', cursor: 'pointer' }}
+                className={classnames('cursor-pointer', { ['visible']: value }, { ['invisible']: !value })}
                 onClick={onClear}
             >
                 <ClearIcon color="primary" />
@@ -88,7 +89,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
             spellCheck={spellCheck}
             value={value}
             onChange={onChange}
-            size={size || 'small'}
+            size={size}
             slotProps={{
                 htmlInput: {
                     startAdornment,

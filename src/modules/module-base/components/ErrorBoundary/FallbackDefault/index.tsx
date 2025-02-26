@@ -9,6 +9,7 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import classnames from 'classnames';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
@@ -30,15 +31,15 @@ export default function FallbackDefault(props: FallbackDefaultProps) {
         <Stack className="h-screen w-screen items-center justify-center overflow-hidden">
             <Stack className="z-10 items-center justify-center">
                 <IconBase name="error" width={237} height={213} />
-                <Typography className="text-3xl md:text-5xl" fontWeight={600} color="error.main">
+                <Typography className={classnames('font-medium', 'text-3xl', 'md:text-5xl')} color="error">
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.title} />
                 </Typography>
-                <Typography className="text-xl md:text-2xl" fontWeight={600} py={2} color="error.main">
+                <Typography className={classnames('font-medium', 'text-xl', 'md:text-2xl')} color="error">
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.content} />
                 </Typography>
                 <ButtonRetry isAutoReload={isAutoReload} />
             </Stack>
-            <React.Suspense fallback={null}>
+            <React.Suspense>
                 <Particle />
             </React.Suspense>
         </Stack>

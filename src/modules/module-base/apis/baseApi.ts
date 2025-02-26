@@ -35,7 +35,13 @@ const axiosClient = axios.create(axiosDefaultConfig);
 /** for file api */
 const axiosDefaultFormDataConfig = {
     baseURL: AppEnv.apiHost,
-    headers: { 'Content-Type': 'multipart/form-data' },
+    headers: {
+        'Content-Type': 'multipart/form-data',
+        'Access-Control-Allow-Credentials': true,
+        lang: 'en',
+    },
+    timeout: AppTimer.timeoutApi,
+    withCredentials: true,
 };
 const axiosClientCDN = axios.create(axiosDefaultFormDataConfig);
 
