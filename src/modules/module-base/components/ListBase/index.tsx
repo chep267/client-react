@@ -17,7 +17,17 @@ import ListLoading from './ListLoading';
 import type { ListBaseProps } from '@module-base/types';
 
 const ListBase = React.memo(function ListBase<T>(props: ListBaseProps<T>) {
-    const { listRef, data, className, containerClassName, loading, emptyText, renderItem, ...listProps } = props;
+    const { ref, data, className, containerClassName, loading, emptyText, renderItem, ...listProps } = props;
+
+    const listRef = React.useRef<HTMLUListElement | null>(null);
+
+    React.useImperativeHandle(ref, () => {
+        return {
+            scrollTop: () => {
+                listRef.current?.scrollTo({ top: 0 });
+            },
+        };
+    }, []);
 
     const renderList = React.useMemo(() => {
         return data?.map((item, index) => renderItem?.(item, index));

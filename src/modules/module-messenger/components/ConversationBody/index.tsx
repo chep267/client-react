@@ -25,14 +25,12 @@ export default function ConversationBody() {
     const classes = useStyles();
     const { tid = '' } = useParams();
     const LIST_MESSAGE = useListenListMessage({ tid });
-    const listRef = React.useRef<HTMLUListElement>(null);
+    const listRef = React.useRef<any>(null);
 
     React.useEffect(() => {
         if (listRef.current) {
             setTimeout(() => {
-                if (listRef.current) {
-                    listRef.current.scrollTop = listRef.current.scrollHeight;
-                }
+                listRef.current?.scrollTop();
             }, 200);
         }
     }, [LIST_MESSAGE.isFetching, LIST_MESSAGE.data.itemIds]);
@@ -51,7 +49,7 @@ export default function ConversationBody() {
 
     return (
         <ListBase
-            listRef={listRef}
+            ref={listRef}
             className={classnames(classes.body, 'messenger_left_thread_list_default')}
             loading={LIST_MESSAGE.isFetching}
             data={LIST_MESSAGE.data.itemIds}

@@ -16,6 +16,7 @@ import type {
     UIEvent,
     ElementType,
     ErrorInfo,
+    Ref,
 } from 'react';
 
 import type { TextFieldProps } from '@mui/material/TextField';
@@ -66,8 +67,10 @@ export type InputSearchProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
 };
 
 /** ListBase */
-export interface ListBaseProps<T = unknown> extends ListProps {
-    listRef?: ListProps['ref'];
+export interface ListBaseProps<T = unknown> extends Omit<ListProps, 'ref'> {
+    ref: Ref<{
+        scrollTop(): void;
+    }>;
     containerClassName?: string;
     loading?: boolean;
     empty?: boolean;
