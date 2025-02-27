@@ -92,7 +92,7 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
         {
             id: 'Theme',
             title: <FormattedMessage id={ThemeLanguage.component.label.router} />,
-            icon: <PaletteIcon color="primary" />,
+            icon: <PaletteIcon />,
             divide: 'top-bottom',
             subMenu: [
                 {
@@ -112,19 +112,19 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
         {
             id: 'Language',
             title: <FormattedMessage id={LangLanguage.component.label.router} />,
-            icon: <TranslateIcon color="primary" />,
+            icon: <TranslateIcon />,
             divide: 'bottom',
             subMenu: [
                 {
                     id: 'Language-Vi',
                     title: <FormattedMessage id={LangLanguage.component.label.vi} />,
-                    icon: <span className="scale-125">🇻🇳</span>,
+                    icon: <span className="scale-125 text-black">🇻🇳</span>,
                     onClick: () => hookLanguage.method.setLanguage(localeObject.vi),
                 },
                 {
                     id: 'Language-En',
                     title: <FormattedMessage id={LangLanguage.component.label.en} />,
-                    icon: <span className="scale-125">🇬🇧</span>,
+                    icon: <span className="scale-125 text-black">🇬🇧</span>,
                     onClick: () => hookLanguage.method.setLanguage(localeObject.en),
                 },
             ],
@@ -163,11 +163,11 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
     }, [hookSignOut.isPending, hookSignOut.isAuthentication, display, isOnlyMonth]);
 
     const renderMenuBase = React.useMemo(() => {
-        return menuBase.map((item) => <NestedItem key={item?.id} {...item} />);
+        return menuBase.map((item) => <NestedItem key={item.id} {...item} />);
     }, []);
 
     const renderMenuAuth = React.useMemo(() => {
-        return menuAuth.map((item) => <NestedItem key={item?.id} {...item} />);
+        return menuAuth.map((item) => <NestedItem key={item.id} {...item} />);
     }, [menuAuth]);
 
     return (

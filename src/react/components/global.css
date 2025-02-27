@@ -20,6 +20,26 @@
     --breakpoint-laptop: 64rem; /* 1024px */
     --breakpoint-desktop: 80rem; /* 1280px */
     --color-cam: #ff7f50;
+
+    --animate-loading-anim: loadingAnim 2s linear infinite;
+    --animate-start-anim: startAnim 2s linear infinite;
+
+    @keyframes loadingAnim {
+        0% {
+            transform: rotate(45deg);
+        }
+        100% {
+            transform: rotate(405deg);
+        }
+    }
+    @keyframes startAnim {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 }
 
 @layer base {
@@ -58,3 +78,35 @@
     }
 }
 
+@layer utilities {
+    /* Light theme */
+    /*.scrollbar-custom::-webkit-scrollbar {*/
+    /*    width: 10px;*/
+    /*    height: 10px;*/
+    /*}*/
+    .scrollbar-custom::-webkit-scrollbar-track {
+        background: #e5e7eb; /* bg-gray-200 */
+        border-radius: 10px;
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: #6b7280; /* bg-gray-500 */
+        border-radius: 10px;
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        background: #4b5563; /* bg-gray-600 */
+    }
+    .scrollbar-custom::-webkit-scrollbar-thumb:active {
+        background: #4b5563; /* bg-gray-600 */
+    }
+
+    /* Dark theme */
+    .dark .scrollbar-custom::-webkit-scrollbar-track {
+        background: #1e293b; /* bg-gray-800 */
+    }
+    .dark .scrollbar-custom::-webkit-scrollbar-thumb {
+        background: #475569; /* bg-gray-600 */
+    }
+    .dark .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+        background: #64748b; /* bg-gray-400 */
+    }
+}

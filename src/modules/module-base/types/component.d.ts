@@ -62,12 +62,13 @@ export type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
 export type InputSearchProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
     timer?: number;
     onLoading?(loading: boolean): void;
-    onChangeValue?(searchKey: string): void;
+    onChangeValue?(value: string): void;
 };
 
 /** ListBase */
 export interface ListBaseProps<T = unknown> extends ListProps {
     listRef?: ListProps['ref'];
+    containerClassName?: string;
     loading?: boolean;
     empty?: boolean;
     emptyText?: string;
@@ -93,7 +94,7 @@ export type MenuBaseProps = PropsWithChildren<{
     tooltipProps?: Omit<TooltipProps, 'children'>;
     iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
     buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
-    menuChildren?: MenuProps['children'];
+    menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
 }>;
 
 /** NotifyBoundary */

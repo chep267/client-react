@@ -30,7 +30,7 @@ const AppItem = React.memo(function AppItem(props: AppItemProps) {
 
     const renderItem = React.useMemo(() => {
         return (
-            <ListItemButton onClick={item.onClick} className="!min-h-12 !rounded-lg !px-3 !py-0">
+            <ListItemButton onClick={item.onClick} className="min-h-12 rounded-lg px-3 py-0">
                 <ListItemIcon className="min-w-10">{item.icon}</ListItemIcon>
                 <ListItemText primary={item.name} className="overflow-hidden text-nowrap text-ellipsis" />
             </ListItemButton>
@@ -38,7 +38,7 @@ const AppItem = React.memo(function AppItem(props: AppItemProps) {
     }, [item]);
 
     return (
-        <ListItem className="w-full !p-1" sx={isSelected ? itemSelectedStyle : undefined}>
+        <ListItem className="w-full p-1" sx={isSelected ? itemSelectedStyle : undefined}>
             <Tooltip title={item.name} placement="right" disableHoverListener={!hasTooltip}>
                 {renderItem}
             </Tooltip>

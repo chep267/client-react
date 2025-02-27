@@ -43,10 +43,10 @@ const AppSider = React.memo(function AppSider() {
         <Drawer
             variant="permanent"
             open={siderState !== SiderState.hidden}
-            className="!relative !h-full transition-[width] duration-500"
+            className="relative h-full transition-[width] duration-500"
             sx={siderStyles[siderState]}
             PaperProps={{
-                className: '!top-16 !left-0 transition-[width] duration-500 !z-10',
+                className: 'top-16 left-0 transition-[width] duration-500 z-10',
                 sx: siderStyles[siderState],
             }}
         >
@@ -63,7 +63,7 @@ const AppSider = React.memo(function AppSider() {
                 placement="right"
             >
                 <div className="w-full">
-                    <Button className="w-full !min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
+                    <Button className="w-full min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
                         {siderState === SiderState.expand ? (
                             <KeyboardDoubleArrowLeftIcon />
                         ) : (

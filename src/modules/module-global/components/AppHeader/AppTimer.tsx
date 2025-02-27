@@ -19,11 +19,11 @@ export default function AppTimer() {
 
     return (
         <Box className={classnames('items-center gap-2', 'hidden', 'md:flex')}>
-            <Box className={classnames('h-2 w-2 rounded-full', 'dark:!bg-white')} bgcolor="primary.main" />
+            <Box className={classnames('h-2 w-2 rounded-full', 'dark:bg-white')} bgcolor="primary.main" />
             <Typography variant="body2" fontWeight={400} textTransform="capitalize">
                 {dayjs().locale(locale).format('dddd, DD/MM/YYYY')}
             </Typography>
-            <Box className={classnames('h-2 w-2 rounded-full', 'dark:!bg-white')} bgcolor="primary.main" />
+            <Box className={classnames('h-2 w-2 rounded-full', 'dark:bg-white')} bgcolor="primary.main" />
         </Box>
     );
 }

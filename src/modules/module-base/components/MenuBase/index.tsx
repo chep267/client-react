@@ -9,33 +9,9 @@ import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
-import { styled, alpha } from '@mui/material/styles';
 
 /** types */
 import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
-
-const StyledMenu = styled(Menu)(({ theme }) => ({
-    '& .MuiPaper-root': {
-        '&::-webkit-scrollbar': {
-            width: '7px',
-            height: '7px',
-        },
-        '&::-webkit-scrollbar-track': {
-            borderRadius: '10px',
-            backgroundColor: alpha(theme.palette.common.black, 0.1),
-        },
-        '&::-webkit-scrollbar-thumb': {
-            borderRadius: '10px',
-            backgroundColor: alpha(theme.palette.common.black, 0.2),
-        },
-        '&::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: alpha(theme.palette.common.black, 0.4),
-        },
-        '&::-webkit-scrollbar-thumb:active': {
-            backgroundColor: alpha(theme.palette.common.black, 0.9),
-        },
-    },
-}));
 
 const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
     const { buttonChildren, menuChildren, iconButtonProps, tooltipProps, menuProps } = props;
@@ -46,13 +22,39 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
 
     const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
 
-    const closeMenu: NonNullable<MenuBaseProps['menuProps']>['onClose'] = (event, reason) => {
+    const closeMenu = React.useCallback<NonNullable<NonNullable<MenuBaseProps['menuProps']>['onClose']>>((event, reason) => {
         setMenuElem(null);
         menuProps?.onClose?.(event, reason);
-    };
+    }, []);
 
-    const renderButton = () => {
-        const Button = () => {
+    // const styleMenuBase = React.useMemo<SxProps<Theme>>(
+    //     () => ({
+    //         '& .MuiPaper-root': {
+    //             '&::-webkit-scrollbar': {
+    //                 width: '7px',
+    //                 height: '7px',
+    //             },
+    //             '&::-webkit-scrollbar-track': {
+    //                 borderRadius: '10px',
+    //                 backgroundColor: (theme) => alpha(theme.palette.common.black, 0.1),
+    //             },
+    //             '&::-webkit-scrollbar-thumb': {
+    //                 borderRadius: '10px',
+    //                 backgroundColor: (theme) => alpha(theme.palette.common.black, 0.2),
+    //                 '&:hover': {
+    //                     backgroundColor: (theme) => alpha(theme.palette.common.black, 0.4),
+    //                 },
+    //                 '&:active': {
+    //                     backgroundColor: (theme) => alpha(theme.palette.common.black, 0.9),
+    //                 },
+    //             },
+    //         },
+    //     }),
+    //     []
+    // );
+
+    const Button = React.useMemo(() => {
+        const renderContent = () => {
             return (
                 <IconButton {...iconButtonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
                     {buttonChildren}
@@ -60,17 +62,17 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
             );
         };
         if (!tooltipProps) {
-            return Button();
+            return renderContent();
         }
-        return <Tooltip {...tooltipProps}>{Button()}</Tooltip>;
-    };
+        return <Tooltip {...tooltipProps}>{renderContent()}</Tooltip>;
+    }, [tooltipProps, iconButtonProps]);
 
     return (
         <div>
-            {renderButton()}
-            <StyledMenu {...menuProps} id={`menu-${menuId}`} anchorEl={menuElem} open={open} onClose={closeMenu}>
-                {menuChildren}
-            </StyledMenu>
+            {Button}
+            <Menu {...menuProps} id={`menu-${menuId}`} anchorEl={menuElem} open={open} onClose={closeMenu}>
+                {typeof menuChildren === 'function' ? menuChildren({ closeMenu: () => setMenuElem(null) }) : menuChildren}
+            </Menu>
         </div>
     );
 });

@@ -10,22 +10,22 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import classnames from 'classnames';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
 
 /** types */
 import type { InputSearchProps, InputChangeEvent } from '@module-base/types';
-import classnames from 'classnames';
 
 const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
     const {
+        type = 'text',
+        size = 'small',
+        spellCheck = false,
         timer = AppTimer.searching,
         onChangeValue,
         onLoading,
-        type = 'text',
-        spellCheck = false,
-        size = 'small',
         ...inputProps
     } = props;
 
@@ -33,12 +33,9 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
     const prevValue = React.useRef('');
     const [value, setValue] = React.useState('');
 
-    const onChange = React.useCallback((event: InputChangeEvent) => setValue(event?.target?.value || ''), []);
-
     React.useEffect(() => {
         let timeout: NodeJS.Timeout;
         const nextValue = value.trim();
-
         if (nextValue !== prevValue.current) {
             if (timer > 0) {
                 /** xử lý loading khi bắt đầu nhập text */
@@ -56,6 +53,8 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
 
         return () => clearTimeout(timeout);
     }, [value]);
+
+    const onChange = React.useCallback((event: InputChangeEvent) => setValue(event?.target?.value || ''), []);
 
     const onClear = React.useCallback(() => {
         setValue('');
@@ -86,16 +85,16 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
         <TextField
             inputRef={inputRef}
             type={type}
+            size={size}
             spellCheck={spellCheck}
             value={value}
-            onChange={onChange}
-            size={size}
             slotProps={{
                 htmlInput: {
                     startAdornment,
                     endAdornment,
                 },
             }}
+            onChange={onChange}
             {...inputProps}
         />
     );

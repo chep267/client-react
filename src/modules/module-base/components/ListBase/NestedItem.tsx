@@ -16,17 +16,14 @@ import ListItemText from '@mui/material/ListItemText';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-/** styles */
-import { useStyles } from './styles';
-
 /** types */
+import type { SxProps, Theme } from '@mui/material/styles';
 import type { ElementClickEvent, NestedItemProps } from '@module-base/types';
 
 export default function NestedItem(props: NestedItemProps) {
     const { subIndex = 1, divide, loading, onClick, title, icon = ' ', subMenu } = props;
-    const classes = useStyles();
-    const hasSub = (subMenu?.length || 0) > 0;
 
+    const hasSub = (subMenu?.length || 0) > 0;
     const [open, setOpen] = React.useState(false);
 
     const toggleOpen = React.useCallback((event: ElementClickEvent<HTMLDivElement>) => {
@@ -39,7 +36,15 @@ export default function NestedItem(props: NestedItemProps) {
         });
     }, []);
 
-    const styleIcon = React.useMemo(() => ({ marginLeft: subIndex * 16 }), [subIndex]);
+    const styleIcon = React.useMemo<SxProps<Theme>>(
+        () => ({
+            '.MuiSvgIcon-root': {
+                color: open ? 'primary.main' : undefined,
+            },
+            marginLeft: `${6 + (subIndex - 1) * 24}px`,
+        }),
+        [subIndex, open]
+    );
 
     const renderCollapseList = React.useMemo(() => {
         return (
@@ -53,16 +58,18 @@ export default function NestedItem(props: NestedItemProps) {
         <>
             {divide?.includes('top') ? <Divider /> : null}
             <ListItemButton onClick={toggleOpen}>
-                <ListItemIcon style={styleIcon}>{icon}</ListItemIcon>
+                <ListItemIcon className="mr-5 min-w-6" sx={styleIcon}>
+                    {icon}
+                </ListItemIcon>
                 {loading ? (
-                    <CircularProgress size={26} className={classes.loadingIcon} />
+                    <CircularProgress size={20} />
                 ) : (
-                    <ListItemText primary={title} primaryTypographyProps={{ color: open ? 'primary' : undefined }} />
+                    <ListItemText primary={title} slotProps={{ primary: { color: open ? 'primary' : undefined } }} />
                 )}
                 {!hasSub ? null : open ? (
-                    <ExpandLessIcon className={classes.menuIcon} color="primary" />
+                    <ExpandLessIcon className="ml-8" color="primary" />
                 ) : (
-                    <ExpandMoreIcon className={classes.menuIcon} />
+                    <ExpandMoreIcon className="ml-8" />
                 )}
             </ListItemButton>
             {hasSub ? (

@@ -6,37 +6,29 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
 import Skeleton from '@mui/material/Skeleton';
+import classnames from 'classnames';
 
 /** types */
 import type { ImageBaseProps, ReactEventHandler } from '@module-base/types';
 
-export default function ImageBase(props: ImageBaseProps) {
-    const { alt = '', loading, onLoad, ...imageProps } = props;
+const ImageBase = React.memo(function ImageBase(props: ImageBaseProps) {
+    const { alt = '', loading, onLoad, className, ...imageProps } = props;
     const [isLoading, setLoading] = React.useState(true);
 
-    const onLoadImage = React.useCallback<ReactEventHandler<HTMLImageElement>>(
-        (event) => {
-            onLoad?.(event);
-            setLoading(false);
-        },
-        [onLoad]
-    );
+    const onLoadImage = React.useCallback<ReactEventHandler<HTMLImageElement>>((event) => {
+        onLoad?.(event);
+        setLoading(false);
+    }, []);
 
     return (
-        <>
+        <div className={classnames('relative', `${className || ''}`)}>
             {isLoading ? (
-                <Skeleton
-                    className={classnames(
-                        'absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full',
-                        'image-base-loading',
-                        `${imageProps.className || ''}`
-                    )}
-                    variant="rectangular"
-                />
+                <Skeleton className="absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full" variant="rectangular" />
             ) : null}
-            <img alt={alt} onLoad={onLoadImage} loading={loading || 'lazy'} {...imageProps} />
-        </>
+            <img alt={alt} className={className} loading={loading || 'lazy'} onLoad={onLoadImage} {...imageProps} />
+        </div>
     );
-}
+});
+
+export default ImageBase;

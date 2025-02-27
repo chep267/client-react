@@ -19,7 +19,7 @@ import { ScreenSize } from '@module-base/constants/ScreenSize';
 import AppInfo from './AppInfo';
 import AppTimer from './AppTimer';
 import AppButtonDev from './AppButtonDev';
-import ButtonSetting from './ButtonSetting/index';
+import ButtonSetting from './ButtonSetting';
 
 const AppHeader = React.memo(function AppHeader() {
     const appbarStyle = React.useRef({ height: ScreenSize.HeaderHeight }).current;
@@ -27,7 +27,7 @@ const AppHeader = React.memo(function AppHeader() {
     return (
         <AppBar position="fixed">
             <Toolbar
-                className={classnames('flex w-full flex-row items-center justify-between px-6 py-0', 'dark:text-white')}
+                className={classnames('flex w-full flex-row items-center justify-between px-4 py-0', 'dark:text-white')}
                 sx={appbarStyle}
             >
                 <Box className="flex items-center gap-5">

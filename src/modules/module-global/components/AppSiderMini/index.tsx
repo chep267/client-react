@@ -68,7 +68,7 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar
             position="sticky"
-            className={classnames('z-10', { ['!hidden']: hookSider.data.siderState !== SiderState.hidden })}
+            className={classnames('z-10', { ['hidden']: hookSider.data.siderState !== SiderState.hidden })}
             sx={appbarStyles}
         >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">

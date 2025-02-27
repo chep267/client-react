@@ -6,13 +6,17 @@
 
 /** libs */
 import Tooltip from '@mui/material/Tooltip';
+import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
+
+/** constants */
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** utils */
 import { useNotify } from '@module-base/hooks/useNotify';
 
 export default function AppButtonDev(props: any) {
-    const { tooltip, icon } = props;
+    const { icon } = props;
     const hookNotify = useNotify();
 
     const onDev = () => {
@@ -20,9 +24,9 @@ export default function AppButtonDev(props: any) {
     };
 
     return (
-        <Tooltip title={tooltip}>
+        <Tooltip title={<FormattedMessage id={BaseLanguage.component.label.develop} />}>
             <Button
-                className="m-0 h-10 w-10 !min-w-10 !rounded-full !border-0 p-0 hover:!border"
+                className="m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 hover:border"
                 variant="outlined"
                 onClick={onDev}
             >

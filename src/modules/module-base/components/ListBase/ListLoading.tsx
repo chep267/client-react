@@ -10,22 +10,28 @@ import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import classnames from 'classnames';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
-
-/** styles */
-import { useStyles } from './styles';
 
 /** types */
 import type { ListLoadingProps } from '@module-base/types';
 
 const ListLoading = React.memo(function ListLoading(props: ListLoadingProps) {
     const { loading, empty, emptyText } = props;
-    const classes = useStyles();
 
     return (
-        <Stack className={classes.listLoading} display={loading || empty ? 'flex' : 'none'}>
+        <Stack
+            className={classnames(
+                'absolute top-0 right-0 bottom-0 left-0 z-10 items-center justify-center',
+                'bg-gray-800/50',
+                'dark:bg-gray-800/80',
+                {
+                    ['hidden']: !(loading || empty),
+                }
+            )}
+        >
             {loading ? (
                 <CircularProgress color="primary" />
             ) : (
