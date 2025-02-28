@@ -6,10 +6,10 @@
 
 /** libs */
 import * as React from 'react';
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import classnames from 'classnames';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';

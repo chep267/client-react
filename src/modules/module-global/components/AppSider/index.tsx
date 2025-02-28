@@ -32,36 +32,50 @@ const AppSider = React.memo(function AppSider() {
         method: { toggleSider },
     } = hookSider;
 
-    const siderStyles = React.useRef({
-        [SiderState.hidden]: { width: 0, display: 'none' },
-        [SiderState.expand]: { width: ScreenSize.AppBarExpandWidth },
-        [SiderState.collapse]: { width: ScreenSize.AppBarCollapseWidth },
-        [SiderState.force]: { width: ScreenSize.AppBarCollapseWidth },
-    }).current;
+    const siderStyles = React.useMemo(
+        () => ({
+            drawer: {
+                [SiderState.hidden]: { width: 0, display: 'none' },
+                [SiderState.expand]: { width: ScreenSize.AppBarExpandWidth },
+                [SiderState.collapse]: { width: ScreenSize.AppBarCollapseWidth },
+                [SiderState.force]: { width: ScreenSize.AppBarCollapseWidth },
+            },
+            paper: {
+                [SiderState.hidden]: { width: 0, display: 'none' },
+                [SiderState.expand]: {
+                    width: ScreenSize.AppBarExpandWidth,
+                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
+                    top: `${ScreenSize.HeaderHeight}px !important`,
+                },
+                [SiderState.collapse]: {
+                    width: ScreenSize.AppBarCollapseWidth,
+                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
+                    top: `${ScreenSize.HeaderHeight}px !important`,
+                },
+                [SiderState.force]: {
+                    width: ScreenSize.AppBarCollapseWidth,
+                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
+                    top: `${ScreenSize.HeaderHeight}px !important`,
+                },
+            },
+        }),
+        []
+    );
 
+    const tooltipId =
+        siderState === SiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
     return (
         <Drawer
             variant="permanent"
             open={siderState !== SiderState.hidden}
-            className="relative h-full transition-[width] duration-500"
-            sx={siderStyles[siderState]}
+            className="relative h-full overflow-x-hidden transition-[width] duration-500"
+            sx={siderStyles.drawer[siderState]}
             PaperProps={{
-                className: 'top-16 left-0 transition-[width] duration-500 z-10',
-                sx: siderStyles[siderState],
+                className: 'left-0 transition-[width] duration-500 z-10 overflow-x-hidden',
+                sx: siderStyles.paper[siderState],
             }}
         >
-            <Tooltip
-                title={
-                    <FormattedMessage
-                        id={
-                            GlobalLanguage.component.label[
-                                siderState === SiderState.expand ? SiderState.collapse : SiderState.expand
-                            ]
-                        }
-                    />
-                }
-                placement="right"
-            >
+            <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
                 <div className="w-full">
                     <Button className="w-full min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
                         {siderState === SiderState.expand ? (

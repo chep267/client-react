@@ -4,13 +4,55 @@
  *
  */
 
+/** libs */
+import Chance from 'chance';
+
+/** components */
+import VirtualTable from '@module-base/components/VirtualTable';
+import { VirtualTableProps } from '@module-base/types';
+
 export default function TestScreen() {
-    return (
-        <div className="flex h-full w-full flex-col" style={{ border: '1px solid red' }}>
-            Test
-            {Array.from({ length: 20 }).map((_i, key) => {
-                return <div key={key} className="mt-10 h-20 w-full bg-amber-600" />;
-            })}
-        </div>
-    );
+    const chance = new Chance();
+    const columns: VirtualTableProps['columns'] = [
+        {
+            children: 'First Name',
+            dataKey: 'firstName',
+            hasSort: true,
+        },
+        {
+            children: 'Last Name',
+            dataKey: 'lastName',
+            hasSort: true,
+        },
+        {
+            children: 'Age',
+            dataKey: 'age',
+            hasSort: true,
+        },
+        {
+            children: 'State',
+            dataKey: 'state',
+            hasSort: true,
+        },
+        {
+            children: 'Phone Number',
+            dataKey: 'phone',
+            hasSort: true,
+        },
+    ];
+
+    function createData(id: string): any {
+        return {
+            id,
+            firstName: chance.first(),
+            lastName: chance.last(),
+            age: chance.age(),
+            phone: chance.phone(),
+            state: chance.state({ full: true }),
+        };
+    }
+
+    const rows: any[] = Array.from({ length: 200 }, (_, index) => createData(`${index}`));
+
+    return <VirtualTable data={rows} columns={columns} hasSelected={true} />;
 }

@@ -19,9 +19,9 @@ import type { IParticlesProps } from '@tsparticles/react';
 const Particle = React.memo(function Particle(props: IParticlesProps) {
     const { options: optionsBase } = props;
 
-    const hookThemeLib = useTheme();
     const id = React.useId();
-    const { mode } = hookThemeLib.palette;
+    const hookThemeMui = useTheme();
+    const { mode } = hookThemeMui.palette;
 
     const [init, setInit] = React.useState(false);
 

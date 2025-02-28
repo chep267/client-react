@@ -84,6 +84,12 @@
     /*    width: 10px;*/
     /*    height: 10px;*/
     /*}*/
+    .scrollbar-hidden {
+        scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+    }
+    .scrollbar-hidden::-webkit-scrollbar-track {
+        display: none; /* Ẩn thanh cuộn trên Chrome, Edge, Safari */
+    }
     .scrollbar-custom::-webkit-scrollbar-track {
         background: #e5e7eb; /* bg-gray-200 */
         border-radius: 10px;

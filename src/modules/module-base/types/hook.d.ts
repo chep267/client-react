@@ -23,7 +23,6 @@ export type TypeNotify = {
     message?: ReactNode;
     messageIntl?: string;
     mode?: AlertColor;
-    close?: boolean;
     duration?: number;
     top?: number;
 };

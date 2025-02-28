@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type {
+import {
     FunctionComponent,
     PropsWithChildren,
     LazyExoticComponent,
@@ -17,6 +17,7 @@ import type {
     ElementType,
     ErrorInfo,
     Ref,
+    ChangeEvent,
 } from 'react';
 
 import type { TextFieldProps } from '@mui/material/TextField';
@@ -60,15 +61,15 @@ export type TypeIcons = Readonly<Record<TypeIconBase, LazyExoticComponent<(props
 export type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
 
 /** InputSearch */
-export type InputSearchProps = Omit<TextFieldProps, 'value' | 'onChange'> & {
+export interface InputSearchProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
     timer?: number;
     onLoading?(loading: boolean): void;
     onChangeValue?(value: string): void;
-};
+}
 
 /** ListBase */
-export interface ListBaseProps<T = unknown> extends Omit<ListProps, 'ref'> {
-    ref: Ref<{
+export interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
+    ref?: Ref<{
         scrollTop(): void;
     }>;
     containerClassName?: string;
@@ -78,8 +79,10 @@ export interface ListBaseProps<T = unknown> extends Omit<ListProps, 'ref'> {
     data?: T[];
     renderItem?(item: T, index: number): ReactNode;
 }
-export type ListLoadingProps = Pick<ListBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
-export type NestedItemProps = {
+export interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
+    empty?: boolean;
+}
+export interface NestedItemProps {
     id: string;
     icon?: ReactNode;
     loading?: boolean;
@@ -87,18 +90,18 @@ export type NestedItemProps = {
     divide?: 'top' | 'bottom' | 'top-bottom';
     subMenu?: NestedItemProps[];
     subIndex?: number;
-    onClick?(event: ElementClickEvent<HTMLDivElement>, isExpand?: boolean): void;
-};
+    onClick?(event: ElementClickEvent<HTMLDivElement>): void;
+}
 
 /** MenuBase */
-export type MenuBaseProps = PropsWithChildren<{
+export interface MenuBaseProps {
     mode?: 'button' | 'icon';
     menuProps?: Omit<MenuProps, 'open'>;
     tooltipProps?: Omit<TooltipProps, 'children'>;
     iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
     buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
     menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
-}>;
+}
 
 /** NotifyBoundary */
 export type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
@@ -109,8 +112,8 @@ export type PasswordFieldProps = TextFieldProps & {
 };
 
 /** TableBase */
-type OrderType = 'asc' | 'desc';
-export interface TableBaseProps<T = unknown> {
+export type TypeOrderType = 'asc' | 'desc';
+export interface TableBaseProps<T = any> {
     className?: string;
     sx?: any;
 
@@ -127,7 +130,7 @@ export interface TableBaseProps<T = unknown> {
         isSort?: boolean;
         render(item: T, indexRow: number, indexCell: number): ReactNode;
     }[];
-    orderType?: OrderType;
+    orderType?: TypeOrderType;
     orderBy?: string;
     onRequestSort?(property: string): void;
 
@@ -140,6 +143,37 @@ export type TableHeaderProps = Pick<
     'rows' | 'orderBy' | 'orderType' | 'onRequestSort' | 'tableRowProps' | 'tableCellProps'
 >;
 export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'>;
+
+export interface VirtualTableProps<T = any> {
+    className?: string;
+    headerClassName?: string;
+    data?: T[];
+    columns?: (TableCellProps & {
+        dataKey: string;
+        className?: string;
+        hasSort?: boolean;
+        render?(data: { item: T; indexRow: number; indexCell: number; dataKey: string; value: any }): ReactNode;
+    })[];
+
+    orderType?: TypeOrderType;
+    orderBy?: string;
+    hasSelected?: boolean;
+    onChangeOrderType?(type: TypeOrderType): void;
+    onChangeOrderBy?(key: string): void;
+}
+export interface VirtualTableHeaderProps
+    extends Pick<VirtualTableProps, 'headerClassName' | 'columns' | 'orderType' | 'orderBy' | 'hasSelected'> {
+    totalItems?: number;
+    totalSelectedItems?: number;
+    onRequestSort?(key: string): void;
+    onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
+}
+export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasSelected'> {
+    indexRow: number;
+    item: T;
+    selectedIds?: string[];
+    onSelect?(id?: string): void;
+}
 
 /** SelectBase */
 export interface SelectBaseProps extends SelectProps {

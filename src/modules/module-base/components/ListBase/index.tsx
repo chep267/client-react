@@ -16,7 +16,7 @@ import ListLoading from './ListLoading';
 /** types */
 import type { ListBaseProps } from '@module-base/types';
 
-const ListBase = React.memo(function ListBase<T>(props: ListBaseProps<T>) {
+export default function ListBase<T>(props: ListBaseProps<T>) {
     const { ref, data, className, containerClassName, loading, emptyText, renderItem, ...listProps } = props;
 
     const listRef = React.useRef<HTMLUListElement | null>(null);
@@ -29,22 +29,19 @@ const ListBase = React.memo(function ListBase<T>(props: ListBaseProps<T>) {
         };
     }, []);
 
-    const renderList = React.useMemo(() => {
-        return data?.map((item, index) => renderItem?.(item, index));
-    }, [data, renderItem]);
-
     return (
         <Stack className={classnames('relative h-full w-full', containerClassName)}>
             <ListLoading loading={loading} empty={!data?.length} emptyText={emptyText} />
             <List
                 ref={listRef}
-                className={classnames('scrollbar-custom absolute top-0 right-0 bottom-0 left-0 overflow-auto', className)}
+                className={classnames(
+                    'scrollbar-custom absolute top-0 right-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto',
+                    className
+                )}
                 {...listProps}
             >
-                {renderList}
+                {data?.map((item, index) => renderItem?.(item, index))}
             </List>
         </Stack>
     );
-});
-
-export default ListBase;
+}

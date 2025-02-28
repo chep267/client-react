@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import classnames from 'classnames';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import HomeIcon from '@mui/icons-material/Home';
@@ -24,7 +25,7 @@ import AppItem from './AppItem';
 /** types */
 import type { ListAppProps, TypeAppItem } from '@module-global/types';
 
-const ListApp = React.memo(function ListApp(props: ListAppProps) {
+export default function ListApp(props: ListAppProps) {
     const { hasTooltip } = props;
 
     const navigate = useNavigate();
@@ -61,14 +62,9 @@ const ListApp = React.memo(function ListApp(props: ListAppProps) {
         []
     );
 
-    const renderItem = React.useCallback(
-        (item: TypeAppItem) => {
-            return <AppItem key={item.path} isSelected={item.path === router} hasTooltip={hasTooltip} item={item} />;
-        },
-        [router, hasTooltip]
-    );
+    const renderItem = (item: TypeAppItem) => {
+        return <AppItem key={item.path} isSelected={item.path === router} hasTooltip={hasTooltip} item={item} />;
+    };
 
-    return <ListBase data={apps} renderItem={renderItem} />;
-});
-
-export default ListApp;
+    return <ListBase className={classnames({ ['scrollbar-hidden']: hasTooltip })} data={apps} renderItem={renderItem} />;
+}

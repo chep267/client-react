@@ -24,7 +24,7 @@ import type { NotifyBoundaryProps } from '@module-base/types';
 
 const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
     const hookNotify = useNotify();
-    const { open, message, messageIntl, mode, close, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
+    const { open, message, messageIntl, mode, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
 
     const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
 
@@ -40,7 +40,7 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
         >
             <Alert
                 className={classnames('w-full', { ['hidden']: !open })}
-                onClose={close ? hookNotify.method.closeNotify : undefined}
+                onClose={hookNotify.method.closeNotify}
                 severity={mode}
                 elevation={6}
                 variant="filled"

@@ -24,16 +24,14 @@ export default function NestedItem(props: NestedItemProps) {
     const { subIndex = 1, divide, loading, onClick, title, icon = ' ', subMenu } = props;
 
     const hasSub = (subMenu?.length || 0) > 0;
+    const itemId = React.useId();
     const [open, setOpen] = React.useState(false);
 
     const toggleOpen = React.useCallback((event: ElementClickEvent<HTMLDivElement>) => {
-        if (!hasSub) {
-            return onClick?.(event);
+        if (hasSub) {
+            setOpen((prev) => !prev);
         }
-        return setOpen((prev) => {
-            onClick?.(event, !prev);
-            return !prev;
-        });
+        onClick?.(event);
     }, []);
 
     const styleIcon = React.useMemo<SxProps<Theme>>(
@@ -48,14 +46,14 @@ export default function NestedItem(props: NestedItemProps) {
 
     const renderCollapseList = React.useMemo(() => {
         return (
-            <List component="div" disablePadding>
+            <List disablePadding>
                 {subMenu?.map((value) => <NestedItem key={value.id} {...value} subIndex={subIndex + 1} />)}
             </List>
         );
     }, [subMenu]);
 
     return (
-        <>
+        <div key={itemId}>
             {divide?.includes('top') ? <Divider /> : null}
             <ListItemButton onClick={toggleOpen}>
                 <ListItemIcon className="mr-5 min-w-6" sx={styleIcon}>
@@ -78,6 +76,6 @@ export default function NestedItem(props: NestedItemProps) {
                 </Collapse>
             ) : null}
             {divide?.includes('bottom') ? <Divider /> : null}
-        </>
+        </div>
     );
 }

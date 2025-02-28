@@ -13,7 +13,7 @@ import IconButton from '@mui/material/IconButton';
 /** types */
 import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
 
-const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
+export default function MenuBase(props: MenuBaseProps) {
     const { buttonChildren, menuChildren, iconButtonProps, tooltipProps, menuProps } = props;
 
     const menuId = React.useId();
@@ -27,33 +27,7 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
         menuProps?.onClose?.(event, reason);
     }, []);
 
-    // const styleMenuBase = React.useMemo<SxProps<Theme>>(
-    //     () => ({
-    //         '& .MuiPaper-root': {
-    //             '&::-webkit-scrollbar': {
-    //                 width: '7px',
-    //                 height: '7px',
-    //             },
-    //             '&::-webkit-scrollbar-track': {
-    //                 borderRadius: '10px',
-    //                 backgroundColor: (theme) => alpha(theme.palette.common.black, 0.1),
-    //             },
-    //             '&::-webkit-scrollbar-thumb': {
-    //                 borderRadius: '10px',
-    //                 backgroundColor: (theme) => alpha(theme.palette.common.black, 0.2),
-    //                 '&:hover': {
-    //                     backgroundColor: (theme) => alpha(theme.palette.common.black, 0.4),
-    //                 },
-    //                 '&:active': {
-    //                     backgroundColor: (theme) => alpha(theme.palette.common.black, 0.9),
-    //                 },
-    //             },
-    //         },
-    //     }),
-    //     []
-    // );
-
-    const Button = React.useMemo(() => {
+    const renderButton = () => {
         const renderContent = () => {
             return (
                 <IconButton {...iconButtonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
@@ -65,16 +39,14 @@ const MenuBase = React.memo(function MenuBase(props: MenuBaseProps) {
             return renderContent();
         }
         return <Tooltip {...tooltipProps}>{renderContent()}</Tooltip>;
-    }, [tooltipProps, iconButtonProps]);
+    };
 
     return (
         <div>
-            {Button}
+            {renderButton()}
             <Menu {...menuProps} id={`menu-${menuId}`} anchorEl={menuElem} open={open} onClose={closeMenu}>
                 {typeof menuChildren === 'function' ? menuChildren({ closeMenu: () => setMenuElem(null) }) : menuChildren}
             </Menu>
         </div>
     );
-});
-
-export default MenuBase;
+}

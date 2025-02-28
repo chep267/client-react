@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -22,7 +21,7 @@ import { useStyles } from './styles';
 /** types */
 import type { TableBaseProps } from '@module-base/types';
 
-const TableBase = React.memo(function TableBase(props: TableBaseProps) {
+export default function TableBase(props: TableBaseProps) {
     const {
         className,
         sx,
@@ -67,6 +66,4 @@ const TableBase = React.memo(function TableBase(props: TableBaseProps) {
             </TableContainer>
         </Box>
     );
-});
-
-export default TableBase;
+}

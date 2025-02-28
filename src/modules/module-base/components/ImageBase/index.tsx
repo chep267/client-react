@@ -6,8 +6,8 @@
 
 /** libs */
 import * as React from 'react';
-import Skeleton from '@mui/material/Skeleton';
 import classnames from 'classnames';
+import Skeleton from '@mui/material/Skeleton';
 
 /** types */
 import type { ImageBaseProps, ReactEventHandler } from '@module-base/types';
@@ -22,7 +22,7 @@ const ImageBase = React.memo(function ImageBase(props: ImageBaseProps) {
     }, []);
 
     return (
-        <div className={classnames('relative', `${className || ''}`)}>
+        <div className={classnames('relative', className)}>
             {isLoading ? (
                 <Skeleton className="absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full" variant="rectangular" />
             ) : null}

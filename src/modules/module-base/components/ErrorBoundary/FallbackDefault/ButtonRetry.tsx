@@ -8,8 +8,8 @@
 import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';

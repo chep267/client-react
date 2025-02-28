@@ -6,11 +6,11 @@
 
 /** libs */
 import * as React from 'react';
+import classnames from 'classnames';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
-import classnames from 'classnames';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
@@ -18,7 +18,7 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 /** types */
 import type { InputSearchProps, InputChangeEvent } from '@module-base/types';
 
-const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
+export default function InputSearch(props: InputSearchProps) {
     const {
         type = 'text',
         size = 'small',
@@ -79,7 +79,7 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
                 <ClearIcon color="primary" />
             </InputAdornment>
         );
-    }, [value]);
+    }, [Boolean(value)]);
 
     return (
         <TextField
@@ -98,6 +98,4 @@ const InputSearch = React.memo(function InputSearch(props: InputSearchProps) {
             {...inputProps}
         />
     );
-});
-
-export default InputSearch;
+}

@@ -18,7 +18,6 @@ export const defaultNotifyState: Readonly<TypeNotify> = {
     message: '',
     messageIntl: '',
     mode: undefined,
-    close: false,
     duration: undefined,
 };
 
