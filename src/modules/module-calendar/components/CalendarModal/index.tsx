@@ -6,8 +6,6 @@
 
 /** libs */
 import classnames from 'classnames';
-import makeStyles from '@mui/styles/makeStyles';
-import { alpha } from '@mui/material/styles';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -27,99 +25,9 @@ import VietnameseDate from '@module-calendar/utils/Lunar';
 import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
-/** styles */
-const useStyles = makeStyles(({ palette, spacing, breakpoints }: any) => ({
-    card: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 'calc(100% - 32px)',
-        height: '70vh',
-        maxWidth: 600,
-        maxHeight: 700,
-        padding: 0,
-        [breakpoints.up('md')]: {
-            width: 600,
-        },
-        border: 'none',
-        outline: 'none',
-        overflow: 'auto',
-        '&::-webkit-scrollbar': {
-            width: 10,
-            height: 10,
-        },
-        '&::-webkit-scrollbar-track': {
-            borderRadius: 6,
-            background: alpha(palette.divider, 0.1),
-        },
-        '&::-webkit-scrollbar-thumb': {
-            minHeight: 100,
-            borderRadius: 6,
-            background: alpha(palette.divider, 0.2),
-        },
-        '&:hover::-webkit-scrollbar-thumb': {
-            background: alpha(palette.divider, 0.3),
-        },
-        '&::-webkit-scrollbar-thumb:active': {
-            background: alpha(palette.divider, 0.4),
-        },
-    },
-    cardHeader: {
-        textAlign: 'right',
-    },
-    weekend: {
-        color: palette.error.main,
-    },
-    solar: {
-        display: 'flex',
-        flex: 1,
-        height: 'fit-content',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        gap: spacing(2),
-        minHeight: 300,
-    },
-    solarItem: {
-        display: 'flex',
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    lunar: {
-        display: 'flex',
-        padding: '0 !important',
-        borderTop: `1px solid ${palette.divider}`,
-    },
-    lunarItem: {
-        flex: 1,
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: spacing(1),
-        gap: spacing(2),
-    },
-    lunarItemCenter: {
-        borderLeft: `1px solid ${palette.divider}`,
-        borderRight: `1px solid ${palette.divider}`,
-    },
-    mobileText: {
-        textAlign: 'center',
-        [breakpoints.down('md')]: {
-            '& .MuiTypography-root': {
-                fontSize: '1.5rem' /* 20px */,
-                lineHeight: '1.75rem' /* 20px */,
-            },
-        },
-    },
-}));
 export default function CalendarModal() {
     const hookLanguage = useLanguage();
     const hookCalendar = useCalendar();
-    const classes = useStyles();
 
     const { locale } = hookLanguage.data;
     const { day, openCalendarModal } = hookCalendar.data;
@@ -128,36 +36,38 @@ export default function CalendarModal() {
 
     return (
         <Modal open={openCalendarModal} onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
-            <Card className={classnames(classes.card)}>
+            <Card className="scrollbar-custom absolute top-1/2 left-1/2 flex w-11/12 max-w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col justify-between overflow-auto border-0 p-0 outline-0">
                 <CardHeader
-                    className={classnames(classes.cardHeader, { [classes.weekend]: isWeekend })}
+                    className={classnames('text-right')}
                     title={
-                        <FormattedMessage
-                            id={CalendarLanguage.component.label.calendarInfo.title}
-                            values={{
-                                month: day.format(locale === localeObject.en ? 'MMMM' : 'MM'),
-                                year: day.format('YYYY'),
-                            }}
-                        />
+                        <Typography color={isWeekend ? 'error.main' : 'error.main'}>
+                            <FormattedMessage
+                                id={CalendarLanguage.component.label.calendarInfo.title}
+                                values={{
+                                    month: day.format(locale === localeObject.en ? 'MMMM' : 'MM'),
+                                    year: day.format('YYYY'),
+                                }}
+                            />
+                        </Typography>
                     }
                 />
                 {/*     solar    */}
-                <CardContent className={classes.solar}>
-                    <Stack className={classnames(classes.solarItem, { [classes.weekend]: isWeekend })}>
-                        <Typography variant="h1" fontSize="10rem">
+                <CardContent className="flex h-fit min-h-72 flex-1 flex-col items-center justify-between gap-2">
+                    <Stack className="flex-1 items-center justify-center">
+                        <Typography variant="h1" fontSize="10rem" color={isWeekend ? 'error.main' : ''}>
                             {day.date()}
                         </Typography>
                     </Stack>
-                    <Stack className={classnames({ [classes.weekend]: isWeekend })}>
-                        <Typography variant="h5" textTransform="capitalize">
+                    <Stack>
+                        <Typography variant="h5" textTransform="capitalize" color={isWeekend ? 'error.main' : ''}>
                             {day.locale(locale).format('dddd')}
                         </Typography>
                     </Stack>
                 </CardContent>
 
                 {/*     lunar    */}
-                <CardContent className={classes.lunar}>
-                    <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
+                <CardContent className="flex p-0" sx={{ borderTop: ({ palette }) => `1px solid ${palette.divider}` }}>
+                    <Stack className="flex-1 items-center gap-2 p-1 text-center">
                         <Typography variant="h5">
                             <FormattedMessage id={CalendarLanguage.component.label.day} />
                         </Typography>
@@ -166,7 +76,13 @@ export default function CalendarModal() {
                             {`${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}`}
                         </Typography>
                     </Stack>
-                    <Stack className={classnames(classes.lunarItem, classes.lunarItemCenter, classes.mobileText)}>
+                    <Stack
+                        className="flex-1 items-center gap-2 p-1 text-center"
+                        sx={{
+                            borderLeft: ({ palette }) => `1px solid ${palette.divider}`,
+                            borderRight: ({ palette }) => `1px solid ${palette.divider}`,
+                        }}
+                    >
                         <Typography variant="h5">
                             <FormattedMessage id={CalendarLanguage.component.label.month} />
                         </Typography>
@@ -175,7 +91,7 @@ export default function CalendarModal() {
                             {`${lunarDay.celestialStemOfMonth} ${lunarDay.terrestrialBranchOfMonth}`}
                         </Typography>
                     </Stack>
-                    <Stack className={classnames(classes.lunarItem, classes.mobileText)}>
+                    <Stack className="flex-1 items-center gap-2 p-1 text-center">
                         <Typography variant="h5">
                             <FormattedMessage id={CalendarLanguage.component.label.year} />
                         </Typography>

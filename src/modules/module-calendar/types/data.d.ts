@@ -10,8 +10,6 @@ import type { Dispatch, SetStateAction } from 'react';
 /** types */
 import type { Dayjs } from 'dayjs';
 
-export type { Dayjs };
-
 export type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
 
 export type CalendarContextProps = {

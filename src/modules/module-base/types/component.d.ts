@@ -18,6 +18,7 @@ import {
     ErrorInfo,
     Ref,
     ChangeEvent,
+    ReactElement,
 } from 'react';
 
 import type { TextFieldProps } from '@mui/material/TextField';
@@ -148,11 +149,12 @@ export interface VirtualTableProps<T = any> {
     className?: string;
     headerClassName?: string;
     data?: T[];
-    columns?: (TableCellProps & {
+    columns?: (Omit<TableCellProps, 'children'> & {
         dataKey: string;
         className?: string;
         hasSort?: boolean;
-        render?(data: { item: T; indexRow: number; indexCell: number; dataKey: string; value: any }): ReactNode;
+        label: TableCellProps['children'];
+        renderItem?(data: { item: T; indexRow: number; indexCell: number; dataKey: string; value: any }): ReactNode;
     })[];
 
     orderType?: TypeOrderType;
@@ -162,7 +164,8 @@ export interface VirtualTableProps<T = any> {
     onChangeOrderBy?(key: string): void;
 }
 export interface VirtualTableHeaderProps
-    extends Pick<VirtualTableProps, 'headerClassName' | 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
+    extends Pick<VirtualTableProps, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
+    className?: string;
     totalItems?: number;
     totalSelectedItems?: number;
     onRequestSort?(key: string): void;

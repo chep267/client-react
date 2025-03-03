@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
 /** components */
@@ -15,12 +15,12 @@ import CalendarModal from '@module-calendar/components/CalendarModal';
 
 export default function CalendarScreen() {
     return (
-        <Stack className="h-full w-full p-1 sm:p-2">
+        <Box className="h-full w-full p-1 sm:p-4">
             <Paper className="flex h-full w-full flex-col items-center overflow-hidden rounded-md">
                 <CalendarSelect />
                 <CalendarTable />
                 <CalendarModal />
             </Paper>
-        </Stack>
+        </Box>
     );
 }

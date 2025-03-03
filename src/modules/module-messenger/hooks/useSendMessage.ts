@@ -15,7 +15,7 @@ import { ChatBotGPT, MessageGPT } from '@module-messenger/constants';
 /** utils */
 import { checkId, baseMessage } from '@module-base/utils';
 import { genMessage } from '@module-messenger/utils';
-9;
+
 /** hooks */
 import { useNotify } from '@module-base/hooks';
 import { useAuth } from '@module-auth/hooks';

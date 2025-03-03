@@ -24,11 +24,11 @@ export default function TableContent(props: VirtualTableContentProps) {
             ) : null}
             {columns?.map((column, indexCell) => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { dataKey, variant = 'body', render, hasSort, ...cellProps } = column;
+                const { dataKey, variant = 'body', renderItem, hasSort, ...cellProps } = column;
                 const value = item[dataKey];
                 return (
                     <TableCell key={dataKey} variant={variant} {...cellProps}>
-                        {typeof render === 'function' ? render({ item, dataKey, value, indexRow, indexCell }) : value}
+                        {typeof renderItem === 'function' ? renderItem({ item, dataKey, value, indexRow, indexCell }) : value}
                     </TableCell>
                 );
             })}

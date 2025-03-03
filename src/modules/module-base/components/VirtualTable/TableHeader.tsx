@@ -22,7 +22,7 @@ import { VirtualTableHeaderProps } from '@module-base/types';
 export default function TableHeader(props: VirtualTableHeaderProps) {
     const {
         columns,
-        headerClassName,
+        className,
         orderBy,
         orderType,
         hasCheckbox,
@@ -33,7 +33,7 @@ export default function TableHeader(props: VirtualTableHeaderProps) {
     } = props;
 
     return (
-        <TableRow key="header" className={headerClassName} sx={{ backgroundColor: 'background.paper' }}>
+        <TableRow key="header" className={className} sx={{ backgroundColor: 'background.paper' }}>
             {hasCheckbox ? (
                 <TableCell padding="checkbox">
                     <Checkbox
@@ -45,11 +45,11 @@ export default function TableHeader(props: VirtualTableHeaderProps) {
                 </TableCell>
             ) : null}
             {columns?.map((column) => {
-                const { dataKey, variant = 'head', hasSort, children, ...cellProps } = column;
+                const { dataKey, variant = 'head', hasSort, label, ...cellProps } = column;
                 return (
                     <TableCell key={dataKey} variant={variant} {...cellProps}>
                         {!hasSort ? (
-                            children
+                            label
                         ) : (
                             <TableSortLabel
                                 active={orderBy === dataKey}
@@ -57,7 +57,7 @@ export default function TableHeader(props: VirtualTableHeaderProps) {
                                 IconComponent={ArrowDropDownIcon}
                                 onClick={() => onRequestSort?.(dataKey)}
                             >
-                                {children}
+                                {label}
                                 {orderBy === dataKey ? (
                                     <Box component="span" sx={visuallyHidden}>
                                         {orderType === OrderType.desc ? 'sorted descending' : 'sorted ascending'}

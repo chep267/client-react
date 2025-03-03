@@ -21,7 +21,7 @@ export default function CalendarLabel(props: CalendarLabelProps) {
     } = useLanguage();
 
     return (
-        <Typography variant="h6" color={day === 0 || day === 6 ? 'error.main' : ''}>
+        <Typography className="m-auto w-fit" variant="h6" color={day === 0 || day === 6 ? 'error.main' : ''}>
             {dayjs().day(day).locale(locale).format('ddd')}
         </Typography>
     );

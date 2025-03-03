@@ -7,7 +7,6 @@
 /** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -27,40 +26,11 @@ import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
-/** styles */
-const useStyles = makeStyles({
-    datePiker: {
-        '& .MuiInputBase-root': {
-            cursor: 'pointer',
-            height: '100%',
-            padding: 0,
-            '& > input': {
-                display: 'none',
-            },
-            '& .MuiInputAdornment-root': {
-                width: '100%',
-                height: '100%',
-                margin: 0,
-                maxHeight: '100%',
-                '& > button': {
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 0,
-                },
-            },
-        },
-    },
-});
-
-const CalendarSelect = React.memo(function CalendarSelect() {
-    const classes = useStyles();
+export default function CalendarSelect() {
     const hookLanguage = useLanguage();
     const hookCalendar = useCalendar();
-    const sxStyles = React.useRef({ height: ScreenSize.CalendarSelectHeight }).current;
-
     const { locale } = hookLanguage.data;
     const { day } = hookCalendar.data;
-    const isToday = hookCalendar.method.isToday(day);
 
     const timeMonthYear = React.useMemo(() => {
         return {
@@ -72,20 +42,6 @@ const CalendarSelect = React.memo(function CalendarSelect() {
     const onChangeTime = React.useCallback((mode: 'prev' | 'next', type: 'month' | 'year') => {
         hookCalendar.method.setDay((prevDay) => prevDay.add(mode === 'prev' ? -1 : 1, type));
     }, []);
-
-    const ButtonToday = React.useMemo(() => {
-        return (
-            <Button
-                variant="contained"
-                size="large"
-                className="w-max truncate rounded-md capitalize"
-                onClick={() => hookCalendar.method.setDay(hookCalendar.data.today)}
-                disabled={isToday}
-            >
-                <FormattedMessage id={CalendarLanguage.component.label.today} />
-            </Button>
-        );
-    }, [isToday]);
 
     const ButtonLeft = React.useMemo(() => {
         return (
@@ -118,19 +74,35 @@ const CalendarSelect = React.memo(function CalendarSelect() {
             <Box
                 className={classnames(
                     'relative line-clamp-2 flex w-full cursor-pointer flex-row items-center justify-center rounded-md text-center',
-                    {
-                        ['sm:min-w-[300px]']: true, // desktop
-                    }
+                    'sm:min-w-[300px]'
                 )}
             >
                 <Typography variant="h5" color="primary.main">
                     <FormattedMessage id={CalendarLanguage.component.label.calendarInfo.title} values={timeMonthYear} />
                 </Typography>
                 <DatePicker
-                    className={classnames(
-                        'absolute top-0 right-0 bottom-0 left-0 cursor-pointer opacity-0',
-                        classes.datePiker
-                    )}
+                    className={classnames('absolute top-0 right-0 bottom-0 left-0 cursor-pointer opacity-0')}
+                    sx={{
+                        '& .MuiInputBase-root': {
+                            cursor: 'pointer',
+                            height: '100%',
+                            padding: 0,
+                            '& > input': {
+                                display: 'none',
+                            },
+                            '& .MuiInputAdornment-root': {
+                                width: '100%',
+                                height: '100%',
+                                margin: 0,
+                                maxHeight: '100%',
+                                '& > button': {
+                                    width: '100%',
+                                    height: '100%',
+                                    borderRadius: 0,
+                                },
+                            },
+                        },
+                    }}
                     views={['month', 'year']}
                     value={day}
                     onChange={(value) => value && hookCalendar.method.setDay(value)}
@@ -141,10 +113,22 @@ const CalendarSelect = React.memo(function CalendarSelect() {
 
     return (
         <Box
-            className={classnames('flex w-full justify-between gap-2 p-3', 'flex-col-reverse', 'md:flex-row md:items-center')}
-            sx={sxStyles}
+            className={classnames(
+                'flex w-full items-start justify-between gap-2',
+                'flex-col-reverse px-1',
+                'md:flex-row md:p-3'
+            )}
+            sx={{ height: ScreenSize.CalendarSelectHeight, minHeight: ScreenSize.CalendarSelectHeight }}
         >
-            {ButtonToday}
+            <Button
+                variant="contained"
+                size="large"
+                className="w-max truncate rounded-md capitalize"
+                disabled={hookCalendar.method.isToday(day)}
+                onClick={() => hookCalendar.method.setDay(hookCalendar.data.today)}
+            >
+                <FormattedMessage id={CalendarLanguage.component.label.today} />
+            </Button>
             <Box className={classnames('flex flex-row items-center justify-between gap-2', 'w-full', 'md:w-fit')}>
                 {ButtonLeft}
                 {DateTimePicker}
@@ -152,6 +136,4 @@ const CalendarSelect = React.memo(function CalendarSelect() {
             </Box>
         </Box>
     );
-});
-
-export default CalendarSelect;
+}

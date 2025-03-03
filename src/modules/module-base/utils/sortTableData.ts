@@ -10,14 +10,22 @@ import { OrderType } from '@module-base/constants/OrderType';
 /** types */
 import type { TypeOrderType } from '@module-base/types';
 
+const parseValue = (value: unknown) => {
+    if (typeof value === 'number') return value;
+    if (typeof value === 'string' && !isNaN(Number(value))) return Number(value);
+    return String(value);
+};
+
 export const sortTableData = <T>(payload: { data?: T[]; orderType: TypeOrderType; orderBy: keyof T }) => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
     if (!data) return [];
     return data.sort((a, b) => {
         const valueA = a[orderBy];
         const valueB = b[orderBy];
-        if (valueA < valueB) return orderType === OrderType.asc ? -1 : 1;
-        if (valueA > valueB) return orderType === OrderType.asc ? 1 : -1;
+        const formattedA = parseValue(valueA);
+        const formattedB = parseValue(valueB);
+        if (formattedA < formattedB) return orderType === OrderType.asc ? -1 : 1;
+        if (formattedA > formattedB) return orderType === OrderType.asc ? 1 : -1;
         return 0;
     });
 };

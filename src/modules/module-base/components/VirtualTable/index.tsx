@@ -90,7 +90,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         return (
             <TableHeader
                 columns={columns}
-                headerClassName={headerClassName}
+                className={headerClassName}
                 hasCheckbox={hasCheckbox}
                 orderBy={orderBy}
                 orderType={orderType}

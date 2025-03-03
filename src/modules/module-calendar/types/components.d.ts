@@ -5,7 +5,7 @@
  */
 
 /** types */
-import { Dayjs } from '@module-calendar/types/data.d';
+import type { Dayjs } from 'dayjs';
 
 export type CalendarItemProps = {
     day: Dayjs;
