@@ -32,7 +32,7 @@ export default function AuthTitle() {
 
     return (
         <Typography color="primary.main" className="z-10 text-4xl">
-            {mode && <FormattedMessage id={AuthLanguage.component.title[mode]} />}
+            {mode ? <FormattedMessage id={AuthLanguage.component.title[mode]} /> : null}
         </Typography>
     );
 }

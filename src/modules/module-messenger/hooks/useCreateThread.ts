@@ -72,8 +72,7 @@ export function useCreateThread() {
                 }),
             ]);
         },
-        onError: (error) => {
-            console.log('error: ', error);
+        onError: () => {
             NOTIFY.method.toggleNotify({
                 open: true,
                 mode: 'error',

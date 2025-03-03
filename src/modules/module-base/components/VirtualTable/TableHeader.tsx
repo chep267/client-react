@@ -25,7 +25,7 @@ export default function TableHeader(props: VirtualTableHeaderProps) {
         headerClassName,
         orderBy,
         orderType,
-        hasSelected,
+        hasCheckbox,
         totalSelectedItems,
         totalItems,
         onRequestSort,
@@ -34,18 +34,16 @@ export default function TableHeader(props: VirtualTableHeaderProps) {
 
     return (
         <TableRow key="header" className={headerClassName} sx={{ backgroundColor: 'background.paper' }}>
-            {hasSelected && (
+            {hasCheckbox ? (
                 <TableCell padding="checkbox">
                     <Checkbox
                         color="primary"
-                        indeterminate={Boolean(
-                            totalSelectedItems && totalItems && totalSelectedItems > 0 && totalSelectedItems < totalItems
-                        )}
-                        checked={Boolean(totalItems && totalItems > 0 && totalSelectedItems === totalItems)}
+                        indeterminate={Boolean(totalSelectedItems && totalItems && totalSelectedItems < totalItems)}
+                        checked={Boolean(totalSelectedItems && totalItems && totalSelectedItems === totalItems)}
                         onChange={onSelectAll}
                     />
                 </TableCell>
-            )}
+            ) : null}
             {columns?.map((column) => {
                 const { dataKey, variant = 'head', hasSort, children, ...cellProps } = column;
                 return (

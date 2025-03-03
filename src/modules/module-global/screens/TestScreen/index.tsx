@@ -15,6 +15,11 @@ export default function TestScreen() {
     const chance = new Chance();
     const columns: VirtualTableProps['columns'] = [
         {
+            children: 'ID',
+            dataKey: 'id',
+            hasSort: true,
+        },
+        {
             children: 'First Name',
             dataKey: 'firstName',
             hasSort: true,
@@ -52,7 +57,7 @@ export default function TestScreen() {
         };
     }
 
-    const rows: any[] = Array.from({ length: 200 }, (_, index) => createData(`${index}`));
+    const rows: any[] = Array.from({ length: 10 }, (_, index) => createData(`${index}`));
 
-    return <VirtualTable data={rows} columns={columns} hasSelected={true} />;
+    return <VirtualTable data={rows} columns={columns} hasCheckbox={true} />;
 }

@@ -157,22 +157,22 @@ export interface VirtualTableProps<T = any> {
 
     orderType?: TypeOrderType;
     orderBy?: string;
-    hasSelected?: boolean;
+    hasCheckbox?: boolean;
     onChangeOrderType?(type: TypeOrderType): void;
     onChangeOrderBy?(key: string): void;
 }
 export interface VirtualTableHeaderProps
-    extends Pick<VirtualTableProps, 'headerClassName' | 'columns' | 'orderType' | 'orderBy' | 'hasSelected'> {
+    extends Pick<VirtualTableProps, 'headerClassName' | 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     totalItems?: number;
     totalSelectedItems?: number;
     onRequestSort?(key: string): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasSelected'> {
+export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
     indexRow: number;
     item: T;
-    selectedIds?: string[];
-    onSelect?(id?: string): void;
+    selected?: boolean;
+    onSelect?(id?: string | number): void;
 }
 
 /** SelectBase */

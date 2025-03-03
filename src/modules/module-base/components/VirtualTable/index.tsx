@@ -26,7 +26,7 @@ import { sortTableData } from '@module-base/utils/sortTableData';
 
 /** types */
 import type { TableComponents } from 'react-virtuoso';
-import { VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
+import type { VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
 
 export default function VirtualTable(props: VirtualTableProps) {
     const {
@@ -34,7 +34,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         columns,
         className,
         headerClassName,
-        hasSelected,
+        hasCheckbox,
         orderBy: orderByProps,
         orderType: orderTypeProps,
         onChangeOrderType,
@@ -43,7 +43,7 @@ export default function VirtualTable(props: VirtualTableProps) {
 
     const [orderType, setOrderType] = React.useState<VirtualTableProps['orderType']>();
     const [orderBy, setOrderBy] = React.useState<VirtualTableProps['orderBy']>();
-    const [selectedIds, setSelectedIds] = React.useState<readonly string[]>([]);
+    const [selectedIds, setSelectedIds] = React.useState<(string | number)[]>([]);
 
     React.useEffect(() => {
         if (orderTypeProps !== orderType) {
@@ -62,10 +62,6 @@ export default function VirtualTable(props: VirtualTableProps) {
             onChangeOrderBy?.(orderBy);
         }
     }, [orderType, orderBy]);
-
-    React.useEffect(() => {
-        console.log('selectedIds: ', selectedIds);
-    }, [selectedIds]);
 
     const VirtualTableComponents = React.useMemo<TableComponents<any>>(
         () => ({
@@ -95,11 +91,11 @@ export default function VirtualTable(props: VirtualTableProps) {
             <TableHeader
                 columns={columns}
                 headerClassName={headerClassName}
-                hasSelected={hasSelected}
+                hasCheckbox={hasCheckbox}
                 orderBy={orderBy}
                 orderType={orderType}
                 totalItems={currentData?.length}
-                totalSelectedItems={setSelectedIds.length}
+                totalSelectedItems={selectedIds.length}
                 onRequestSort={onRequestSort}
                 onSelectAll={onSelectAll}
             />
@@ -107,26 +103,34 @@ export default function VirtualTable(props: VirtualTableProps) {
     };
 
     const itemContent = (indexRow: number, item: any) => {
-        const onSelect = (id?: string) => {
+        const onSelect = (id?: string | number) => {
             if (!id) {
                 return;
             }
             const selectedIndex = selectedIds.indexOf(id);
-            let newSelected: readonly string[] = [];
             if (selectedIndex === -1) {
-                newSelected = newSelected.concat(selectedIds, id);
-            } else if (selectedIndex === 0) {
-                newSelected = newSelected.concat(selectedIds.slice(1));
-            } else if (selectedIndex === selectedIds.length - 1) {
-                newSelected = newSelected.concat(selectedIds.slice(0, -1));
-            } else if (selectedIndex > 0) {
-                newSelected = newSelected.concat(selectedIds.slice(0, selectedIndex), selectedIds.slice(selectedIndex + 1));
+                return setSelectedIds((prev) => [...prev, id]);
             }
-            setSelectedIds(newSelected);
+            if (selectedIndex === 0) {
+                return setSelectedIds((prev) => prev.slice(1));
+            }
+            if (selectedIndex === selectedIds.length - 1) {
+                return setSelectedIds((prev) => prev.slice(0, -1));
+            }
+            if (selectedIndex > 0) {
+                return setSelectedIds((prev) => [...prev.slice(0, selectedIndex), ...prev.slice(selectedIndex + 1)]);
+            }
         };
 
         return (
-            <TableContent columns={columns} indexRow={indexRow} item={item} hasSelected={hasSelected} onSelect={onSelect} />
+            <TableContent
+                columns={columns}
+                indexRow={indexRow}
+                item={item}
+                hasCheckbox={hasCheckbox}
+                selected={selectedIds.includes(item?.id)}
+                onSelect={onSelect}
+            />
         );
     };
 
