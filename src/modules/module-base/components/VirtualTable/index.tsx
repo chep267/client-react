@@ -43,8 +43,8 @@ export default function VirtualTable(props: VirtualTableProps) {
         onChangeSelected,
     } = props;
 
-    const [orderType, setOrderType] = React.useState<NonNullable<VirtualTableProps['orderType']>>(OrderType.asc);
-    const [orderBy, setOrderBy] = React.useState<NonNullable<VirtualTableProps['orderBy']>>(columns?.[0].dataKey || '');
+    const [orderType, setOrderType] = React.useState<NonNullable<VirtualTableProps['orderType']>>();
+    const [orderBy, setOrderBy] = React.useState<NonNullable<VirtualTableProps['orderBy']>>();
     const [selectedIds, setSelectedIds] = React.useState<NonNullable<VirtualTableProps['selectedIds']>>([]);
 
     React.useEffect(() => {
@@ -111,16 +111,16 @@ export default function VirtualTable(props: VirtualTableProps) {
                 <TableContainer component={Paper} {...props} ref={ref} />
             )),
             Table: (props) => <Table {...props} className="table-fixed border-separate" />,
-            TableHead: React.forwardRef<HTMLTableSectionElement>((props, ref) => <TableHead {...props} ref={ref} />),
-            TableRow: (props) => <TableRow {...props} onClick={() => onSelectOne(props.item?.id || props['data-index'])} />,
-            TableBody: React.forwardRef<HTMLTableSectionElement>((props, ref) => <TableBody {...props} ref={ref} />),
+            TableHead,
+            TableRow,
+            TableBody,
         }),
         []
     );
 
     const currentData = React.useMemo(() => {
         if (!orderType || !orderBy) {
-            return data;
+            return data || [];
         }
         return sortTableData({ data, orderType, orderBy });
     }, [data, orderType, orderBy]);
@@ -133,8 +133,8 @@ export default function VirtualTable(props: VirtualTableProps) {
                 hasCheckbox={hasCheckbox}
                 orderBy={orderBy}
                 orderType={orderType}
-                totalItems={data?.length}
-                totalSelectedItems={selectedIds.length}
+                checked={Boolean(selectedIds.length === currentData.length)}
+                indeterminate={Boolean(selectedIds.length && selectedIds.length < currentData.length)}
                 onSort={onSort}
                 onSelectAll={onSelectAll}
             />
@@ -148,7 +148,8 @@ export default function VirtualTable(props: VirtualTableProps) {
                 indexRow={indexRow}
                 item={item}
                 hasCheckbox={hasCheckbox}
-                selected={selectedIds.includes(item?.id || indexRow)}
+                checked={selectedIds.includes(item?.id || indexRow)}
+                onSelect={onSelectOne}
             />
         );
     };

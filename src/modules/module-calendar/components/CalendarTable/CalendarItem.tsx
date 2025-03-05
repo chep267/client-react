@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import classnames from 'classnames';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -16,7 +17,63 @@ import { useCalendar } from '@module-calendar/hooks/useCalendar';
 import type { SxProps, Theme } from '@mui/material/styles';
 import type { CalendarItemProps } from '@module-calendar/types';
 
-export default function CalendarItem(props: CalendarItemProps) {
+const RenderItem = React.memo(function RenderItem(props: CalendarItemProps) {
+    const { day, isToday, isWeekend, isInMonth, isOnlyMonth, isSelectedDay, onSelect } = props;
+    const styleItem: SxProps<Theme> = [
+        {
+            '&:hover': {
+                backgroundColor: 'divider',
+                borderColor: 'divider',
+            },
+        },
+        Boolean(!isInMonth && !isSelectedDay) && {
+            color: 'text.disabled',
+        },
+        Boolean(isSelectedDay) && {
+            border: '1px solid',
+            color: 'text.disabled',
+        },
+        Boolean(isToday) && {
+            border: '1px solid',
+            color: 'primary.main',
+            '&:hover': {
+                color: 'common.white',
+                backgroundColor: 'primary.main',
+                borderColor: 'primary.main',
+            },
+        },
+        Boolean(isWeekend) && {
+            color: 'error.main',
+            '&:hover': {
+                color: 'common.white',
+                backgroundColor: 'error.main',
+                borderColor: 'error.main',
+            },
+        },
+        Boolean(isToday && isWeekend) && {
+            color: 'error.main',
+            '&:hover': {
+                color: 'common.white',
+                backgroundColor: 'error.main',
+                borderColor: 'error.main',
+            },
+        },
+    ];
+
+    return (
+        <Box
+            className={classnames('group m-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full', {
+                ['invisible']: isOnlyMonth && !isInMonth,
+            })}
+            sx={styleItem}
+            onClick={onSelect}
+        >
+            <Typography className={classnames('group-hover:font-bold')}>{day.date()}</Typography>
+        </Box>
+    );
+});
+
+export default function CalendarItem(props: Pick<CalendarItemProps, 'day'>) {
     const { day } = props;
 
     const {
@@ -24,47 +81,25 @@ export default function CalendarItem(props: CalendarItemProps) {
         method: calendarMethod,
     } = useCalendar();
 
-    const date = day.date();
+    const onSelect = React.useCallback(() => {
+        calendarMethod.setDay(day);
+        calendarMethod.setOpenCalendarModal(true);
+    }, [day]);
+
     const isWeekend = calendarMethod.isWeekend(day);
     const isInMonth = calendarMethod.isInMonth(day);
     const isToday = calendarMethod.isToday(day);
-
-    const onSelect = () => {
-        calendarMethod.setDay(day);
-        calendarMethod.setOpenCalendarModal(true);
-    };
-
-    const styleItem: SxProps<Theme> = [
-        {
-            '&:hover': {
-                backgroundColor: 'divider',
-            },
-        },
-        isWeekend && {
-            color: 'error.main',
-            '&:hover': {
-                color: 'common.white',
-                backgroundColor: 'error.main',
-            },
-        },
-        !isInMonth && {
-            color: 'text.disabled',
-        },
-        isToday && {
-            border: '1px solid',
-            color: 'primary.main',
-        },
-    ];
+    const isSelectedDay = calendarMethod.isSelectedDay(day);
 
     return (
-        <Box
-            className={classnames('group m-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full', {
-                ['invisible']: !isInMonth && isOnlyMonth,
-            })}
-            sx={styleItem}
-            onClick={onSelect}
-        >
-            <Typography className={classnames('group-hover:font-bold')}>{date}</Typography>
-        </Box>
+        <RenderItem
+            day={day}
+            isToday={isToday}
+            isWeekend={isWeekend}
+            isInMonth={isInMonth}
+            isSelectedDay={isSelectedDay}
+            isOnlyMonth={isOnlyMonth}
+            onSelect={onSelect}
+        />
     );
 }

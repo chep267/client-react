@@ -145,6 +145,7 @@ export type TableHeaderProps = Pick<
 >;
 export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'>;
 
+/** Virtual Table */
 export interface VirtualTableProps<T = any> {
     className?: string;
     headerClassName?: string;
@@ -161,21 +162,26 @@ export interface VirtualTableProps<T = any> {
     orderBy?: string;
     selectedIds?: Array<string | number>;
     hasCheckbox?: boolean;
-    onChangeOrder?(data: { type: TypeOrderType; key: string }): void;
+    onChangeOrder?(data: { type?: TypeOrderType; key?: string }): void;
     onChangeSelected?(arr: Array<string | number>): void;
 }
 export interface VirtualTableHeaderProps
     extends Pick<VirtualTableProps, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     className?: string;
-    totalItems?: number;
-    totalSelectedItems?: number;
+    checked?: boolean;
+    indeterminate?: boolean;
     onSort?(newKey: string, prevKey?: string): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
+export type HeaderColumnsProps = Pick<VirtualTableHeaderProps, 'columns' | 'orderBy' | 'orderType' | 'onSort'>;
 export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
     indexRow: number;
     item: T;
-    selected?: boolean;
+    checked?: boolean;
+    onSelect?(id: string | number): void;
+}
+export interface ContentColumnsProps extends Omit<VirtualTableContentProps, 'selected' | 'onSelect'> {
+    onSelect?(): void;
 }
 export interface CheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
