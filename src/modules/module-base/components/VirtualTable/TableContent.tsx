@@ -7,31 +7,35 @@
 /** libs */
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
-import Checkbox from '@mui/material/Checkbox';
+
+/** components */
+import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
 
 /** types */
 import { VirtualTableContentProps } from '@module-base/types';
 
-export default function TableContent(props: VirtualTableContentProps) {
-    const { indexRow, item, columns, hasCheckbox, selected, onSelect } = props;
+const TableContent = React.memo<VirtualTableContentProps>((props) => {
+    const { indexRow, item, columns, hasCheckbox, selected } = props;
+
+    const ContentColumns = React.useMemo(() => {
+        return columns?.map((column, indexCell) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { dataKey, variant = 'body', renderItem, hasSort, ...cellProps } = column;
+            const value = item[dataKey];
+            return (
+                <TableCell key={`${indexRow}-${dataKey}`} variant={variant} {...cellProps}>
+                    {typeof renderItem === 'function' ? renderItem({ item, dataKey, value, indexRow, indexCell }) : value}
+                </TableCell>
+            );
+        });
+    }, [indexRow, item, columns]);
 
     return (
-        <React.Fragment>
-            {hasCheckbox ? (
-                <TableCell padding="checkbox">
-                    <Checkbox color="primary" checked={selected} onClick={() => onSelect?.(item.id)} />
-                </TableCell>
-            ) : null}
-            {columns?.map((column, indexCell) => {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { dataKey, variant = 'body', renderItem, hasSort, ...cellProps } = column;
-                const value = item[dataKey];
-                return (
-                    <TableCell key={dataKey} variant={variant} {...cellProps}>
-                        {typeof renderItem === 'function' ? renderItem({ item, dataKey, value, indexRow, indexCell }) : value}
-                    </TableCell>
-                );
-            })}
+        <React.Fragment key={item?.id || indexRow}>
+            <CheckboxColumn id={item?.id || indexRow} hasCheckbox={hasCheckbox} checked={Boolean(selected)} />
+            {ContentColumns}
         </React.Fragment>
     );
-}
+});
+
+export default TableContent;

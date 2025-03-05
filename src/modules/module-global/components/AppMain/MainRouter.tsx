@@ -7,19 +7,11 @@
 /** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
 import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
-
-/** hooks */
-import { useSider } from '@module-base/hooks/useSider';
-
-/** utils */
-import { delay } from '@module-base/utils/delay';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
@@ -32,32 +24,8 @@ const CalendarScreen = React.lazy(() => import('@module-calendar/screens/Calenda
 const GameCenterScreen = React.lazy(() => import('@module-game/screens/GameCenterScreen'));
 
 export default function MainRouter() {
-    const location = useLocation();
-    const hookSider = useSider();
-
-    const [hasScroll, setHasScroll] = React.useState(false);
-
-    const sxStyles = React.useRef({
-        [SiderState.hidden]: { width: 'calc(100%)' },
-        [SiderState.expand]: { width: `calc(100% - ${ScreenSize.AppBarExpandWidth}px)` },
-        [SiderState.collapse]: { width: `calc(100% - ${ScreenSize.AppBarCollapseWidth}px)` },
-        [SiderState.force]: { width: `calc(100% - ${ScreenSize.AppBarCollapseWidth}px)` },
-    }).current;
-
-    React.useEffect(() => {
-        delay(100, () => {
-            const hasScroll = document.body.scrollHeight > document.body.clientHeight;
-            setHasScroll(hasScroll);
-        }).then();
-    }, [location]);
-
     return (
-        <Box
-            className={classnames('flex h-full w-full flex-col transition-[width] duration-500', {
-                ['pr-0 sm:pr-4']: hasScroll,
-            })}
-            sx={sxStyles[hookSider.data.siderState]}
-        >
+        <Box className={classnames('flex h-full w-full flex-col transition-[width]')}>
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>

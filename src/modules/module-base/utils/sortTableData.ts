@@ -19,7 +19,7 @@ const parseValue = (value: unknown) => {
 export const sortTableData = <T>(payload: { data?: T[]; orderType: TypeOrderType; orderBy: keyof T }) => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
     if (!data) return [];
-    return data.sort((a, b) => {
+    return data.toSorted((a, b) => {
         const valueA = a[orderBy];
         const valueB = b[orderBy];
         const formattedA = parseValue(valueA);

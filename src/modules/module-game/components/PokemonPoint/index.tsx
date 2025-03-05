@@ -27,7 +27,7 @@ export default function PokemonPoint(props: PokemonTimerProps) {
     } = usePokemon();
 
     return (
-        <Typography className={className} variant="h5" color="primary.main">
+        <Typography className={className} variant="h5" color="primary">
             <FormattedMessage id={GameLanguage.component.label.point} values={{ point }} />
         </Typography>
     );

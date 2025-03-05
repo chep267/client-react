@@ -16,7 +16,7 @@ import AppSider from '@module-global/components/AppSider';
 
 /** screens */
 import AuthRoute from '@module-auth/screens/AuthRoute';
-import MainRouter from '@module-global/components/AppMain/MainRouter.tsx';
+import MainRouter from '@module-global/components/AppMain/MainRouter';
 
 export default function AppMain() {
     return (

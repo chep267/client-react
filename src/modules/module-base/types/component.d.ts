@@ -18,7 +18,6 @@ import {
     ErrorInfo,
     Ref,
     ChangeEvent,
-    ReactElement,
 } from 'react';
 
 import type { TextFieldProps } from '@mui/material/TextField';
@@ -31,21 +30,22 @@ import type { TableCellProps } from '@mui/material/TableCell';
 import type { TooltipProps } from '@mui/material/Tooltip';
 import type { SnackbarProps } from '@mui/material/Snackbar';
 import type { Theme, SxProps } from '@mui/material/styles';
+import type { CheckboxProps } from '@mui/material/Checkbox';
 import type { ElementClickEvent } from './event.d';
 
 export type TypeInputElem = HTMLInputElement | null;
 
 /** ErrorBoundary */
-export type ErrorBoundaryProps = PropsWithChildren<{
+export interface ErrorBoundaryProps extends PropsWithChildren {
     fallback?: FunctionComponent;
     isAutoReload?: boolean;
-}>;
-export type ErrorBoundaryStates = {
+}
+export interface ErrorBoundaryStates {
     hasError: boolean;
-};
-export type FallbackDefaultProps = {
+}
+export interface FallbackDefaultProps {
     isAutoReload?: boolean;
-};
+}
 export type { ErrorInfo };
 
 /** IconBase */
@@ -108,9 +108,9 @@ export interface MenuBaseProps {
 export type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
 /** PasswordField */
-export type PasswordFieldProps = TextFieldProps & {
+export interface PasswordFieldProps extends TextFieldProps {
     setFocus?(): void;
-};
+}
 
 /** TableBase */
 export type TypeOrderType = 'asc' | 'desc';
@@ -133,7 +133,7 @@ export interface TableBaseProps<T = any> {
     }[];
     orderType?: TypeOrderType;
     orderBy?: string;
-    onRequestSort?(property: string): void;
+    onSort?(property: string): void;
 
     tableRowProps?: TableRowProps;
     tableCellProps?: TableCellProps;
@@ -141,7 +141,7 @@ export interface TableBaseProps<T = any> {
 export type TableLoadingProps = Pick<TableBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
 export type TableHeaderProps = Pick<
     TableBaseProps,
-    'rows' | 'orderBy' | 'orderType' | 'onRequestSort' | 'tableRowProps' | 'tableCellProps'
+    'rows' | 'orderBy' | 'orderType' | 'onSort' | 'tableRowProps' | 'tableCellProps'
 >;
 export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'>;
 
@@ -159,23 +159,26 @@ export interface VirtualTableProps<T = any> {
 
     orderType?: TypeOrderType;
     orderBy?: string;
+    selectedIds?: Array<string | number>;
     hasCheckbox?: boolean;
-    onChangeOrderType?(type: TypeOrderType): void;
-    onChangeOrderBy?(key: string): void;
+    onChangeOrder?(data: { type: TypeOrderType; key: string }): void;
+    onChangeSelected?(arr: Array<string | number>): void;
 }
 export interface VirtualTableHeaderProps
     extends Pick<VirtualTableProps, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     className?: string;
     totalItems?: number;
     totalSelectedItems?: number;
-    onRequestSort?(key: string): void;
+    onSort?(newKey: string, prevKey?: string): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
 export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
     indexRow: number;
     item: T;
     selected?: boolean;
-    onSelect?(id?: string | number): void;
+}
+export interface CheckboxColumnProps extends CheckboxProps {
+    hasCheckbox?: boolean;
 }
 
 /** SelectBase */

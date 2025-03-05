@@ -58,5 +58,5 @@ export default function CalendarTable() {
         return output.map((item) => item);
     }, [day.month(), day.year(), display]);
 
-    return <VirtualTable data={tableData} columns={columns} />;
+    return <VirtualTable className="mt-5 md:mt-10" data={tableData} columns={columns} />;
 }

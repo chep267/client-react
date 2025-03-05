@@ -64,27 +64,24 @@ const AppSider = React.memo(function AppSider() {
 
     const tooltipId =
         siderState === SiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
+
     return (
         <Drawer
             variant="permanent"
             open={siderState !== SiderState.hidden}
-            className="relative h-full overflow-x-hidden transition-[width] duration-500"
+            className="relative h-full overflow-x-hidden transition-[width]"
             sx={siderStyles.drawer[siderState]}
-            PaperProps={{
-                className: 'left-0 transition-[width] duration-500 z-10 overflow-x-hidden',
-                sx: siderStyles.paper[siderState],
+            slotProps={{
+                paper: {
+                    className: 'left-0 transition-[width] z-10 overflow-x-hidden',
+                    sx: siderStyles.paper[siderState],
+                },
             }}
         >
             <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
-                <div className="w-full">
-                    <Button className="w-full min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
-                        {siderState === SiderState.expand ? (
-                            <KeyboardDoubleArrowLeftIcon />
-                        ) : (
-                            <KeyboardDoubleArrowRightIcon />
-                        )}
-                    </Button>
-                </div>
+                <Button className="w-full min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
+                    {siderState === SiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+                </Button>
             </Tooltip>
             <Divider />
             <ListApp hasTooltip={siderState === SiderState.collapse} />

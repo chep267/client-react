@@ -22,7 +22,7 @@ import type { TableHeaderProps } from '@module-base/types';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
-    const { rows, orderType, orderBy, onRequestSort, tableRowProps, tableCellProps } = props;
+    const { rows, orderType, orderBy, onSort, tableRowProps, tableCellProps } = props;
     const classes = useStyles();
 
     const rowProps = (tableRowProps ?? AppDefaultValue.emptyObject) as NonNullable<TableHeaderProps['tableRowProps']>;
@@ -46,7 +46,7 @@ const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
                                 active={orderBy === cell.id}
                                 direction={orderBy === cell.id ? orderType : 'asc'}
                                 IconComponent={ArrowDropDownIcon}
-                                onClick={() => onRequestSort?.(cell.id)}
+                                onClick={() => onSort?.(cell.id)}
                             >
                                 {cell.label}
                                 {orderBy === cell.id ? (

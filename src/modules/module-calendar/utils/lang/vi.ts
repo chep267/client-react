@@ -15,7 +15,7 @@ export const vi = {
     [CalendarLanguage.component.label.day]: 'Ngày',
     [CalendarLanguage.component.label.month]: 'Tháng',
     [CalendarLanguage.component.label.year]: 'Năm',
-    [CalendarLanguage.component.label.calendarInfo.title]: 'Tháng {month} năm {year}',
+    [CalendarLanguage.component.label.calendarInfo.title]: '{month}, {year}',
     [CalendarLanguage.component.label.calendarInfo.solar]: 'Dương lịch, ngày {day} tháng {month} năm {year}',
     [CalendarLanguage.component.label.calendarInfo.lunar]: 'Âm lịch, ngày {day} tháng {month} năm {year}',
     [CalendarLanguage.component.label.display.title]: 'Hiển thị lịch',

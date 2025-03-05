@@ -38,7 +38,7 @@ export default function PokemonGameOver(props: PokemonTimerProps) {
                 className
             )}
         >
-            <Typography variant="h1" color="warning.main" textAlign="center">
+            <Typography variant="h1" color="warning" textAlign="center">
                 <FormattedMessage id={GameLanguage.component.label.gameOver} />
             </Typography>
             <Stack direction="row" gap={2}>

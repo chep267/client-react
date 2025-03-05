@@ -38,7 +38,7 @@ export default function TableBase(props: TableBaseProps) {
 
         onScroll,
         onClickItem,
-        onRequestSort,
+        onSort,
     } = props;
 
     const classes = useStyles();
@@ -53,7 +53,7 @@ export default function TableBase(props: TableBaseProps) {
                         orderBy={orderBy}
                         orderType={orderType}
                         tableCellProps={tableCellProps}
-                        onRequestSort={onRequestSort}
+                        onSort={onSort}
                     />
                     <TableBody
                         data={data}

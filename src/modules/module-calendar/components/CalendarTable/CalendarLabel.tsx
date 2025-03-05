@@ -14,15 +14,22 @@ import { useLanguage } from '@module-language/hooks/useLanguage';
 /** types */
 import type { CalendarLabelProps } from '@module-calendar/types';
 
-export default function CalendarLabel(props: CalendarLabelProps) {
+function Day(props: CalendarLabelProps) {
     const { day } = props;
+    const hookLanguage = useLanguage();
     const {
         data: { locale },
-    } = useLanguage();
+    } = hookLanguage;
+
+    return dayjs().day(day).locale(locale).format('ddd');
+}
+
+export default function CalendarLabel(props: CalendarLabelProps) {
+    const { day } = props;
 
     return (
-        <Typography className="m-auto w-fit" variant="h6" color={day === 0 || day === 6 ? 'error.main' : ''}>
-            {dayjs().day(day).locale(locale).format('ddd')}
+        <Typography className="m-auto w-fit" variant="h6" color={day === 0 || day === 6 ? 'error' : ''}>
+            <Day day={day} />
         </Typography>
     );
 }

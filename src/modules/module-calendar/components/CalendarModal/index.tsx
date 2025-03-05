@@ -15,7 +15,6 @@ import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** utils */
@@ -40,12 +39,12 @@ export default function CalendarModal() {
                 <CardHeader
                     className={classnames('text-right')}
                     title={
-                        <Typography color={isWeekend ? 'error.main' : 'error.main'}>
+                        <Typography color={isWeekend ? 'error' : ''} className="line-clamp-2 capitalize">
                             <FormattedMessage
                                 id={CalendarLanguage.component.label.calendarInfo.title}
                                 values={{
-                                    month: day.format(locale === localeObject.en ? 'MMMM' : 'MM'),
-                                    year: day.format('YYYY'),
+                                    month: day.locale(locale).format('MMMM'),
+                                    year: day.locale(locale).format('YYYY'),
                                 }}
                             />
                         </Typography>
@@ -54,12 +53,12 @@ export default function CalendarModal() {
                 {/*     solar    */}
                 <CardContent className="flex h-fit min-h-72 flex-1 flex-col items-center justify-between gap-2">
                     <Stack className="flex-1 items-center justify-center">
-                        <Typography variant="h1" fontSize="10rem" color={isWeekend ? 'error.main' : ''}>
+                        <Typography variant="h1" fontSize="10rem" color={isWeekend ? 'error' : ''}>
                             {day.date()}
                         </Typography>
                     </Stack>
                     <Stack>
-                        <Typography variant="h5" textTransform="capitalize" color={isWeekend ? 'error.main' : ''}>
+                        <Typography variant="h5" textTransform="capitalize" color={isWeekend ? 'error' : ''}>
                             {day.locale(locale).format('dddd')}
                         </Typography>
                     </Stack>

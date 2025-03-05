@@ -15,11 +15,9 @@ import AppMain from '@module-global/components/AppMain';
 export default function MainScreen() {
     return (
         <BrowserRouter>
-            <Box className="flex h-screen w-screen">
-                <Box className="relative flex min-h-dvh w-auto max-w-full shrink grow flex-col">
-                    <AppHeader />
-                    <AppMain />
-                </Box>
+            <Box className="relative flex h-screen w-screen flex-col">
+                <AppHeader />
+                <AppMain />
             </Box>
         </BrowserRouter>
     );

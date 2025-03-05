@@ -43,6 +43,7 @@
         "dayjs": "^1.11.13",
         "emoji-mart": "^5.6.0",
         "firebase": "^11.4.0",
+        "framer-motion": "^12.4.10",
         "js-cookie": "^3.0.5",
         "mui-tel-input": "^8.0.0",
         "react": "^19.0.0",
