@@ -5,7 +5,6 @@
  */
 
 import * as React from 'react';
-import classnames from 'classnames';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 
@@ -22,16 +21,12 @@ import { genPath } from '@module-base/utils';
 /** hooks */
 import { useListenListThread } from '@module-messenger/hooks/useListenListThread';
 
-/** styles */
-import useStyles from './styles';
-
 /** types */
 import type { Theme } from '@mui/material';
 
-const ThreadList = React.memo(() => {
+const ThreadList = React.memo(function ThreadList() {
     const navigate = useNavigate();
     const { tid: currentTid } = useParams();
-    const classes = useStyles();
     const hasTooltip = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'));
     const LIST_THREAD = useListenListThread();
 

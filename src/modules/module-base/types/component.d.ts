@@ -189,14 +189,8 @@ export interface CheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
 }
 
-/** SelectBase */
-export interface SelectBaseProps extends SelectProps {
-    labelInValue?: string;
-    menuItems?: { value: string | number; label: ReactNode }[];
-    IconRightProps?: {
-        disableClear?: boolean;
-        sx?: SxProps<Theme>;
-        Icon?: ElementType;
-        onClick?(): void;
-    };
+/** Virtual List */
+export interface VirtualListProps<T = any> {
+    className?: string;
+    data?: T[];
 }

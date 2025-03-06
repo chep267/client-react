@@ -4,29 +4,27 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
 import { IconButton, Popover, Tooltip } from '@mui/material';
 import { EmojiEmotions as EmojiEmotionsIcon } from '@mui/icons-material';
 
-/** components */
-import EmojiPicker from '@module-messenger/components/EmojiPicker';
-
 /** utils */
-import { messengerMessage } from '@module-messenger/utils';
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
 
 /** hooks */
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
+
+/** components */
+import EmojiPicker from '@module-messenger/components/EmojiPicker';
 
 /** styles */
 import useStyles from './styles';
 
 /** types */
 import type { ElementClickEvent } from '@module-base/types';
-import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage.ts';
 
 export default function ButtonChooseEmoji() {
     const { tid = '' } = useParams();
