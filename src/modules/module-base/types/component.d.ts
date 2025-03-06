@@ -73,7 +73,8 @@ export interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
     ref?: Ref<{
         scrollTop(): void;
     }>;
-    containerClassName?: string;
+    classNameContainer?: string;
+    classNameLoading?: string;
     loading?: boolean;
     empty?: boolean;
     emptyText?: string;
@@ -81,6 +82,7 @@ export interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
     renderItem?(item: T, index: number): ReactNode;
 }
 export interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
+    className?: string;
     empty?: boolean;
 }
 export interface NestedItemProps {

@@ -11,21 +11,21 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { apiOnGetListThread } from '@module-messenger/apis';
 
 /** constants */
-import { emptyObject, emptyArray } from '@module-base/constants';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
-import type { TypeItemIds, TypeItems } from '@module-base/models';
+import type { TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeDocumentThreadData } from '@module-messenger/types';
 
 export function useListenListThread() {
     const queryClient = useQueryClient();
     const AUTH = useAuth();
-    const [itemIds, setItemIds] = React.useState<TypeItemIds>(emptyArray);
-    const [items, setItems] = React.useState<TypeItems<TypeDocumentThreadData>>(emptyObject);
-    const uid = AUTH.data.me.uid;
+    const [itemIds, setItemIds] = React.useState<TypeItemIds>(AppDefaultValue.emptyArray);
+    const [items, setItems] = React.useState<TypeItems<TypeDocumentThreadData>>(AppDefaultValue.emptyObject);
+    const uid = AUTH.data.user?.uid as string;
 
     const LIST_THREAD = useQuery({
         queryKey: ['useListenListThread', { uid }],

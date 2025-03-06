@@ -17,7 +17,7 @@ import ThreadName from '@module-messenger/components/ThreadName';
 import ThreadLastMessage from '@module-messenger/components/ThreadLastMessage';
 
 /** constants */
-import { emptyObject } from '@module-base/constants';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** styles */
 import useStyles from './styles';
@@ -29,7 +29,7 @@ type ThreadItemProps = { item?: TypeDocumentThreadData; isSelected: boolean; onC
 
 const ThreadItem = React.memo(
     (props: ThreadItemProps) => {
-        const { item = emptyObject, isSelected, hasTooltip, onClick } = props;
+        const { item = AppDefaultValue.emptyObject, isSelected, hasTooltip, onClick } = props;
         const classes = useStyles();
 
         const stopPropagation = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {

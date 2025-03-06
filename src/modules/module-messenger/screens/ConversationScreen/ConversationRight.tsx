@@ -9,26 +9,39 @@ import classnames from 'classnames';
 /** lib components */
 import { Paper } from '@mui/material';
 
-/** components */
-import { ThreadInfo } from '@module-messenger/components';
+/** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** hooks */
-import { useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
-/** styles */
-import useStyles from './styles';
+/** components */
+// import { ThreadInfo } from '@module-messenger/components';
 
 export default function ConversationRight() {
-    const classes = useStyles();
     const { ui } = useMessenger();
 
     return (
         <Paper
-            className={classnames(classes.layoutDefault, classes.right, {
-                [classes.right_hidden]: !ui.openThreadInfo,
+            className={classnames(
+                'flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none bg-red-500 transition-[width]'
+            )}
+            sx={({ breakpoints, zIndex }) => ({
+                maxWidth: ScreenSize.Messenger.left.mediumWidth,
+                [breakpoints.down('lg')]: {
+                    position: 'fixed',
+                    top: ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight,
+                    right: 0,
+                    bottom: 0,
+                    zIndex: zIndex.drawer,
+                    // maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
+                },
+                [breakpoints.up('xl')]: {
+                    maxWidth: ScreenSize.Messenger.left.maxWidth,
+                },
             })}
         >
-            <ThreadInfo />
+            {/*<ThreadInfo />*/}
         </Paper>
     );
 }

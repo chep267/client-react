@@ -12,25 +12,26 @@ import { useNavigate } from 'react-router-dom';
 import { ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 
 /** components */
-import { ListBase } from '@module-base/components';
+import ListBase from '@module-base/components/ListBase';
 import ThreadAvatar from '@module-messenger/components/ThreadAvatar';
 import ThreadName from '@module-messenger/components/ThreadName';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants';
+import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
 
 /** utils */
-import { checkString, genPath, checkId } from '@module-base/utils';
+import { validateId } from '@module-base/utils/validateId';
+import { checkString } from '@module-base/utils/checkString';
 
 /** hooks */
-import { useListUser } from '@module-user/hooks';
-import { useUiThreadSearch } from '@module-messenger/hooks';
+import { useListUser } from '@module-user/hooks/useListUser';
+import { useUiThreadSearch } from '@module-messenger/hooks/useUiThreadSearch';
 
 /** styles */
 import useStyles from '@module-messenger/components/ThreadList/styles';
 
 /** type */
-import type { UserInfo } from '@module-user/models';
+import type { TypeUser } from '@module-user/types';
 
 const ThreadListSearch = React.memo(function ThreadListSearch() {
     const navigate = useNavigate();
@@ -42,13 +43,13 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
 
     const { itemIds, items } = LIST_USER.data ?? {};
 
-    const onClickItem = React.useCallback((uid: UserInfo['uid']) => {
-        const tid = checkId(uid, 'tid');
-        navigate(genPath(ScreenPath.MESSENGER, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
+    const onClickItem = React.useCallback((uid: TypeUser['uid']) => {
+        const tid = validateId(uid, 'tid');
+        // navigate(genPath(GlobalRouterPath.MESSENGER, GlobalRouterPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
     }, []);
 
     const renderItem = React.useCallback(
-        (uid: UserInfo['uid']) => {
+        (uid: TypeUser['uid']) => {
             const user = items?.[uid];
             const isHidden = !user || !checkString(user.displayName || '', searchKey);
 
@@ -64,14 +65,7 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
         [items, searchKey]
     );
 
-    return (
-        <ListBase
-            className={classnames(classes.list, 'messenger_left_thread_list_search')}
-            loading={LIST_USER.isLoading || isSearching}
-            data={itemIds}
-            renderItem={renderItem}
-        />
-    );
+    return <ListBase loading={LIST_USER.isLoading || isSearching} data={itemIds} renderItem={renderItem} />;
 });
 
 export default ThreadListSearch;

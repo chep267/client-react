@@ -26,6 +26,7 @@ export default function InputSearch(props: InputSearchProps) {
         timer = AppTimer.searching,
         onChangeValue,
         onLoading,
+        slotProps,
         ...inputProps
     } = props;
 
@@ -89,9 +90,11 @@ export default function InputSearch(props: InputSearchProps) {
             spellCheck={spellCheck}
             value={value}
             slotProps={{
-                htmlInput: {
+                ...slotProps,
+                input: {
                     startAdornment,
                     endAdornment,
+                    ...slotProps?.input,
                 },
             }}
             onChange={onChange}

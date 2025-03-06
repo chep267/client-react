@@ -16,8 +16,8 @@ import OptionMessage from '@module-messenger/components/Message/OptionMessage';
 import StatusMessage from '@module-messenger/components/Message/StatusMessage';
 
 /** hooks */
-import { useLanguage } from '@module-language/hooks';
-import { useAuth } from '@module-auth/hooks';
+import { useLanguage } from '@module-language/hooks/useLanguage';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** styles */
 import useStyles from './styles';
@@ -39,7 +39,7 @@ export default function Message(props: MessageProps) {
     const classes = useStyles();
     const AUTH = useAuth();
     const LANGUAGE = useLanguage();
-    const isMe = data.uid === AUTH.data.me.uid;
+    const isMe = data.uid === AUTH.data.user?.uid;
 
     return (
         <Stack className={classnames(classes.message_view, { [classes.meView]: isMe }, { [classes.partnerView]: !isMe })}>

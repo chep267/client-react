@@ -19,13 +19,14 @@ import EmojiPicker from '@module-messenger/components/EmojiPicker';
 import { messengerMessage } from '@module-messenger/utils';
 
 /** hooks */
-import { useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** styles */
 import useStyles from './styles';
 
 /** types */
-import type { ElementClickEvent } from '@module-base/models';
+import type { ElementClickEvent } from '@module-base/types';
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage.ts';
 
 export default function ButtonChooseEmoji() {
     const { tid = '' } = useParams();
@@ -53,9 +54,7 @@ export default function ButtonChooseEmoji() {
 
     return (
         <>
-            <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.chooseEmoji.tooltip']} />}
-            >
+            <Tooltip title={<FormattedMessage id={MessengerLanguage.component.button.chooseEmoji} />}>
                 <IconButton aria-describedby={id} onClick={openMenu}>
                     <EmojiEmotionsIcon color="primary" />
                 </IconButton>

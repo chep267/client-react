@@ -7,24 +7,27 @@
 import { collection, doc, onSnapshot, query, setDoc, deleteDoc, getDoc } from 'firebase/firestore';
 
 /** apis */
-import { apiCreateMessage } from './apiCreateMessage';
+import { messageApi } from './messageApi';
 
 /** constants */
-import { firebaseRef, timePendingApi } from '@module-base/constants';
+import { AppTimer } from '@module-base/constants/AppTimer';
+import { firebaseRef } from '@module-base/constants/firebaseRef';
 import { ChatBotGPT, MessageGPT } from '@module-messenger/constants';
 
 /** utils */
-import { firestore, delay, checkId } from '@module-base/utils';
-import { genMessage } from '@module-messenger/utils';
+import { validateId } from '@module-base/utils/validateId';
+import { firestore } from '@module-base/utils/firebaseApp';
+import { delay } from '@module-base/utils/delay';
+import { genMessage } from '@module-messenger/utils/genMessage';
 
 /** types */
-import type { TypeItemIds, TypeItems } from '@module-base/models';
+import type { TypeItemIds, TypeItems } from '@module-base/types';
 import type { MessengerApiProps, TypeDocumentThreadData } from '@module-messenger/types';
 
 export const apiOnGetListThread = async (
     payload: MessengerApiProps['GetListThread']['Payload']
 ): Promise<MessengerApiProps['GetListThread']['Response']> => {
-    const { timer = timePendingApi, uid, fnCallback } = payload;
+    const { timer = AppTimer.pendingApi, uid, fnCallback } = payload;
     const docRef = collection(firestore, firebaseRef.messenger, uid, `${firebaseRef.thread}-${firebaseRef.info}`);
 
     const onGet = () => {
@@ -45,7 +48,7 @@ export const apiOnGetListThread = async (
                     mid: ChatBotGPT.MID_GPT_START,
                     isEncrypt: true,
                 });
-                apiCreateMessage({
+                messageApi.create({
                     uid,
                     tid: ChatBotGPT.MESSENGER_CHAT_BOT_AI_ID,
                     mid: dataGPT.mid,
@@ -58,7 +61,7 @@ export const apiOnGetListThread = async (
                         type: 'thread',
                         tid: ChatBotGPT.MESSENGER_CHAT_BOT_AI_ID,
                         name: 'Chep GPT',
-                        members: [uid, checkId(ChatBotGPT.MESSENGER_CHAT_BOT_AI_ID, 'uid')],
+                        members: [uid, validateId(ChatBotGPT.MESSENGER_CHAT_BOT_AI_ID, 'uid')],
                     },
                 });
             }

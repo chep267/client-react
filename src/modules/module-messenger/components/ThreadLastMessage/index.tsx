@@ -8,31 +8,33 @@
 import { FormattedMessage } from 'react-intl';
 import { Skeleton, Stack, Typography } from '@mui/material';
 
+/** constants */
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
+
 /** components */
 import EmojiMessage from '@module-messenger/components/Message/EmojiMessage';
 
 /** utils */
-import { Crypto } from '@module-base/utils';
-import { messengerMessage } from '@module-messenger/utils';
+import { Crypto } from '@module-base/utils/Crypto';
 
 /** hooks */
-import { useAuth } from '@module-auth/hooks';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** styles */
 import useStyles from './styles';
 
 /** types */
 import type { ReactNode } from 'react';
-import type { UserInfo } from '@module-user/models';
+import type { TypeUser } from '@module-user/types';
 import type { TypeDocumentThreadData } from '@module-messenger/types';
 
-type ThreadLastMessageProps = { tid?: UserInfo['uid']; message: TypeDocumentThreadData['lastMessage'] };
+type ThreadLastMessageProps = { tid?: TypeUser['uid']; message: TypeDocumentThreadData['lastMessage'] };
 
 export default function ThreadLastMessage(props: ThreadLastMessageProps) {
     const { tid, message } = props;
     const classes = useStyles();
     const AUTH = useAuth();
-    const uid = AUTH.data.me.uid;
+    const uid = AUTH.data.user?.uid as string;
 
     if (!tid || !message) {
         return <Skeleton width={100} />;
@@ -41,7 +43,7 @@ export default function ThreadLastMessage(props: ThreadLastMessageProps) {
     const sender =
         message.uid === uid ? (
             <Typography variant="body1">
-                <FormattedMessage {...messengerMessage['module.messenger.component.thread.lastMessage.you']} />:
+                <FormattedMessage id={MessengerLanguage.component.label.message.you} />:
             </Typography>
         ) : undefined;
 
@@ -54,12 +56,9 @@ export default function ThreadLastMessage(props: ThreadLastMessageProps) {
         case numberFile > 0:
             text = (
                 <Typography variant="body1">
-                    <FormattedMessage {...messengerMessage['module.messenger.component.thread.lastMessage.sent']} />
-                    &nbsp;
+                    <FormattedMessage id={MessengerLanguage.component.label.message.sent} />: &nbsp;
                     <FormattedMessage
-                        {...messengerMessage[
-                            `module.messenger.component.thread.lastMessage.${numberFile === 1 ? 'single' : 'multi'}.image`
-                        ]}
+                        id={MessengerLanguage.component.label.message.count.image[numberFile === 1 ? 'single' : 'multi']}
                         values={{ number: message.fileIds?.length }}
                     />
                 </Typography>

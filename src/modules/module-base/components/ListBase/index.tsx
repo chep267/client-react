@@ -17,7 +17,8 @@ import ListLoading from './ListLoading';
 import type { ListBaseProps } from '@module-base/types';
 
 export default function ListBase<T>(props: ListBaseProps<T>) {
-    const { ref, data, className, containerClassName, loading, emptyText, renderItem, ...listProps } = props;
+    const { ref, data, className, classNameContainer, classNameLoading, loading, emptyText, renderItem, ...listProps } =
+        props;
 
     const listRef = React.useRef<HTMLUListElement | null>(null);
 
@@ -30,8 +31,8 @@ export default function ListBase<T>(props: ListBaseProps<T>) {
     }, []);
 
     return (
-        <Stack className={classnames('relative h-full w-full', containerClassName)}>
-            <ListLoading loading={loading} empty={!data?.length} emptyText={emptyText} />
+        <Stack className={classnames('relative h-full w-full', classNameContainer)}>
+            <ListLoading className={classNameLoading} loading={loading} empty={!data?.length} emptyText={emptyText} />
             <List
                 ref={listRef}
                 className={classnames(

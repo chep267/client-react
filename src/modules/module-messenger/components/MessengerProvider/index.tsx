@@ -7,10 +7,10 @@
 import * as React from 'react';
 
 /** utils */
-import { genMessage } from '@module-messenger/utils';
+import { genMessage } from '@module-messenger/utils/genMessage';
 
 /** hooks */
-import { MessengerContext } from '@module-messenger/constants';
+import { MessengerContext } from '@module-messenger/contexts/MessengerContext';
 
 /** types */
 import type { PropsWithChildren } from 'react';

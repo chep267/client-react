@@ -13,22 +13,23 @@ import { apiCreateMessage, apiSendFile } from '@module-messenger/apis';
 import { ChatBotGPT, MessageGPT } from '@module-messenger/constants';
 
 /** utils */
-import { checkId, baseMessage } from '@module-base/utils';
-import { genMessage } from '@module-messenger/utils';
+import { validateId } from '@module-base/utils/validateId';
+import { genMessage } from '@module-messenger/utils/genMessage';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks';
-import { useAuth } from '@module-auth/hooks';
-import { useCreateThread } from '@module-messenger/hooks';
+import { useNotify } from '@module-base/hooks/useNotify';
+import { useAuth } from '@module-auth/hooks/useAuth';
+import { useCreateThread } from '@module-messenger/hooks/useCreateThread';
 
 /** types */
 import type { TypeDocumentMessageData } from '@module-messenger/types';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
 
 export function useSendMessage() {
     const AUTH = useAuth();
     const NOTIFY = useNotify();
     const CREATE_THREAD = useCreateThread();
-    const uid = AUTH.data.me.uid;
+    const uid = AUTH.data.user?.uid as string;
 
     return useMutation({
         mutationFn: async ({ tid, draft }: { tid: string; draft: TypeDocumentMessageData }) => {
@@ -72,8 +73,8 @@ export function useSendMessage() {
                 }).then();
             } else {
                 /** send for partner */
-                const p_uid = checkId(tid, 'uid');
-                const p_tid = checkId(uid, 'tid');
+                const p_uid = validateId(tid, 'uid');
+                const p_tid = validateId(uid, 'tid');
                 apiCreateMessage({
                     uid: p_uid,
                     tid: p_tid,
@@ -92,7 +93,7 @@ export function useSendMessage() {
             NOTIFY.method.toggleNotify({
                 open: true,
                 mode: 'error',
-                intlMessage: baseMessage['module.base.error.server.busy'],
+                messageIntl: BaseLanguage.component.label.error.server,
             });
         },
     });

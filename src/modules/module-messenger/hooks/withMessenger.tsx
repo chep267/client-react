@@ -8,7 +8,7 @@
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** types */
-import type { ComponentType } from '@module-base/models';
+import type { ComponentType } from '@module-base/types';
 
 export function withMessenger<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

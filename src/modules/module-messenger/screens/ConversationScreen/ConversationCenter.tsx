@@ -10,7 +10,7 @@ import classnames from 'classnames';
 import { Paper } from '@mui/material';
 
 /** components */
-import { ConversationHeader, ConversationBody, ConversationFooter } from '@module-messenger/components';
+// import { ConversationHeader, ConversationBody, ConversationFooter } from '@module-messenger/components';
 
 /** styles */
 import useStyles from './styles';
@@ -20,9 +20,9 @@ export default function ConversationCenter() {
 
     return (
         <Paper className={classnames(classes.layoutDefault, classes.center)}>
-            <ConversationHeader />
-            <ConversationBody />
-            <ConversationFooter />
+            {/*<ConversationHeader />*/}
+            {/*<ConversationBody />*/}
+            {/*<ConversationFooter />*/}
         </Paper>
     );
 }

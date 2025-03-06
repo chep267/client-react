@@ -14,7 +14,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 import type { MessengerContextProps } from '@module-messenger/types';
 
 export const MessengerContext = React.createContext<MessengerContextProps>({
-    data: {
+    ui: {
         openThreadInfo: true,
         drafts: AppDefaultValue.emptyObject,
     },

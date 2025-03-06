@@ -16,7 +16,7 @@ import ListBase from '@module-base/components/ListBase';
 import Message from '@module-messenger/components/Message';
 
 /** hooks */
-import { useListenListMessage } from '@module-messenger/hooks';
+import { useListenListMessage } from '@module-messenger/hooks/useListenListMessage';
 
 /** styles */
 import useStyles from './styles';

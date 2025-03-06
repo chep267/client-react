@@ -8,19 +8,19 @@
 import { Skeleton, Typography } from '@mui/material';
 
 /** components */
-import { UserName } from '@module-user/components';
+import UserName from '@module-user/components/UserName';
 
 /** constants */
 import { ChatBotGPT } from '@module-messenger/constants';
 
 /** utils */
-import { checkId } from '@module-base/utils';
+import { validateId } from '@module-base/utils/validateId';
 
 /** types */
 import type { TypographyProps } from '@mui/material';
-import type { UserInfo } from '@module-user/models';
+import type { TypeUser } from '@module-user/types';
 
-type ThreadNameProps = TypographyProps & { tid?: UserInfo['uid']; name?: UserInfo['displayName'] };
+type ThreadNameProps = TypographyProps & { tid?: TypeUser['uid']; name?: TypeUser['displayName'] };
 
 export default function ThreadName(props: ThreadNameProps) {
     const { tid, name, ...otherProps } = props;
@@ -37,6 +37,6 @@ export default function ThreadName(props: ThreadNameProps) {
         );
     }
 
-    const uid = checkId(`${tid}`, 'uid');
+    const uid = validateId(`${tid}`, 'uid');
     return <UserName uid={uid} name={name} {...otherProps} />;
 }

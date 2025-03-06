@@ -4,22 +4,36 @@
  *
  */
 
+/** libs */
 import classnames from 'classnames';
-
-/** lib components */
 import { Paper } from '@mui/material';
+
+/** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** components */
 import { ThreadSearchProvider, ThreadTitle, ThreadSearch, ThreadContent } from '@module-messenger/components';
 
-/** styles */
-import useStyles from './styles';
-
 export default function ConversationLeft() {
-    const classes = useStyles();
-
     return (
-        <Paper className={classnames(classes.layoutDefault, classes.left)}>
+        <Paper
+            className={classnames(
+                'relative flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none transition-[width]'
+            )}
+            sx={({ breakpoints }) => ({
+                minWidth: 0,
+                maxWidth: 0,
+                [breakpoints.up('sm')]: {
+                    maxWidth: ScreenSize.Messenger.left.minWidth,
+                },
+                [breakpoints.up('lg')]: {
+                    maxWidth: ScreenSize.Messenger.left.mediumWidth,
+                },
+                [breakpoints.up('xl')]: {
+                    maxWidth: ScreenSize.Messenger.left.maxWidth,
+                },
+            })}
+        >
             <ThreadTitle />
             <ThreadSearchProvider>
                 <ThreadSearch />

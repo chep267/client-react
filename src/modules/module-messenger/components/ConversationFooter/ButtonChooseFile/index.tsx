@@ -13,10 +13,10 @@ import { IconButton, Tooltip } from '@mui/material';
 import { Photo as PhotoIcon } from '@mui/icons-material';
 
 /** utils */
-import { messengerMessage } from '@module-messenger/utils';
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
 
 /** hooks */
-import { useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** styles */
 import useStyles from './styles';
@@ -56,7 +56,7 @@ export default function ButtonChooseFile() {
     );
 
     return (
-        <Tooltip title={<FormattedMessage {...messengerMessage['module.messenger.component.button.chooseFile.tooltip']} />}>
+        <Tooltip title={<FormattedMessage id={MessengerLanguage.component.button.chooseFile} />}>
             <IconButton color="primary" className={classes.btnFile} component="label" htmlFor="messenge-footer-input-file">
                 <PhotoIcon />
                 <input

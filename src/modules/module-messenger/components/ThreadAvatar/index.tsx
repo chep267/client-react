@@ -8,16 +8,16 @@
 import { Avatar, Skeleton } from '@mui/material';
 
 /** components */
-import { UserAvatar } from '@module-user/components';
+import UserAvatar from '@module-user/components/UserAvatar';
 
 /** utils */
-import { checkId } from '@module-base/utils';
+import { validateId } from '@module-base/utils/validateId';
 
 /** types */
 import type { AvatarProps } from '@mui/material';
-import type { UserInfo } from '@module-user/models';
+import type { TypeUser } from '@module-user/types';
 
-type ThreadAvatarProps = AvatarProps & { tid?: UserInfo['uid'] };
+type ThreadAvatarProps = AvatarProps & { tid?: TypeUser['uid'] };
 
 export default function ThreadAvatar(props: ThreadAvatarProps) {
     const { tid, src, ...otherProps } = props;
@@ -30,6 +30,6 @@ export default function ThreadAvatar(props: ThreadAvatarProps) {
         );
     }
 
-    const uid = checkId(`${tid}`, 'uid');
+    const uid = validateId(`${tid}`, 'uid');
     return <UserAvatar uid={uid} src={src} {...otherProps} />;
 }

@@ -4,20 +4,23 @@
  *
  */
 
+/** lib */
 import * as React from 'react';
 import classnames from 'classnames';
 import { useParams } from 'react-router-dom';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
 import { IconButton, Tooltip } from '@mui/material';
 import { Favorite as FavoriteIcon, Send as SendIcon } from '@mui/icons-material';
 
+/** constants */
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
+
 /** utils */
-import { genMessage, messengerMessage } from '@module-messenger/utils';
+import { genMessage } from '@module-messenger/utils/genMessage';
 
 /** hooks */
-import { useSendMessage, useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
+import { useSendMessage } from '@module-messenger/hooks/useSendMessage';
 
 /** styles */
 import useStyles from './styles';
@@ -50,9 +53,7 @@ export default function ButtonSendMessage() {
     const hasContent = !!draft?.text || !!draft?.fileIds?.length;
     return (
         <>
-            <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendMessage.tooltip']} />}
-            >
+            <Tooltip title={<FormattedMessage id={MessengerLanguage.component.button.sendMessage} />}>
                 <IconButton
                     disabled={SEND_MESSAGE.isPending}
                     onClick={onSendMessage}
@@ -61,9 +62,7 @@ export default function ButtonSendMessage() {
                     <SendIcon color="primary" />
                 </IconButton>
             </Tooltip>
-            <Tooltip
-                title={<FormattedMessage {...messengerMessage['module.messenger.component.button.sendEmoji.tooltip']} />}
-            >
+            <Tooltip title={<FormattedMessage id={MessengerLanguage.component.button.sendEmoji} />}>
                 <IconButton
                     disabled={SEND_MESSAGE.isPending}
                     onClick={onSendEmoji}

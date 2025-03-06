@@ -6,21 +6,20 @@
 
 /** libs */
 import * as React from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+// import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
-const ConversationScreen = React.lazy(() => import('../ConversationScreen'));
+const ConversationScreen = React.lazy(() => import('@module-messenger/screens/ConversationScreen'));
 
 export default function MessengerScreen() {
     return (
         <React.Suspense fallback={null}>
             <Routes>
-                <Route index element={<Navigate to={GlobalRouterPath.messenger} />} />
-                <Route path={GlobalRouterPath.messenger} element={<ConversationScreen />} />
+                <Route index element={<ConversationScreen />} />
                 <Route path="*" element={<NotFoundScreen />} />
             </Routes>
         </React.Suspense>

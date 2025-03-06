@@ -4,17 +4,16 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
 import { FormattedMessage } from 'react-intl';
 import { MenuItem } from '@mui/material';
 
 /** utils */
-import { messengerMessage } from '@module-messenger/utils';
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
 
 /** styles */
-import type { ElementClickEvent } from '@module-base/models';
+import type { ElementClickEvent } from '@module-base/types';
 
 /** types */
 type MenuItemProps = {
@@ -32,27 +31,27 @@ export default function ListOption() {
     const menu = React.useRef<MenuItemProps[]>([
         {
             id: 'reply',
-            title: <FormattedMessage {...messengerMessage['module.messenger.component.message.option.reply']} />,
+            title: <FormattedMessage id={MessengerLanguage.component.select.reply} />,
             divide: true,
         },
         {
             id: 'forward',
-            title: <FormattedMessage {...messengerMessage['module.messenger.component.message.option.forward']} />,
+            title: <FormattedMessage id={MessengerLanguage.component.select.forward} />,
             divide: true,
         },
         {
             id: 'copy',
-            title: <FormattedMessage {...messengerMessage['module.messenger.component.message.option.copy']} />,
+            title: <FormattedMessage id={MessengerLanguage.component.select.copy} />,
             divide: true,
         },
         {
             id: 'revoke',
-            title: <FormattedMessage {...messengerMessage['module.messenger.component.message.option.revoke']} />,
+            title: <FormattedMessage id={MessengerLanguage.component.select.revoke} />,
             divide: true,
         },
         {
             id: 'delete',
-            title: <FormattedMessage {...messengerMessage['module.messenger.component.message.option.delete']} />,
+            title: <FormattedMessage id={MessengerLanguage.component.select.delete} />,
             divide: true,
         },
     ]).current;

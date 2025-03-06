@@ -13,4 +13,21 @@ export const ScreenSize = {
     AppbarCollapseBreakpoint: 1030, // 900,
     CalendarSelectHeight: 100,
     SmScreenWidth: 600,
+
+    Messenger: {
+        left: {
+            titleHeight: 70,
+            minWidth: 80,
+            mediumWidth: 280,
+            maxWidth: 360,
+        },
+        right: {
+            minWidth: 80,
+            mediumWidth: 280,
+            maxWidth: 360,
+        },
+        center: {
+            titleHeight: 100,
+        },
+    },
 } as const;

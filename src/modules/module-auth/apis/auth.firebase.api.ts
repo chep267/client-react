@@ -14,7 +14,7 @@ import {
 import dayjs from 'dayjs';
 
 /** apis */
-import { userFirebaseApi } from '@module-user/apis/api.firebase';
+import { userFirebaseApi } from '@module-user/apis';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';

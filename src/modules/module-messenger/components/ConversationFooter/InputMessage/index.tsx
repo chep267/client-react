@@ -14,10 +14,10 @@ import { InputAdornment, TextField } from '@mui/material';
 import ButtonChooseEmoji from '@module-messenger/components/ConversationFooter/ButtonChooseEmoji';
 
 /** utils */
-import { focusInput } from '@module-base/utils';
+import { focusInput } from '@module-base/utils/focusInput';
 
 /** hooks */
-import { useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** styles */
 import useStyles from './styles';
@@ -38,7 +38,7 @@ export default function InputMessage() {
         if (draft?.text !== text) {
             setText(draft?.text || '');
         }
-        focusInput(inputRef.current);
+        focusInput({ elem: inputRef.current });
     }, [tid, draft]);
 
     /** effect change text */

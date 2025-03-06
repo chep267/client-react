@@ -13,12 +13,6 @@ import { ScreenSize } from '@module-base/constants/ScreenSize';
 import type { TypeTheme } from '@module-theme/types';
 
 const useStyles = makeStyles(({ palette, breakpoints, zIndex }: TypeTheme) => ({
-    screen: {
-        position: 'relative',
-        flexDirection: 'row',
-        width: '100%',
-        height: '100%',
-    },
     layoutDefault: {
         display: 'flex',
         position: 'relative',
@@ -31,15 +25,15 @@ const useStyles = makeStyles(({ palette, breakpoints, zIndex }: TypeTheme) => ({
         overflow: 'hidden',
     },
     left: {
-        maxWidth: ScreenSize.MESSENGER_LEFT_RIGHT_MAX_WIDTH,
+        maxWidth: ScreenSize.Messenger.left.maxWidth,
         transition: 'all 0.3s ease-in-out, background-color 0s',
         [breakpoints.down('xl')]: {
-            minWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
-            maxWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
+            minWidth: ScreenSize.Messenger.left.mediumWidth,
+            maxWidth: ScreenSize.Messenger.left.mediumWidth,
         },
         [breakpoints.down('md')]: {
-            minWidth: ScreenSize.MESSENGER_LEFT_MIN_WIDTH,
-            maxWidth: ScreenSize.MESSENGER_LEFT_MIN_WIDTH,
+            minWidth: ScreenSize.Messenger.left.minWidth,
+            maxWidth: ScreenSize.Messenger.left.minWidth,
             '& div[class*=".ThreadTitle"], div[class*=".ThreadSearch"]': {
                 position: 'absolute',
                 zIndex: -1,
@@ -59,20 +53,20 @@ const useStyles = makeStyles(({ palette, breakpoints, zIndex }: TypeTheme) => ({
     },
     right: {
         borderLeft: `1px solid ${palette.divider}`,
-        maxWidth: ScreenSize.MESSENGER_LEFT_RIGHT_MAX_WIDTH,
+        maxWidth: ScreenSize.Messenger.left.maxWidth,
         transition: 'all 0.3s ease-in-out, height 0s, background-color 0s',
         [breakpoints.down('xl')]: {
-            minWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
-            maxWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
+            minWidth: ScreenSize.Messenger.left.mediumWidth,
+            maxWidth: ScreenSize.Messenger.left.mediumWidth,
         },
         [breakpoints.down('lg')]: {
             position: 'fixed',
-            top: ScreenSize.HeaderHeight + ScreenSize.MESSENGER_CENTER_HeaderHeight,
+            top: ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight,
             right: 0,
             zIndex: zIndex.drawer,
-            minWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
-            maxWidth: ScreenSize.MESSENGER_LEFT_MEDIUM_WIDTH,
-            maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.MESSENGER_CENTER_HeaderHeight}px)`,
+            minWidth: ScreenSize.Messenger.left.mediumWidth,
+            maxWidth: ScreenSize.Messenger.left.mediumWidth,
+            maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
         },
     },
     center: {

@@ -5,24 +5,19 @@
  */
 
 /** lib components */
-import { Stack } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** components */
 import ConversationLeft from './ConversationLeft';
 import ConversationCenter from './ConversationCenter';
 import ConversationRight from './ConversationRight';
 
-/** styles */
-import useStyles from './styles';
-
 export default function ConversationScreen() {
-    const classes = useStyles();
-
     return (
-        <Stack className={classes.screen}>
+        <Box className="relative flex h-full w-full">
             <ConversationLeft />
             <ConversationCenter />
             <ConversationRight />
-        </Stack>
+        </Box>
     );
 }

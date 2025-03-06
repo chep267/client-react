@@ -11,7 +11,7 @@ import { IconButton } from '@mui/material';
 import { Info as InfoIcon } from '@mui/icons-material';
 
 /** hooks */
-import { useMessenger } from '@module-messenger/hooks';
+import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 export default function IconThreadInfo() {
     const { method } = useMessenger();

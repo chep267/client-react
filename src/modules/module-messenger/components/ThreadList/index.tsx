@@ -10,17 +10,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useMediaQuery } from '@mui/material';
 
 /** components */
-import { ListBase } from '@module-base/components';
+import ListBase from '@module-base/components/ListBase';
 import ThreadItem from '@module-messenger/components/ThreadList/ThreadItem';
 
 /** constants */
-import { ScreenPath } from '@module-global/constants';
+import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** utils */
 import { genPath } from '@module-base/utils';
 
 /** hooks */
-import { useListenListThread } from '@module-messenger/hooks';
+import { useListenListThread } from '@module-messenger/hooks/useListenListThread';
 
 /** styles */
 import useStyles from './styles';
@@ -39,12 +39,12 @@ const ThreadList = React.memo(() => {
 
     React.useEffect(() => {
         if (firstId && (!currentTid || currentTid === '0')) {
-            navigate(genPath(ScreenPath.MESSENGER, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', firstId)));
+            // navigate(genPath(MessengerRouterPath.messenger, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', firstId)));
         }
     }, [currentTid, firstId]);
 
     const onClickItem = React.useCallback((tid: string) => {
-        navigate(genPath(ScreenPath.MESSENGER, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
+        // navigate(genPath(MessengerRouterPath.messenger, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
     }, []);
 
     const renderItem = (tid: string) => {
@@ -60,15 +60,7 @@ const ThreadList = React.memo(() => {
         );
     };
 
-    return (
-        <ListBase
-            className={classnames(classes.list, 'messenger_left_thread_list_default')}
-            loading={LIST_THREAD.isFetching}
-            data={LIST_THREAD.data.itemIds}
-            renderItem={renderItem}
-        />
-    );
+    return <ListBase loading={LIST_THREAD.isFetching} data={LIST_THREAD.data.itemIds} renderItem={renderItem} />;
 });
 
-ThreadList.displayName = 'ThreadList';
 export default ThreadList;

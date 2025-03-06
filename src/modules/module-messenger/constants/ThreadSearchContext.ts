@@ -7,7 +7,7 @@
 import * as React from 'react';
 
 /** constants */
-import { emptyFunction } from '@module-base/constants';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** types */
 import type { ThreadSearchContextProps } from '@module-messenger/types';
@@ -19,9 +19,8 @@ export const ThreadSearchContext = React.createContext<ThreadSearchContextProps>
         searchKey: '',
     },
     method: {
-        setSearching: emptyFunction,
-        setFocusSearch: emptyFunction,
-        setSearchKey: emptyFunction,
+        setSearching: AppDefaultValue.emptyFunction,
+        setFocusSearch: AppDefaultValue.emptyFunction,
+        setSearchKey: AppDefaultValue.emptyFunction,
     },
 });
-ThreadSearchContext.displayName = 'ThreadSearchContext';

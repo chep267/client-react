@@ -9,7 +9,7 @@ import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage
 
 export const en = Object.freeze({
     [MessengerLanguage.component.label.router]: 'Messenger',
-    [MessengerLanguage.component.label.thread]: 'Chat',
+    [MessengerLanguage.component.label.thread]: 'Messenger',
 
     [MessengerLanguage.component.label.message.option]: 'See more',
     [MessengerLanguage.component.select.reply]: 'Reply',

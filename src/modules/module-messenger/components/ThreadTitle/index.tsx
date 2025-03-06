@@ -4,25 +4,20 @@
  *
  */
 
+/** libs */
 import classnames from 'classnames';
-
-/** lib components */
-import { Typography, Stack } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { FormattedMessage } from 'react-intl';
 
 /** utils */
-import { messengerMessage } from '@module-messenger/utils';
-
-/** styles */
-import useStyles from './styles';
+import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
 
 export default function ThreadTitle() {
-    const classes = useStyles();
-
     return (
-        <Stack className={classnames('.ThreadTitle', classes.thread_title)}>
+        <Stack className={classnames('.ThreadTitle', 'w-full p-2')}>
             <Typography variant="h5">
-                <FormattedMessage {...messengerMessage['module.messenger.component.thread.title']} />
+                <FormattedMessage id={MessengerLanguage.component.label.thread} />
             </Typography>
         </Stack>
     );

@@ -19,7 +19,7 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import type { ListLoadingProps } from '@module-base/types';
 
 const ListLoading = React.memo(function ListLoading(props: ListLoadingProps) {
-    const { loading, empty, emptyText } = props;
+    const { className, loading, empty, emptyText } = props;
 
     return (
         <Stack
@@ -29,7 +29,8 @@ const ListLoading = React.memo(function ListLoading(props: ListLoadingProps) {
                 'dark:bg-gray-800/80',
                 {
                     ['hidden']: !(loading || empty),
-                }
+                },
+                className
             )}
         >
             {loading ? (

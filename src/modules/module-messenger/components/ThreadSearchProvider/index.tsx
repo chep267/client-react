@@ -7,7 +7,7 @@
 import * as React from 'react';
 
 /** components */
-import { ErrorBoundary } from '@module-base/components';
+import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
 /** utils */
 import { ThreadSearchContext } from '@module-messenger/constants';

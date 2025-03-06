@@ -10,15 +10,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { apiCreateThread } from '@module-messenger/apis';
 
 /** utils */
-import { checkId, baseMessage } from '@module-base/utils';
+import { validateId } from '@module-base/utils/validateId';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks';
-import { useAuth } from '@module-auth/hooks';
+import { useNotify } from '@module-base/hooks/useNotify';
+import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
+import type { TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeDocumentThreadData } from '@module-messenger/types';
-import type { TypeItemIds, TypeItems } from '@module-base/models';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
 
 type TypeListThread =
     | {
@@ -31,14 +32,14 @@ export function useCreateThread() {
     const queryClient = useQueryClient();
     const AUTH = useAuth();
     const NOTIFY = useNotify();
-    const uid = AUTH.data.me.uid;
+    const uid = AUTH.data.user?.uid as string;
     const LIST_THREAD: TypeListThread = queryClient.getQueryData(['useListThread', { uid }]);
 
     return useMutation({
         mutationFn: (payload: TypeDocumentThreadData) => {
             const { tid } = payload;
-            const p_uid = checkId(tid, 'uid');
-            const p_tid = checkId(uid, 'tid');
+            const p_uid = validateId(tid, 'uid');
+            const p_tid = validateId(uid, 'tid');
             let data: TypeDocumentThreadData = { ...payload };
 
             if (LIST_THREAD?.itemIds?.includes?.(tid)) {
@@ -76,7 +77,7 @@ export function useCreateThread() {
             NOTIFY.method.toggleNotify({
                 open: true,
                 mode: 'error',
-                intlMessage: baseMessage['module.base.error.server.busy'],
+                messageIntl: BaseLanguage.component.label.error.server,
             });
         },
     });
