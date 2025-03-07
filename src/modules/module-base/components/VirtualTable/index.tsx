@@ -17,17 +17,18 @@ import TableRow from '@mui/material/TableRow';
 
 /** constants */
 import { OrderType } from '@module-base/constants/OrderType';
+import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** components */
 import TableHeader from '@module-base/components/VirtualTable/TableHeader';
 import TableContent from '@module-base/components/VirtualTable/TableContent';
 
 /** utils */
-import { sortTableData } from '@module-base/utils/sortTableData';
+import { getId, sortTableData } from '@module-base/utils/virtual';
 
 /** types */
 import type { TableComponents } from 'react-virtuoso';
-import type { VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
+import type { TypeVirtualItemData, VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
 
 export default function VirtualTable(props: VirtualTableProps) {
     const {
@@ -41,6 +42,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         selectedIds: selectedIdsProps,
         onChangeOrder,
         onChangeSelected,
+        ...tableProps
     } = props;
 
     const [orderType, setOrderType] = React.useState<NonNullable<VirtualTableProps['orderType']>>();
@@ -75,7 +77,7 @@ export default function VirtualTable(props: VirtualTableProps) {
                 if (!data || !event.target.checked || prevIds.length === data.length) {
                     return [];
                 }
-                return data.map((item, index) => item?.id || index);
+                return data.map(getId);
             });
         },
         [data]
@@ -118,9 +120,9 @@ export default function VirtualTable(props: VirtualTableProps) {
         []
     );
 
-    const currentData = React.useMemo(() => {
+    const currentData = React.useMemo<NonNullable<VirtualTableProps['data']>>(() => {
         if (!orderType || !orderBy) {
-            return data || [];
+            return data || AppDefaultValue.emptyArray;
         }
         return sortTableData({ data, orderType, orderBy });
     }, [data, orderType, orderBy]);
@@ -141,14 +143,14 @@ export default function VirtualTable(props: VirtualTableProps) {
         );
     };
 
-    const itemContent = (indexRow: number, item: any) => {
+    const itemContent = (indexRow: number, item: TypeVirtualItemData) => {
         return (
             <TableContent
                 columns={columns}
                 indexRow={indexRow}
                 item={item}
                 hasCheckbox={hasCheckbox}
-                checked={selectedIds.includes(item?.id || indexRow)}
+                checked={selectedIds.includes(getId(item))}
                 onSelect={onSelectOne}
             />
         );
@@ -161,6 +163,7 @@ export default function VirtualTable(props: VirtualTableProps) {
             components={VirtualTableComponents}
             fixedHeaderContent={fixedHeaderContent}
             itemContent={itemContent}
+            {...tableProps}
         />
     );
 }

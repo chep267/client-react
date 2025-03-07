@@ -24,10 +24,12 @@ import type { PropsWithChildren } from 'react';
 const StartScreen = React.lazy(() => import('@module-auth/screens/StartScreen'));
 const AuthScreen = React.lazy(() => import('@module-auth/screens/AuthScreen'));
 
+type TypeAuthPath = (typeof AuthRouterPath)[keyof typeof AuthRouterPath];
+
 export default function AuthRoute(props: PropsWithChildren) {
     const { children } = props;
 
-    const { pathname } = useLocation() as { pathname: (typeof AuthRouterPath)[keyof typeof AuthRouterPath] };
+    const { pathname } = useLocation() as { pathname: TypeAuthPath };
     const navigate = useNavigate();
     const hookAuth = useAuth();
 
@@ -39,8 +41,8 @@ export default function AuthRoute(props: PropsWithChildren) {
     React.useEffect(() => {
         if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
-            hookAuth.method.setPrePath(pathname);
-            navigate(AuthRouterPath.start, { replace: true });
+            hookAuth.method.setPrePath(Object.values(AuthRouterPath).includes(pathname) ? '/' : pathname);
+            navigate(AuthRouterPath.start);
         }
         if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname)) {
             /** đã đăng nhập xong, vào home */

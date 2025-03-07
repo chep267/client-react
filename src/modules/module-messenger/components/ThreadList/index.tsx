@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useMediaQuery } from '@mui/material';
+import { Avatar, ListItemAvatar, useMediaQuery } from '@mui/material';
 
 /** components */
 import ListBase from '@module-base/components/ListBase';
@@ -23,6 +23,9 @@ import { useListenListThread } from '@module-messenger/hooks/useListenListThread
 
 /** types */
 import type { Theme } from '@mui/material';
+import ListItemText from '@mui/material/ListItemText';
+import VirtualList from '@module-base/components/VirtualList';
+import type { VirtualListProps } from '@module-base/types';
 
 const ThreadList = React.memo(function ThreadList() {
     const navigate = useNavigate();
@@ -55,7 +58,43 @@ const ThreadList = React.memo(function ThreadList() {
         );
     };
 
-    return <ListBase loading={LIST_THREAD.isFetching} data={LIST_THREAD.data.itemIds} renderItem={renderItem} />;
+    // return <ListBase loading={LIST_THREAD.isFetching} data={LIST_THREAD.data.itemIds} renderItem={renderItem} />;
+
+    const users = React.useMemo<
+        VirtualListProps<{
+            id: string;
+            name: string;
+            initials: string;
+            description: string;
+        }>['data']
+    >(() => {
+        return Array.from({ length: 100000 }, (_, index) => ({
+            id: '',
+            name: `User ${index}`,
+            initials: `U${index}`,
+            description: `Description for user ${index}`,
+        }));
+    }, []);
+
+    return (
+        <VirtualList
+            data={users}
+            slotProps={{
+                listItem: {
+                    // className: 'p-0 m-0',
+                },
+            }}
+            itemContent={(_, user) => (
+                <>
+                    <ListItemAvatar>
+                        <Avatar>{user.initials}</Avatar>
+                    </ListItemAvatar>
+
+                    <ListItemText primary={user.name} secondary={<span>{user.description}</span>} />
+                </>
+            )}
+        />
+    );
 });
 
 export default ThreadList;

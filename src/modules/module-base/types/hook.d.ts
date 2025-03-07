@@ -9,7 +9,7 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import type { AlertColor } from '@mui/material/Alert';
 
 /** useCountdown */
-export type UseCountdownProps = {
+export declare type UseCountdownProps = {
     numberCountdown?: number /** thời gian đếm ngược */;
     timer?: number /**  khoảng đếm ngược */;
     isContinue?: boolean /** có  tiếp tục đếm ngược khi về 0 */;
@@ -17,8 +17,8 @@ export type UseCountdownProps = {
 };
 
 /** useNotify */
-export type NotifyProviderProps = PropsWithChildren;
-export type TypeNotify = {
+export declare type NotifyProviderProps = PropsWithChildren;
+export declare type TypeNotify = {
     open?: boolean;
     message?: ReactNode;
     messageIntl?: string;
@@ -26,7 +26,7 @@ export type TypeNotify = {
     duration?: number;
     top?: number;
 };
-export type TypeNotifyContext = {
+export declare type TypeNotifyContext = {
     data: TypeNotify;
     method: {
         toggleNotify(notify?: TypeNotify): void;
@@ -35,7 +35,7 @@ export type TypeNotifyContext = {
 };
 
 /** useListSearch */
-type UseListSearchProps = {
+export declare type UseListSearchProps = {
     disableEventKey: boolean; // có tắt phím mũi tên không, mặc định là không
     total: number; // số phần tử
     indexSelect: number; // vị trí đang select, mặc định là chưa chọn
@@ -44,11 +44,11 @@ type UseListSearchProps = {
 };
 
 /** useSider */
-export type SiderProviderProps = PropsWithChildren;
+export declare type SiderProviderProps = PropsWithChildren;
 
-export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
+export declare type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
 
-export type TypeSiderContext = {
+export declare type TypeSiderContext = {
     data: {
         siderState: TypeSiderState;
     };

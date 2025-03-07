@@ -9,6 +9,6 @@ import type { ChangeEvent, MouseEvent } from 'react';
 
 export type { KeyboardEvent, ComponentType, ReactEventHandler } from 'react';
 
-export type InputChangeEvent = ChangeEvent<HTMLInputElement>;
+export declare type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
-export type ElementClickEvent<T> = MouseEvent<T>;
+export declare type ElementClickEvent<T> = MouseEvent<T>;

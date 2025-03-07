@@ -14,7 +14,6 @@ import {
     ImgHTMLAttributes,
     ReactNode,
     UIEvent,
-    ElementType,
     ErrorInfo,
     Ref,
     ChangeEvent,
@@ -24,52 +23,52 @@ import type { TextFieldProps } from '@mui/material/TextField';
 import type { ListProps } from '@mui/material/List';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { MenuProps } from '@mui/material/Menu';
-import type { SelectProps } from '@mui/material/Select';
 import type { TableRowProps } from '@mui/material/TableRow';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { TooltipProps } from '@mui/material/Tooltip';
 import type { SnackbarProps } from '@mui/material/Snackbar';
-import type { Theme, SxProps } from '@mui/material/styles';
 import type { CheckboxProps } from '@mui/material/Checkbox';
+import type { TableVirtuosoProps, VirtuosoProps } from 'react-virtuoso';
 import type { ElementClickEvent } from './event.d';
+import { ListItemProps } from '@mui/material/ListItem/ListItem';
 
-export type TypeInputElem = HTMLInputElement | null;
+export declare type TypeInputElem = HTMLInputElement | null;
 
 /** ErrorBoundary */
-export interface ErrorBoundaryProps extends PropsWithChildren {
+export declare interface ErrorBoundaryProps extends PropsWithChildren {
     fallback?: FunctionComponent;
     isAutoReload?: boolean;
 }
-export interface ErrorBoundaryStates {
+export declare interface ErrorBoundaryStates {
     hasError: boolean;
 }
-export interface FallbackDefaultProps {
+export declare interface FallbackDefaultProps {
     isAutoReload?: boolean;
 }
 export type { ErrorInfo };
 
 /** IconBase */
-export type IconSVGProps = SVGProps<SVGSVGElement>;
-export type TypeIconBase = 'appLogo' | 'error' | 'notFound';
-export interface IconBaseProps extends SVGProps<SVGSVGElement> {
+export declare type IconSVGProps = SVGProps<SVGSVGElement>;
+export declare type TypeIconBase = 'appLogo' | 'error' | 'notFound';
+export declare interface IconBaseProps extends SVGProps<SVGSVGElement> {
     name: TypeIconBase;
     size?: number;
     ref?: ((instance: SVGSVGElement | null) => void) | RefObject<SVGSVGElement> | null;
 }
-export type TypeIcons = Readonly<Record<TypeIconBase, LazyExoticComponent<(props: IconBaseProps) => JSX.Element>>>;
+export declare type TypeIcons = Readonly<Record<TypeIconBase, LazyExoticComponent<(props: IconBaseProps) => JSX.Element>>>;
 
 /** ImageBase */
-export type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
+export declare type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
 
 /** InputSearch */
-export interface InputSearchProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
+export declare interface InputSearchProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
     timer?: number;
     onLoading?(loading: boolean): void;
     onChangeValue?(value: string): void;
 }
 
 /** ListBase */
-export interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
+export declare interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
     ref?: Ref<{
         scrollTop(): void;
     }>;
@@ -81,11 +80,11 @@ export interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
     data?: T[];
     renderItem?(item: T, index: number): ReactNode;
 }
-export interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
+export declare interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
     className?: string;
     empty?: boolean;
 }
-export interface NestedItemProps {
+export declare interface NestedItemProps {
     id: string;
     icon?: ReactNode;
     loading?: boolean;
@@ -97,7 +96,7 @@ export interface NestedItemProps {
 }
 
 /** MenuBase */
-export interface MenuBaseProps {
+export declare interface MenuBaseProps {
     mode?: 'button' | 'icon';
     menuProps?: Omit<MenuProps, 'open'>;
     tooltipProps?: Omit<TooltipProps, 'children'>;
@@ -107,16 +106,16 @@ export interface MenuBaseProps {
 }
 
 /** NotifyBoundary */
-export type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
+export declare type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
 /** PasswordField */
-export interface PasswordFieldProps extends TextFieldProps {
+export declare interface PasswordFieldProps extends TextFieldProps {
     setFocus?(): void;
 }
 
 /** TableBase */
-export type TypeOrderType = 'asc' | 'desc';
-export interface TableBaseProps<T = any> {
+export declare type TypeOrderType = 'asc' | 'desc';
+export declare interface TableBaseProps<T = any> {
     className?: string;
     sx?: any;
 
@@ -140,18 +139,22 @@ export interface TableBaseProps<T = any> {
     tableRowProps?: TableRowProps;
     tableCellProps?: TableCellProps;
 }
-export type TableLoadingProps = Pick<TableBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
-export type TableHeaderProps = Pick<
+export declare type TableLoadingProps = Pick<TableBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
+export declare type TableHeaderProps = Pick<
     TableBaseProps,
     'rows' | 'orderBy' | 'orderType' | 'onSort' | 'tableRowProps' | 'tableCellProps'
 >;
-export type TableBodyProps = Pick<TableBaseProps, 'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'>;
+export declare type TableBodyProps = Pick<
+    TableBaseProps,
+    'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'
+>;
 
 /** Virtual Table */
-export interface VirtualTableProps<T = any> {
+export declare type TypeId = string | number;
+export declare type TypeVirtualItemData<T = Record<string, any>> = TypeId | ({ id: TypeId } & T);
+export declare interface VirtualTableProps extends TableVirtuosoProps<TypeVirtualItemData, any> {
     className?: string;
     headerClassName?: string;
-    data?: T[];
     columns?: (Omit<TableCellProps, 'children'> & {
         dataKey: string;
         className?: string;
@@ -159,15 +162,14 @@ export interface VirtualTableProps<T = any> {
         label: TableCellProps['children'];
         renderItem?(data: { item: T; indexRow: number; indexCell: number; dataKey: string; value: any }): ReactNode;
     })[];
-
     orderType?: TypeOrderType;
     orderBy?: string;
-    selectedIds?: Array<string | number>;
+    selectedIds?: Array<TypeId>;
     hasCheckbox?: boolean;
     onChangeOrder?(data: { type?: TypeOrderType; key?: string }): void;
-    onChangeSelected?(arr: Array<string | number>): void;
+    onChangeSelected?(arr: Array<TypeId>): void;
 }
-export interface VirtualTableHeaderProps
+export declare interface VirtualTableHeaderProps
     extends Pick<VirtualTableProps, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     className?: string;
     checked?: boolean;
@@ -175,22 +177,29 @@ export interface VirtualTableHeaderProps
     onSort?(newKey: string, prevKey?: string): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export type HeaderColumnsProps = Pick<VirtualTableHeaderProps, 'columns' | 'orderBy' | 'orderType' | 'onSort'>;
-export interface VirtualTableContentProps<T = any> extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
+export declare type HeaderColumnsProps = Pick<VirtualTableHeaderProps, 'columns' | 'orderBy' | 'orderType' | 'onSort'>;
+export declare interface VirtualTableContentProps<T = TypeVirtualItemData>
+    extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
     indexRow: number;
     item: T;
     checked?: boolean;
-    onSelect?(id: string | number): void;
+    onSelect?(id: TypeId): void;
 }
-export interface ContentColumnsProps extends Omit<VirtualTableContentProps, 'selected' | 'onSelect'> {
+export declare interface ContentColumnsProps extends Omit<VirtualTableContentProps, 'selected' | 'onSelect'> {
     onSelect?(): void;
 }
-export interface CheckboxColumnProps extends CheckboxProps {
+export declare interface CheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
 }
 
 /** Virtual List */
-export interface VirtualListProps<T = any> {
+export declare interface VirtualListProps<D extends TypeVirtualItemData, C = any> extends VirtuosoProps<D, C> {
     className?: string;
-    data?: T[];
+    headerContent?: () => ReactNode;
+    footerContent?: () => ReactNode;
+    slotProps?: {
+        listItem?: ListItemProps;
+        header?: any;
+        footer?: any;
+    };
 }

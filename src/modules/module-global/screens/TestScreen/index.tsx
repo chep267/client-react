@@ -46,7 +46,7 @@ export default function TestScreen() {
         },
     ];
 
-    function createData(id: string): any {
+    function createData(id: string) {
         return {
             id,
             firstName: chance.first(),
@@ -57,7 +57,7 @@ export default function TestScreen() {
         };
     }
 
-    const rows: any[] = Array.from({ length: 10000 }, (_, index) => createData(`${index}`));
+    const rows = Array.from({ length: 10 }, (_, index) => createData(`${index}`));
 
     return <VirtualTable data={rows} columns={columns} hasCheckbox />;
 }

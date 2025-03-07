@@ -10,7 +10,6 @@ import Box from '@mui/material/Box';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { visuallyHidden } from '@mui/utils';
 
 /** constants */
@@ -29,14 +28,13 @@ const HeaderColumns = React.memo<HeaderColumnsProps>(function HeaderColumns(prop
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { dataKey, hasSort, label, renderItem, ...cellProps } = column;
         return (
-            <TableCell key={`head-${dataKey}`} variant="head" {...cellProps}>
+            <TableCell key={dataKey} variant="head" {...cellProps}>
                 {!hasSort ? (
                     label
                 ) : (
                     <TableSortLabel
                         active={orderBy === dataKey}
                         direction={orderBy === dataKey ? orderType : OrderType.asc}
-                        IconComponent={ArrowDropDownIcon}
                         onClick={() => onSort?.(dataKey, orderBy)}
                     >
                         {label}
@@ -56,7 +54,7 @@ const TableHeader = React.memo<VirtualTableHeaderProps>(function TableHeader(pro
     const { columns, className, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (
-        <TableRow key="header" className={className} sx={{ backgroundColor: 'background.paper' }}>
+        <TableRow className={className} sx={{ backgroundColor: 'background.paper' }}>
             <CheckboxColumn
                 hasCheckbox={hasCheckbox}
                 indeterminate={Boolean(indeterminate)}

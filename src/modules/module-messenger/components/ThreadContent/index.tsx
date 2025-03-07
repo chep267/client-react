@@ -14,7 +14,6 @@ import { useUiThreadSearch } from '@module-messenger/hooks/useUiThreadSearch';
 /** components */
 import ThreadList from '@module-messenger/components/ThreadList';
 import ThreadListSearch from '@module-messenger/components/ThreadListSearch';
-import VirtualList from '@module-base/components/VirtualList';
 
 export default function ThreadContent() {
     const {
@@ -31,8 +30,7 @@ export default function ThreadContent() {
                     { 'right-full': isFocusSearch }
                 )}
             >
-                {/*<ThreadList />*/}
-                <VirtualList />
+                <ThreadList />
             </Box>
             <Box
                 className={classnames(
