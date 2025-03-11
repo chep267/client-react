@@ -4,10 +4,9 @@
  *
  */
 
-import classnames from 'classnames';
-
-/** lib components */
-import { Stack, IconButton } from '@mui/material';
+/** libs */
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import { Mic as MicIcon } from '@mui/icons-material';
 
 /** components */
@@ -16,27 +15,22 @@ import InputMessage from '@module-messenger/components/ConversationFooter/InputM
 import ButtonChooseFile from '@module-messenger/components/ConversationFooter/ButtonChooseFile';
 import ListFiles from '@module-messenger/components/ConversationFooter/ListFiles';
 
-/** styles */
-import useStyles from './styles';
-
 export default function ConversationFooter() {
-    const classes = useStyles();
-
     return (
-        <Stack className={classes.footer}>
-            <Stack className={classnames(classes.footer_left, { [classes.footer_left_hidden]: false })}>
+        <Box className="relative flex h-fit w-full items-center justify-between border-t p-2" borderColor="divider">
+            <Box className="flex h-full w-28 items-center justify-start">
                 <ButtonChooseFile />
-                <IconButton onClick={() => {}}>
-                    <MicIcon color="primary" />
+                <IconButton color="primary" onClick={() => {}}>
+                    <MicIcon />
                 </IconButton>
-            </Stack>
-            <Stack className={classnames(classes.footer_center, { [classes.footer_center_full]: false })}>
+            </Box>
+            <Box className="flex h-full w-full">
                 <ListFiles />
                 <InputMessage />
-            </Stack>
-            <Stack className={classes.footer_right}>
+            </Box>
+            <Box className="flex h-full w-15 items-center justify-end">
                 <ButtonSendMessage />
-            </Stack>
-        </Stack>
+            </Box>
+        </Box>
     );
 }

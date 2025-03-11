@@ -30,7 +30,7 @@ import type { SnackbarProps } from '@mui/material/Snackbar';
 import type { CheckboxProps } from '@mui/material/Checkbox';
 import type { TableVirtuosoProps, VirtuosoProps } from 'react-virtuoso';
 import type { ElementClickEvent } from './event.d';
-import { ListItemProps } from '@mui/material/ListItem/ListItem';
+import type { ListItemProps } from '@mui/material/ListItem';
 
 export declare type TypeInputElem = HTMLInputElement | null;
 
@@ -199,7 +199,17 @@ export declare interface VirtualListProps<D extends TypeVirtualItemData, C = any
     footerContent?: () => ReactNode;
     slotProps?: {
         listItem?: ListItemProps;
+        listEmpty?: {
+            className?: string;
+            emptyText?: string;
+        };
+        listLoading?: {
+            className?: string;
+            loading?: boolean;
+        };
         header?: any;
         footer?: any;
     };
 }
+export declare type VirtualListLoadingProps = NonNullable<NonNullable<VirtualListProps['slotProps']>['listLoading']>;
+export declare type VirtualListEmptyProps = NonNullable<NonNullable<VirtualListProps['slotProps']>['listEmpty']>;

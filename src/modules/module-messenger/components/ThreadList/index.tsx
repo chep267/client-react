@@ -4,95 +4,59 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Avatar, ListItemAvatar, useMediaQuery } from '@mui/material';
-
-/** components */
-import ListBase from '@module-base/components/ListBase';
-import ThreadItem from '@module-messenger/components/ThreadList/ThreadItem';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
 import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** utils */
-import { genPath } from '@module-base/utils';
+import { genPath } from '@module-base/utils/genPath';
 
 /** hooks */
 import { useListenListThread } from '@module-messenger/hooks/useListenListThread';
 
-/** types */
-import type { Theme } from '@mui/material';
-import ListItemText from '@mui/material/ListItemText';
+/** components */
 import VirtualList from '@module-base/components/VirtualList';
-import type { VirtualListProps } from '@module-base/types';
+import ThreadItem from '@module-messenger/components/ThreadList/ThreadItem';
 
 const ThreadList = React.memo(function ThreadList() {
     const navigate = useNavigate();
     const { tid: currentTid } = useParams();
-    const hasTooltip = useMediaQuery<Theme>((theme) => theme.breakpoints.down('md'));
-    const LIST_THREAD = useListenListThread();
+    const hasTooltip = useMediaQuery((theme) => theme.breakpoints.down('md'));
+    const hookListenListThread = useListenListThread();
 
-    const firstId = LIST_THREAD.data.itemIds[0];
+    const firstId = hookListenListThread.data.itemIds[0];
 
     React.useEffect(() => {
         if (firstId && (!currentTid || currentTid === '0')) {
-            // navigate(genPath(MessengerRouterPath.messenger, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', firstId)));
+            navigate(genPath(MessengerRouterPath.messenger, MessengerRouterPath.conversation.replace(':tid', firstId)));
         }
     }, [currentTid, firstId]);
 
-    const onClickItem = React.useCallback((tid: string) => {
-        // navigate(genPath(MessengerRouterPath.messenger, ScreenPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
-    }, []);
-
-    const renderItem = (tid: string) => {
-        const item = LIST_THREAD.data?.items?.[tid];
-        return (
-            <ThreadItem
-                key={item.tid}
-                item={item}
-                isSelected={item.tid === currentTid}
-                hasTooltip={hasTooltip}
-                onClick={() => onClickItem(item.tid)}
-            />
-        );
+    const renderItem = (_index: number, tid: string) => {
+        const item = hookListenListThread.data?.items?.[tid];
+        if (!item) {
+            return null;
+        }
+        return <ThreadItem key={item.tid} item={item} isSelected={item.tid === currentTid} hasTooltip={hasTooltip} />;
     };
-
-    // return <ListBase loading={LIST_THREAD.isFetching} data={LIST_THREAD.data.itemIds} renderItem={renderItem} />;
-
-    const users = React.useMemo<
-        VirtualListProps<{
-            id: string;
-            name: string;
-            initials: string;
-            description: string;
-        }>['data']
-    >(() => {
-        return Array.from({ length: 100000 }, (_, index) => ({
-            id: '',
-            name: `User ${index}`,
-            initials: `U${index}`,
-            description: `Description for user ${index}`,
-        }));
-    }, []);
 
     return (
         <VirtualList
-            data={users}
+            className="overflow-x-hidden"
+            data={hookListenListThread.data.itemIds}
             slotProps={{
                 listItem: {
-                    // className: 'p-0 m-0',
+                    className: 'p-0 m-0',
+                },
+                listLoading: {
+                    loading: hookListenListThread.isFetching,
                 },
             }}
-            itemContent={(_, user) => (
-                <>
-                    <ListItemAvatar>
-                        <Avatar>{user.initials}</Avatar>
-                    </ListItemAvatar>
-
-                    <ListItemText primary={user.name} secondary={<span>{user.description}</span>} />
-                </>
-            )}
+            itemContent={renderItem}
         />
     );
 });

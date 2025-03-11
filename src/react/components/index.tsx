@@ -16,6 +16,7 @@ import ThemeProvider from '@module-theme/components/ThemeProvider';
 import LanguageProvider from '@module-language/components/LanguageProvider';
 import AuthProvider from '@module-auth/components/AuthProvider';
 import CalendarProvider from '@module-calendar/components/CalendarProvider';
+import MessengerProvider from '@module-messenger/components/MessengerProvider';
 import SiderProvider from '@module-base/components/SiderProvider';
 
 /** screens */
@@ -32,9 +33,11 @@ export default function App() {
                     <NotifyProvider>
                         <AuthProvider>
                             <CalendarProvider>
-                                <SiderProvider>
-                                    <MainScreen />
-                                </SiderProvider>
+                                <MessengerProvider>
+                                    <SiderProvider>
+                                        <MainScreen />
+                                    </SiderProvider>
+                                </MessengerProvider>
                             </CalendarProvider>
                         </AuthProvider>
                     </NotifyProvider>

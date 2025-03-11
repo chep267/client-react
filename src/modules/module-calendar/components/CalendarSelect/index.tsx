@@ -19,7 +19,6 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** hooks */
@@ -27,7 +26,7 @@ import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 export default function CalendarSelect() {
-    const isMobileScreen = useMediaQuery(`(max-width:${ScreenSize.SmScreenWidth}px)`);
+    const isMobileScreen = useMediaQuery((theme) => theme.breakpoints.down('sm'));
     const hookLanguage = useLanguage();
     const hookCalendar = useCalendar();
     const { locale } = hookLanguage.data;

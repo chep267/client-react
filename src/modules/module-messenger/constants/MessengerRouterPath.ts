@@ -6,4 +6,5 @@
 
 export const MessengerRouterPath = {
     messenger: '/messenger',
+    conversation: '/:tid',
 } as const;

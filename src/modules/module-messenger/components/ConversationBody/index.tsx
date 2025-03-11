@@ -8,7 +8,7 @@ import * as React from 'react';
 import classnames from 'classnames';
 import { useParams } from 'react-router-dom';
 
-/** lib components */
+/** libs */
 import { ListItem } from '@mui/material';
 
 /** components */

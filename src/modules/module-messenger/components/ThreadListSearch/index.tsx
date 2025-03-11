@@ -4,38 +4,33 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import classnames from 'classnames';
-import { useNavigate } from 'react-router-dom';
-
-/** lib components */
+import { Link as RouterLink } from 'react-router-dom';
 import { ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 
-/** components */
-import ListBase from '@module-base/components/ListBase';
-import ThreadAvatar from '@module-messenger/components/ThreadAvatar';
-import ThreadName from '@module-messenger/components/ThreadName';
-
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** utils */
 import { validateId } from '@module-base/utils/validateId';
 import { checkString } from '@module-base/utils/checkString';
+import { genPath } from '@module-base/utils/genPath';
 
 /** hooks */
 import { useListUser } from '@module-user/hooks/useListUser';
 import { useUiThreadSearch } from '@module-messenger/hooks/useUiThreadSearch';
 
-/** styles */
-import useStyles from '@module-messenger/components/ThreadList/styles';
+/** components */
+import VirtualList from '@module-base/components/VirtualList';
+import ThreadAvatar from '@module-messenger/components/ThreadAvatar';
+import ThreadName from '@module-messenger/components/ThreadName';
 
 /** type */
 import type { TypeUser } from '@module-user/types';
 
 const ThreadListSearch = React.memo(function ThreadListSearch() {
-    const navigate = useNavigate();
-    const classes = useStyles();
     const LIST_USER = useListUser();
     const {
         data: { searchKey, isSearching },
@@ -43,29 +38,45 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
 
     const { itemIds, items } = LIST_USER.data ?? {};
 
-    const onClickItem = React.useCallback((uid: TypeUser['uid']) => {
+    const renderItem = (_index: number, uid: TypeUser['uid']) => {
+        const user = items?.[uid];
+        const isHidden = !user || !checkString(user.displayName || '', searchKey);
         const tid = validateId(uid, 'tid');
-        // navigate(genPath(GlobalRouterPath.MESSENGER, GlobalRouterPath.MESSENGER_CONVERSATION.replace(':tid', tid)));
-    }, []);
 
-    const renderItem = React.useCallback(
-        (uid: TypeUser['uid']) => {
-            const user = items?.[uid];
-            const isHidden = !user || !checkString(user.displayName || '', searchKey);
+        return isHidden ? null : (
+            <ListItem
+                component={RouterLink}
+                className={classnames('group/item h-20')}
+                sx={{
+                    '&:hover': {
+                        backgroundColor: 'divider',
+                    },
+                }}
+                to={genPath(MessengerRouterPath.messenger, MessengerRouterPath.conversation.replace(':tid', tid))}
+            >
+                <ListItemAvatar>
+                    <ThreadAvatar tid={uid} src={user.photoURL || undefined} alt={user.displayName || undefined} />
+                </ListItemAvatar>
+                <ListItemText primary={<ThreadName tid={uid} name={user.displayName} />} />
+            </ListItem>
+        );
+    };
 
-            return isHidden ? null : (
-                <ListItem key={uid} className={classnames('.ThreadItem', classes.listItem)} onClick={() => onClickItem(uid)}>
-                    <ListItemAvatar>
-                        <ThreadAvatar tid={uid} src={user.photoURL || undefined} alt={user.displayName || undefined} />
-                    </ListItemAvatar>
-                    <ListItemText primary={<ThreadName tid={uid} name={user.displayName} />} />
-                </ListItem>
-            );
-        },
-        [items, searchKey]
+    return (
+        <VirtualList
+            className="overflow-x-hidden"
+            data={itemIds}
+            slotProps={{
+                listItem: {
+                    className: 'p-0 m-0',
+                },
+                listLoading: {
+                    loading: isSearching,
+                },
+            }}
+            itemContent={renderItem}
+        />
     );
-
-    return <ListBase loading={LIST_USER.isLoading || isSearching} data={itemIds} renderItem={renderItem} />;
 });
 
 export default ThreadListSearch;

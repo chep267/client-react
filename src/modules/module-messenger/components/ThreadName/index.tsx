@@ -4,8 +4,9 @@
  *
  */
 
-/** lib components */
-import { Skeleton, Typography } from '@mui/material';
+/** libs */
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
 
 /** components */
 import UserName from '@module-user/components/UserName';

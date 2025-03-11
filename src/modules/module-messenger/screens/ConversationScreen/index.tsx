@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import Box from '@mui/material/Box';
 
 /** components */

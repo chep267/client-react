@@ -21,7 +21,7 @@ export default function ThreadContent() {
     } = useUiThreadSearch();
 
     return (
-        <Box className={classnames('relative mt-2.5 flex h-full w-full overflow-hidden')}>
+        <Box className={classnames('relative flex h-full w-full overflow-hidden', 'lg:mt-2.5')}>
             <Box
                 className={classnames(
                     'messenger-left-thread-list-default',

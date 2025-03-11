@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Favorite as FavoriteIcon } from '@mui/icons-material';
 
 /** type */

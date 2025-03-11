@@ -19,7 +19,7 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 /** types */
 import type { TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeDocumentThreadData } from '@module-messenger/types';
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 type TypeListThread =
     | {

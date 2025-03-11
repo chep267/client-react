@@ -4,10 +4,9 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
-
-/** lib components */
-import { IconButton } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import { Info as InfoIcon } from '@mui/icons-material';
 
 /** hooks */

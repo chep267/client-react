@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 
-/** lib components */
+/** libs */
 import { FormattedMessage } from 'react-intl';
 
 /** icons */

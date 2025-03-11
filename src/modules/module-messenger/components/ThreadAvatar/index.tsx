@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Avatar, Skeleton } from '@mui/material';
 
 /** components */

@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { FormattedMessage } from 'react-intl';
 import { Skeleton, Stack, Typography } from '@mui/material';
 

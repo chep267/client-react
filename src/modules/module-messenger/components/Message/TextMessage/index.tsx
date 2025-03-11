@@ -6,7 +6,7 @@
 
 import classnames from 'classnames';
 
-/** lib components */
+/** libs */
 import { Typography, Stack } from '@mui/material';
 
 /** utils */

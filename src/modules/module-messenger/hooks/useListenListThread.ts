@@ -25,9 +25,38 @@ export function useListenListThread() {
     const AUTH = useAuth();
     const [itemIds, setItemIds] = React.useState<TypeItemIds>(AppDefaultValue.emptyArray);
     const [items, setItems] = React.useState<TypeItems<TypeDocumentThreadData>>(AppDefaultValue.emptyObject);
+
     const uid = AUTH.data.user?.uid as string;
 
-    const LIST_THREAD = useQuery({
+    const testIds = React.useMemo<TypeItemIds>(() => {
+        return Array.from({ length: 100 }, (_, index) => `${index}`);
+    }, []);
+
+    const tests = React.useMemo<TypeItems<TypeDocumentThreadData>>(() => {
+        const output = {};
+        testIds.forEach((index) => {
+            output[index] = {
+                tid: `tid.${index}`,
+                name: `User ${index}`,
+                type: 'thread',
+                members: [],
+                lastMessage: {
+                    uid: `tid.${index}`,
+                    tid: `tid.${index}`,
+                    mid: `mid.${index}`,
+                    text: 'abc',
+                    fileIds: [],
+                    files: {},
+                    createdTime: Date.now(),
+                    updatedTime: Date.now(),
+                    type: 'text',
+                },
+            };
+        });
+        return output;
+    }, [testIds]);
+
+    const hookListenListThread = useQuery({
         queryKey: ['useListenListThread', { uid }],
         queryFn: () => {
             return apiOnGetListThread({
@@ -44,10 +73,10 @@ export function useListenListThread() {
 
     React.useEffect(() => {
         if (uid) {
-            LIST_THREAD.refetch().then();
+            hookListenListThread.refetch().then();
         }
         return () => {
-            LIST_THREAD.data?.unsubscribe?.();
+            hookListenListThread.data?.unsubscribe?.();
         };
     }, [uid]);
 
@@ -59,7 +88,7 @@ export function useListenListThread() {
     }, [itemIds, items]);
 
     return {
-        ...LIST_THREAD,
-        data: { itemIds, items },
+        ...hookListenListThread,
+        data: { itemIds: testIds, items: tests },
     };
 }

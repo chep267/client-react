@@ -6,23 +6,27 @@
 
 /** libs */
 import classnames from 'classnames';
-import { Paper } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** constants */
 import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** components */
-import { ThreadSearchProvider, ThreadTitle, ThreadSearch, ThreadContent } from '@module-messenger/components';
+import ThreadSearchProvider from '@module-messenger/components/ThreadSearchProvider';
+import ThreadTitle from '@module-messenger/components/ThreadTitle';
+import ThreadSearch from '@module-messenger/components/ThreadSearch';
+import ThreadContent from '@module-messenger/components/ThreadContent';
 
 export default function ConversationLeft() {
     return (
-        <Paper
+        <Box
             className={classnames(
-                'relative flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none transition-[width]'
+                'relative flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none border-r border-solid transition-[width]'
             )}
-            sx={({ breakpoints }) => ({
+            sx={({ breakpoints, palette }) => ({
                 minWidth: 0,
                 maxWidth: 0,
+                borderColor: palette.divider,
                 [breakpoints.up('sm')]: {
                     maxWidth: ScreenSize.Messenger.left.minWidth,
                 },
@@ -34,11 +38,20 @@ export default function ConversationLeft() {
                 },
             })}
         >
-            <ThreadTitle />
             <ThreadSearchProvider>
-                <ThreadSearch />
+                <Box
+                    className={classnames('flex w-full flex-col justify-between', 'max-lg:hidden')}
+                    sx={{
+                        height: ScreenSize.Messenger.left.titleHeight,
+                        minHeight: ScreenSize.Messenger.left.titleHeight,
+                        maxHeight: ScreenSize.Messenger.left.titleHeight,
+                    }}
+                >
+                    <ThreadTitle />
+                    <ThreadSearch />
+                </Box>
                 <ThreadContent />
             </ThreadSearchProvider>
-        </Paper>
+        </Box>
     );
 }

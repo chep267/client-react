@@ -57,7 +57,7 @@ export default function TestScreen() {
         };
     }
 
-    const rows = Array.from({ length: 10 }, (_, index) => createData(`${index}`));
+    const rows = Array.from({ length: 10000 }, (_, index) => createData(`${index}`));
 
     return <VirtualTable data={rows} columns={columns} hasCheckbox />;
 }

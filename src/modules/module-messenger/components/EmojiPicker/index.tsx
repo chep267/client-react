@@ -6,7 +6,7 @@
 
 import data from '@emoji-mart/data';
 
-/** lib components */
+/** libs */
 import Picker from '@emoji-mart/react';
 
 /** hooks */

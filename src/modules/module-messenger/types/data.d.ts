@@ -22,6 +22,7 @@ export type TypeDocumentMessageData = {
     text: string;
     fileIds: TypeItemIds;
     files: TypeItems<{
+        fid: string;
         fileData?: File | null;
         url: string;
         name: File['name'];

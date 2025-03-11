@@ -6,8 +6,8 @@
 
 import classnames from 'classnames';
 
-/** lib components */
-import { Paper } from '@mui/material';
+/** libs */
+import Box from '@mui/material/Box';
 
 /** constants */
 import { ScreenSize } from '@module-base/constants/ScreenSize';
@@ -16,32 +16,36 @@ import { ScreenSize } from '@module-base/constants/ScreenSize';
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** components */
-// import { ThreadInfo } from '@module-messenger/components';
+import ThreadInfo from '@module-messenger/components/ThreadInfo';
 
 export default function ConversationRight() {
-    const { ui } = useMessenger();
+    const hookMessenger = useMessenger();
 
     return (
-        <Paper
+        <Box
             className={classnames(
-                'flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none bg-red-500 transition-[width]'
+                'flex h-full flex-col items-center justify-between overflow-hidden rounded-none border-l border-solid transition-[width]',
+                { ['w-full']: hookMessenger.ui.openThreadInfo },
+                { ['w-0']: !hookMessenger.ui.openThreadInfo }
             )}
-            sx={({ breakpoints, zIndex }) => ({
+            sx={({ breakpoints, zIndex, palette }) => ({
                 maxWidth: ScreenSize.Messenger.left.mediumWidth,
+                borderColor: palette.divider,
                 [breakpoints.down('lg')]: {
                     position: 'fixed',
                     top: ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight,
                     right: 0,
                     bottom: 0,
                     zIndex: zIndex.drawer,
-                    // maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
+                    borderWidth: 1,
+                    maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
                 },
                 [breakpoints.up('xl')]: {
                     maxWidth: ScreenSize.Messenger.left.maxWidth,
                 },
             })}
         >
-            {/*<ThreadInfo />*/}
-        </Paper>
+            <ThreadInfo />
+        </Box>
     );
 }

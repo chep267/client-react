@@ -23,7 +23,7 @@ import { useCreateThread } from '@module-messenger/hooks/useCreateThread';
 
 /** types */
 import type { TypeDocumentMessageData } from '@module-messenger/types';
-import { BaseLanguage } from '@module-base/constants/BaseLanguage.ts';
+import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 export function useSendMessage() {
     const AUTH = useAuth();

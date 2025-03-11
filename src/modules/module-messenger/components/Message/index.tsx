@@ -8,7 +8,7 @@ import * as React from 'react';
 import dayjs from 'dayjs';
 import classnames from 'classnames';
 
-/** lib components */
+/** libs */
 import { Stack, Tooltip } from '@mui/material';
 
 /** components */

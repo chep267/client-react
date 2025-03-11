@@ -6,7 +6,7 @@
 
 import { useParams } from 'react-router-dom';
 
-/** lib components */
+/** libs */
 import { Stack } from '@mui/material';
 
 /** styles */

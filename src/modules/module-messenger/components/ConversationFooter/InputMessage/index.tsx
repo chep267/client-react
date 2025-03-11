@@ -7,7 +7,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 
-/** lib components */
+/** libs */
 import { InputAdornment, TextField } from '@mui/material';
 
 /** components */

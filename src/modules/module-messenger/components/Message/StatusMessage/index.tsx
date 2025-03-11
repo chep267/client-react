@@ -6,7 +6,7 @@
 
 import classnames from 'classnames';
 
-/** lib components */
+/** libs */
 import {
     CheckCircleOutlined as CheckCircleOutlinedIcon,
     CheckCircleRounded as CheckCircleRoundedIcon,

@@ -9,7 +9,7 @@ import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 /** constants */
-// import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
+import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
@@ -20,6 +20,7 @@ export default function MessengerScreen() {
         <React.Suspense fallback={null}>
             <Routes>
                 <Route index element={<ConversationScreen />} />
+                <Route path={MessengerRouterPath.conversation} element={<ConversationScreen />} />
                 <Route path="*" element={<NotFoundScreen />} />
             </Routes>
         </React.Suspense>

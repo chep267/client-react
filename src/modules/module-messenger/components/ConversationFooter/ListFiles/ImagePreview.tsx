@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Stack, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 

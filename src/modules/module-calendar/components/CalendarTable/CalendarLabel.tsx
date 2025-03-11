@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import dayjs from 'dayjs';
 import Typography from '@mui/material/Typography';
 

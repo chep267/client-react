@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { Skeleton, Typography } from '@mui/material';
 
 /** hooks */

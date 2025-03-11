@@ -8,7 +8,7 @@
 import { validateId } from '@module-base/utils/validateId';
 
 /** hooks */
-import { useListUser } from './useListUser.ts';
+import { useListUser } from './useListUser';
 
 /** types */
 import type { TypeUser } from '@module-user/types';

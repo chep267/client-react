@@ -4,7 +4,7 @@
  *
  */
 
-/** lib components */
+/** libs */
 import { ImageList, ImageListItem } from '@mui/material';
 
 /** components */

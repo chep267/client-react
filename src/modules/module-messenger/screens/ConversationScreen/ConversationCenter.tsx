@@ -4,25 +4,20 @@
  *
  */
 
+/** libs */
 import classnames from 'classnames';
-
-/** lib components */
-import { Paper } from '@mui/material';
+import Box from '@mui/material/Box';
 
 /** components */
-// import { ConversationHeader, ConversationBody, ConversationFooter } from '@module-messenger/components';
-
-/** styles */
-import useStyles from './styles';
+import ConversationHeader from '@module-messenger/components/ConversationHeader';
+import ConversationFooter from '@module-messenger/components/ConversationFooter';
 
 export default function ConversationCenter() {
-    const classes = useStyles();
-
     return (
-        <Paper className={classnames(classes.layoutDefault, classes.center)}>
-            {/*<ConversationHeader />*/}
+        <Box className={classnames('relative flex h-full w-full flex-col items-center justify-between overflow-hidden')}>
+            <ConversationHeader />
             {/*<ConversationBody />*/}
-            {/*<ConversationFooter />*/}
-        </Paper>
+            <ConversationFooter />
+        </Box>
     );
 }

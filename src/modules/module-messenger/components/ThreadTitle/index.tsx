@@ -5,8 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { FormattedMessage } from 'react-intl';
 
@@ -15,10 +14,10 @@ import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage
 
 export default function ThreadTitle() {
     return (
-        <Stack className={classnames('.ThreadTitle', 'w-full p-2')}>
+        <Box className="w-full px-2 pt-3">
             <Typography variant="h5">
                 <FormattedMessage id={MessengerLanguage.component.label.thread} />
             </Typography>
-        </Stack>
+        </Box>
     );
 }

@@ -19,7 +19,7 @@ import { useUiThreadSearch } from '@module-messenger/hooks/useUiThreadSearch';
 
 export default function ThreadSearch() {
     const {
-        data: { isFocusSearch, searchKey },
+        data: { isFocusSearch },
         method: { setFocusSearch, setSearching, setSearchKey },
     } = useUiThreadSearch();
 
@@ -28,11 +28,12 @@ export default function ThreadSearch() {
     const onFocus = React.useCallback(() => setFocusSearch(true), []);
 
     return (
-        <Box className={classnames('.ThreadSearch', 'relative flex w-full items-center justify-between gap-2 p-1')}>
+        <Box className={classnames('relative flex w-full items-center justify-between gap-2 px-2')}>
             <IconButton
                 className={classnames('absolute left-1 z-10 scale-0 transition-transform duration-200', {
                     'scale-100': isFocusSearch,
                 })}
+                color="primary"
                 onClick={onClose}
             >
                 <WestIcon />
@@ -42,7 +43,6 @@ export default function ThreadSearch() {
                 slotProps={{
                     input: { className: 'rounded-3xl' },
                 }}
-                onBlur={searchKey ? undefined : onClose}
                 onFocus={onFocus}
                 onChangeValue={setSearchKey}
                 onLoading={setSearching}
