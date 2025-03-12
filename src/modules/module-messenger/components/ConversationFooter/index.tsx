@@ -6,6 +6,7 @@
 
 /** libs */
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import { Mic as MicIcon } from '@mui/icons-material';
 
@@ -17,20 +18,22 @@ import ListFiles from '@module-messenger/components/ConversationFooter/ListFiles
 
 export default function ConversationFooter() {
     return (
-        <Box className="relative flex h-fit w-full items-center justify-between border-t p-2" borderColor="divider">
-            <Box className="flex h-full w-28 items-center justify-start">
-                <ButtonChooseFile />
-                <IconButton color="primary" onClick={() => {}}>
-                    <MicIcon />
-                </IconButton>
+        <Stack className="relative flex h-fit w-full items-center justify-between gap-5 border-t p-2" borderColor="divider">
+            <ListFiles />
+            <Box className="relative flex h-fit w-full items-center justify-between">
+                <Box className="flex h-full w-28 items-center justify-start">
+                    <ButtonChooseFile />
+                    <IconButton color="primary" onClick={() => {}}>
+                        <MicIcon />
+                    </IconButton>
+                </Box>
+                <Box className="flex h-full w-full">
+                    <InputMessage />
+                </Box>
+                <Box className="flex h-full w-15 items-center justify-end">
+                    <ButtonSendMessage />
+                </Box>
             </Box>
-            <Box className="flex h-full w-full">
-                <ListFiles />
-                <InputMessage />
-            </Box>
-            <Box className="flex h-full w-15 items-center justify-end">
-                <ButtonSendMessage />
-            </Box>
-        </Box>
+        </Stack>
     );
 }

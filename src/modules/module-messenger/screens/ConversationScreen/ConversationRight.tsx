@@ -4,9 +4,8 @@
  *
  */
 
-import classnames from 'classnames';
-
 /** libs */
+import classnames from 'classnames';
 import Box from '@mui/material/Box';
 
 /** constants */
@@ -39,6 +38,7 @@ export default function ConversationRight() {
                     zIndex: zIndex.drawer,
                     borderWidth: 1,
                     maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
+                    backgroundColor: 'background.paper',
                 },
                 [breakpoints.up('xl')]: {
                     maxWidth: ScreenSize.Messenger.left.maxWidth,

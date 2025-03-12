@@ -4,14 +4,11 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-
-/** libs */
-import { InputAdornment, TextField } from '@mui/material';
-
-/** components */
-import ButtonChooseEmoji from '@module-messenger/components/ConversationFooter/ButtonChooseEmoji';
+import InputAdornment from '@mui/material/InputAdornment';
+import TextField from '@mui/material/TextField';
 
 /** utils */
 import { focusInput } from '@module-base/utils/focusInput';
@@ -19,14 +16,11 @@ import { focusInput } from '@module-base/utils/focusInput';
 /** hooks */
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
-/** styles */
-import useStyles from './styles';
-
-/** type */
+/** components */
+import ButtonChooseEmoji from '@module-messenger/components/ConversationFooter/ButtonChooseEmoji';
 
 export default function InputMessage() {
     const { tid = '' } = useParams();
-    const classes = useStyles();
     const { ui, method } = useMessenger();
 
     const inputRef = React.useRef<HTMLInputElement>(null);
@@ -35,11 +29,9 @@ export default function InputMessage() {
 
     /** effect init text */
     React.useEffect(() => {
-        if (draft?.text !== text) {
-            setText(draft?.text || '');
-        }
+        setText(draft?.text || '');
         focusInput({ elem: inputRef.current });
-    }, [tid, draft]);
+    }, [tid]);
 
     /** effect change text */
     React.useEffect(() => {
@@ -54,6 +46,7 @@ export default function InputMessage() {
 
     const InputProps = React.useMemo(() => {
         return {
+            className: 'rounded-3xl pl-5 pr-3',
             endAdornment: (
                 <InputAdornment position="end">
                     <ButtonChooseEmoji />
@@ -65,17 +58,18 @@ export default function InputMessage() {
     return (
         <TextField
             inputRef={inputRef}
-            className={classes.input}
+            value={text}
             placeholder="Aa"
             size="small"
             multiline
-            maxRows={5}
+            maxRows={3}
             variant="outlined"
             spellCheck={false}
             fullWidth
-            value={text}
+            slotProps={{
+                input: InputProps,
+            }}
             onChange={onChangeValue}
-            InputProps={InputProps}
         />
     );
 }

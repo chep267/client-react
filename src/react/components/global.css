@@ -80,10 +80,10 @@
 
 @layer utilities {
     /* Light theme */
-    /*.scrollbar-custom::-webkit-scrollbar {*/
-    /*    width: 10px;*/
-    /*    height: 10px;*/
-    /*}*/
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
     .scrollbar-hidden {
         scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
     }

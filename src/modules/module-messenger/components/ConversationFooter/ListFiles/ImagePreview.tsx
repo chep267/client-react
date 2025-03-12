@@ -5,33 +5,50 @@
  */
 
 /** libs */
-import { Stack, IconButton } from '@mui/material';
+import classnames from 'classnames';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import { Close as CloseIcon } from '@mui/icons-material';
 
-/** styles */
-import useStyles from './styles';
-import { TypeDocumentMessageData } from '@module-messenger/types';
+/** types */
+import type { TypeDocumentMessageData } from '@module-messenger/types';
 
 type ImagePreviewProps = {
+    className?: string;
     fid: string;
     file?: TypeDocumentMessageData['files'][string];
     onRemoveFile(fid: string): void;
 };
 
 export default function ImagePreview(props: ImagePreviewProps) {
-    const { file, fid, onRemoveFile } = props;
-    const classes = useStyles();
+    const { className, file, fid, onRemoveFile } = props;
 
     if (!file?.fileData) {
         return null;
     }
 
     return (
-        <Stack className={classes.list_item}>
-            <IconButton className={classes.iconRemove} onClick={() => onRemoveFile(fid)} size="small">
+        <Box className={classnames('group/image relative h-20 w-20 overflow-hidden rounded-xl', className)} bgcolor="divider">
+            <IconButton
+                className="invisible absolute top-0.5 right-0.5 border border-solid p-0 group-hover/image:visible"
+                sx={{
+                    borderColor: 'error.main',
+                    '& > svg': {
+                        color: 'error.main',
+                    },
+                    '&:hover': {
+                        backgroundColor: 'error.main',
+                        '& > svg': {
+                            color: 'common.white',
+                        },
+                    },
+                }}
+                onClick={() => onRemoveFile(fid)}
+                size="small"
+            >
                 <CloseIcon fontSize="small" />
             </IconButton>
-            <img alt="" src={URL.createObjectURL(file.fileData)} />
-        </Stack>
+            <img alt="" className="h-full w-full" src={URL.createObjectURL(file.fileData)} />
+        </Box>
     );
 }

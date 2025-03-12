@@ -4,27 +4,24 @@
  *
  */
 
+/** libs */
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
-
-/** libs */
-import { Stack } from '@mui/material';
-
-/** components */
-import ImagePreview from '@module-messenger/components/ConversationFooter/ListFiles/ImagePreview';
 
 /** hooks */
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
+/** components */
+import VirtualList from '@module-base/components/VirtualList';
+import ImagePreview from '@module-messenger/components/ConversationFooter/ListFiles/ImagePreview';
+
 /** styles */
-import useStyles from './styles';
 
 export default function ListFiles() {
     const { tid = '' } = useParams();
-    const classes = useStyles();
     const { ui, method } = useMessenger();
 
-    const draft = tid ? ui.drafts[tid] : null;
+    const draft = ui.drafts[tid];
 
     const onRemoveFile = React.useCallback(
         (fid: string) => {
@@ -37,11 +34,25 @@ export default function ListFiles() {
         return null;
     }
 
+    const renderItem = (_index: number, fid: string) => {
+        const item = draft?.files?.[fid];
+        if (!item) {
+            return null;
+        }
+        return <ImagePreview key={fid} file={draft?.files?.[fid]} fid={fid} onRemoveFile={onRemoveFile} />;
+    };
+
     return (
-        <Stack className={classes.list_wrap}>
-            {draft.fileIds.map((fid) => {
-                return <ImagePreview key={fid} file={draft?.files?.[fid]} fid={fid} onRemoveFile={onRemoveFile} />;
-            })}
-        </Stack>
+        <VirtualList
+            className="min-h-[120px] overflow-y-hidden"
+            horizontalDirection
+            data={draft?.fileIds}
+            slotProps={{
+                listItem: {
+                    className: 'p-0 m-0 w-max ml-1',
+                },
+            }}
+            itemContent={renderItem}
+        />
     );
 }
