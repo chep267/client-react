@@ -19,9 +19,9 @@ import { OrderType } from '@module-base/constants/OrderType';
 import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
 
 /** types */
-import type { VirtualTableHeaderProps, HeaderColumnsProps } from '@module-base/types';
+import type { VirtualTableHeaderProps, HeaderColumnsProps, TypeVirtualTableItemData } from '@module-base/types';
 
-const HeaderColumns = React.memo<HeaderColumnsProps>(function HeaderColumns(props) {
+const HeaderColumns = React.memo<HeaderColumnsProps<TypeVirtualTableItemData>>(function HeaderColumns(props) {
     const { columns, orderBy, orderType, onSort } = props;
 
     return columns?.map((column) => {
@@ -50,7 +50,7 @@ const HeaderColumns = React.memo<HeaderColumnsProps>(function HeaderColumns(prop
     });
 });
 
-const TableHeader = React.memo<VirtualTableHeaderProps>(function TableHeader(props: VirtualTableHeaderProps) {
+const TableHeader = React.memo<VirtualTableHeaderProps<TypeVirtualTableItemData>>(function TableHeader(props) {
     const { columns, className, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (

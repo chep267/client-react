@@ -29,8 +29,8 @@ import type { TooltipProps } from '@mui/material/Tooltip';
 import type { SnackbarProps } from '@mui/material/Snackbar';
 import type { CheckboxProps } from '@mui/material/Checkbox';
 import type { TableVirtuosoProps, VirtuosoProps } from 'react-virtuoso';
-import type { ElementClickEvent } from './event.d';
 import type { ListItemProps } from '@mui/material/ListItem';
+import type { ElementClickEvent } from './event.d';
 
 export declare type TypeInputElem = HTMLInputElement | null;
 
@@ -151,41 +151,52 @@ export declare type TableBodyProps = Pick<
 
 /** Virtual Table */
 export declare type TypeId = string | number;
-export declare type TypeVirtualItemData<T = Record<string, any>> = TypeId | ({ id: TypeId } & T);
-export declare interface VirtualTableProps extends TableVirtuosoProps<TypeVirtualItemData, any> {
+export declare type TypeVirtualTableItemData = Record<TypeId, any> | Array<any>;
+export declare interface VirtualTableProps<D extends TypeVirtualListItemData, C = any> extends TableVirtuosoProps<D, C> {
     className?: string;
     headerClassName?: string;
     columns?: (Omit<TableCellProps, 'children'> & {
-        dataKey: string;
+        dataKey: TypeId;
         className?: string;
         hasSort?: boolean;
         label: TableCellProps['children'];
-        renderItem?(data: { item: T; indexRow: number; indexCell: number; dataKey: string; value: any }): ReactNode;
+        renderItem?(data: {
+            dataKey: TypeId;
+            indexRow: number;
+            indexCell: number;
+            item: D;
+            value: D[Extract<TypeId, keyof D>];
+        }): ReactNode;
     })[];
     orderType?: TypeOrderType;
-    orderBy?: string;
+    orderBy?: TypeId;
     selectedIds?: Array<TypeId>;
     hasCheckbox?: boolean;
-    onChangeOrder?(data: { type?: TypeOrderType; key?: string }): void;
+    dataKeyForCheckbox?: TypeId;
+    onChangeOrder?(data: { type?: TypeOrderType; key?: TypeId }): void;
     onChangeSelected?(arr: Array<TypeId>): void;
 }
-export declare interface VirtualTableHeaderProps
-    extends Pick<VirtualTableProps, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
+export declare interface VirtualTableHeaderProps<D extends TypeVirtualListItemData>
+    extends Pick<VirtualTableProps<D>, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     className?: string;
     checked?: boolean;
     indeterminate?: boolean;
-    onSort?(newKey: string, prevKey?: string): void;
+    onSort?(newKey: TypeId, prevKey?: TypeId): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export declare type HeaderColumnsProps = Pick<VirtualTableHeaderProps, 'columns' | 'orderBy' | 'orderType' | 'onSort'>;
-export declare interface VirtualTableContentProps<T = TypeVirtualItemData>
-    extends Pick<VirtualTableProps, 'columns' | 'hasCheckbox'> {
+export declare type HeaderColumnsProps<D extends TypeVirtualListItemData> = Pick<
+    VirtualTableHeaderProps<D>,
+    'columns' | 'orderBy' | 'orderType' | 'onSort'
+>;
+export declare interface VirtualTableContentProps<D extends TypeVirtualTableItemData>
+    extends Pick<VirtualTableProps<D>, 'columns' | 'hasCheckbox' | 'dataKeyForCheckbox'> {
     indexRow: number;
-    item: T;
+    item: D;
     checked?: boolean;
     onSelect?(id: TypeId): void;
 }
-export declare interface ContentColumnsProps extends Omit<VirtualTableContentProps, 'selected' | 'onSelect'> {
+export declare interface ContentColumnsProps<D extends TypeVirtualTableItemData>
+    extends Omit<VirtualTableContentProps<D>, 'selected' | 'onSelect' | 'hasCheckbox'> {
     onSelect?(): void;
 }
 export declare interface CheckboxColumnProps extends CheckboxProps {
@@ -193,7 +204,9 @@ export declare interface CheckboxColumnProps extends CheckboxProps {
 }
 
 /** Virtual List */
-export declare interface VirtualListProps<D extends TypeVirtualItemData, C = any> extends VirtuosoProps<D, C> {
+// export declare type TypeVirtualListItemData<T = Record<string, any>> = TypeId | ({ id: TypeId } & T);
+export declare type TypeVirtualListItemData = any;
+export declare interface VirtualListProps<D extends TypeVirtualListItemData, C = any> extends VirtuosoProps<D, C> {
     className?: string;
     headerContent?: () => ReactNode;
     footerContent?: () => ReactNode;

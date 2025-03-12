@@ -22,6 +22,7 @@ import CalendarLabel from '@module-calendar/components/CalendarTable/CalendarLab
 import CalendarItem from '@module-calendar/components/CalendarTable/CalendarItem';
 
 /** types */
+import type { Dayjs } from 'dayjs';
 import type { VirtualTableProps } from '@module-base/types';
 import type { CalendarTableDataType } from '@module-calendar/types';
 
@@ -31,7 +32,7 @@ export default function CalendarTable() {
         data: { day, display },
     } = hookCalendar;
 
-    const columns = React.useMemo<VirtualTableProps['columns']>(() => {
+    const columns = React.useMemo<VirtualTableProps<Array<Dayjs>>['columns']>(() => {
         let output: (keyof CalendarTableDataType)[];
         switch (display) {
             case CalendarDisplay.weekend:
@@ -46,7 +47,7 @@ export default function CalendarTable() {
                 break;
         }
         return output.map((id) => ({
-            dataKey: `${id}`,
+            dataKey: id,
             label: <CalendarLabel day={id} />,
             renderItem: ({ value }) => <CalendarItem day={value} />,
         }));

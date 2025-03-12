@@ -9,12 +9,12 @@ import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** types */
-import type { TypeId, TypeOrderType, TypeVirtualItemData } from '@module-base/types';
+import type { TypeId, TypeOrderType, TypeVirtualTableItemData } from '@module-base/types';
 
 export const sortTableData = <T = any>(payload: {
     data?: Readonly<Array<T>>;
     orderType: TypeOrderType;
-    orderBy: string;
+    orderBy: TypeId;
 }): Readonly<Array<T>> => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
     if (!data) return AppDefaultValue.emptyArray;
@@ -36,6 +36,6 @@ export const sortTableData = <T = any>(payload: {
     });
 };
 
-export const getId = (item: TypeVirtualItemData) => {
-    return typeof item === 'string' || typeof item === 'number' ? item : item?.id;
+export const getId = (item: TypeVirtualTableItemData, key: TypeId) => {
+    return item[key];
 };

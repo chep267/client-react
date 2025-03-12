@@ -13,7 +13,7 @@ import { VirtualTableProps } from '@module-base/types';
 
 export default function TestScreen() {
     const chance = new Chance();
-    const columns: VirtualTableProps['columns'] = [
+    const columns: VirtualTableProps<any>['columns'] = [
         {
             label: 'ID',
             dataKey: 'id',

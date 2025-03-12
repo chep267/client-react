@@ -16,12 +16,12 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** components */
 import ListEmpty from '@module-base/components/VirtualList/ListEmpty';
+import ListLoading from '@module-base/components/VirtualList/ListLoading';
 
 /** types */
-import type { TypeVirtualItemData, VirtualListProps } from '@module-base/types';
-import ListLoading from '@module-base/components/VirtualList/ListLoading.tsx';
+import type { TypeVirtualListItemData, VirtualListProps } from '@module-base/types';
 
-export default function VirtualList<D extends TypeVirtualItemData, C>(props: VirtualListProps<D, C>) {
+export default function VirtualList<D extends TypeVirtualListItemData, C>(props: VirtualListProps<D, C>) {
     const { className, slotProps, components, headerContent, footerContent, ...listProps } = props;
 
     const customComponents = React.useMemo<VirtualListProps<D, C>['components']>(() => {
@@ -44,7 +44,11 @@ export default function VirtualList<D extends TypeVirtualItemData, C>(props: Vir
 
     return (
         <Virtuoso
-            className={classnames('h-full w-full', { ['overflow-hidden']: slotProps?.listLoading?.loading }, className)}
+            className={classnames(
+                'scrollbar-thin h-full w-full',
+                { ['overflow-hidden']: slotProps?.listLoading?.loading },
+                className
+            )}
             components={customComponents}
             {...listProps}
         />

@@ -8,16 +8,16 @@
 import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 
-/** components */
-import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
-
 /** utils */
 import { getId } from '@module-base/utils/virtual';
 
-/** types */
-import { VirtualTableContentProps, ContentColumnsProps } from '@module-base/types';
+/** components */
+import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
 
-const ContentColumns = React.memo<ContentColumnsProps>(function HeaderColumns(props) {
+/** types */
+import type { VirtualTableContentProps, ContentColumnsProps, TypeVirtualTableItemData } from '@module-base/types';
+
+const ContentColumns = React.memo<ContentColumnsProps<TypeVirtualTableItemData>>(function ContentColumns(props) {
     const { indexRow, item, columns, onSelect } = props;
 
     return columns?.map((column, indexCell) => {
@@ -26,20 +26,28 @@ const ContentColumns = React.memo<ContentColumnsProps>(function HeaderColumns(pr
         const value = item[dataKey];
         return (
             <TableCell key={dataKey} variant="body" onClick={onSelect} {...cellProps}>
-                {typeof renderItem === 'function' ? renderItem({ item, dataKey, value, indexRow, indexCell }) : value}
+                {typeof renderItem === 'function' ? renderItem({ dataKey, indexRow, indexCell, item, value }) : value}
             </TableCell>
         );
     });
 });
 
-const TableContent = React.memo<VirtualTableContentProps>((props) => {
-    const { indexRow, item, columns, hasCheckbox, checked, onSelect } = props;
+const TableContent = React.memo<VirtualTableContentProps<TypeVirtualTableItemData>>((props) => {
+    const { indexRow, item, columns, hasCheckbox, dataKeyForCheckbox = 'id', checked, onSelect } = props;
 
-    const handleSelect = React.useCallback(() => (hasCheckbox ? onSelect?.(getId(item)) : undefined), [hasCheckbox, item]);
+    const handleSelect = React.useCallback(
+        () => (hasCheckbox ? onSelect?.(getId(item, dataKeyForCheckbox)) : undefined),
+        [hasCheckbox, item]
+    );
 
     return (
         <React.Fragment>
-            <CheckboxColumn id={getId(item)} hasCheckbox={hasCheckbox} checked={Boolean(checked)} onClick={handleSelect} />
+            <CheckboxColumn
+                id={getId(item, dataKeyForCheckbox)}
+                hasCheckbox={hasCheckbox}
+                checked={Boolean(checked)}
+                onClick={handleSelect}
+            />
             <ContentColumns columns={columns} indexRow={indexRow} item={item} onSelect={handleSelect} />
         </React.Fragment>
     );

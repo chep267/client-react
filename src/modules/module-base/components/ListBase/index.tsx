@@ -36,7 +36,7 @@ export default function ListBase<T>(props: ListBaseProps<T>) {
             <List
                 ref={listRef}
                 className={classnames(
-                    'scrollbar-custom absolute top-0 right-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto',
+                    'scrollbar-thin absolute top-0 right-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto',
                     className
                 )}
                 {...listProps}

@@ -28,15 +28,16 @@ import { getId, sortTableData } from '@module-base/utils/virtual';
 
 /** types */
 import type { TableComponents } from 'react-virtuoso';
-import type { TypeVirtualItemData, VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
+import type { TypeId, TypeVirtualTableItemData, VirtualTableHeaderProps, VirtualTableProps } from '@module-base/types';
 
-export default function VirtualTable(props: VirtualTableProps) {
+export default function VirtualTable<D extends TypeVirtualTableItemData, C>(props: VirtualTableProps<D, C>) {
     const {
         data,
         columns,
         className,
         headerClassName,
         hasCheckbox,
+        dataKeyForCheckbox = 'id',
         orderBy: orderByProps,
         orderType: orderTypeProps,
         selectedIds: selectedIdsProps,
@@ -45,9 +46,9 @@ export default function VirtualTable(props: VirtualTableProps) {
         ...tableProps
     } = props;
 
-    const [orderType, setOrderType] = React.useState<NonNullable<VirtualTableProps['orderType']>>();
-    const [orderBy, setOrderBy] = React.useState<NonNullable<VirtualTableProps['orderBy']>>();
-    const [selectedIds, setSelectedIds] = React.useState<NonNullable<VirtualTableProps['selectedIds']>>([]);
+    const [orderType, setOrderType] = React.useState<NonNullable<VirtualTableProps<D, C>['orderType']>>();
+    const [orderBy, setOrderBy] = React.useState<NonNullable<VirtualTableProps<D, C>['orderBy']>>();
+    const [selectedIds, setSelectedIds] = React.useState<NonNullable<VirtualTableProps<D, C>['selectedIds']>>([]);
 
     React.useEffect(() => {
         if (orderTypeProps && orderTypeProps !== orderType) {
@@ -71,19 +72,19 @@ export default function VirtualTable(props: VirtualTableProps) {
         onChangeSelected?.(selectedIds);
     }, [selectedIds]);
 
-    const onSelectAll = React.useCallback<NonNullable<VirtualTableHeaderProps['onSelectAll']>>(
+    const onSelectAll = React.useCallback<NonNullable<VirtualTableHeaderProps<D>['onSelectAll']>>(
         (event) => {
             setSelectedIds((prevIds) => {
                 if (!data || !event.target.checked || prevIds.length === data.length) {
                     return [];
                 }
-                return data.map(getId);
+                return data.map((d) => getId(d, dataKeyForCheckbox));
             });
         },
         [data]
     );
 
-    const onSelectOne = React.useCallback((id: string | number) => {
+    const onSelectOne = React.useCallback((id: TypeId) => {
         setSelectedIds((prevIds) => {
             const selectedIndex = prevIds.indexOf(id);
             if (selectedIndex === -1) {
@@ -99,7 +100,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         });
     }, []);
 
-    const onSort = React.useCallback<NonNullable<VirtualTableHeaderProps['onSort']>>((newKey, prevKey) => {
+    const onSort = React.useCallback<NonNullable<VirtualTableHeaderProps<D>['onSort']>>((newKey, prevKey) => {
         setOrderBy(newKey);
         setOrderType((prevOrderType) => {
             const isAsc = prevKey === newKey && prevOrderType === OrderType.asc;
@@ -107,7 +108,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         });
     }, []);
 
-    const VirtualTableComponents = React.useMemo<TableComponents<any>>(
+    const VirtualTableComponents = React.useMemo<TableComponents<D, C>>(
         () => ({
             Scroller: React.forwardRef<HTMLDivElement>((props, ref) => (
                 <TableContainer component={Paper} {...props} ref={ref} />
@@ -120,7 +121,7 @@ export default function VirtualTable(props: VirtualTableProps) {
         []
     );
 
-    const currentData = React.useMemo<NonNullable<VirtualTableProps['data']>>(() => {
+    const currentData = React.useMemo<NonNullable<VirtualTableProps<D, C>['data']>>(() => {
         if (!orderType || !orderBy) {
             return data || AppDefaultValue.emptyArray;
         }
@@ -143,14 +144,15 @@ export default function VirtualTable(props: VirtualTableProps) {
         );
     };
 
-    const itemContent = (indexRow: number, item: TypeVirtualItemData) => {
+    const itemContent = (indexRow: number, item: TypeVirtualTableItemData) => {
         return (
             <TableContent
                 columns={columns}
                 indexRow={indexRow}
                 item={item}
                 hasCheckbox={hasCheckbox}
-                checked={selectedIds.includes(getId(item))}
+                dataKeyForCheckbox={dataKeyForCheckbox}
+                checked={selectedIds.includes(getId(item, dataKeyForCheckbox))}
                 onSelect={onSelectOne}
             />
         );
@@ -158,7 +160,7 @@ export default function VirtualTable(props: VirtualTableProps) {
 
     return (
         <TableVirtuoso
-            className={classnames('h-full w-full', className)}
+            className={classnames('scrollbar-thin h-full w-full', className)}
             data={currentData}
             components={VirtualTableComponents}
             fixedHeaderContent={fixedHeaderContent}
