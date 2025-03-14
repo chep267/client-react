@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
 /** components */
@@ -18,7 +19,7 @@ const TableContent = React.memo<VirtualTableContentProps>(function TableContent(
     const { indexRow, item, columns, hasCheckbox, checked, dataKeyForCheckbox, onSelect } = props;
 
     return (
-        <React.Fragment>
+        <TableRow>
             <CheckboxColumn
                 id={dataKeyForCheckbox ? item[dataKeyForCheckbox] : ''}
                 hasCheckbox={hasCheckbox}
@@ -44,7 +45,7 @@ const TableContent = React.memo<VirtualTableContentProps>(function TableContent(
                     </TableCell>
                 );
             })}
-        </React.Fragment>
+        </TableRow>
     );
 });
 

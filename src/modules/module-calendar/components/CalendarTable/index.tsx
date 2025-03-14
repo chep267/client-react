@@ -32,7 +32,7 @@ export default function CalendarTable() {
         data: { day, display },
     } = hookCalendar;
 
-    const columns = React.useMemo<VirtualTableProps<Array<Dayjs>>['columns']>(() => {
+    const columns = React.useMemo<VirtualTableProps<Record<number, Dayjs>>['columns']>(() => {
         let output: (keyof CalendarTableDataType)[];
         switch (display) {
             case CalendarDisplay.weekend:
@@ -59,5 +59,5 @@ export default function CalendarTable() {
         return output.map((item) => item);
     }, [day.month(), day.year(), display]);
 
-    return <VirtualTable className="mt-5 md:mt-10" data={tableData} columns={columns} />;
+    return <VirtualTable className="scrollbar-thin mt-5 md:mt-10" data={tableData} columns={columns} />;
 }

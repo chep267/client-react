@@ -19,38 +19,9 @@ import { OrderType } from '@module-base/constants/OrderType';
 import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
 
 /** types */
-import type { VirtualTableHeaderProps, HeaderColumnsProps, TypeVirtualTableItemData } from '@module-base/types';
+import type { VirtualTableHeaderProps } from '@module-base/types';
 
-const HeaderColumns = React.memo<HeaderColumnsProps<TypeVirtualTableItemData>>(function HeaderColumns(props) {
-    const { columns, orderBy, orderType, onSort } = props;
-
-    return columns?.map((column) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { dataKey, hasSort, label, renderItem, ...cellProps } = column;
-        return (
-            <TableCell key={dataKey} variant="head" {...cellProps}>
-                {!hasSort ? (
-                    label
-                ) : (
-                    <TableSortLabel
-                        active={orderBy === dataKey}
-                        direction={orderBy === dataKey ? orderType : OrderType.asc}
-                        onClick={() => onSort?.(dataKey, orderBy)}
-                    >
-                        {label}
-                        {orderBy === dataKey ? (
-                            <Box component="span" sx={visuallyHidden}>
-                                {orderType === OrderType.desc ? 'sorted descending' : 'sorted ascending'}
-                            </Box>
-                        ) : null}
-                    </TableSortLabel>
-                )}
-            </TableCell>
-        );
-    });
-});
-
-const TableHeader = React.memo<VirtualTableHeaderProps<TypeVirtualTableItemData>>(function TableHeader(props) {
+const TableHeader = React.memo<VirtualTableHeaderProps>(function TableHeader(props) {
     const { columns, className, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (
@@ -61,7 +32,30 @@ const TableHeader = React.memo<VirtualTableHeaderProps<TypeVirtualTableItemData>
                 checked={Boolean(checked)}
                 onChange={onSelectAll}
             />
-            <HeaderColumns columns={columns} orderBy={orderBy} orderType={orderType} onSort={onSort} />
+            {columns?.map((column) => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { dataKey, hasSort, label, renderItem, onClick, onClickItem, ...cellProps } = column;
+                return (
+                    <TableCell key={dataKey} variant="head" {...cellProps}>
+                        {!hasSort ? (
+                            label
+                        ) : (
+                            <TableSortLabel
+                                active={orderBy === dataKey}
+                                direction={orderBy === dataKey ? orderType : OrderType.asc}
+                                onClick={() => onSort?.(dataKey, orderBy || '')}
+                            >
+                                {label}
+                                {orderBy === dataKey ? (
+                                    <Box component="span" sx={visuallyHidden}>
+                                        {orderType === OrderType.desc ? 'sorted descending' : 'sorted ascending'}
+                                    </Box>
+                                ) : null}
+                            </TableSortLabel>
+                        )}
+                    </TableCell>
+                );
+            })}
         </TableRow>
     );
 });

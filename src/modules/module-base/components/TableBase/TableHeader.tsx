@@ -6,58 +6,64 @@
 
 /** libs */
 import * as React from 'react';
-import { visuallyHidden } from '@mui/utils';
 import Box from '@mui/material/Box';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { visuallyHidden } from '@mui/utils';
 
-/** styles */
-import { useStyles } from './styles';
+/** constants */
+import { OrderType } from '@module-base/constants/OrderType';
+
+/** components */
+import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
 
 /** types */
-import type { TableHeaderProps } from '@module-base/types';
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import type { TypeTableItemData, TableHeaderColumnsProps, TableHeaderProps } from '@module-base/types';
 
-const TableHeader = React.memo(function TableHeader(props: TableHeaderProps) {
-    const { rows, orderType, orderBy, onSort, tableRowProps, tableCellProps } = props;
-    const classes = useStyles();
+const HeaderColumns = React.memo<TableHeaderColumnsProps<TypeTableItemData>>(function HeaderColumns(props) {
+    const { columns, orderBy, orderType, onSort } = props;
 
-    const rowProps = (tableRowProps ?? AppDefaultValue.emptyObject) as NonNullable<TableHeaderProps['tableRowProps']>;
-    const cellProps = (tableCellProps ?? AppDefaultValue.emptyObject) as NonNullable<TableHeaderProps['tableCellProps']>;
+    return columns?.map((column) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { dataKey, hasSort, label, renderItem, onClick, ...cellProps } = column;
+        return (
+            <TableCell key={dataKey} variant="head" {...cellProps}>
+                {!hasSort ? (
+                    label
+                ) : (
+                    <TableSortLabel
+                        active={orderBy === dataKey}
+                        direction={orderBy === dataKey ? orderType : OrderType.asc}
+                        onClick={() => onSort?.(dataKey, orderBy)}
+                    >
+                        {label}
+                        {orderBy === dataKey ? (
+                            <Box component="span" sx={visuallyHidden}>
+                                {orderType === OrderType.desc ? 'sorted descending' : 'sorted ascending'}
+                            </Box>
+                        ) : null}
+                    </TableSortLabel>
+                )}
+            </TableCell>
+        );
+    });
+});
+
+const TableHeader = React.memo<TableHeaderProps<TypeTableItemData>>(function TableHeader(props) {
+    const { columns, className, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (
-        <TableHead className={classes.tableHead}>
-            <TableRow {...rowProps}>
-                {rows?.map((cell) => (
-                    <TableCell
-                        key={cell.id}
-                        align="left"
-                        padding="normal"
-                        sortDirection={orderBy === cell.id ? orderType : false}
-                        {...cellProps}
-                    >
-                        {!cell.isSort || !orderBy || !orderType ? (
-                            cell.label
-                        ) : (
-                            <TableSortLabel
-                                active={orderBy === cell.id}
-                                direction={orderBy === cell.id ? orderType : 'asc'}
-                                IconComponent={ArrowDropDownIcon}
-                                onClick={() => onSort?.(cell.id)}
-                            >
-                                {cell.label}
-                                {orderBy === cell.id ? (
-                                    <Box component="span" sx={visuallyHidden}>
-                                        {orderType === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                    </Box>
-                                ) : null}
-                            </TableSortLabel>
-                        )}
-                    </TableCell>
-                ))}
+        <TableHead>
+            <TableRow className={className} sx={{ backgroundColor: 'background.paper' }}>
+                <CheckboxColumn
+                    hasCheckbox={hasCheckbox}
+                    indeterminate={Boolean(indeterminate)}
+                    checked={Boolean(checked)}
+                    onChange={onSelectAll}
+                />
+                <HeaderColumns columns={columns} orderBy={orderBy} orderType={orderType} onSort={onSort} />
             </TableRow>
         </TableHead>
     );

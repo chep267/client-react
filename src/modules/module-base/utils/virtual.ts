@@ -9,33 +9,34 @@ import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** types */
-import type { TypeId, TypeOrderType, TypeVirtualTableItemData } from '@module-base/types';
+import type { TypeDataKey, TypeOrderType } from '@module-base/types';
 
-export const sortTableData = <T = any>(payload: {
-    data?: Readonly<Array<T>>;
+export const sortTableData = <D = any>(payload: {
+    data?: Readonly<Array<D>>;
     orderType: TypeOrderType;
-    orderBy: TypeId;
-}): Readonly<Array<T>> => {
+    orderBy: TypeDataKey<D>;
+}): Readonly<Array<D>> => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
     if (!data) return AppDefaultValue.emptyArray;
 
-    const parseValue = (value?: TypeId) => {
-        if (typeof value === 'number') return value;
-        if (typeof value === 'string' && !isNaN(Number(value))) return Number(value);
-        return String(value);
+    const parseValue = (item: any, key?: TypeDataKey<D>) => {
+        if (typeof item === 'number') return item;
+        if (typeof item === 'string') {
+            if (!isNaN(Number(item))) return Number(item);
+            return item;
+        }
+        return parseValue(item[key], key);
     };
 
     return data.toSorted((a, b) => {
-        const valueA = typeof a === 'string' || typeof a === 'number' ? a : a?.[orderBy];
-        const valueB = typeof b === 'string' || typeof b === 'number' ? b : b?.[orderBy];
-        const formattedA = parseValue(valueA);
-        const formattedB = parseValue(valueB);
+        const formattedA = parseValue(a, orderBy);
+        const formattedB = parseValue(b, orderBy);
         if (formattedA < formattedB) return orderType === OrderType.asc ? -1 : 1;
         if (formattedA > formattedB) return orderType === OrderType.asc ? 1 : -1;
         return 0;
     });
 };
 
-export const getId = (item: TypeVirtualTableItemData, key: TypeId) => {
+export const getId = (item: any, key: string) => {
     return item[key];
 };

@@ -35,7 +35,7 @@ export default function CalendarModal() {
 
     return (
         <Modal open={openCalendarModal} onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
-            <Card className="scrollbar-custom absolute top-1/2 left-1/2 flex w-11/12 max-w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col justify-between overflow-auto border-0 p-0 outline-0">
+            <Card className="scrollbar-thin absolute top-1/2 left-1/2 flex h-[70vh] max-h-[80vh] w-11/12 max-w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col justify-between overflow-auto border-0 p-0 outline-0">
                 <CardHeader
                     className={classnames('text-right')}
                     title={
@@ -65,7 +65,7 @@ export default function CalendarModal() {
                 </CardContent>
 
                 {/*     lunar    */}
-                <CardContent className="flex p-0" sx={{ borderTop: ({ palette }) => `1px solid ${palette.divider}` }}>
+                <CardContent className="flex border-t p-0" sx={{ borderColor: 'divider' }}>
                     <Stack className="flex-1 items-center gap-2 p-1 text-center">
                         <Typography variant="h5">
                             <FormattedMessage id={CalendarLanguage.component.label.day} />
@@ -75,13 +75,7 @@ export default function CalendarModal() {
                             {`${lunarDay.celestialStemOfDay} ${lunarDay.terrestrialBranchOfDay}`}
                         </Typography>
                     </Stack>
-                    <Stack
-                        className="flex-1 items-center gap-2 p-1 text-center"
-                        sx={{
-                            borderLeft: ({ palette }) => `1px solid ${palette.divider}`,
-                            borderRight: ({ palette }) => `1px solid ${palette.divider}`,
-                        }}
-                    >
+                    <Stack className="flex-1 items-center gap-2 border-r border-l p-1 text-center" borderColor="divider">
                         <Typography variant="h5">
                             <FormattedMessage id={CalendarLanguage.component.label.month} />
                         </Typography>

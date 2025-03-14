@@ -27,9 +27,9 @@ export default function ConversationRight() {
                 { ['w-full']: hookMessenger.ui.openThreadInfo },
                 { ['w-0']: !hookMessenger.ui.openThreadInfo }
             )}
-            sx={({ breakpoints, zIndex, palette }) => ({
+            sx={({ breakpoints, zIndex }) => ({
                 maxWidth: ScreenSize.Messenger.left.mediumWidth,
-                borderColor: palette.divider,
+                borderColor: 'divider',
                 [breakpoints.down('lg')]: {
                     position: 'fixed',
                     top: ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight,

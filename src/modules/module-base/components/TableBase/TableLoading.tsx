@@ -6,32 +6,34 @@
 
 /** libs */
 import * as React from 'react';
+import classnames from 'classnames';
 import { FormattedMessage } from 'react-intl';
-import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
-/** styles */
-import { useStyles } from './styles';
-
 /** types */
 import type { TableLoadingProps } from '@module-base/types';
 
 const TableLoading = React.memo(function TableLoading(props: TableLoadingProps) {
     const { loading, empty, emptyText } = props;
-    const classes = useStyles();
 
     return (
-        <Stack className={classes.tableLoading} display={loading || empty ? 'flex' : 'none'}>
+        <Box
+            className={classnames('absolute top-0 right-0 bottom-0 left-0 z-20 flex items-center justify-center', {
+                ['hidden']: !loading && !empty,
+            })}
+            bgcolor="divider"
+        >
             {loading ? (
                 <CircularProgress color="primary" />
             ) : (
                 <Typography>{emptyText || <FormattedMessage id={BaseLanguage.component.table.empty} />}</Typography>
             )}
-        </Stack>
+        </Box>
     );
 });
 

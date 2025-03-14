@@ -23,10 +23,10 @@ export default function ConversationLeft() {
             className={classnames(
                 'relative flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none border-r border-solid transition-[width]'
             )}
-            sx={({ breakpoints, palette }) => ({
+            sx={({ breakpoints }) => ({
                 minWidth: 0,
                 maxWidth: 0,
-                borderColor: palette.divider,
+                borderColor: 'divider',
                 [breakpoints.up('sm')]: {
                     maxWidth: ScreenSize.Messenger.left.minWidth,
                 },

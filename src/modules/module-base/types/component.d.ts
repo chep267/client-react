@@ -30,7 +30,9 @@ import type { SnackbarProps } from '@mui/material/Snackbar';
 import type { CheckboxProps } from '@mui/material/Checkbox';
 import type { TableVirtuosoProps, VirtuosoProps } from 'react-virtuoso';
 import type { ListItemProps } from '@mui/material/ListItem';
+import type { TableProps } from '@mui/material/Table';
 import type { ElementClickEvent } from './event.d';
+import type { TableContainerProps } from '@mui/material/TableContainer';
 
 export declare type TypeInputElem = HTMLInputElement | null;
 
@@ -68,7 +70,7 @@ export declare interface InputSearchProps extends Omit<TextFieldProps, 'value' |
 }
 
 /** ListBase */
-export declare interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
+export declare interface ListBaseProps<D = any> extends Omit<ListProps, 'ref'> {
     ref?: Ref<{
         scrollTop(): void;
     }>;
@@ -77,8 +79,8 @@ export declare interface ListBaseProps<T = any> extends Omit<ListProps, 'ref'> {
     loading?: boolean;
     empty?: boolean;
     emptyText?: string;
-    data?: T[];
-    renderItem?(item: T, index: number): ReactNode;
+    data?: D[];
+    renderItem?(item: D, index: number): ReactNode;
 }
 export declare interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
     className?: string;
@@ -115,96 +117,105 @@ export declare interface PasswordFieldProps extends TextFieldProps {
 
 /** TableBase */
 export declare type TypeOrderType = 'asc' | 'desc';
-export declare interface TableBaseProps<T = any> {
-    className?: string;
-    sx?: any;
-
-    data?: T[];
-    onScroll?(event: UIEvent<HTMLDivElement>): void;
-    onClickItem?(item: T): void;
-
+export declare type TableBaseProps<D = any> = TableProps & {
+    data?: readonly D[];
     loading?: boolean;
-    emptyText?: string;
-
-    rows?: {
-        id: string;
-        label: ReactNode;
-        isSort?: boolean;
-        render(item: T, indexRow: number, indexCell: number): ReactNode;
-    }[];
-    orderType?: TypeOrderType;
-    orderBy?: string;
-    onSort?(property: string): void;
-
-    tableRowProps?: TableRowProps;
-    tableCellProps?: TableCellProps;
-}
-export declare type TableLoadingProps = Pick<TableBaseProps, 'loading' | 'emptyText'> & { empty?: boolean };
-export declare type TableHeaderProps = Pick<
-    TableBaseProps,
-    'rows' | 'orderBy' | 'orderType' | 'onSort' | 'tableRowProps' | 'tableCellProps'
->;
-export declare type TableBodyProps = Pick<
-    TableBaseProps,
-    'data' | 'onClickItem' | 'rows' | 'tableRowProps' | 'tableCellProps'
->;
-
-/** Virtual Table */
-export declare type TypeId = string | number;
-export declare type TypeVirtualTableItemData = Record<TypeId, any> | Array<any>;
-export declare interface VirtualTableProps<D extends TypeVirtualListItemData, C = any> extends TableVirtuosoProps<D, C> {
-    className?: string;
-    headerClassName?: string;
     columns?: (Omit<TableCellProps, 'children'> & {
-        dataKey: TypeId;
-        className?: string;
+        dataKey: TypeDataKey<D>;
         hasSort?: boolean;
         label: TableCellProps['children'];
+        onClickItem?(event: MouseEvent<HTMLTableCellElement, MouseEvent>, item: D): void;
         renderItem?(data: {
-            dataKey: TypeId;
+            dataKey: TypeDataKey<D>;
             indexRow: number;
             indexCell: number;
             item: D;
-            value: D[Extract<TypeId, keyof D>];
+            value: D[TypeDataKey<D>];
         }): ReactNode;
     })[];
-    orderType?: TypeOrderType;
-    orderBy?: TypeId;
-    selectedIds?: Array<TypeId>;
-    hasCheckbox?: boolean;
-    dataKeyForCheckbox?: TypeId;
-    onChangeOrder?(data: { type?: TypeOrderType; key?: TypeId }): void;
-    onChangeSelected?(arr: Array<TypeId>): void;
+    slotProps?: {
+        empty?: {
+            className?: string;
+            content?: string;
+        };
+    };
+    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
+} & ({ hasCheckbox: true; dataKeyForCheckbox: TypeDataKey<D> } | { hasCheckbox?: false; dataKeyForCheckbox?: never });
+export declare interface TableLoadingProps extends Pick<TableBaseProps, 'loading' | 'emptyText'> {
+    empty?: boolean;
 }
-export declare interface VirtualTableHeaderProps<D extends TypeVirtualListItemData>
-    extends Pick<VirtualTableProps<D>, 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
-    className?: string;
+export declare interface TableHeaderProps<D extends TypeTableItemData>
+    extends Pick<TableBaseProps<D>, 'className' | 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
     checked?: boolean;
     indeterminate?: boolean;
     onSort?(newKey: TypeId, prevKey?: TypeId): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export declare type HeaderColumnsProps<D extends TypeVirtualListItemData> = Pick<
-    VirtualTableHeaderProps<D>,
+export declare type TableHeaderColumnsProps<D extends TypeTableItemData> = Pick<
+    TableHeaderProps<D>,
     'columns' | 'orderBy' | 'orderType' | 'onSort'
 >;
-export declare interface VirtualTableContentProps<D extends TypeVirtualTableItemData>
+export declare interface TableContentProps<D extends TypeTableItemData>
     extends Pick<VirtualTableProps<D>, 'columns' | 'hasCheckbox' | 'dataKeyForCheckbox'> {
     indexRow: number;
     item: D;
     checked?: boolean;
     onSelect?(id: TypeId): void;
 }
-export declare interface ContentColumnsProps<D extends TypeVirtualTableItemData>
+export declare interface TableContentColumnsProps<D extends TypeTableItemData>
     extends Omit<VirtualTableContentProps<D>, 'selected' | 'onSelect' | 'hasCheckbox'> {
     onSelect?(): void;
 }
+
+/** Virtual Table */
+export type TypeDataKey<D> = Extract<keyof D, string | number>;
+export declare type VirtualTableProps<D = any, C = any> = TableVirtuosoProps<D, C> & {
+    loading?: boolean;
+    columns?: (Omit<TableCellProps, 'children'> & {
+        dataKey: TypeDataKey<D>;
+        hasSort?: boolean;
+        label: TableCellProps['children'];
+        onClickItem?(event: MouseEvent<HTMLTableCellElement, MouseEvent>, item: D): void;
+        renderItem?(data: {
+            dataKey: TypeDataKey<D>;
+            indexRow: number;
+            indexCell: number;
+            item: D;
+            value: D[TypeDataKey<D>];
+        }): ReactNode;
+    })[];
+    slotProps?: {
+        empty?: {
+            className?: string;
+            content?: string;
+        };
+    };
+    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
+} & ({ hasCheckbox: true; dataKeyForCheckbox: TypeDataKey<D> } | { hasCheckbox?: false; dataKeyForCheckbox?: never });
+export declare interface VirtualTableHeaderProps<D = any, C = any>
+    extends Pick<VirtualTableProps<D, C>, 'className' | 'columns' | 'hasCheckbox'> {
+    checked?: boolean;
+    indeterminate?: boolean;
+    orderType?: TypeOrderType;
+    orderBy?: TypeDataKey<D>;
+    onSort?(newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>): void;
+    onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
+}
+export declare interface VirtualTableContentProps<D = any, C = any>
+    extends Pick<VirtualTableProps<D, C>, 'columns' | 'hasCheckbox' | 'dataKeyForCheckbox'> {
+    indexRow: number;
+    item: D;
+    checked?: boolean;
+    onSelect?(item: D): void;
+}
+export declare type VirtualTableContainerProps = TableContainerProps & Pick<VirtualTableProps, 'loading'>;
+export declare type VirtualTableEmptyProps = NonNullable<NonNullable<VirtualTableProps['slotProps']>['empty']>;
+export declare type VirtualTableLoadingProps = Pick<VirtualTableProps, 'loading'>;
 export declare interface CheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
 }
 
 /** Virtual List */
-// export declare type TypeVirtualListItemData<T = Record<string, any>> = TypeId | ({ id: TypeId } & T);
 export declare type TypeVirtualListItemData = any;
 export declare interface VirtualListProps<D extends TypeVirtualListItemData, C = any> extends VirtuosoProps<D, C> {
     className?: string;

@@ -8,12 +8,22 @@
 import Chance from 'chance';
 
 /** components */
-import VirtualTable from '@module-base/components/VirtualTable';
-import { VirtualTableProps } from '@module-base/types';
+// import TableBase from '@module-base/components/VirtualTable';
+import TableBase from '@module-base/components/TableBase';
+
+/** types */
+import type { VirtualTableProps } from '@module-base/types';
 
 export default function TestScreen() {
     const chance = new Chance();
-    const columns: VirtualTableProps<any>['columns'] = [
+    const columns: VirtualTableProps<{
+        id: string;
+        firstName: string;
+        lastName: string;
+        age: string;
+        phone: string;
+        state: string;
+    }>['columns'] = [
         {
             label: 'ID',
             dataKey: 'id',
@@ -57,7 +67,7 @@ export default function TestScreen() {
         };
     }
 
-    const rows = Array.from({ length: 10000 }, (_, index) => createData(`${index}`));
+    const rows = Array.from({ length: 100 }, (_, index) => createData(`${index}`));
 
-    return <VirtualTable data={rows} columns={columns} hasCheckbox />;
+    return <TableBase data={rows} columns={columns} hasCheckbox={true} dataKeyForCheckbox="id" loading={false} />;
 }

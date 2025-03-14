@@ -13,7 +13,7 @@ export const GlobalRouterPath = {
     home: '/',
     start: '/start',
     notFound: '/not-found',
-    defaultPath: MessengerRouterPath.messenger,
+    defaultPath: CalendarRouterPath.calendar,
     calendar: CalendarRouterPath.calendar,
     game: GameRouterPath.game,
     feed: '/feed',
