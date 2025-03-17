@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette }: any) => ({
     listImage: {
         width: 'auto',
     },

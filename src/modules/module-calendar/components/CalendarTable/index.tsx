@@ -17,13 +17,13 @@ import { genMatrixCalendarDayJS, reverseMatrix } from '@module-calendar/utils/Ca
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
 
 /** components */
-import VirtualTable from '@module-base/components/VirtualTable';
+import TableBase from '@module-base/components/TableBase';
 import CalendarLabel from '@module-calendar/components/CalendarTable/CalendarLabel';
 import CalendarItem from '@module-calendar/components/CalendarTable/CalendarItem';
 
 /** types */
 import type { Dayjs } from 'dayjs';
-import type { VirtualTableProps } from '@module-base/types';
+import type { TableBaseProps } from '@module-base/types';
 import type { CalendarTableDataType } from '@module-calendar/types';
 
 export default function CalendarTable() {
@@ -32,7 +32,13 @@ export default function CalendarTable() {
         data: { day, display },
     } = hookCalendar;
 
-    const columns = React.useMemo<VirtualTableProps<Record<number, Dayjs>>['columns']>(() => {
+    const tableData = React.useMemo(() => {
+        const matrixCalendar = genMatrixCalendarDayJS(day, display);
+        const output = reverseMatrix(matrixCalendar);
+        return output.map((item) => item);
+    }, [day.month(), day.year(), display]);
+
+    const columns = React.useMemo<TableBaseProps<Dayjs[]>['columns']>(() => {
         let output: (keyof CalendarTableDataType)[];
         switch (display) {
             case CalendarDisplay.weekend:
@@ -49,15 +55,9 @@ export default function CalendarTable() {
         return output.map((id) => ({
             dataKey: id,
             label: <CalendarLabel day={id} />,
-            renderItem: ({ value }) => <CalendarItem day={value} />,
+            renderItem: ({ item }) => <CalendarItem day={item[id]} />,
         }));
     }, [display]);
 
-    const tableData = React.useMemo(() => {
-        const matrixCalendar = genMatrixCalendarDayJS(day, display);
-        const output = reverseMatrix(matrixCalendar);
-        return output.map((item) => item);
-    }, [day.month(), day.year(), display]);
-
-    return <VirtualTable className="scrollbar-thin mt-5 md:mt-10" data={tableData} columns={columns} />;
+    return <TableBase className="scrollbar-thin mt-5 md:mt-10" data={tableData} columns={columns} />;
 }

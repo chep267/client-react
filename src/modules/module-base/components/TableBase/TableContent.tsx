@@ -6,47 +6,41 @@
 
 /** libs */
 import * as React from 'react';
-import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 
 /** components */
-import CheckboxColumn from '@module-base/components/VirtualTable/CheckboxColumn';
+import CheckboxColumn from '@module-base/components/TableBase/CheckboxColumn';
 
 /** types */
-import type { VirtualTableContentProps } from '@module-base/types';
+import type { TypeTableData, TableContentProps } from '@module-base/types';
 
-const TableContent = React.memo<VirtualTableContentProps>(function TableContent(props) {
-    const { indexRow, item, columns, hasCheckbox, checked, dataKeyForCheckbox, onSelect } = props;
+function TableContent<D extends TypeTableData>(props: TableContentProps<D>) {
+    const { indexRow, item, columns, hasCheckbox, checked, onSelect } = props;
 
     return (
-        <TableRow>
-            <CheckboxColumn
-                id={dataKeyForCheckbox ? item[dataKeyForCheckbox] : ''}
-                hasCheckbox={hasCheckbox}
-                checked={Boolean(checked)}
-                onClick={() => onSelect?.(item)}
-            />
+        <React.Fragment>
+            <CheckboxColumn hasCheckbox={hasCheckbox} checked={Boolean(checked)} onClick={() => onSelect?.(item)} />
             {columns?.map((column, indexCell) => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 const { dataKey, renderItem, hasSort, onClick, onClickItem, ...cellProps } = column;
-                const value = item[dataKey];
+                const value = item[dataKey] as string | number;
                 return (
                     <TableCell
                         key={dataKey}
                         variant="body"
                         onClick={(event) => {
                             onClick?.(event);
-                            onClickItem?.(event, item);
+                            onClickItem?.(event, { indexRow, indexCell, item });
                             onSelect?.(item);
                         }}
                         {...cellProps}
                     >
-                        {typeof renderItem === 'function' ? renderItem({ dataKey, indexRow, indexCell, item, value }) : value}
+                        {typeof renderItem === 'function' ? renderItem({ indexRow, indexCell, item }) : value}
                     </TableCell>
                 );
             })}
-        </TableRow>
+        </React.Fragment>
     );
-});
+}
 
-export default TableContent;
+export default React.memo(TableContent);

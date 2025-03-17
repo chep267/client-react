@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ spacing, palette }) => ({
+const useStyles = makeStyles(({ spacing, palette }: any) => ({
     textMessage: {
         width: 'auto',
         padding: `5px ${spacing(2)}`,

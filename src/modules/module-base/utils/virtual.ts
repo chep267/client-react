@@ -9,9 +9,9 @@ import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** types */
-import type { TypeDataKey, TypeOrderType } from '@module-base/types';
+import { TypeDataKey, TypeOrderType, TypeTableData } from '@module-base/types';
 
-export const sortTableData = <D = any>(payload: {
+export const sortTableData = <D extends TypeTableData>(payload: {
     data?: Readonly<Array<D>>;
     orderType: TypeOrderType;
     orderBy: TypeDataKey<D>;

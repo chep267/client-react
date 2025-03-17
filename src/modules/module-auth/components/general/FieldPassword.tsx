@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useController } from 'react-hook-form';
 
@@ -22,11 +21,6 @@ import type { FieldPasswordProps } from '@module-auth/types';
 
 export default function FieldPassword<T extends FieldValues>(props: FieldPasswordProps<T>) {
     const { name, control, error, errorMessage, clearErrors, setFocus, isConfirm } = props;
-    const fieldStyle = React.useRef({
-        '& .MuiFormHelperText-root': {
-            textAlign: 'right',
-        },
-    }).current;
 
     const { field } = useController({
         name,
@@ -42,9 +36,13 @@ export default function FieldPassword<T extends FieldValues>(props: FieldPasswor
 
     return (
         <PasswordField
-            sx={fieldStyle}
-            label={<FormattedMessage id={AuthLanguage.component.label[isConfirm ? 'confirmPassword' : 'password']} />}
             variant="outlined"
+            sx={{
+                '& .MuiFormHelperText-root': {
+                    textAlign: 'right',
+                },
+            }}
+            label={<FormattedMessage id={AuthLanguage.component.label[isConfirm ? 'confirmPassword' : 'password']} />}
             spellCheck={false}
             fullWidth
             autoComplete={isConfirm ? undefined : 'password'}

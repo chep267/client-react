@@ -13,7 +13,6 @@ import {
     SVGProps,
     ImgHTMLAttributes,
     ReactNode,
-    UIEvent,
     ErrorInfo,
     Ref,
     ChangeEvent,
@@ -23,7 +22,6 @@ import type { TextFieldProps } from '@mui/material/TextField';
 import type { ListProps } from '@mui/material/List';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { MenuProps } from '@mui/material/Menu';
-import type { TableRowProps } from '@mui/material/TableRow';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { TooltipProps } from '@mui/material/Tooltip';
 import type { SnackbarProps } from '@mui/material/Snackbar';
@@ -32,7 +30,6 @@ import type { TableVirtuosoProps, VirtuosoProps } from 'react-virtuoso';
 import type { ListItemProps } from '@mui/material/ListItem';
 import type { TableProps } from '@mui/material/Table';
 import type { ElementClickEvent } from './event.d';
-import type { TableContainerProps } from '@mui/material/TableContainer';
 
 export declare type TypeInputElem = HTMLInputElement | null;
 
@@ -63,7 +60,7 @@ export declare type TypeIcons = Readonly<Record<TypeIconBase, LazyExoticComponen
 export declare type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
 
 /** InputSearch */
-export declare interface InputSearchProps extends Omit<TextFieldProps, 'value' | 'onChange'> {
+export declare interface InputSearchProps extends Omit<TextFieldProps<'outlined'>, 'value' | 'onChange'> {
     timer?: number;
     onLoading?(loading: boolean): void;
     onChangeValue?(value: string): void;
@@ -111,89 +108,32 @@ export declare interface MenuBaseProps {
 export declare type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
 /** PasswordField */
-export declare interface PasswordFieldProps extends TextFieldProps {
+export declare interface PasswordFieldProps extends TextFieldProps<'outlined'> {
     setFocus?(): void;
 }
 
 /** TableBase */
 export declare type TypeOrderType = 'asc' | 'desc';
-export declare type TableBaseProps<D = any> = TableProps & {
+export declare type TypeTableData = Record<string | number, any> | any[];
+export declare type TypeDataKey<D extends TypeTableData> = D extends any[] ? number : Extract<keyof D, string | number>;
+export declare interface TableBaseProps<D extends TypeTableData> extends TableProps {
     data?: readonly D[];
     loading?: boolean;
+    emptyContent?: ReactNode;
+    hasCheckbox?: boolean;
+    dataKeyForCheckbox?: TypeDataKey<D>;
     columns?: (Omit<TableCellProps, 'children'> & {
         dataKey: TypeDataKey<D>;
+        label: ReactNode;
         hasSort?: boolean;
-        label: TableCellProps['children'];
-        onClickItem?(event: MouseEvent<HTMLTableCellElement, MouseEvent>, item: D): void;
-        renderItem?(data: {
-            dataKey: TypeDataKey<D>;
-            indexRow: number;
-            indexCell: number;
-            item: D;
-            value: D[TypeDataKey<D>];
-        }): ReactNode;
+        onClickItem?(event: MouseEvent<HTMLTableCellElement>, data: { indexRow: number; indexCell: number; item: D }): void;
+        renderItem?(data: { indexRow: number; indexCell: number; item: D }): ReactNode;
     })[];
-    slotProps?: {
-        empty?: {
-            className?: string;
-            content?: string;
-        };
-    };
     onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
-} & ({ hasCheckbox: true; dataKeyForCheckbox: TypeDataKey<D> } | { hasCheckbox?: false; dataKeyForCheckbox?: never });
-export declare interface TableLoadingProps extends Pick<TableBaseProps, 'loading' | 'emptyText'> {
-    empty?: boolean;
 }
-export declare interface TableHeaderProps<D extends TypeTableItemData>
-    extends Pick<TableBaseProps<D>, 'className' | 'columns' | 'orderType' | 'orderBy' | 'hasCheckbox'> {
-    checked?: boolean;
-    indeterminate?: boolean;
-    onSort?(newKey: TypeId, prevKey?: TypeId): void;
-    onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
-}
-export declare type TableHeaderColumnsProps<D extends TypeTableItemData> = Pick<
-    TableHeaderProps<D>,
-    'columns' | 'orderBy' | 'orderType' | 'onSort'
->;
-export declare interface TableContentProps<D extends TypeTableItemData>
-    extends Pick<VirtualTableProps<D>, 'columns' | 'hasCheckbox' | 'dataKeyForCheckbox'> {
-    indexRow: number;
-    item: D;
-    checked?: boolean;
-    onSelect?(id: TypeId): void;
-}
-export declare interface TableContentColumnsProps<D extends TypeTableItemData>
-    extends Omit<VirtualTableContentProps<D>, 'selected' | 'onSelect' | 'hasCheckbox'> {
-    onSelect?(): void;
-}
-
-/** Virtual Table */
-export type TypeDataKey<D> = Extract<keyof D, string | number>;
-export declare type VirtualTableProps<D = any, C = any> = TableVirtuosoProps<D, C> & {
-    loading?: boolean;
-    columns?: (Omit<TableCellProps, 'children'> & {
-        dataKey: TypeDataKey<D>;
-        hasSort?: boolean;
-        label: TableCellProps['children'];
-        onClickItem?(event: MouseEvent<HTMLTableCellElement, MouseEvent>, item: D): void;
-        renderItem?(data: {
-            dataKey: TypeDataKey<D>;
-            indexRow: number;
-            indexCell: number;
-            item: D;
-            value: D[TypeDataKey<D>];
-        }): ReactNode;
-    })[];
-    slotProps?: {
-        empty?: {
-            className?: string;
-            content?: string;
-        };
-    };
-    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
-} & ({ hasCheckbox: true; dataKeyForCheckbox: TypeDataKey<D> } | { hasCheckbox?: false; dataKeyForCheckbox?: never });
-export declare interface VirtualTableHeaderProps<D = any, C = any>
-    extends Pick<VirtualTableProps<D, C>, 'className' | 'columns' | 'hasCheckbox'> {
+export declare interface TableHeaderProps<D extends TypeTableData> {
+    columns?: TableBaseProps<D>['columns'];
+    hasCheckbox?: boolean;
     checked?: boolean;
     indeterminate?: boolean;
     orderType?: TypeOrderType;
@@ -201,18 +141,26 @@ export declare interface VirtualTableHeaderProps<D = any, C = any>
     onSort?(newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export declare interface VirtualTableContentProps<D = any, C = any>
-    extends Pick<VirtualTableProps<D, C>, 'columns' | 'hasCheckbox' | 'dataKeyForCheckbox'> {
+export declare interface TableContentProps<D extends TypeTableData> {
+    columns?: TableBaseProps<D>['columns'];
+    hasCheckbox?: boolean;
     indexRow: number;
     item: D;
     checked?: boolean;
     onSelect?(item: D): void;
 }
-export declare type VirtualTableContainerProps = TableContainerProps & Pick<VirtualTableProps, 'loading'>;
-export declare type VirtualTableEmptyProps = NonNullable<NonNullable<VirtualTableProps['slotProps']>['empty']>;
-export declare type VirtualTableLoadingProps = Pick<VirtualTableProps, 'loading'>;
 export declare interface CheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
+}
+
+/** Virtual Table */
+export declare interface VirtualTableProps<D extends TypeTableData, C = any> extends TableVirtuosoProps<D, C> {
+    loading?: boolean;
+    emptyContent?: ReactNode;
+    hasCheckbox?: boolean;
+    dataKeyForCheckbox?: TypeDataKey<D>;
+    columns?: TableBaseProps<D>['columns'];
+    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
 }
 
 /** Virtual List */

@@ -4,13 +4,13 @@
  *
  */
 
-import classnames from 'classnames';
-
 /** libs */
-import { Typography, Stack } from '@mui/material';
+import classnames from 'classnames';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 /** utils */
-import { Crypto } from '@module-base/utils';
+import { Crypto } from '@module-base/utils/Crypto';
 
 /** styles */
 import useStyles from './styles';

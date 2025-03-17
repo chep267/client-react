@@ -6,7 +6,7 @@
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(({ spacing, palette, breakpoints }) => ({
+const useStyles = makeStyles(({ spacing, palette, breakpoints }: any) => ({
     message_view: {
         position: 'relative',
         flexDirection: 'row',

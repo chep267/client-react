@@ -11,40 +11,37 @@ import Box from '@mui/material/Box';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 /** constants */
 import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** utils */
-import { getId, sortTableData } from '@module-base/utils/virtual';
+import { sortTableData } from '@module-base/utils/virtual';
 
 /** components */
-import TableLoading from './TableLoading';
-import TableHeader from './TableHeader';
-import TableContent from './TableContent';
-
-/** styles */
-import { useStyles } from './styles';
+import TableLoading from '@module-base/components/TableBase/TableLoading';
+import TableEmpty from '@module-base/components/TableBase/TableEmpty';
+import TableHeader from '@module-base/components/TableBase/TableHeader';
+import TableContent from '@module-base/components/TableBase/TableContent';
 
 /** types */
-import type { TableBaseProps, TableHeaderProps, TypeDataKey, TypeOrderType, VirtualTableProps } from '@module-base/types';
-import type { ChangeEvent } from 'react';
+import type { TableBaseProps, TableHeaderProps, TypeDataKey, TypeOrderType, TypeTableData } from '@module-base/types';
 
-export default function TableBase<D>(props: TableBaseProps<D>) {
-    // const {
-    //     loading,
-    //     data,
-    //     columns,
-    //     className,
-    //     hasCheckbox,
-    //     dataKeyForCheckbox = 'id',
-    //     onChangeSelected,
-    //     onScroll,
-    //     ...tableProps
-    // } = props;
-    const { data, loading, columns, className, hasCheckbox, dataKeyForCheckbox, slotProps, onChangeSelected, ...tableProps } =
-        props;
+export default function TableBase<D extends TypeTableData>(props: TableBaseProps<D>) {
+    const {
+        data,
+        loading,
+        columns,
+        className,
+        hasCheckbox,
+        dataKeyForCheckbox,
+        emptyContent,
+        onChangeSelected,
+        ...tableProps
+    } = props;
 
     const [orderType, setOrderType] = React.useState<TypeOrderType>();
     const [orderBy, setOrderBy] = React.useState<TypeDataKey<D>>();
@@ -54,8 +51,8 @@ export default function TableBase<D>(props: TableBaseProps<D>) {
         onChangeSelected?.(selectedIds);
     }, [selectedIds]);
 
-    const onSelectAll = React.useCallback(
-        (event: ChangeEvent<HTMLInputElement>) => {
+    const onSelectAll = React.useCallback<NonNullable<TableHeaderProps<D>['onSelectAll']>>(
+        (event) => {
             if (!dataKeyForCheckbox) {
                 return;
             }
@@ -70,7 +67,7 @@ export default function TableBase<D>(props: TableBaseProps<D>) {
     );
 
     const onSelectOne = React.useCallback(
-        (item: NonNullable<TableBaseProps<D>['data']>[number]) => {
+        (item: D) => {
             if (!dataKeyForCheckbox) {
                 return;
             }
@@ -107,40 +104,42 @@ export default function TableBase<D>(props: TableBaseProps<D>) {
     }, [data, orderType, orderBy]);
 
     const itemContent = (item: D, indexRow: number) => {
-        const checked = hasCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
+        const checked = hasCheckbox && dataKeyForCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
         return (
-            <TableContent
-                key={indexRow}
-                columns={columns}
-                indexRow={indexRow}
-                item={item}
-                hasCheckbox={hasCheckbox}
-                checked={checked}
-                onSelect={onSelectOne}
-            />
+            <TableRow key={indexRow}>
+                <TableContent
+                    columns={columns}
+                    indexRow={indexRow}
+                    item={item}
+                    hasCheckbox={hasCheckbox}
+                    checked={checked}
+                    onSelect={onSelectOne}
+                />
+            </TableRow>
         );
     };
 
     return (
         <Box className={classnames('relative h-full w-full', className)}>
-            <TableContainer
-                className={classnames('absolute top-0 right-0 bottom-0 left-0 z-10 h-full w-full', {
-                    ['overflow-hidden']: loading,
-                })}
-            >
-                <TableLoading loading={loading} empty={!data?.length} emptyText="" />
+            {loading ? <TableLoading /> : null}
+            <TableContainer className="absolute top-0 right-0 bottom-0 left-0 z-10 h-full w-full">
                 <Table stickyHeader size="medium" {...tableProps}>
-                    <TableHeader
-                        columns={columns}
-                        hasCheckbox={hasCheckbox}
-                        orderBy={orderBy}
-                        orderType={orderType}
-                        checked={Boolean(selectedIds.length === currentData.length)}
-                        indeterminate={Boolean(selectedIds.length && selectedIds.length < currentData.length)}
-                        onSort={onSort}
-                        onSelectAll={onSelectAll}
-                    />
-                    <TableBody>{currentData.map(itemContent)}</TableBody>
+                    <TableHead>
+                        <TableHeader
+                            columns={columns}
+                            hasCheckbox={hasCheckbox}
+                            orderBy={orderBy}
+                            orderType={orderType}
+                            checked={Boolean(selectedIds.length && selectedIds.length === currentData.length)}
+                            indeterminate={Boolean(selectedIds.length && selectedIds.length < currentData.length)}
+                            onSort={onSort}
+                            onSelectAll={onSelectAll}
+                        />
+                    </TableHead>
+                    <TableBody>
+                        {loading || currentData.length ? null : <TableEmpty emptyContent={emptyContent} />}
+                        {currentData.map(itemContent)}
+                    </TableBody>
                 </Table>
             </TableContainer>
         </Box>

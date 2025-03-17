@@ -8,6 +8,8 @@
 import * as React from 'react';
 import classnames from 'classnames';
 import { TableVirtuoso } from 'react-virtuoso';
+import Paper from '@mui/material/Paper';
+import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
@@ -18,21 +20,30 @@ import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** components */
-import TableContainer from '@module-base/components/VirtualTable/TableContainer';
-import TableHeader from '@module-base/components/VirtualTable/TableHeader';
-import TableContent from '@module-base/components/VirtualTable/TableContent';
-import TableEmpty from '@module-base/components/VirtualTable/TableEmpty';
+import TableLoading from '@module-base/components/TableBase/TableLoading';
+import TableEmpty from '@module-base/components/TableBase/TableEmpty';
+import TableHeader from '@module-base/components/TableBase/TableHeader';
+import TableContent from '@module-base/components/TableBase/TableContent';
 
 /** utils */
 import { sortTableData } from '@module-base/utils/virtual';
 
 /** types */
 import type { ChangeEvent } from 'react';
-import type { TypeDataKey, TypeOrderType, VirtualTableContainerProps, VirtualTableProps } from '@module-base/types';
+import type { TypeDataKey, TypeOrderType, TypeTableData, VirtualTableProps } from '@module-base/types';
 
-export default function VirtualTable<D, C>(props: VirtualTableProps<D, C>) {
-    const { data, loading, columns, className, hasCheckbox, dataKeyForCheckbox, slotProps, onChangeSelected, ...tableProps } =
-        props;
+export default function VirtualTable<D extends TypeTableData, C>(props: VirtualTableProps<D, C>) {
+    const {
+        data,
+        loading,
+        emptyContent,
+        columns,
+        className,
+        hasCheckbox,
+        dataKeyForCheckbox,
+        onChangeSelected,
+        ...tableProps
+    } = props;
 
     const [orderType, setOrderType] = React.useState<TypeOrderType>();
     const [orderBy, setOrderBy] = React.useState<TypeDataKey<D>>();
@@ -89,16 +100,19 @@ export default function VirtualTable<D, C>(props: VirtualTableProps<D, C>) {
 
     const VirtualTableComponents = React.useMemo<VirtualTableProps<D, C>['components']>(
         () => ({
-            Scroller: React.forwardRef<HTMLDivElement, VirtualTableContainerProps>((props, ref) => (
-                <TableContainer loading={loading} {...props} ref={ref} />
+            Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
+                <>
+                    <TableContainer ref={ref} component={Paper} {...props} />
+                    {loading ? <TableLoading /> : null}
+                </>
             )),
             Table: (props) => <Table {...props} className="table-fixed border-separate" />,
             TableHead,
             TableRow,
             TableBody,
-            EmptyPlaceholder: () => (loading ? null : <TableEmpty {...slotProps?.empty} />),
+            EmptyPlaceholder: () => (loading ? null : <TableEmpty emptyContent={emptyContent} />),
         }),
-        [slotProps?.empty, loading]
+        [loading, emptyContent]
     );
 
     const currentData = React.useMemo<Readonly<D[]>>(() => {
@@ -124,7 +138,7 @@ export default function VirtualTable<D, C>(props: VirtualTableProps<D, C>) {
     };
 
     const itemContent = (indexRow: number, item: D) => {
-        const checked = hasCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
+        const checked = hasCheckbox && dataKeyForCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
         return (
             <TableContent
                 columns={columns}

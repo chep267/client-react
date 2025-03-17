@@ -26,7 +26,6 @@ const OptionMessage = React.memo(() => {
     const tooltipProps = React.useRef<MenuBaseProps['tooltipProps']>({
         title: <FormattedMessage id={MessengerLanguage.component.label.message.option} />,
         placement: 'top',
-        children: <MoreHorizIcon color="primary" />,
     }).current;
 
     const iconButtonProps = React.useRef<MenuBaseProps['iconButtonProps']>({
@@ -37,8 +36,14 @@ const OptionMessage = React.memo(() => {
         children: <ListOption />,
     }).current;
 
-    return <MenuBase tooltipProps={tooltipProps} iconButtonProps={iconButtonProps} menuProps={menuProps} />;
+    return (
+        <MenuBase
+            tooltipProps={tooltipProps}
+            iconButtonProps={iconButtonProps}
+            menuProps={menuProps}
+            buttonChildren={<MoreHorizIcon color="primary" />}
+        />
+    );
 });
 
-OptionMessage.displayName = 'OptionMessage';
 export default OptionMessage;

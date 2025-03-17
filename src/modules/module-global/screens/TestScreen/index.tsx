@@ -12,18 +12,27 @@ import Chance from 'chance';
 import TableBase from '@module-base/components/TableBase';
 
 /** types */
-import type { VirtualTableProps } from '@module-base/types';
+import type { TableBaseProps } from '@module-base/types';
 
 export default function TestScreen() {
     const chance = new Chance();
-    const columns: VirtualTableProps<{
-        id: string;
-        firstName: string;
-        lastName: string;
-        age: string;
-        phone: string;
-        state: string;
-    }>['columns'] = [
+
+    type TypeData = { id: string; firstName: string; lastName: string; age: string; phone: string; state: string };
+
+    function createData(id: string): TypeData {
+        return {
+            id,
+            firstName: chance.first() as string,
+            lastName: chance.last() as string,
+            age: chance.age() as string,
+            phone: chance.phone() as string,
+            state: chance.state({ full: true }) as string,
+        };
+    }
+
+    const data = Array.from({ length: 100 }, (_, index) => createData(`${index}`));
+
+    const columns: TableBaseProps<TypeData>['columns'] = [
         {
             label: 'ID',
             dataKey: 'id',
@@ -56,18 +65,5 @@ export default function TestScreen() {
         },
     ];
 
-    function createData(id: string) {
-        return {
-            id,
-            firstName: chance.first(),
-            lastName: chance.last(),
-            age: chance.age(),
-            phone: chance.phone(),
-            state: chance.state({ full: true }),
-        };
-    }
-
-    const rows = Array.from({ length: 100 }, (_, index) => createData(`${index}`));
-
-    return <TableBase data={rows} columns={columns} hasCheckbox={true} dataKeyForCheckbox="id" loading={false} />;
+    return <TableBase data={data} columns={columns} hasCheckbox={true} dataKeyForCheckbox="id" loading={false} />;
 }
