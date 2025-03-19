@@ -11,11 +11,11 @@ import Stack from '@mui/material/Stack';
 import List from '@mui/material/List';
 
 /** components */
-import TableLoading from '@module-base/components/TableBase/TableLoading.tsx';
+import TableLoading from '@module-base/components/TableBase/TableLoading';
+import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 
 /** types */
 import type { ListBaseProps } from '@module-base/types';
-import TableEmpty from '@module-base/components/TableBase/TableEmpty.tsx';
 
 export default function ListBase(props: ListBaseProps) {
     const { ref, data, className, classNameContainer, loading, emptyContent, itemContent, ...listProps } = props;

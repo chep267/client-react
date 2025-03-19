@@ -6,9 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
 import { TableVirtuoso } from 'react-virtuoso';
-import Paper from '@mui/material/Paper';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
@@ -33,17 +31,7 @@ import type { ChangeEvent } from 'react';
 import type { TypeDataKey, TypeOrderType, TypeTableData, VirtualTableProps } from '@module-base/types';
 
 export default function VirtualTable<D extends TypeTableData = TypeTableData>(props: VirtualTableProps<D>) {
-    const {
-        data,
-        loading,
-        emptyContent,
-        columns,
-        className,
-        hasCheckbox,
-        dataKeyForCheckbox,
-        onChangeSelected,
-        ...tableProps
-    } = props;
+    const { data, loading, emptyContent, columns, hasCheckbox, dataKeyForCheckbox, onChangeSelected, ...tableProps } = props;
 
     const [orderType, setOrderType] = React.useState<TypeOrderType>();
     const [orderBy, setOrderBy] = React.useState<TypeDataKey<D>>();
@@ -102,11 +90,11 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
         () => ({
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>
-                    <TableContainer ref={ref} component={Paper} {...props} />
+                    <TableContainer ref={ref} component="div" {...props} />
                     {loading ? <TableLoading /> : null}
                 </>
             )),
-            Table: (props) => <Table {...props} className="table-fixed border-separate" />,
+            Table: (props) => <Table {...props} className="border-separate" />,
             TableHead,
             TableRow,
             TableBody,
@@ -153,7 +141,6 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
 
     return (
         <TableVirtuoso
-            className={classnames('h-full w-full', className)}
             data={currentData}
             components={VirtualTableComponents}
             fixedHeaderContent={fixedHeaderContent}

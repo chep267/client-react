@@ -42,16 +42,16 @@ export default function AuthRoute(props: PropsWithChildren) {
         if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
             /** chưa đăng nhập, trở về đăng nhập  */
             hookAuth.method.setPrePath(Object.values(AuthRouterPath).includes(pathname) ? '/' : pathname);
-            navigate(AuthRouterPath.signin);
+            navigate(AuthRouterPath.signin, { replace: true });
         }
         if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             hookAuth.method.setPrePath(Object.values(AuthRouterPath).includes(pathname) ? '/' : pathname);
-            navigate(AuthRouterPath.start);
+            navigate(AuthRouterPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname)) {
             /** đã đăng nhập xong, vào home */
-            navigate(prePath);
+            navigate(prePath, { replace: true });
         }
     }, [accountState, pathname]);
 

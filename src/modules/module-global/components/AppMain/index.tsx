@@ -10,6 +10,9 @@ import { Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
+/** constants */
+import { ScreenSize } from '@module-base/constants/ScreenSize';
+
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
 import AppSider from '@module-global/components/AppSider';
@@ -20,7 +23,11 @@ import MainRouter from '@module-global/components/AppMain/MainRouter';
 
 export default function AppMain() {
     return (
-        <Box className="flex w-auto max-w-full shrink-0 grow pt-16" component="main">
+        <Box
+            className="flex w-auto max-w-full shrink-0 grow"
+            sx={{ paddingTop: `${ScreenSize.HeaderHeight}px` }}
+            component="main"
+        >
             <Container id="container" className="mx-auto flex h-full w-full max-w-full p-0">
                 <React.Suspense fallback={<StartLoading />}>
                     <Routes>

@@ -30,46 +30,53 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const hookSider = useSider();
+    const [activePath, setActivePath] = React.useState('');
 
-    const appbarStyles = React.useRef({ top: ScreenSize.HeaderHeight }).current;
+    React.useEffect(() => {
+        if (activePath) {
+            navigate(activePath);
+        }
+    }, [activePath]);
 
-    const apps = React.useRef([
-        {
-            path: GlobalRouterPath.feed,
-            name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
-            icon: <HomeIcon />,
-        },
-        {
-            path: GlobalRouterPath.messenger,
-            name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
-            icon: <TelegramIcon />,
-        },
-        {
-            path: GlobalRouterPath.calendar,
-            name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
-            icon: <CalendarMonthIcon />,
-        },
-        {
-            path: GlobalRouterPath.game,
-            name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
-            icon: <GamesIcon />,
-        },
-    ]).current;
+    const apps = React.useMemo(() => {
+        return [
+            {
+                path: GlobalRouterPath.feed,
+                name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
+                icon: <HomeIcon />,
+            },
+            {
+                path: GlobalRouterPath.messenger,
+                name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
+                icon: <TelegramIcon />,
+            },
+            {
+                path: GlobalRouterPath.calendar,
+                name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
+                icon: <CalendarMonthIcon />,
+            },
+            {
+                path: GlobalRouterPath.game,
+                name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
+                icon: <GamesIcon />,
+            },
+        ];
+    }, []);
 
     const tabValue = React.useMemo(() => {
-        const value = apps.find((item) => pathname.startsWith(item.path));
+        const value = apps.find((item) => (activePath || pathname).startsWith(item.path));
         return value?.path || GlobalRouterPath.defaultPath;
-    }, [pathname]);
+    }, [pathname, activePath]);
 
     const handleChange = React.useCallback((_event: React.SyntheticEvent, path: string) => {
-        navigate(path);
+        setActivePath(path);
     }, []);
 
     return (
         <AppBar
             position="sticky"
             className={classnames('z-10', { ['hidden']: hookSider.data.siderState !== SiderState.hidden })}
-            sx={appbarStyles}
+            sx={{ top: `${ScreenSize.HeaderHeight}px` }}
         >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">
                 {apps.map((menu) => (

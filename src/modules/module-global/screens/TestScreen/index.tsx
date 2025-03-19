@@ -8,8 +8,8 @@
 import Chance from 'chance';
 
 /** components */
-import TableBase from '@module-base/components/VirtualTable';
-// import TableBase from '@module-base/components/TableBase';
+// import TableBase from '@module-base/components/VirtualTable';
+import TableBase from '@module-base/components/TableBase';
 
 /** types */
 import type { TableBaseProps } from '@module-base/types';
@@ -30,7 +30,7 @@ export default function TestScreen() {
         };
     }
 
-    const data = Array.from({ length: 10000 }, (_, index) => createData(`${index}`));
+    const data = Array.from({ length: 100 }, (_, index) => createData(`${index}`));
 
     const columns: TableBaseProps<TypeData>['columns'] = [
         {
