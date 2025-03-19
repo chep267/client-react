@@ -18,7 +18,7 @@ import {
     ChangeEvent,
 } from 'react';
 
-import type { TextFieldProps } from '@mui/material/TextField';
+import type { TextFieldProps, TextFieldVariants } from '@mui/material/TextField';
 import type { ListProps } from '@mui/material/List';
 import type { IconButtonProps } from '@mui/material/IconButton';
 import type { MenuProps } from '@mui/material/Menu';
@@ -44,7 +44,7 @@ export declare interface ErrorBoundaryStates {
 export declare interface FallbackDefaultProps {
     isAutoReload?: boolean;
 }
-export type { ErrorInfo };
+export type { ErrorInfo, TextFieldVariants };
 
 /** IconBase */
 export declare type IconSVGProps = SVGProps<SVGSVGElement>;
@@ -60,11 +60,14 @@ export declare type TypeIcons = Readonly<Record<TypeIconBase, LazyExoticComponen
 export declare type ImageBaseProps = ImgHTMLAttributes<HTMLImageElement>;
 
 /** InputSearch */
-export declare interface InputSearchProps extends Omit<TextFieldProps<'outlined'>, 'value' | 'onChange'> {
+export declare type InputSearchProps<Variant extends TextFieldProps['variant'] = 'outlined'> = Omit<
+    TextFieldProps<Variant>,
+    'value'
+> & {
     timer?: number;
     onLoading?(loading: boolean): void;
     onChangeValue?(value: string): void;
-}
+};
 
 /** ListBase */
 export declare interface ListBaseProps<D = any> extends Omit<ListProps, 'ref'> {
@@ -72,16 +75,10 @@ export declare interface ListBaseProps<D = any> extends Omit<ListProps, 'ref'> {
         scrollTop(): void;
     }>;
     classNameContainer?: string;
-    classNameLoading?: string;
     loading?: boolean;
-    empty?: boolean;
-    emptyText?: string;
+    emptyContent?: string;
     data?: D[];
-    renderItem?(item: D, index: number): ReactNode;
-}
-export declare interface ListLoadingProps extends Pick<ListBaseProps, 'loading' | 'emptyText'> {
-    className?: string;
-    empty?: boolean;
+    itemContent?(item: D, index: number): ReactNode;
 }
 export declare interface NestedItemProps {
     id: string;
@@ -108,15 +105,15 @@ export declare interface MenuBaseProps {
 export declare type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
 /** PasswordField */
-export declare interface PasswordFieldProps extends TextFieldProps<'outlined'> {
+export declare type PasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
     setFocus?(): void;
-}
+};
 
 /** TableBase */
 export declare type TypeOrderType = 'asc' | 'desc';
 export declare type TypeTableData = Record<string | number, any> | any[];
 export declare type TypeDataKey<D extends TypeTableData> = D extends any[] ? number : Extract<keyof D, string | number>;
-export declare interface TableBaseProps<D extends TypeTableData> extends TableProps {
+export declare interface TableBaseProps<D extends TypeTableData = TypeTableData> extends TableProps {
     data?: readonly D[];
     loading?: boolean;
     emptyContent?: ReactNode;
@@ -127,11 +124,11 @@ export declare interface TableBaseProps<D extends TypeTableData> extends TablePr
         label: ReactNode;
         hasSort?: boolean;
         onClickItem?(event: MouseEvent<HTMLTableCellElement>, data: { indexRow: number; indexCell: number; item: D }): void;
-        renderItem?(data: { indexRow: number; indexCell: number; item: D }): ReactNode;
+        itemContent?(data: { indexRow: number; indexCell: number; item: D }): ReactNode;
     })[];
     onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
 }
-export declare interface TableHeaderProps<D extends TypeTableData> {
+export declare interface TableHeaderProps<D extends TypeTableData = TypeTableData> {
     columns?: TableBaseProps<D>['columns'];
     hasCheckbox?: boolean;
     checked?: boolean;
@@ -141,7 +138,7 @@ export declare interface TableHeaderProps<D extends TypeTableData> {
     onSort?(newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export declare interface TableContentProps<D extends TypeTableData> {
+export declare interface TableContentProps<D extends TypeTableData = TypeTableData> {
     columns?: TableBaseProps<D>['columns'];
     hasCheckbox?: boolean;
     indexRow: number;
@@ -164,24 +161,8 @@ export declare interface VirtualTableProps<D extends TypeTableData, C = any> ext
 }
 
 /** Virtual List */
-export declare type TypeVirtualListItemData = any;
-export declare interface VirtualListProps<D extends TypeVirtualListItemData, C = any> extends VirtuosoProps<D, C> {
-    className?: string;
-    headerContent?: () => ReactNode;
-    footerContent?: () => ReactNode;
-    slotProps?: {
-        listItem?: ListItemProps;
-        listEmpty?: {
-            className?: string;
-            emptyText?: string;
-        };
-        listLoading?: {
-            className?: string;
-            loading?: boolean;
-        };
-        header?: any;
-        footer?: any;
-    };
+export declare interface VirtualListProps<D = any, C = any> extends VirtuosoProps<D, C> {
+    loading?: boolean;
+    emptyContent?: ReactNode;
+    itemProps?: ListItemProps;
 }
-export declare type VirtualListLoadingProps = NonNullable<NonNullable<VirtualListProps['slotProps']>['listLoading']>;
-export declare type VirtualListEmptyProps = NonNullable<NonNullable<VirtualListProps['slotProps']>['listEmpty']>;

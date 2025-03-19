@@ -8,7 +8,7 @@
 import type { PropsWithChildren } from 'react';
 import type { TypeUser } from '@module-user/types';
 
-export type AuthContextProps = {
+export declare type AuthContextProps = {
     data: {
         isAuthentication: boolean;
         user: TypeUser | null;
@@ -20,4 +20,4 @@ export type AuthContextProps = {
     };
 };
 
-export type AuthProviderProps = PropsWithChildren;
+export declare type AuthProviderProps = PropsWithChildren;

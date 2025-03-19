@@ -5,19 +5,19 @@
  */
 
 /** types */
-export type TypePokemonGameLevel = 'easy' | 'normal' | 'hard';
+export declare type TypePokemonGameLevel = 'easy' | 'normal' | 'hard';
 
-export type TypePokemonItemStatus = 'select' | 'success' | 'error';
+export declare type TypePokemonItemStatus = 'select' | 'success' | 'error';
 
-export type TypePokemonGameStatus = 'pending' | 'start' | 'stop' | 'next';
+export declare type TypePokemonGameStatus = 'pending' | 'start' | 'stop' | 'next';
 
-export type TypePokemonItem = {
+export declare type TypePokemonItem = {
     x: number;
     y: number;
     value: number;
 };
 
-export type PokemonContextProps = {
+export declare type PokemonContextProps = {
     data: {
         boardGame: TypePokemonItem[][];
         items: TypePokemonItem[];

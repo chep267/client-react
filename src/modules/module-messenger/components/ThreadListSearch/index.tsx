@@ -38,7 +38,7 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
 
     const { itemIds, items } = LIST_USER.data ?? {};
 
-    const renderItem = (_index: number, uid: TypeUser['uid']) => {
+    const itemContent = (_index: number, uid: TypeUser['uid']) => {
         const user = items?.[uid];
         const isHidden = !user || !checkString(user.displayName || '', searchKey);
         const tid = validateId(uid, 'tid');
@@ -64,17 +64,10 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
 
     return (
         <VirtualList
-            className="overflow-x-hidden"
+            className="scrollbar-thin overflow-x-hidden"
+            loading={isSearching}
             data={itemIds}
-            slotProps={{
-                listItem: {
-                    className: 'p-0 m-0',
-                },
-                listLoading: {
-                    loading: isSearching,
-                },
-            }}
-            itemContent={renderItem}
+            itemContent={itemContent}
         />
     );
 });

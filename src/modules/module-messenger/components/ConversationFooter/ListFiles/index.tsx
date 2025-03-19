@@ -34,7 +34,7 @@ export default function ListFiles() {
         return null;
     }
 
-    const renderItem = (_index: number, fid: string) => {
+    const itemContent = (_index: number, fid: string) => {
         const item = draft?.files?.[fid];
         if (!item) {
             return null;
@@ -47,12 +47,8 @@ export default function ListFiles() {
             className="min-h-[120px] overflow-y-hidden"
             horizontalDirection
             data={draft?.fileIds}
-            slotProps={{
-                listItem: {
-                    className: 'p-0 m-0 w-max ml-1',
-                },
-            }}
-            itemContent={renderItem}
+            itemProps={{ className: 'p-0 m-0 w-max ml-1' }}
+            itemContent={itemContent}
         />
     );
 }

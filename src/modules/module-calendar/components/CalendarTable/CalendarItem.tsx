@@ -17,7 +17,7 @@ import { useCalendar } from '@module-calendar/hooks/useCalendar';
 import type { SxProps, Theme } from '@mui/material/styles';
 import type { CalendarItemProps } from '@module-calendar/types';
 
-const RenderItem = React.memo(function RenderItem(props: CalendarItemProps) {
+const ItemContent = React.memo(function ItemContent(props: CalendarItemProps) {
     const { day, isToday, isWeekend, isInMonth, isOnlyMonth, isSelectedDay, onSelect } = props;
     const styleItem: SxProps<Theme> = [
         {
@@ -92,7 +92,7 @@ export default function CalendarItem(props: Pick<CalendarItemProps, 'day'>) {
     const isSelectedDay = calendarMethod.isSelectedDay(day);
 
     return (
-        <RenderItem
+        <ItemContent
             day={day}
             isToday={isToday}
             isWeekend={isWeekend}

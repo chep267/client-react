@@ -30,7 +30,14 @@ export default function ListApp(props: ListAppProps) {
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const router = `/${pathname.split('/')[1]}`;
+    const [activePath, setActivePath] = React.useState('');
+    const router = `/${(activePath || pathname).split('/')[1]}`;
+
+    React.useEffect(() => {
+        if (activePath) {
+            navigate(activePath);
+        }
+    }, [activePath]);
 
     const apps = React.useMemo<TypeAppItem[]>(
         () => [
@@ -38,33 +45,39 @@ export default function ListApp(props: ListAppProps) {
                 path: GlobalRouterPath.feed,
                 name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
                 icon: <HomeIcon />,
-                onClick: () => navigate(GlobalRouterPath.feed),
+                onClick: () => setActivePath(GlobalRouterPath.feed),
             },
             {
                 path: GlobalRouterPath.messenger,
                 name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
                 icon: <TelegramIcon />,
-                onClick: () => navigate(GlobalRouterPath.messenger),
+                onClick: () => setActivePath(GlobalRouterPath.messenger),
             },
             {
                 path: GlobalRouterPath.calendar,
                 name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
                 icon: <CalendarMonthIcon />,
-                onClick: () => navigate(GlobalRouterPath.calendar),
+                onClick: () => setActivePath(GlobalRouterPath.calendar),
             },
             {
                 path: GlobalRouterPath.game,
                 name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
                 icon: <GamesIcon />,
-                onClick: () => navigate(GlobalRouterPath.game),
+                onClick: () => setActivePath(GlobalRouterPath.game),
             },
         ],
         []
     );
 
-    const renderItem = (item: TypeAppItem) => {
+    const itemContent = (item: TypeAppItem) => {
         return <AppItem key={item.path} isSelected={item.path === router} hasTooltip={hasTooltip} item={item} />;
     };
 
-    return <ListBase className={classnames({ ['scrollbar-hidden']: hasTooltip })} data={apps} renderItem={renderItem} />;
+    return (
+        <ListBase
+            className={classnames('scrollbar-thin', { ['scrollbar-hidden']: hasTooltip })}
+            data={apps}
+            itemContent={itemContent}
+        />
+    );
 }

@@ -39,6 +39,7 @@ export default function ThreadSearch() {
                 <WestIcon />
             </IconButton>
             <InputSearch
+                variant="outlined"
                 className={classnames('w-full transition-[margin] duration-300', { 'ml-12': isFocusSearch })}
                 slotProps={{
                     input: { className: 'rounded-3xl' },

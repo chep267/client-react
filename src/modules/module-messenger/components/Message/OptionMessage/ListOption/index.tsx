@@ -56,9 +56,9 @@ export default function ListOption() {
         },
     ]).current;
 
-    const renderItem = (item: MenuItemProps) => {
+    const itemContent = (item: MenuItemProps) => {
         return <MenuItem key={item.id}>{item.title}</MenuItem>;
     };
 
-    return <>{menu.map(renderItem)}</>;
+    return <>{menu.map(itemContent)}</>;
 }

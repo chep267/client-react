@@ -12,9 +12,9 @@ import TableCell from '@mui/material/TableCell';
 import CheckboxColumn from '@module-base/components/TableBase/CheckboxColumn';
 
 /** types */
-import type { TypeTableData, TableContentProps } from '@module-base/types';
+import type { TableContentProps } from '@module-base/types';
 
-function TableContent<D extends TypeTableData>(props: TableContentProps<D>) {
+function TableContent(props: TableContentProps) {
     const { indexRow, item, columns, hasCheckbox, checked, onSelect } = props;
 
     return (
@@ -22,7 +22,7 @@ function TableContent<D extends TypeTableData>(props: TableContentProps<D>) {
             <CheckboxColumn hasCheckbox={hasCheckbox} checked={Boolean(checked)} onClick={() => onSelect?.(item)} />
             {columns?.map((column, indexCell) => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { dataKey, renderItem, hasSort, onClick, onClickItem, ...cellProps } = column;
+                const { dataKey, itemContent, hasSort, onClick, onClickItem, ...cellProps } = column;
                 const value = item[dataKey] as string | number;
                 return (
                     <TableCell
@@ -35,7 +35,7 @@ function TableContent<D extends TypeTableData>(props: TableContentProps<D>) {
                         }}
                         {...cellProps}
                     >
-                        {typeof renderItem === 'function' ? renderItem({ indexRow, indexCell, item }) : value}
+                        {typeof itemContent === 'function' ? itemContent({ indexRow, indexCell, item }) : value}
                     </TableCell>
                 );
             })}

@@ -32,7 +32,7 @@ import { sortTableData } from '@module-base/utils/virtual';
 import type { ChangeEvent } from 'react';
 import type { TypeDataKey, TypeOrderType, TypeTableData, VirtualTableProps } from '@module-base/types';
 
-export default function VirtualTable<D extends TypeTableData, C>(props: VirtualTableProps<D, C>) {
+export default function VirtualTable<D extends TypeTableData = TypeTableData>(props: VirtualTableProps<D>) {
     const {
         data,
         loading,
@@ -98,7 +98,7 @@ export default function VirtualTable<D extends TypeTableData, C>(props: VirtualT
         });
     }, []);
 
-    const VirtualTableComponents = React.useMemo<VirtualTableProps<D, C>['components']>(
+    const VirtualTableComponents = React.useMemo<VirtualTableProps<D>['components']>(
         () => ({
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>

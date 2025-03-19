@@ -30,7 +30,7 @@ import TableContent from '@module-base/components/TableBase/TableContent';
 /** types */
 import type { TableBaseProps, TableHeaderProps, TypeDataKey, TypeOrderType, TypeTableData } from '@module-base/types';
 
-export default function TableBase<D extends TypeTableData>(props: TableBaseProps<D>) {
+export default function TableBase<D extends TypeTableData = TypeTableData>(props: TableBaseProps<D>) {
     const {
         data,
         loading,

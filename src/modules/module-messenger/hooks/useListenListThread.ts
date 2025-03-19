@@ -29,7 +29,7 @@ export function useListenListThread() {
     const uid = AUTH.data.user?.uid as string;
 
     const testIds = React.useMemo<TypeItemIds>(() => {
-        return Array.from({ length: 100 }, (_, index) => `${index}`);
+        return Array.from({ length: 1000 }, (_, index) => `${index}`);
     }, []);
 
     const tests = React.useMemo<TypeItems<TypeDocumentThreadData>>(() => {

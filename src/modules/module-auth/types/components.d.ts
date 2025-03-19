@@ -7,19 +7,19 @@
 /** types */
 import type { Control, FieldPath, FieldValues, UseFormSetFocus, UseFormReturn } from 'react-hook-form';
 
-export type TypeAuthBreadcrumbsItem = {
+export declare type TypeAuthBreadcrumbsItem = {
     title: string;
     path: string;
     append?: string;
     hidden?: boolean;
 };
 
-export type AuthButtonSubmitProps = {
+export declare type AuthButtonSubmitProps = {
     loading?: boolean;
     type: 'signin' | 'register' | 'recover';
 };
 
-export type FieldEmailProps<T extends FieldValues> = {
+export declare type FieldEmailProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;
@@ -27,7 +27,7 @@ export type FieldEmailProps<T extends FieldValues> = {
     clearErrors: UseFormReturn<T>['clearErrors'];
 };
 
-export type FieldPasswordProps<T extends FieldValues> = {
+export declare type FieldPasswordProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;
@@ -35,10 +35,4 @@ export type FieldPasswordProps<T extends FieldValues> = {
     setFocus: UseFormSetFocus<T>;
     isConfirm?: boolean;
     clearErrors: UseFormReturn<T>['clearErrors'];
-};
-
-export type TypeFormAuth = {
-    email: string;
-    password: string;
-    confirm_password: string;
 };

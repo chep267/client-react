@@ -36,7 +36,7 @@ const ThreadList = React.memo(function ThreadList() {
         }
     }, [currentTid, firstId]);
 
-    const renderItem = (_index: number, tid: string) => {
+    const itemContent = (_index: number, tid: string) => {
         const item = hookListenListThread.data?.items?.[tid];
         if (!item) {
             return null;
@@ -46,17 +46,10 @@ const ThreadList = React.memo(function ThreadList() {
 
     return (
         <VirtualList
-            className="overflow-x-hidden"
+            className="scrollbar-thin overflow-x-hidden"
+            loading={hookListenListThread.isFetching}
             data={hookListenListThread.data.itemIds}
-            slotProps={{
-                listItem: {
-                    className: 'p-0 m-0',
-                },
-                listLoading: {
-                    loading: hookListenListThread.isFetching,
-                },
-            }}
-            itemContent={renderItem}
+            itemContent={itemContent}
         />
     );
 });

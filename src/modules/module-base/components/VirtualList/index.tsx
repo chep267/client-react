@@ -6,51 +6,38 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
 import { Virtuoso } from 'react-virtuoso';
+import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-
-/** constants */
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
+import TableContainer from '@mui/material/TableContainer';
 
 /** components */
-import ListEmpty from '@module-base/components/VirtualList/ListEmpty';
-import ListLoading from '@module-base/components/VirtualList/ListLoading';
+import TableLoading from '@module-base/components/TableBase/TableLoading';
+import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 
 /** types */
-import type { TypeVirtualListItemData, VirtualListProps } from '@module-base/types';
+import type { VirtualListProps } from '@module-base/types';
 
-export default function VirtualList<D extends TypeVirtualListItemData, C>(props: VirtualListProps<D, C>) {
-    const { className, slotProps, components, headerContent, footerContent, ...listProps } = props;
+export default function VirtualList(props: VirtualListProps) {
+    const { loading, emptyContent, itemProps, components, ...listProps } = props;
 
-    const customComponents = React.useMemo<VirtualListProps<D, C>['components']>(() => {
-        const {
-            listItem: listItemProps,
-            listEmpty: listEmptyProps,
-            listLoading: listLoadingProps,
-        } = slotProps || AppDefaultValue.emptyObject;
+    const customComponents = React.useMemo<VirtualListProps['components']>(() => {
         return {
-            List: React.forwardRef((props, listRef) => <List component="div" ref={listRef} {...props} />),
+            Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
+                <>
+                    <TableContainer ref={ref} component={Box} {...props} />
+                    {loading ? <TableLoading /> : null}
+                </>
+            )),
+            List: React.forwardRef((props, ref) => <List ref={ref} component="div" {...props} />),
             Item: ({ style, ...defaultProps }) => (
-                <ListItem style={{ ...style, ...listItemProps?.style }} {...defaultProps} {...listItemProps} />
+                <ListItem {...defaultProps} {...itemProps} style={{ padding: 0, margin: 0, ...style, ...itemProps?.style }} />
             ),
-            Header: headerContent || (() => <ListLoading {...listLoadingProps} />),
-            Footer: footerContent || (() => null),
-            EmptyPlaceholder: () => (listLoadingProps?.loading ? null : <ListEmpty {...listEmptyProps} />),
+            EmptyPlaceholder: () => (loading ? null : <TableEmpty emptyContent={emptyContent} />),
             ...components,
         };
-    }, [components, slotProps]);
+    }, [components, itemProps]);
 
-    return (
-        <Virtuoso
-            className={classnames(
-                'scrollbar-thin h-full w-full',
-                { ['overflow-hidden']: slotProps?.listLoading?.loading },
-                className
-            )}
-            components={customComponents}
-            {...listProps}
-        />
-    );
+    return <Virtuoso components={customComponents} {...listProps} />;
 }

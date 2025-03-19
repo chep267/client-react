@@ -19,9 +19,9 @@ import { OrderType } from '@module-base/constants/OrderType';
 import CheckboxColumn from '@module-base/components/TableBase/CheckboxColumn';
 
 /** types */
-import type { TypeTableData, TableHeaderProps } from '@module-base/types';
+import type { TableHeaderProps } from '@module-base/types';
 
-function TableHeader<D extends TypeTableData>(props: TableHeaderProps<D>) {
+function TableHeader(props: TableHeaderProps) {
     const { columns, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (
@@ -34,7 +34,7 @@ function TableHeader<D extends TypeTableData>(props: TableHeaderProps<D>) {
             />
             {columns?.map((column) => {
                 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                const { dataKey, hasSort, label, renderItem, onClick, onClickItem, ...cellProps } = column;
+                const { dataKey, hasSort, label, itemContent, onClick, onClickItem, ...cellProps } = column;
                 return (
                     <TableCell key={dataKey} variant="head" {...cellProps}>
                         {!hasSort ? (

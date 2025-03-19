@@ -7,7 +7,7 @@
 /** types */
 import type { Dayjs } from 'dayjs';
 
-export type CalendarItemProps = {
+export declare interface CalendarItemProps {
     day: Dayjs;
     isToday?: boolean;
     isInMonth?: boolean;
@@ -15,8 +15,8 @@ export type CalendarItemProps = {
     isOnlyMonth?: boolean;
     isSelectedDay?: boolean;
     onSelect(): void;
-};
+}
 
-export type CalendarLabelProps = {
+export declare type CalendarLabelProps = {
     day: number;
 };

@@ -11,14 +11,14 @@ import Stack from '@mui/material/Stack';
 import List from '@mui/material/List';
 
 /** components */
-import ListLoading from './ListLoading';
+import TableLoading from '@module-base/components/TableBase/TableLoading.tsx';
 
 /** types */
 import type { ListBaseProps } from '@module-base/types';
+import TableEmpty from '@module-base/components/TableBase/TableEmpty.tsx';
 
-export default function ListBase<T>(props: ListBaseProps<T>) {
-    const { ref, data, className, classNameContainer, classNameLoading, loading, emptyText, renderItem, ...listProps } =
-        props;
+export default function ListBase(props: ListBaseProps) {
+    const { ref, data, className, classNameContainer, loading, emptyContent, itemContent, ...listProps } = props;
 
     const listRef = React.useRef<HTMLUListElement | null>(null);
 
@@ -31,17 +31,15 @@ export default function ListBase<T>(props: ListBaseProps<T>) {
     }, []);
 
     return (
-        <Stack className={classnames('relative h-full w-full', classNameContainer)}>
-            <ListLoading className={classNameLoading} loading={loading} empty={!data?.length} emptyText={emptyText} />
+        <Stack className={classnames('relative h-full w-full overflow-hidden', classNameContainer)}>
+            {loading ? <TableLoading /> : null}
+            {loading || data?.length ? null : <TableEmpty emptyContent={emptyContent} />}
             <List
                 ref={listRef}
-                className={classnames(
-                    'scrollbar-thin absolute top-0 right-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto',
-                    className
-                )}
+                className={classnames('absolute top-0 right-0 bottom-0 left-0 overflow-auto', className)}
                 {...listProps}
             >
-                {data?.map((item, index) => renderItem?.(item, index))}
+                {data?.map((item, index) => itemContent?.(item, index))}
             </List>
         </Stack>
     );

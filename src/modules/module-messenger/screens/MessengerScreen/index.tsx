@@ -12,7 +12,7 @@ import { Route, Routes } from 'react-router-dom';
 import { MessengerRouterPath } from '@module-messenger/constants/MessengerRouterPath';
 
 /** screens */
-const NotFoundScreen = React.lazy(() => import('@module-global/screens/NotFoundScreen'));
+const NotFoundScreen = React.lazy(() => import('@module-base/screens/NotFoundScreen'));
 const ConversationScreen = React.lazy(() => import('@module-messenger/screens/ConversationScreen'));
 
 export default function MessengerScreen() {

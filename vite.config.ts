@@ -47,12 +47,14 @@ export default ({ mode }: ConfigEnv) => {
             rollupOptions: {
                 output: {
                     manualChunks: {
+                        'not-found-screen': ['./src/modules/module-base/screens/NotFoundScreen/index.tsx'],
                         'start-screen': ['./src/modules/module-auth/screens/StartScreen/index.tsx'],
                         'auth-screen': ['./src/modules/module-auth/screens/AuthScreen/index.tsx'],
-                        'main-screen': ['./src/modules/module-global/screens/MainScreen/index.tsx'],
-                        'not-found-screen': ['./src/modules/module-global/screens/NotFoundScreen/index.tsx'],
-                        'feed-screen': ['./src/modules/module-global/screens/TestScreen/index.tsx'],
                         'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.tsx'],
+                        'messenger-screen': ['./src/modules/module-messenger/screens/MessengerScreen/index.tsx'],
+                        'game-screen': ['./src/modules/module-game/screens/GameScreen/index.tsx'],
+                        'feed-screen': ['./src/modules/module-global/screens/TestScreen/index.tsx'],
+                        'main-screen': ['./src/modules/module-global/screens/MainScreen/index.tsx'],
                     },
                 },
             },

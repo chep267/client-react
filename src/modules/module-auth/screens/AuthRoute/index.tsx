@@ -39,6 +39,11 @@ export default function AuthRoute(props: PropsWithChildren) {
     const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
 
     React.useEffect(() => {
+        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
+            /** chưa đăng nhập, trở về đăng nhập  */
+            hookAuth.method.setPrePath(Object.values(AuthRouterPath).includes(pathname) ? '/' : pathname);
+            navigate(AuthRouterPath.signin);
+        }
         if (accountState === AccountState.reSignin && !pathname.startsWith(AuthRouterPath.start)) {
             /** đã đăng nhập từ trước, lấy phiên đăng nhập */
             hookAuth.method.setPrePath(Object.values(AuthRouterPath).includes(pathname) ? '/' : pathname);
@@ -46,11 +51,7 @@ export default function AuthRoute(props: PropsWithChildren) {
         }
         if (accountState === AccountState.signedIn && Object.values(AuthRouterPath).includes(pathname)) {
             /** đã đăng nhập xong, vào home */
-            navigate(prePath, { replace: true });
-        }
-        if (accountState === AccountState.signin && !Object.values(AuthRouterPath).includes(pathname)) {
-            /** chưa đăng nhập, trở về đăng nhập  */
-            navigate(AuthRouterPath.signin, { replace: true });
+            navigate(prePath);
         }
     }, [accountState, pathname]);
 

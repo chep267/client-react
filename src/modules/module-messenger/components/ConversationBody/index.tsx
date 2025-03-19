@@ -35,7 +35,7 @@ export default function ConversationBody() {
         }
     }, [LIST_MESSAGE.isFetching, LIST_MESSAGE.data.itemIds]);
 
-    const renderItem = React.useCallback(
+    const itemContent = React.useCallback(
         (mid: string) => {
             const message = LIST_MESSAGE.data.items[mid];
             return (
@@ -53,7 +53,7 @@ export default function ConversationBody() {
             className={classnames(classes.body, 'messenger_left_thread_list_default')}
             loading={LIST_MESSAGE.isFetching}
             data={LIST_MESSAGE.data.itemIds}
-            renderItem={renderItem}
+            itemContent={itemContent}
         />
     );
 }

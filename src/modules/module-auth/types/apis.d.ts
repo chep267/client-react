@@ -8,7 +8,7 @@
 import type { TypeCallApiPayload, TypeResponseApi } from '@module-base/types';
 import type { TypeUser } from '@module-user/types';
 
-export interface TypeApiAuth {
+export declare interface TypeApiAuth {
     Signin: {
         Payload: TypeCallApiPayload<{ email: NonNullable<TypeUser['email']>; password: string }>;
         Response: TypeResponseApi<{ user: TypeUser; token: { exp: number } }>;
