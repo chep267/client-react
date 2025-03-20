@@ -19,10 +19,10 @@ import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 /** types */
 import type { VirtualListProps } from '@module-base/types';
 
-export default function VirtualList(props: VirtualListProps) {
+export default function VirtualList<D, C>(props: VirtualListProps<D, C>) {
     const { loading, emptyContent, itemProps, components, ...listProps } = props;
 
-    const customComponents = React.useMemo<VirtualListProps['components']>(() => {
+    const customComponents = React.useMemo<VirtualListProps<D, C>['components']>(() => {
         return {
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>

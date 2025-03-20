@@ -9,7 +9,7 @@ import type { Unsubscribe } from 'firebase/firestore';
 import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeDocumentThreadData, TypeDocumentMessageData } from '@module-messenger/types';
 
-export interface MessengerApiProps {
+export declare interface MessengerApiProps {
     /** thread */
     GetListThread: {
         Payload: TypeCallApiPayload<{

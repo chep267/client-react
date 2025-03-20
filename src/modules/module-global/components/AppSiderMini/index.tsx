@@ -30,13 +30,6 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     const { pathname } = useLocation();
     const navigate = useNavigate();
     const hookSider = useSider();
-    const [activePath, setActivePath] = React.useState('');
-
-    React.useEffect(() => {
-        if (activePath) {
-            navigate(activePath);
-        }
-    }, [activePath]);
 
     const apps = React.useMemo(() => {
         return [
@@ -64,12 +57,12 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     }, []);
 
     const tabValue = React.useMemo(() => {
-        const value = apps.find((item) => (activePath || pathname).startsWith(item.path));
+        const value = apps.find((item) => pathname.startsWith(item.path));
         return value?.path || GlobalRouterPath.defaultPath;
-    }, [pathname, activePath]);
+    }, [pathname]);
 
     const handleChange = React.useCallback((_event: React.SyntheticEvent, path: string) => {
-        setActivePath(path);
+        navigate(path);
     }, []);
 
     return (

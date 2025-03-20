@@ -30,14 +30,7 @@ export default function ListApp(props: ListAppProps) {
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const [activePath, setActivePath] = React.useState('');
-    const router = `/${(activePath || pathname).split('/')[1]}`;
-
-    React.useEffect(() => {
-        if (activePath) {
-            navigate(activePath);
-        }
-    }, [activePath]);
+    const router = `/${pathname.split('/')[1]}`;
 
     const apps = React.useMemo<TypeAppItem[]>(
         () => [
@@ -45,25 +38,25 @@ export default function ListApp(props: ListAppProps) {
                 path: GlobalRouterPath.feed,
                 name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
                 icon: <HomeIcon />,
-                onClick: () => setActivePath(GlobalRouterPath.feed),
+                onClick: () => navigate(GlobalRouterPath.feed),
             },
             {
                 path: GlobalRouterPath.messenger,
                 name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
                 icon: <TelegramIcon />,
-                onClick: () => setActivePath(GlobalRouterPath.messenger),
+                onClick: () => navigate(GlobalRouterPath.messenger),
             },
             {
                 path: GlobalRouterPath.calendar,
                 name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
                 icon: <CalendarMonthIcon />,
-                onClick: () => setActivePath(GlobalRouterPath.calendar),
+                onClick: () => navigate(GlobalRouterPath.calendar),
             },
             {
                 path: GlobalRouterPath.game,
                 name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
                 icon: <GamesIcon />,
-                onClick: () => setActivePath(GlobalRouterPath.game),
+                onClick: () => navigate(GlobalRouterPath.game),
             },
         ],
         []

@@ -69,8 +69,26 @@ export declare type InputSearchProps<Variant extends TextFieldProps['variant'] =
     onChangeValue?(value: string): void;
 };
 
+/** MenuBase */
+export declare interface MenuBaseProps {
+    mode?: 'button' | 'icon';
+    menuProps?: Omit<MenuProps, 'open'>;
+    tooltipProps?: Omit<TooltipProps, 'children'>;
+    iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
+    buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
+    menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
+}
+
+/** NotifyBoundary */
+export declare type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
+
+/** PasswordField */
+export declare type PasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
+    setFocus?(): void;
+};
+
 /** ListBase */
-export declare interface ListBaseProps<D = any> extends Omit<ListProps, 'ref'> {
+export declare interface ListBaseProps<D> extends Omit<ListProps, 'ref'> {
     ref?: Ref<{
         scrollTop(): void;
     }>;
@@ -91,23 +109,12 @@ export declare interface NestedItemProps {
     onClick?(event: ElementClickEvent<HTMLDivElement>): void;
 }
 
-/** MenuBase */
-export declare interface MenuBaseProps {
-    mode?: 'button' | 'icon';
-    menuProps?: Omit<MenuProps, 'open'>;
-    tooltipProps?: Omit<TooltipProps, 'children'>;
-    iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
-    buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
-    menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
+/** Virtual List */
+export declare interface VirtualListProps<D, C> extends VirtuosoProps<D, C> {
+    loading?: boolean;
+    emptyContent?: ReactNode;
+    itemProps?: ListItemProps;
 }
-
-/** NotifyBoundary */
-export declare type NotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
-
-/** PasswordField */
-export declare type PasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
-    setFocus?(): void;
-};
 
 /** TableBase */
 export declare type TypeOrderType = 'asc' | 'desc';
@@ -158,11 +165,4 @@ export declare interface VirtualTableProps<D extends TypeTableData, C = any> ext
     dataKeyForCheckbox?: TypeDataKey<D>;
     columns?: TableBaseProps<D>['columns'];
     onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
-}
-
-/** Virtual List */
-export declare interface VirtualListProps<D = any, C = any> extends VirtuosoProps<D, C> {
-    loading?: boolean;
-    emptyContent?: ReactNode;
-    itemProps?: ListItemProps;
 }

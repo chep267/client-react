@@ -7,7 +7,7 @@
 /** types */
 import type { TypeItemIds, TypeItems } from '@module-base/types';
 
-export type TypeDocumentThreadData = {
+export declare type TypeDocumentThreadData = {
     tid: string;
     name?: string;
     type?: 'thread' | 'group';
@@ -15,7 +15,7 @@ export type TypeDocumentThreadData = {
     lastMessage?: TypeDocumentMessageData;
 };
 
-export type TypeDocumentMessageData = {
+export declare type TypeDocumentMessageData = {
     uid: string;
     tid: string;
     mid: string;

@@ -7,11 +7,11 @@
 /** types */
 import type { PaletteMode, Theme } from '@mui/material/styles';
 
-export type TypeThemeMode = PaletteMode;
+export declare type TypeThemeMode = PaletteMode;
 
-export type TypeTheme = Theme;
+export declare type TypeTheme = Theme;
 
-export type ThemeContextProps = {
+export declare type ThemeContextProps = {
     data: {
         mode: TypeThemeMode;
     };

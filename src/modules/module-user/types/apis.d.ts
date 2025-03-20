@@ -8,7 +8,7 @@
 import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeUser } from '@module-user/types/data.d';
 
-export interface TypeUserApi {
+export declare interface TypeUserApi {
     Create: {
         Payload: TypeCallApiPayload<{ user: TypeUser }>;
         Response?: void;

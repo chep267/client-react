@@ -10,9 +10,9 @@ import type { Dispatch, SetStateAction } from 'react';
 /** types */
 import type { Dayjs } from 'dayjs';
 
-export type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
+export declare type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
 
-export type CalendarContextProps = {
+export declare type CalendarContextProps = {
     data: {
         today: Dayjs;
         display: TypeCalendarDisplay;
@@ -32,4 +32,4 @@ export type CalendarContextProps = {
     };
 };
 
-export type CalendarTableDataType = Record<number, Dayjs>;
+export declare type CalendarTableDataType = Record<number, Dayjs>;

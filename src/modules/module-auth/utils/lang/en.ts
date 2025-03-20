@@ -21,8 +21,8 @@ export const en = {
     [AuthLanguage.component.label.confirmPassword]: 'Confirm password',
 
     // status
-    [AuthLanguage.status.email.empty]: 'Email is empty!',
-    [AuthLanguage.status.password.empty]: 'Password is empty!',
+    [AuthLanguage.status.email.empty]: 'Email is required!',
+    [AuthLanguage.status.password.empty]: 'Password is required!',
     [AuthLanguage.status.email.invalid]: 'Email is invalid!',
     [AuthLanguage.status.password.invalid]:
         '8 characters minimum, 1 lower case, 1 upper case, 1 number, 1 special character!',

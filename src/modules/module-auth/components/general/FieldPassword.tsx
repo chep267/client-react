@@ -37,11 +37,6 @@ export default function FieldPassword<T extends FieldValues>(props: FieldPasswor
     return (
         <PasswordField
             variant="outlined"
-            sx={{
-                '& .MuiFormHelperText-root': {
-                    textAlign: 'right',
-                },
-            }}
             label={<FormattedMessage id={AuthLanguage.component.label[isConfirm ? 'confirmPassword' : 'password']} />}
             spellCheck={false}
             fullWidth

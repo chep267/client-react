@@ -11,7 +11,7 @@ import * as React from 'react';
 import { useRestart } from '@module-auth/hooks/useRestart';
 
 /** components */
-const StartLoading = React.lazy(() => import('@module-base/components/StartLoading'));
+import StartLoading from '@module-base/components/StartLoading';
 
 export default function StartScreen() {
     const hookRestart = useRestart();

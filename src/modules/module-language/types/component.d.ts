@@ -8,7 +8,7 @@
 import type { PropsWithChildren } from 'react';
 import type { TypeLocale, TypeMessages } from './data.d';
 
-export type LanguageContextProps = {
+export declare type LanguageContextProps = {
     data: {
         locale: TypeLocale;
     };
@@ -17,6 +17,6 @@ export type LanguageContextProps = {
     };
 };
 
-export type LanguageProviderProps = PropsWithChildren<{
+export declare type LanguageProviderProps = PropsWithChildren<{
     messages?: TypeMessages;
 }>;

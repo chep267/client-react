@@ -7,18 +7,18 @@
 /** types */
 import type { ReactNode } from 'react';
 
-export interface TypeAppItem {
+export declare interface TypeAppItem {
     path: string;
     name: ReactNode;
     icon: ReactNode;
     onClick(): void;
 }
 
-export interface ListAppProps {
+export declare interface ListAppProps {
     hasTooltip: boolean;
 }
 
-export interface AppItemProps {
+export declare interface AppItemProps {
     item: TypeAppItem;
     isSelected: boolean;
     hasTooltip: boolean;

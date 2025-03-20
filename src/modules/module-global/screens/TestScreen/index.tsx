@@ -8,8 +8,8 @@
 import Chance from 'chance';
 
 /** components */
-// import TableBase from '@module-base/components/VirtualTable';
-import TableBase from '@module-base/components/TableBase';
+import TableBase from '@module-base/components/VirtualTable';
+// import TableBase from '@module-base/components/TableBase';
 
 /** types */
 import type { TableBaseProps } from '@module-base/types';

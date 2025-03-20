@@ -17,7 +17,7 @@ import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 /** types */
 import type { ListBaseProps } from '@module-base/types';
 
-export default function ListBase(props: ListBaseProps) {
+export default function ListBase<D>(props: ListBaseProps<D>) {
     const { ref, data, className, classNameContainer, loading, emptyContent, itemContent, ...listProps } = props;
 
     const listRef = React.useRef<HTMLUListElement | null>(null);

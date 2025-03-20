@@ -9,7 +9,7 @@ import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 import type { TypeItems } from '@module-base/types';
 import type { TypeDocumentMessageData } from '@module-messenger/types/data';
 
-export type ThreadSearchContextProps = {
+export declare type ThreadSearchContextProps = {
     data: {
         isFocusSearch: boolean;
         isSearching: boolean;
@@ -22,9 +22,9 @@ export type ThreadSearchContextProps = {
     };
 };
 
-export type ThreadSearchProviderProps = PropsWithChildren;
+export declare type ThreadSearchProviderProps = PropsWithChildren;
 
-export type MessengerContextProps = {
+export declare type MessengerContextProps = {
     ui: {
         openThreadInfo: boolean;
         drafts: TypeItems<TypeDocumentMessageData>;

@@ -77,7 +77,7 @@ export default function RecoverForm() {
 
     return (
         <Paper
-            className="z-10 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg shadow-gray-500/40"
+            className="z-10 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
             component="form"
             onSubmit={handleSubmit(onSubmit)}
             noValidate
