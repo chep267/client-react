@@ -35,14 +35,14 @@ export default function PokemonProvider(props: PropsWithChildren) {
     const [items, setItems] = React.useState<PokemonContextProps['data']['items']>(defaultPokemonState.items);
     const [itemStatus, setItemStatus] = React.useState<TypePokemonItemStatus>(PokemonItemStatus.select);
     const [point, setPoint] = React.useState<PokemonContextProps['data']['point']>(defaultPokemonState.point);
-    const [gameKey, setGameKey] = React.useState<PokemonContextProps['data']['gameKey']>(defaultPokemonState.gameKey);
-    const COUNT_DOWN = useCountdown({ numberCountdown: 0 });
+    const [count, setCount] = React.useState(0);
+
+    const hookCountDown = useCountdown({ numberCountdown: 0 });
 
     /** Effect init game */
     React.useEffect(() => {
-        initGame(level);
-        setPoint(0);
-    }, [gameKey]);
+        startGame(level);
+    }, [count]);
 
     /** Effect victory game */
     React.useEffect(() => {
@@ -50,13 +50,6 @@ export default function PokemonProvider(props: PropsWithChildren) {
             setStatus(PokemonGameStatus.next);
         }
     }, [point]);
-
-    /** Effect stop game */
-    React.useEffect(() => {
-        if (COUNT_DOWN.second === 0 && status === PokemonGameStatus.start) {
-            setStatus(PokemonGameStatus.stop);
-        }
-    }, [COUNT_DOWN.second]);
 
     /** Effect select item */
     React.useEffect(() => {
@@ -87,24 +80,24 @@ export default function PokemonProvider(props: PropsWithChildren) {
         }
     }, [items]);
 
-    const initGame = React.useCallback<PokemonContextProps['method']['initGame']>((level) => {
+    const startGame = React.useCallback<PokemonContextProps['method']['startGame']>((level) => {
         setLevel(level);
         setBoardGame(PokemonService.genBoardGame(level));
         setStatus(PokemonGameStatus.start);
-        COUNT_DOWN.onRefresh(PokemonService.GameLevel[level].duration);
+        hookCountDown.onRefresh(PokemonService.GameLevel[level].duration);
     }, []);
 
     const restartGame = React.useCallback<PokemonContextProps['method']['restartGame']>(() => {
-        setGameKey((prev) => (prev + 1) % 7);
+        setCount((prev) => prev + 1);
     }, []);
 
     const nextGame = React.useCallback<PokemonContextProps['method']['nextGame']>(() => {
         setLevel((prev) => (prev === PokemonGameLevel.easy ? PokemonGameLevel.normal : PokemonGameLevel.hard));
-        setGameKey((prev) => (prev + 1) % 7);
+        setCount((prev) => prev + 1);
     }, []);
 
     const stopGame = React.useCallback<PokemonContextProps['method']['stopGame']>(() => {
-        // do
+        setStatus(PokemonGameStatus.stop);
     }, []);
 
     const chooseItem = React.useCallback<PokemonContextProps['method']['chooseItem']>((item) => {
@@ -123,21 +116,22 @@ export default function PokemonProvider(props: PropsWithChildren) {
         return PokemonService.isItemInArray(items, item) ? itemStatus : undefined;
     };
 
-    const store = React.useMemo<PokemonContextProps>(
-        () => ({
-            data: {
-                boardGame,
-                items,
-                status,
-                level,
-                duration: PokemonService.GameLevel[level].duration,
-                gameKey,
-                point,
-            },
-            method: { initGame, restartGame, stopGame, chooseItem, nextGame, getItemStatus },
-        }),
-        [status, boardGame, items, level, itemStatus, point]
+    return (
+        <PokemonContext.Provider
+            value={{
+                data: {
+                    boardGame,
+                    items,
+                    status,
+                    level,
+                    second: hookCountDown.second,
+                    duration: PokemonService.GameLevel[level].duration,
+                    point,
+                },
+                method: { startGame, restartGame, stopGame, chooseItem, nextGame, getItemStatus },
+            }}
+        >
+            {children}
+        </PokemonContext.Provider>
     );
-
-    return <PokemonContext.Provider value={store}>{children}</PokemonContext.Provider>;
 }

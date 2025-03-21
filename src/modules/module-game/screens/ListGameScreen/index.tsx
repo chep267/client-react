@@ -6,7 +6,6 @@
 
 /** libs */
 import * as React from 'react';
-import makeStyles from '@mui/styles/makeStyles';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
@@ -19,54 +18,49 @@ import { GameLanguage } from '@module-game/constants/GameLanguage';
 /** utils */
 import PokemonLogo from '@module-game/assets/images/pokemon_logo.png';
 
-/** styles */
-const useStyles = makeStyles(({ palette }: any) => ({
-    gameItem: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        '&:hover': {
-            '& > .MuiStack-root': {
-                backgroundColor: palette.divider,
-            },
-            '& > .MuiTypography-root': {
-                color: palette.primary.main,
-            },
-        },
-    },
-    gameLogo: {
-        backgroundColor: 'transparent',
-        borderRadius: 6,
-        width: 60,
-        height: 60,
-        backgroundSize: '50px 50px',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-    },
-}));
-
 export default function GameScreen() {
-    const classes = useStyles();
-
-    const games = React.useRef([
-        {
-            id: GameRouterPath.pokemon,
-            path: `${GameRouterPath.game}${GameRouterPath.pokemon}`,
-            name: <FormattedMessage id={GameLanguage.component.label.router} />,
-            icon: PokemonLogo,
-        },
-    ]).current;
+    const games = React.useMemo(() => {
+        return [
+            {
+                id: GameRouterPath.pokemon,
+                path: `${GameRouterPath.game}${GameRouterPath.pokemon}`,
+                name: <FormattedMessage id={GameLanguage.component.label.router} />,
+                icon: PokemonLogo,
+            },
+        ];
+    }, []);
 
     return (
         <Stack className="h-full w-full flex-row gap-5 p-5">
             {games.map((game) => {
                 return (
-                    <Link key={game.id} to={game.path} className={classes.gameItem}>
-                        <Stack className={classes.gameLogo} style={{ backgroundImage: `url(${game.icon})` }} />
-                        <Typography variant="body1" pt={1}>
-                            {game.name}
-                        </Typography>
-                    </Link>
+                    <Stack
+                        component={Link}
+                        key={game.id}
+                        to={game.path}
+                        className="items-center gap-1"
+                        sx={{
+                            '&:hover': {
+                                '& > .MuiStack-root': {
+                                    backgroundColor: 'divider',
+                                },
+                                '& > .MuiTypography-root': {
+                                    color: 'primary.main',
+                                },
+                            },
+                        }}
+                    >
+                        <Stack
+                            className="h-15 w-15 rounded-lg"
+                            sx={{
+                                backgroundImage: `url(${game.icon})`,
+                                backgroundSize: '50px 50px',
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                            }}
+                        />
+                        <Typography variant="body1">{game.name}</Typography>
+                    </Stack>
                 );
             })}
         </Stack>

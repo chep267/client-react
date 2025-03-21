@@ -55,6 +55,7 @@ export default function CalendarTable() {
         return output.map((id) => ({
             dataKey: id,
             label: <CalendarLabel day={id} />,
+            className: 'max-sm:p-0',
             itemContent: ({ item }) => <CalendarItem day={item[id]} />,
         }));
     }, [display]);

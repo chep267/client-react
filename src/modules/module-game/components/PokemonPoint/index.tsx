@@ -14,20 +14,13 @@ import { GameLanguage } from '@module-game/constants/GameLanguage';
 /** hooks */
 import { usePokemon } from '@module-game/hooks/usePokemon';
 
-/** types */
-type PokemonTimerProps = {
-    className?: string;
-};
-
-export default function PokemonPoint(props: PokemonTimerProps) {
-    const { className } = props;
-
+export default function PokemonPoint() {
     const {
         data: { point },
     } = usePokemon();
 
     return (
-        <Typography className={className} variant="h5" color="primary">
+        <Typography className="min-w-max" variant="h5" color="primary">
             <FormattedMessage id={GameLanguage.component.label.point} values={{ point }} />
         </Typography>
     );

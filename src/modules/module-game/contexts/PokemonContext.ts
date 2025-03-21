@@ -24,15 +24,15 @@ export const defaultPokemonState: PokemonContextProps['data'] = {
     items: AppDefaultValue.emptyArray,
     status: PokemonGameStatus.pending,
     level: PokemonGameLevel.easy,
+    second: 0,
     duration: PokemonService.GameLevel[PokemonGameLevel.easy].duration,
-    gameKey: 1,
     point: 0,
 };
 
 export const PokemonContext = React.createContext<PokemonContextProps>({
     data: defaultPokemonState,
     method: {
-        initGame: AppDefaultValue.emptyFunction,
+        startGame: AppDefaultValue.emptyFunction,
         stopGame: AppDefaultValue.emptyFunction,
         restartGame: AppDefaultValue.emptyFunction,
         nextGame: AppDefaultValue.emptyFunction,

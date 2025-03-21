@@ -22,13 +22,13 @@ export declare type PokemonContextProps = {
         boardGame: TypePokemonItem[][];
         items: TypePokemonItem[];
         level: TypePokemonGameLevel;
+        second: number;
         duration: number;
         status: TypePokemonGameStatus;
-        gameKey: number;
         point: number;
     };
     method: {
-        initGame(level: TypePokemonGameLevel): void;
+        startGame(level: TypePokemonGameLevel): void;
         stopGame(): void;
         restartGame(): void;
         nextGame(): void;

@@ -27,11 +27,11 @@ export default function PokemonBoardGame(props: PokemonBoardGameProps) {
         <Paper className={classnames('flex h-auto w-auto flex-col gap-0.5 rounded-md p-2.5', className)}>
             {data.boardGame.map((row, rowIndex) => {
                 return (
-                    <Stack key={`boardGame-${data.gameKey}-row-${rowIndex}`} className="flex-row gap-0.5">
+                    <Stack key={`boardGame-row-${rowIndex}`} className="flex-row gap-0.5">
                         {row.map((item, colIndex) => {
                             return (
                                 <PokemonItem
-                                    key={`boardGame-${data.gameKey}-row-${rowIndex}-col-${colIndex}`}
+                                    key={`boardGame-row-${rowIndex}-col-${colIndex}`}
                                     id={`pokemon-item-${rowIndex}-${colIndex}`}
                                     item={item}
                                     status={method.getItemStatus(item)}

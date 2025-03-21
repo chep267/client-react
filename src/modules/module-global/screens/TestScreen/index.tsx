@@ -37,31 +37,37 @@ export default function TestScreen() {
             label: 'ID',
             dataKey: 'id',
             hasSort: true,
+            className: 'w-1/6',
         },
         {
             label: 'First Name',
             dataKey: 'firstName',
             hasSort: true,
+            className: 'w-1/6',
         },
         {
             label: 'Last Name',
             dataKey: 'lastName',
             hasSort: true,
+            className: 'w-1/6',
         },
         {
             label: 'Age',
             dataKey: 'age',
             hasSort: true,
+            className: 'w-1/6',
         },
         {
             label: 'State',
             dataKey: 'state',
             hasSort: true,
+            className: 'w-1/6',
         },
         {
             label: 'Phone Number',
             dataKey: 'phone',
             hasSort: true,
+            className: 'w-1/6',
         },
     ];
 

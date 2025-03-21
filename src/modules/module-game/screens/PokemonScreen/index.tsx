@@ -19,8 +19,8 @@ export default function PokemonScreen() {
     return (
         <PokemonProvider>
             <Stack className="relative h-full w-full items-center">
-                <Stack className="h-24 min-h-24 w-full flex-row items-center justify-between gap-2 px-2">
-                    <PokemonTimer className="w-9/12" />
+                <Stack className="h-24 min-h-24 w-full flex-row justify-between gap-10 p-6">
+                    <PokemonTimer />
                     <PokemonPoint />
                 </Stack>
                 <Stack className="h-full w-full items-center justify-center overflow-auto p-2">

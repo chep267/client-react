@@ -20,22 +20,14 @@ import { GameLanguage } from '@module-game/constants/GameLanguage';
 /** hooks */
 import { usePokemon } from '@module-game/hooks/usePokemon';
 
-/** types */
-type PokemonTimerProps = {
-    className?: string;
-};
-
-export default function PokemonGameOver(props: PokemonTimerProps) {
-    const { className } = props;
-
+export default function PokemonGameOver() {
     const { data, method } = usePokemon();
 
     return (
         <Stack
             className={classnames(
-                'bg-opacity-70 invisible absolute top-0 right-0 bottom-0 left-0 -z-10 items-center justify-center gap-2 bg-black',
-                { 'visible z-10': data.status === PokemonGameStatus.stop },
-                className
+                'invisible absolute top-0 right-0 bottom-0 left-0 -z-10 items-center justify-center gap-2 bg-black/70',
+                { 'visible z-10': data.status === PokemonGameStatus.stop }
             )}
         >
             <Typography variant="h1" color="warning" textAlign="center">
@@ -45,11 +37,9 @@ export default function PokemonGameOver(props: PokemonTimerProps) {
                 <Button variant="contained" onClick={method.restartGame}>
                     <FormattedMessage id={GameLanguage.component.button.restart} />
                 </Button>
-                <Link to={GameRouterPath.game}>
-                    <Button variant="contained" color="error">
-                        <FormattedMessage id={GameLanguage.component.button.exit} />
-                    </Button>
-                </Link>
+                <Button component={Link} variant="contained" color="error" to={GameRouterPath.game}>
+                    <FormattedMessage id={GameLanguage.component.button.exit} />
+                </Button>
             </Stack>
         </Stack>
     );

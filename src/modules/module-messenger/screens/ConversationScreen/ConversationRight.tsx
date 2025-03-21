@@ -10,14 +10,17 @@ import Box from '@mui/material/Box';
 
 /** constants */
 import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { SiderState } from '@module-base/constants/SiderState';
 
 /** hooks */
+import { useSider } from '@module-base/hooks/useSider';
 import { useMessenger } from '@module-messenger/hooks/useMessenger';
 
 /** components */
 import ThreadInfo from '@module-messenger/components/ThreadInfo';
 
 export default function ConversationRight() {
+    const hookSider = useSider();
     const hookMessenger = useMessenger();
 
     return (
@@ -32,11 +35,13 @@ export default function ConversationRight() {
                 borderColor: 'divider',
                 [breakpoints.down('lg')]: {
                     position: 'fixed',
-                    top: ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight,
+                    top:
+                        ScreenSize.HeaderHeight +
+                        ScreenSize.Messenger.center.titleHeight +
+                        (hookSider.data.siderState === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0),
                     right: 0,
                     bottom: 0,
                     zIndex: zIndex.drawer,
-                    borderWidth: 1,
                     maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
                     backgroundColor: 'background.paper',
                 },
