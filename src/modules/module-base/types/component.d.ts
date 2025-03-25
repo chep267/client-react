@@ -20,7 +20,7 @@ import {
 
 import type { TextFieldProps, TextFieldVariants } from '@mui/material/TextField';
 import type { ListProps } from '@mui/material/List';
-import type { IconButtonProps } from '@mui/material/IconButton';
+import type { ButtonProps } from '@mui/material/Button';
 import type { MenuProps } from '@mui/material/Menu';
 import type { TableCellProps } from '@mui/material/TableCell';
 import type { TooltipProps } from '@mui/material/Tooltip';
@@ -74,8 +74,8 @@ export declare interface MenuBaseProps {
     mode?: 'button' | 'icon';
     menuProps?: Omit<MenuProps, 'open'>;
     tooltipProps?: Omit<TooltipProps, 'children'>;
-    iconButtonProps?: Omit<IconButtonProps, 'onClick' | 'children'>;
-    buttonChildren?: TooltipProps['children'] | IconButtonProps['children'];
+    buttonProps?: Omit<ButtonProps, 'onClick' | 'children'>;
+    buttonChildren?: TooltipProps['children'] | ButtonProps['children'];
     menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
 }
 

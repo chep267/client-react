@@ -28,7 +28,7 @@ const OptionMessage = React.memo(() => {
         placement: 'top',
     }).current;
 
-    const iconButtonProps = React.useRef<MenuBaseProps['iconButtonProps']>({
+    const buttonProps = React.useRef<MenuBaseProps['buttonProps']>({
         className: 'button-option-message',
     }).current;
 
@@ -39,7 +39,7 @@ const OptionMessage = React.memo(() => {
     return (
         <MenuBase
             tooltipProps={tooltipProps}
-            iconButtonProps={iconButtonProps}
+            buttonProps={buttonProps}
             menuProps={menuProps}
             buttonChildren={<MoreHorizIcon color="primary" />}
         />

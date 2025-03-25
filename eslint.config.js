@@ -26,7 +26,7 @@ export default tsEslint.config({
         '@tanstack/query': pluginQuery,
     },
     languageOptions: {
-        ecmaVersion: 2020,
+        ecmaVersion: 'latest',
         globals: globals.browser,
         parserOptions: {
             parser: '@typescript-eslint/parser',
@@ -37,6 +37,7 @@ export default tsEslint.config({
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
         'react/jsx-uses-react': 'off', // Tắt rule yêu cầu import React trong file jsx
         'react/react-in-jsx-scope': 'off',
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // Cảnh báo biến không dùng
         'react/jsx-no-target-blank': 'warn', // Cảnh báo khi thẻ <a target='_blank'> mà không có rel="noreferrer"
         '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',

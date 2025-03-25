@@ -8,13 +8,13 @@
 import * as React from 'react';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
-import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 
 /** types */
 import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
 
 export default function MenuBase(props: MenuBaseProps) {
-    const { buttonChildren, menuChildren, iconButtonProps, tooltipProps, menuProps } = props;
+    const { buttonChildren, menuChildren, buttonProps, tooltipProps, menuProps } = props;
 
     const menuId = React.useId();
     const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
@@ -30,9 +30,9 @@ export default function MenuBase(props: MenuBaseProps) {
     const renderButton = () => {
         const renderContent = () => {
             return (
-                <IconButton {...iconButtonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
+                <Button {...buttonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
                     {buttonChildren}
-                </IconButton>
+                </Button>
             );
         };
         if (!tooltipProps) {

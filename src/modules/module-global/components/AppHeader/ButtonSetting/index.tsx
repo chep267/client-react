@@ -21,9 +21,10 @@ export default function ButtonSetting() {
     return (
         <MenuBase
             tooltipProps={{ title: <FormattedMessage id={GlobalLanguage.component.label.setting} /> }}
-            iconButtonProps={{
+            buttonProps={{
                 className: classnames('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0', 'hover:border'),
                 color: 'primary',
+                'aria-label': 'setting',
             }}
             menuProps={{
                 sx: {

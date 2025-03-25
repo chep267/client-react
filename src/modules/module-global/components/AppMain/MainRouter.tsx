@@ -21,7 +21,7 @@ const NotFoundScreen = React.lazy(() => import('@module-base/screens/NotFoundScr
 const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen'));
 const MessengerScreen = React.lazy(() => import('@module-messenger/screens/MessengerScreen'));
 const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
-const GameCenterScreen = React.lazy(() => import('@module-game/screens/GameCenterScreen'));
+const GameScreen = React.lazy(() => import('@module-game/screens/GameScreen'));
 
 export default function MainRouter() {
     return (
@@ -33,7 +33,7 @@ export default function MainRouter() {
                     <Route path={`${GlobalRouterPath.feed}/*`} element={<TestScreen />} />
                     <Route path={`${GlobalRouterPath.messenger}/*`} element={<MessengerScreen />} />
                     <Route path={`${GlobalRouterPath.calendar}/*`} element={<CalendarScreen />} />
-                    <Route path={`${GlobalRouterPath.game}/*`} element={<GameCenterScreen />} />
+                    <Route path={`${GlobalRouterPath.game}/*`} element={<GameScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />
                 </Routes>
             </React.Suspense>

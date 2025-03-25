@@ -22,8 +22,8 @@ import SiderProvider from '@module-base/components/SiderProvider';
 /** screens */
 import MainScreen from '@module-global/screens/MainScreen';
 
-/** global styles */
-import './global.css';
+/** styles */
+import './main.css';
 
 export default function App() {
     return (

@@ -36,39 +36,48 @@ export default ({ mode }: ConfigEnv) => {
         host: process.env.VITE_APP_HOST || 'localhost',
     };
     return defineConfig({
-        plugins: [react(), basicSsl(), visualizer(), tailwindcss()],
+        plugins: [react(), basicSsl(), tailwindcss(), visualizer({ filename: 'dist/stats.html' })],
         resolve: {
             alias: resolveAlias(),
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
-        },
-        build: {
-            target: 'esnext',
-            sourcemap: config.isDevMode,
-            rollupOptions: {
-                output: {
-                    manualChunks: {
-                        'not-found-screen': ['./src/modules/module-base/screens/NotFoundScreen/index.tsx'],
-                        'start-screen': ['./src/modules/module-auth/screens/StartScreen/index.tsx'],
-                        'auth-screen': ['./src/modules/module-auth/screens/AuthScreen/index.tsx'],
-                        'calendar-screen': ['./src/modules/module-calendar/screens/CalendarScreen/index.tsx'],
-                        'messenger-screen': ['./src/modules/module-messenger/screens/MessengerScreen/index.tsx'],
-                        'game-screen': ['./src/modules/module-game/screens/GameScreen/index.tsx'],
-                        'feed-screen': ['./src/modules/module-global/screens/TestScreen/index.tsx'],
-                        'main-screen': ['./src/modules/module-global/screens/MainScreen/index.tsx'],
-                    },
-                },
-            },
-        },
-        server: {
-            host: config.host,
-            port: config.port,
-            open: true, // auto open in browser
         },
         esbuild: {
             treeShaking: true,
             target: 'esnext',
             legalComments: 'none',
             format: 'esm',
+        },
+        build: {
+            target: 'esnext',
+            minify: 'esbuild',
+            sourcemap: false,
+            cssCodeSplit: true,
+            chunkSizeWarningLimit: 500,
+            assetsInlineLimit: 4096,
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (id.includes('node_modules')) {
+                            if (id.includes('react')) return 'react'; // React riêng
+                            if (id.includes('@mui')) return 'mui'; // MUI riêng
+                            if (id.includes('lodash')) return 'lodash'; // Lodash riêng
+                            if (id.includes('firebase')) return 'firebase'; // Lodash riêng
+                            return 'vendor'; // Các thư viện khác
+                        }
+                    },
+                    format: 'es',
+                },
+                treeshake: true,
+            },
+        },
+        server: {
+            host: config.host,
+            port: config.port,
+            open: config.isDevMode,
+        },
+        optimizeDeps: {
+            exclude: ['react', 'react-dom'], // Không bundle React vào app
+            esbuildOptions: { target: 'esnext', treeShaking: true },
         },
     });
 };

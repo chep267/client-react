@@ -13,8 +13,8 @@
         "baseUrl": ".",
         "paths": {
             "@src/*": ["src/*"],
-            "@lang/*": ["src/react/utils/lang/*"],
-            "@root/*": ["src/react/*"],
+            "@lang/*": ["src/root/utils/lang/*"],
+            "@root/*": ["src/root/*"],
             "@modules/*": ["src/modules/*"],
             "@module-base/*": ["src/modules/module-base/*"],
             "@module-theme/*": ["src/modules/module-theme/*"],

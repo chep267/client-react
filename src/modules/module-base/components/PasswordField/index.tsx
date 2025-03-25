@@ -32,7 +32,7 @@ export default function PasswordField(props: PasswordFieldProps) {
     const endAdornment = React.useMemo(() => {
         return (
             <InputAdornment position="end">
-                <IconButton onClick={toggleShowPassword}>
+                <IconButton onClick={toggleShowPassword} aria-label="show-hide">
                     {showPassword === 1 ? <VisibilityOffIcon /> : <VisibilityIcon />}
                 </IconButton>
             </InputAdornment>

@@ -7,7 +7,7 @@
 /** libs */
 import Tooltip from '@mui/material/Tooltip';
 import { FormattedMessage } from 'react-intl';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
@@ -25,13 +25,13 @@ export default function AppButtonDev(props: any) {
 
     return (
         <Tooltip title={<FormattedMessage id={BaseLanguage.component.label.develop} />}>
-            <Button
+            <IconButton
                 className="m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 hover:border"
-                variant="outlined"
+                aria-label="dev"
                 onClick={onDev}
             >
                 {icon}
-            </Button>
+            </IconButton>
         </Tooltip>
     );
 }

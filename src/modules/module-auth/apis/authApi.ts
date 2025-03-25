@@ -6,13 +6,11 @@
 
 /** apis */
 import { baseApi } from '@module-base/apis/baseApi';
-import { authFirebaseApi } from '@module-auth/apis/auth.firebase.api';
 
 /** constants */
 import { ApiMethod } from '@module-base/constants/Status';
 import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
-import { AppEnv } from '@module-base/constants/AppEnv';
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
@@ -76,12 +74,10 @@ const apiRecover = async (payload: TypeApiAuth['Recover']['Payload']): Promise<T
     return res;
 };
 
-export const authApi = !AppEnv.isFirebase
-    ? ({
-          signin: apiSignin,
-          signOut: apiSignOut,
-          restart: apiRestart,
-          register: apiRegister,
-          recover: apiRecover,
-      } as const)
-    : authFirebaseApi;
+export const authApi = {
+    signin: apiSignin,
+    signOut: apiSignOut,
+    restart: apiRestart,
+    register: apiRegister,
+    recover: apiRecover,
+} as const;
