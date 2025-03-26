@@ -21,7 +21,7 @@ const SigninForm = React.lazy(() => import('@module-auth/components/form/SigninF
 const RegisterForm = React.lazy(() => import('@module-auth/components/form/RegisterForm'));
 const RecoverForm = React.lazy(() => import('@module-auth/components/form/RecoverForm'));
 
-export default function SigninScreen() {
+export default function AuthScreen() {
     return (
         <Box className="flex h-full w-full flex-col items-center justify-center gap-y-10 p-2">
             <AuthTitle />

@@ -11,6 +11,7 @@ import react from '@vitejs/plugin-react-swc';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import { visualizer } from 'rollup-plugin-visualizer';
 import tailwindcss from '@tailwindcss/vite';
+import viteCompression from 'vite-plugin-compression';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -34,40 +35,51 @@ export default ({ mode }: ConfigEnv) => {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
         port: Number(process.env.VITE_APP_PORT) || 3000,
         host: process.env.VITE_APP_HOST || 'localhost',
+        isGzip: process.env.VITE_APP_ISGZIP === 'true',
     };
     return defineConfig({
-        plugins: [react(), basicSsl(), tailwindcss(), visualizer({ filename: 'dist/stats.html' })],
+        plugins: [
+            react(),
+            basicSsl(),
+            tailwindcss(),
+            // Gzip compression for production builds
+            config.isGzip
+                ? viteCompression({
+                      algorithm: 'gzip', // Use gzip compression
+                      ext: '.gz', // Output extension
+                      threshold: 10240, // Only compress files larger than 10KB
+                      deleteOriginFile: false, // Keep original files
+                  })
+                : undefined,
+            visualizer({ filename: 'dist/stats.html', open: true }),
+        ],
         resolve: {
             alias: resolveAlias(),
             extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
         esbuild: {
-            treeShaking: true,
-            target: 'esnext',
-            legalComments: 'none',
+            target: 'esnext', // Target modern browsers that support ES Modules
+            treeShaking: true, // Remove unnecessary code
+            minifySyntax: true, // Minify syntax while preserving ES Modules
+            legalComments: 'none', // Remove comments
             format: 'esm',
         },
         build: {
-            target: 'esnext',
-            minify: 'esbuild',
-            sourcemap: false,
-            cssCodeSplit: true,
-            chunkSizeWarningLimit: 500,
+            outDir: 'dist', // Output directory
+            target: 'esnext', // Target modern browsers
+            minify: 'esbuild', // Enable minification
+            sourcemap: false, // Generate sourcemaps (optional, disable for smaller builds)
+            chunkSizeWarningLimit: 500, // Set maximum chunk size (in bytes)
             assetsInlineLimit: 4096,
+            cssCodeSplit: true, // Enable CSS code splitting
+            commonjsOptions: {
+                transformMixedEsModules: true, // Enable tree-shaking
+            },
             rollupOptions: {
                 output: {
-                    manualChunks(id) {
-                        if (id.includes('node_modules')) {
-                            if (id.includes('react')) return 'react'; // React riêng
-                            if (id.includes('@mui')) return 'mui'; // MUI riêng
-                            if (id.includes('lodash')) return 'lodash'; // Lodash riêng
-                            if (id.includes('firebase')) return 'firebase'; // Lodash riêng
-                            return 'vendor'; // Các thư viện khác
-                        }
-                    },
-                    format: 'es',
+                    minifyInternalExports: true, // Minify output
+                    compact: true, // Compact output
                 },
-                treeshake: true,
             },
         },
         server: {
@@ -76,7 +88,6 @@ export default ({ mode }: ConfigEnv) => {
             open: config.isDevMode,
         },
         optimizeDeps: {
-            exclude: ['react', 'react-dom'], // Không bundle React vào app
             esbuildOptions: { target: 'esnext', treeShaking: true },
         },
     });

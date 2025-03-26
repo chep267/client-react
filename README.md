@@ -17,7 +17,6 @@
 - VITE_APP_API_HOST='https://api.com'
 - VITE_APP_HOST='localhost'
 - VITE_APP_PORT=8080
-- VITE_APP_HTTPS=false
 
 ---
 

@@ -15,11 +15,11 @@ import { ScreenSize } from '@module-base/constants/ScreenSize';
 
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
-import AppSider from '@module-global/components/AppSider';
 
-/** screens */
-import AuthRoute from '@module-auth/screens/AuthRoute';
-import MainRouter from '@module-global/components/AppMain/MainRouter';
+/** lazy components */
+const AppSider = React.lazy(() => import('@module-global/components/AppSider'));
+const MainRouter = React.lazy(() => import('@module-global/components/AppMain/MainRouter'));
+const AuthRoute = React.lazy(() => import('@module-auth/screens/AuthRoute'));
 
 export default function AppMain() {
     return (
