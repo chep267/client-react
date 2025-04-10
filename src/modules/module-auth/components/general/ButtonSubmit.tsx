@@ -24,7 +24,7 @@ export default function ButtonSubmit(props: AuthButtonSubmitProps) {
             loading={loading}
             size="large"
             variant="contained"
-            className={clsx('font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')}
+            className={clsx('bg-tw-primary font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')}
         >
             <FormattedMessage id={AuthLanguage.component.button[type]} />
         </Button>

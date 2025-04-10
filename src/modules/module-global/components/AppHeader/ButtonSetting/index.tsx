@@ -22,12 +22,7 @@ export default function ButtonSetting() {
         <MenuBase
             tooltipProps={{ title: <FormattedMessage id={GlobalLanguage.component.label.setting} /> }}
             buttonProps={{
-                className: clsx(
-                    'm-0 h-10 w-10 min-w-10 rounded-full border-0 p-0',
-                    'hover:border',
-                    'text-tw-primary',
-                    'desktop:text-white'
-                ),
+                className: clsx('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 text-inherit', 'hover:border'),
                 'aria-label': 'setting',
             }}
             menuProps={{
