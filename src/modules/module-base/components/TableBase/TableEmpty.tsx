@@ -19,7 +19,7 @@ import type { TableBaseProps } from '@module-base/types';
 function TableEmpty(props: Pick<TableBaseProps, 'emptyContent'>) {
     const { emptyContent } = props;
     return (
-        <Box className="absolute top-0 right-0 bottom-0 left-0 z-10 flex items-center justify-center">
+        <Box className="absolute top-0 right-0 bottom-0 left-0 z-1 flex items-center justify-center">
             <Typography>{emptyContent || <FormattedMessage id={BaseLanguage.component.table.empty} />}</Typography>
         </Box>
     );

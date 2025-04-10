@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import MenuIcon from '@mui/icons-material/Menu';
 
@@ -22,8 +22,12 @@ export default function ButtonSetting() {
         <MenuBase
             tooltipProps={{ title: <FormattedMessage id={GlobalLanguage.component.label.setting} /> }}
             buttonProps={{
-                className: classnames('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0', 'hover:border'),
-                color: 'primary',
+                className: clsx(
+                    'm-0 h-10 w-10 min-w-10 rounded-full border-0 p-0',
+                    'hover:border',
+                    'text-tw-primary',
+                    'desktop:text-white'
+                ),
                 'aria-label': 'setting',
             }}
             menuProps={{

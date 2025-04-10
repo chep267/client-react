@@ -73,7 +73,7 @@ const AppSider = React.memo(function AppSider() {
             sx={siderStyles.drawer[siderState]}
             slotProps={{
                 paper: {
-                    className: 'left-0 transition-[width] z-10 overflow-x-hidden',
+                    className: 'left-0 transition-[width] z-1 overflow-x-hidden',
                     sx: siderStyles.paper[siderState],
                 },
             }}

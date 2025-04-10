@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -28,7 +28,7 @@ export default function ImagePreview(props: ImagePreviewProps) {
     }
 
     return (
-        <Box className={classnames('group/image relative h-20 w-20 overflow-hidden rounded-xl', className)} bgcolor="divider">
+        <Box className={clsx('group/image relative h-20 w-20 overflow-hidden rounded-xl', className)} bgcolor="divider">
             <IconButton
                 className="invisible absolute top-0.5 right-0.5 border border-solid p-0 group-hover/image:visible"
                 sx={{

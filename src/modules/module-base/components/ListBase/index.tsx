@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 import List from '@mui/material/List';
 
@@ -31,12 +31,12 @@ export default function ListBase<D>(props: ListBaseProps<D>) {
     }, []);
 
     return (
-        <Stack className={classnames('relative h-full w-full overflow-hidden', classNameContainer)}>
+        <Stack className={clsx('relative h-full w-full overflow-hidden', classNameContainer)}>
             {loading ? <TableLoading /> : null}
             {loading || data?.length ? null : <TableEmpty emptyContent={emptyContent} />}
             <List
                 ref={listRef}
-                className={classnames('absolute top-0 right-0 bottom-0 left-0 overflow-auto', className)}
+                className={clsx('absolute top-0 right-0 bottom-0 left-0 overflow-auto', className)}
                 {...listProps}
             >
                 {data?.map((item, index) => itemContent?.(item, index))}

@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** hooks */
@@ -21,11 +21,11 @@ export default function ThreadContent() {
     } = useUiThreadSearch();
 
     return (
-        <Box className={classnames('relative flex h-full w-full overflow-hidden', 'lg:mt-2.5')}>
+        <Box className={clsx('relative flex h-full w-full overflow-hidden', 'lg:mt-2.5')}>
             <Box
-                className={classnames(
+                className={clsx(
                     'messenger-left-thread-list-default',
-                    'absolute top-0 z-10 h-full w-full transition-all',
+                    'absolute top-0 z-1 h-full w-full transition-all',
                     { 'right-0': !isFocusSearch },
                     { 'right-full': isFocusSearch }
                 )}
@@ -33,9 +33,9 @@ export default function ThreadContent() {
                 <ThreadList />
             </Box>
             <Box
-                className={classnames(
+                className={clsx(
                     'messenger-left-thread-list-search',
-                    'absolute top-0 z-10 h-full w-full transition-all',
+                    'absolute top-0 z-1 h-full w-full transition-all',
                     { 'left-full': !isFocusSearch },
                     { 'left-0': isFocusSearch }
                 )}

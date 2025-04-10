@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
@@ -25,7 +25,7 @@ export default function TextMessage(props: TextMessageProps) {
     const classes = useStyles();
 
     return (
-        <Stack className={classnames(classes.textMessage)}>
+        <Stack className={clsx(classes.textMessage)}>
             <Typography variant="body1">{Crypto.decrypt(text)}</Typography>
         </Stack>
     );

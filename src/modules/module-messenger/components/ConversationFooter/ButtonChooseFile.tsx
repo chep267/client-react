@@ -59,7 +59,7 @@ export default function ButtonChooseFile() {
                 <AttachFileIcon />
                 <input
                     id={buttonId}
-                    className="absolute top-0 right-0 bottom-0 left-0 -z-10 h-1 w-1"
+                    className="absolute top-0 right-0 bottom-0 left-0 -z-1 h-1 w-1"
                     accept="image/*, video/*"
                     type="file"
                     multiple

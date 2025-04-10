@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
@@ -47,7 +47,7 @@ const ThreadItem = React.memo(function ThreadItem(props: ThreadItemProps) {
         <Tooltip title={renderName} placement="right" disableHoverListener={!hasTooltip}>
             <ListItem
                 component={RouterLink}
-                className={classnames('group/item h-20')}
+                className={clsx('group/item h-20')}
                 sx={{
                     backgroundColor: isSelected ? 'divider' : undefined,
                     '&:hover': {

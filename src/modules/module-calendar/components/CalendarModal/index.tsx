@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -37,7 +37,7 @@ export default function CalendarModal() {
         <Modal open={openCalendarModal} onClose={() => hookCalendar.method.setOpenCalendarModal(false)}>
             <Card className="scrollbar-thin absolute top-1/2 left-1/2 flex h-[70vh] max-h-[80vh] w-11/12 max-w-[600px] -translate-x-1/2 -translate-y-1/2 flex-col justify-between overflow-auto border-0 p-0 outline-0">
                 <CardHeader
-                    className={classnames('text-right')}
+                    className={clsx('text-right')}
                     title={
                         <Typography color={isWeekend ? 'error' : ''} className="line-clamp-2 capitalize">
                             <FormattedMessage

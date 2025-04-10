@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import AppBar from '@mui/material/AppBar';
@@ -68,7 +68,7 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar
             position="sticky"
-            className={classnames('z-10', { ['hidden']: hookSider.data.siderState !== SiderState.hidden })}
+            className={clsx('z-1', { ['hidden']: hookSider.data.siderState !== SiderState.hidden })}
             sx={{ top: `${ScreenSize.HeaderHeight}px` }}
         >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">

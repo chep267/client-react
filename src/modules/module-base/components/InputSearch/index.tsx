@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -77,7 +77,7 @@ export default function InputSearch(props: InputSearchProps) {
         return (
             <InputAdornment
                 position="end"
-                className={classnames('cursor-pointer', { ['visible']: value }, { ['invisible']: !value })}
+                className={clsx('cursor-pointer', { ['visible']: value }, { ['invisible']: !value })}
                 onClick={onClear}
             >
                 <ClearIcon color="primary" />

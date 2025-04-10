@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 
@@ -24,7 +24,7 @@ export default function PokemonBoardGame(props: PokemonBoardGameProps) {
     const { data, method } = usePokemon();
 
     return (
-        <Paper className={classnames('flex h-auto w-auto flex-col gap-0.5 rounded-md p-2.5', className)}>
+        <Paper className={clsx('flex h-auto w-auto flex-col gap-0.5 rounded-md p-2.5', className)}>
             {data.boardGame.map((row, rowIndex) => {
                 return (
                     <Stack key={`boardGame-row-${rowIndex}`} className="flex-row gap-0.5">

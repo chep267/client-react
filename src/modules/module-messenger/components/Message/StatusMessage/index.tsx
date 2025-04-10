@@ -4,7 +4,7 @@
  *
  */
 
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 /** libs */
 import {
@@ -29,7 +29,7 @@ export default function StatusMessage(props: SvgIconProps & { isMe?: boolean }) 
 
     return (
         <IconStatus
-            className={classnames(className, classes.status, { [classes.me]: isMe }, { [classes.partner]: !isMe })}
+            className={clsx(className, classes.status, { [classes.me]: isMe }, { [classes.partner]: !isMe })}
             color={color}
             fontSize={fontSize}
             {...other}

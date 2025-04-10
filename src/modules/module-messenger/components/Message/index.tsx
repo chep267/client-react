@@ -6,7 +6,7 @@
 
 import * as React from 'react';
 import dayjs from 'dayjs';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 /** libs */
 import { Stack, Tooltip } from '@mui/material';
@@ -42,20 +42,14 @@ export default function Message(props: MessageProps) {
     const isMe = data.uid === AUTH.data.user?.uid;
 
     return (
-        <Stack className={classnames(classes.message_view, { [classes.meView]: isMe }, { [classes.partnerView]: !isMe })}>
+        <Stack className={clsx(classes.message_view, { [classes.meView]: isMe }, { [classes.partnerView]: !isMe })}>
             <StatusMessage isMe={isMe} />
             {isMe ? <OptionMessage /> : null}
             <Tooltip
                 title={dayjs(data.createdTime).locale(LANGUAGE.data.locale).format('hh:mm dddd, DD/MM/YYYY')}
                 placement={isMe ? 'right-end' : 'left-end'}
             >
-                <Stack
-                    className={classnames(
-                        classes.message,
-                        { [classes.meMessage]: isMe },
-                        { [classes.partnerMessage]: !isMe }
-                    )}
-                >
+                <Stack className={clsx(classes.message, { [classes.meMessage]: isMe }, { [classes.partnerMessage]: !isMe })}>
                     <React.Suspense>
                         {data.type === 'emoji' ? <EmojiMessage /> : null}
                         {data.type === 'text' && data.text ? <TextMessage isMe={isMe} text={data.text} /> : null}

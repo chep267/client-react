@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** constants */
@@ -20,7 +20,7 @@ import ThreadContent from '@module-messenger/components/ThreadContent';
 export default function ConversationLeft() {
     return (
         <Box
-            className={classnames(
+            className={clsx(
                 'relative flex h-full w-full flex-col items-center justify-between overflow-hidden rounded-none border-r border-solid transition-[width]'
             )}
             sx={({ breakpoints }) => ({
@@ -40,7 +40,7 @@ export default function ConversationLeft() {
         >
             <ThreadSearchProvider>
                 <Box
-                    className={classnames('flex w-full flex-col justify-between', 'max-lg:hidden')}
+                    className={clsx('flex w-full flex-col justify-between', 'max-lg:hidden')}
                     sx={{
                         height: ScreenSize.Messenger.left.titleHeight,
                         minHeight: ScreenSize.Messenger.left.titleHeight,

@@ -5,7 +5,7 @@
  */
 
 /** lib */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { IconButton, Tooltip } from '@mui/material';
@@ -59,14 +59,14 @@ export default function ButtonSendMessage() {
             >
                 <SendIcon
                     color="primary"
-                    className={classnames('absolute z-10 transition-transform', {
+                    className={clsx('absolute z-1 transition-transform', {
                         ['visible scale-100']: hasContent,
                         ['invisible scale-0']: !hasContent,
                     })}
                 />
                 <FavoriteIcon
                     color="primary"
-                    className={classnames('transition-transform', {
+                    className={clsx('transition-transform', {
                         ['visible scale-100']: !hasContent,
                         ['invisible scale-0']: hasContent,
                     })}

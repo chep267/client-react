@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import HomeIcon from '@mui/icons-material/Home';
@@ -68,7 +68,7 @@ export default function ListApp(props: ListAppProps) {
 
     return (
         <ListBase
-            className={classnames('scrollbar-thin', { ['scrollbar-hidden']: hasTooltip })}
+            className={clsx('scrollbar-thin', { ['scrollbar-hidden']: hasTooltip })}
             data={apps}
             itemContent={itemContent}
         />

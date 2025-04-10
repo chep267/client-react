@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -27,7 +27,11 @@ const AppHeader = React.memo(function AppHeader() {
     return (
         <AppBar position="fixed">
             <Toolbar
-                className={classnames('flex w-full flex-row items-center justify-between px-4 py-0', 'dark:text-white')}
+                className={clsx(
+                    'flex w-full flex-row items-center justify-between px-4 py-0',
+                    'text-tw-primary',
+                    'dark:text-white'
+                )}
                 sx={appbarStyle}
             >
                 <Box className="flex items-center gap-5">

@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** constants */
@@ -25,7 +25,7 @@ export default function ConversationRight() {
 
     return (
         <Box
-            className={classnames(
+            className={clsx(
                 'flex h-full flex-col items-center justify-between overflow-hidden rounded-none border-l border-solid transition-[width]',
                 { ['w-full']: hookMessenger.ui.openThreadInfo },
                 { ['w-0']: !hookMessenger.ui.openThreadInfo }

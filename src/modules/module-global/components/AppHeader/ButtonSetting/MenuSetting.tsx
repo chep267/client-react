@@ -18,6 +18,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import TodayIcon from '@mui/icons-material/Today';
 import EventIcon from '@mui/icons-material/Event';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
@@ -30,7 +31,6 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { CalendarLanguage } from '@module-calendar/constants/CalendarLanguage';
 
 /** hooks */
-import { useTheme } from '@module-theme/hooks/useTheme';
 import { useLanguage } from '@module-language/hooks/useLanguage';
 import { useSignOut } from '@module-auth/hooks/useSignOut';
 import { useCalendar } from '@module-calendar/hooks/useCalendar';
@@ -48,7 +48,7 @@ type Props = {
 const MenuSetting = React.memo(function MenuSetting(props: Props) {
     const { closeMenu } = props;
 
-    const hookTheme = useTheme();
+    const { setMode } = useColorScheme();
     const hookLanguage = useLanguage();
     const hookCalendar = useCalendar();
     const hookSignOut = useSignOut();
@@ -99,13 +99,13 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
                     id: 'Theme-Dark',
                     title: <FormattedMessage id={ThemeLanguage.component.label.dark} />,
                     icon: <DarkModeIcon color="disabled" />,
-                    onClick: () => hookTheme.method.setTheme(themeObject.dark),
+                    onClick: () => setMode(themeObject.dark),
                 },
                 {
                     id: 'Theme-Light',
                     title: <FormattedMessage id={ThemeLanguage.component.label.light} />,
                     icon: <LightModeIcon color="warning" />,
-                    onClick: () => hookTheme.method.setTheme(themeObject.light),
+                    onClick: () => setMode(themeObject.light),
                 },
             ],
         },

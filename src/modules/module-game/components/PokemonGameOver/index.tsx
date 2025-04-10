@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
@@ -25,9 +25,9 @@ export default function PokemonGameOver() {
 
     return (
         <Stack
-            className={classnames(
-                'invisible absolute top-0 right-0 bottom-0 left-0 -z-10 items-center justify-center gap-2 bg-black/70',
-                { 'visible z-10': data.status === PokemonGameStatus.stop }
+            className={clsx(
+                'invisible absolute top-0 right-0 bottom-0 left-0 -z-1 items-center justify-center gap-2 bg-black/70',
+                { 'visible z-1': data.status === PokemonGameStatus.stop }
             )}
         >
             <Typography variant="h1" color="warning" textAlign="center">

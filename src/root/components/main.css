@@ -42,7 +42,20 @@
     }
 }
 
+@theme inline {
+    --color-tw-primary: var(--color-custom-primary);
+}
+
 @layer base {
+    :root {
+        --color-custom-primary: var(--color-blue-500);
+    }
+    /* Theme dark */
+    [data-theme='dark'],
+    .dark {
+        --color-custom-primary: var(--color-blue-400);
+    }
+
     * {
         padding: 0;
         margin: 0;
@@ -105,6 +118,17 @@
     }
 
     /* Dark theme */
+    [data-theme='dark'] {
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #1e293b; /* bg-gray-800 */
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb {
+            background: #475569; /* bg-gray-600 */
+        }
+        .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* bg-gray-400 */
+        }
+    }
     .dark .scrollbar-custom::-webkit-scrollbar-track {
         background: #1e293b; /* bg-gray-800 */
     }

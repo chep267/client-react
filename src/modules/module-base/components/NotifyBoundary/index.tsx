@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
@@ -39,7 +39,7 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
             {...props}
         >
             <Alert
-                className={classnames('w-full', { ['hidden']: !open })}
+                className={clsx('w-full', { ['hidden']: !open })}
                 onClose={hookNotify.method.closeNotify}
                 severity={mode}
                 elevation={6}

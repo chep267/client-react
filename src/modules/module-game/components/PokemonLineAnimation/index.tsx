@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 
 /** constants */
@@ -49,5 +49,5 @@ export default function PokemonLineAnimation(props: PokemonTimerProps) {
         return { backgroundImage: `url(${PokemonLine.vertical})`, top: offsets?.top };
     }, [offsets]);
 
-    return <Stack className={classnames(classes.line, { [classes.lineShow]: start }, className)} style={itemStyle} />;
+    return <Stack className={clsx(classes.line, { [classes.lineShow]: start }, className)} style={itemStyle} />;
 }

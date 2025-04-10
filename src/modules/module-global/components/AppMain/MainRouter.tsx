@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
@@ -25,7 +25,7 @@ const GameScreen = React.lazy(() => import('@module-game/screens/GameScreen'));
 
 export default function MainRouter() {
     return (
-        <Box className={classnames('flex h-full w-full flex-col transition-[width]')}>
+        <Box className={clsx('flex h-full w-full flex-col transition-[width]')}>
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>

@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** components */
@@ -14,7 +14,7 @@ import ConversationFooter from '@module-messenger/components/ConversationFooter'
 
 export default function ConversationCenter() {
     return (
-        <Box className={classnames('relative flex h-full w-full flex-col items-center justify-between overflow-hidden')}>
+        <Box className={clsx('relative flex h-full w-full flex-col items-center justify-between overflow-hidden')}>
             <ConversationHeader />
             {/*<ConversationBody />*/}
             <ConversationFooter />

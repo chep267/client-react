@@ -42,7 +42,7 @@ export default function AuthBreadcrumbs() {
     }, [pathname]);
 
     return (
-        <Breadcrumbs aria-label="breadcrumb" color="primary" className="w-full">
+        <Breadcrumbs aria-label="breadcrumb" className="text-tw-primary w-full">
             {breadcrumbs.map((item) =>
                 item.hidden ? undefined : (
                     <Link key={item.path} component={RouterLink} to={item.path} replace underline="hover" fontSize="larger">

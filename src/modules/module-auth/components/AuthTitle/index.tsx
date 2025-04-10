@@ -31,7 +31,7 @@ export default function AuthTitle() {
     }, [pathname]);
 
     return (
-        <Typography color="primary" className="z-10 text-4xl">
+        <Typography className="text-tw-primary z-1 text-4xl">
             {mode ? <FormattedMessage id={AuthLanguage.component.title[mode]} /> : null}
         </Typography>
     );

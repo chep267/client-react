@@ -5,7 +5,7 @@
  */
 
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { useParams } from 'react-router-dom';
 
 /** libs */
@@ -39,7 +39,7 @@ export default function ConversationBody() {
         (mid: string) => {
             const message = LIST_MESSAGE.data.items[mid];
             return (
-                <ListItem key={`${tid}-${mid}`} className={classnames(classes.listItem)}>
+                <ListItem key={`${tid}-${mid}`} className={clsx(classes.listItem)}>
                     <Message data={message} />
                 </ListItem>
             );
@@ -50,7 +50,7 @@ export default function ConversationBody() {
     return (
         <ListBase
             ref={listRef}
-            className={classnames(classes.body, 'messenger_left_thread_list_default')}
+            className={clsx(classes.body, 'messenger_left_thread_list_default')}
             loading={LIST_MESSAGE.isFetching}
             data={LIST_MESSAGE.data.itemIds}
             itemContent={itemContent}

@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 import TableContainer from '@mui/material/TableContainer';
 import Table from '@mui/material/Table';
@@ -120,9 +120,9 @@ export default function TableBase<D extends TypeTableData = TypeTableData>(props
     };
 
     return (
-        <Box className={classnames('relative h-full w-full', className)}>
+        <Box className={clsx('relative h-full w-full', className)}>
             {loading ? <TableLoading /> : null}
-            <TableContainer className="absolute top-0 right-0 bottom-0 left-0 z-10 h-full w-full">
+            <TableContainer className="absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full">
                 <Table stickyHeader size="medium" {...tableProps}>
                     <TableHead>
                         <TableHeader

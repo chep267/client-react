@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -45,7 +45,7 @@ export default function CalendarSelect() {
 
     const ButtonLeft = React.useMemo(() => {
         return (
-            <Box className={classnames('flex flex-row items-center gap-1', 'sm:gap-2')}>
+            <Box className={clsx('flex flex-row items-center gap-1', 'sm:gap-2')}>
                 <Button className="min-w-0" variant="outlined" size="small" onClick={() => onChangeTime('prev', 'year')}>
                     <KeyboardDoubleArrowLeft color="primary" />
                 </Button>
@@ -58,7 +58,7 @@ export default function CalendarSelect() {
 
     const ButtonRight = React.useMemo(() => {
         return (
-            <Box className={classnames('flex flex-row items-center gap-1', 'sm:gap-2')}>
+            <Box className={clsx('flex flex-row items-center gap-1', 'sm:gap-2')}>
                 <Button className="min-w-0" variant="outlined" size="small" onClick={() => onChangeTime('next', 'month')}>
                     <KeyboardArrowRight color="primary" />
                 </Button>
@@ -72,7 +72,7 @@ export default function CalendarSelect() {
     const DateTimePicker = React.useMemo(() => {
         return (
             <Box
-                className={classnames(
+                className={clsx(
                     'relative flex w-full cursor-pointer flex-row items-start justify-center rounded-md text-center'
                 )}
             >
@@ -80,7 +80,7 @@ export default function CalendarSelect() {
                     <FormattedMessage id={CalendarLanguage.component.label.calendarInfo.title} values={timeMonthYear} />
                 </Typography>
                 <DatePicker
-                    className={classnames('absolute top-0 right-0 bottom-0 left-0 cursor-pointer opacity-0')}
+                    className={clsx('absolute top-0 right-0 bottom-0 left-0 cursor-pointer opacity-0')}
                     sx={{
                         '& .MuiInputBase-root': {
                             cursor: 'pointer',
@@ -112,7 +112,7 @@ export default function CalendarSelect() {
 
     return (
         <Box
-            className={classnames(
+            className={clsx(
                 'flex h-fit w-full items-start justify-between gap-2',
                 'flex-col-reverse p-2',
                 'md:flex-row md:p-3'
@@ -128,12 +128,7 @@ export default function CalendarSelect() {
                 <FormattedMessage id={CalendarLanguage.component.label.today} />
             </Button>
             <Box
-                className={classnames(
-                    'flex flex-row items-start justify-between gap-1',
-                    'w-full',
-                    'sm:gap-2',
-                    'md:w-fit md:gap-5'
-                )}
+                className={clsx('flex flex-row items-start justify-between gap-1', 'w-full', 'sm:gap-2', 'md:w-fit md:gap-5')}
             >
                 {ButtonLeft}
                 {DateTimePicker}

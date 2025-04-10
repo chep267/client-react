@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -29,12 +29,12 @@ export default function FallbackDefault(props: FallbackDefaultProps) {
 
     return (
         <Stack className="h-screen w-screen items-center justify-center overflow-hidden">
-            <Stack className="z-10 items-center justify-center">
+            <Stack className="z-1 items-center justify-center">
                 <IconBase name="error" width={237} height={213} />
-                <Typography className={classnames('font-medium', 'text-3xl', 'md:text-5xl')} color="error">
+                <Typography className={clsx('font-medium', 'text-3xl', 'md:text-5xl')} color="error">
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.title} />
                 </Typography>
-                <Typography className={classnames('font-medium', 'text-xl', 'md:text-2xl')} color="error">
+                <Typography className={clsx('font-medium', 'text-xl', 'md:text-2xl')} color="error">
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.content} />
                 </Typography>
                 <ButtonRetry isAutoReload={isAutoReload} />

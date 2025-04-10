@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -62,13 +62,13 @@ const ItemContent = React.memo(function ItemContent(props: CalendarItemProps) {
 
     return (
         <Box
-            className={classnames('group m-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full', {
+            className={clsx('group m-auto flex h-12 w-12 cursor-pointer items-center justify-center rounded-full', {
                 ['invisible']: isOnlyMonth && !isInMonth,
             })}
             sx={styleItem}
             onClick={onSelect}
         >
-            <Typography className={classnames('group-hover:font-bold')}>{day.date()}</Typography>
+            <Typography className={clsx('group-hover:font-bold')}>{day.date()}</Typography>
         </Box>
     );
 });

@@ -9,7 +9,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
-import classnames from 'classnames';
+import clsx from 'clsx';
 
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
@@ -86,7 +86,7 @@ export default function RegisterForm() {
 
     return (
         <Paper
-            className="z-10 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
+            className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
             component="form"
             onSubmit={handleSubmit(onSubmit)}
             noValidate
@@ -115,7 +115,7 @@ export default function RegisterForm() {
                 setFocus={setFocus}
                 isConfirm={true}
             />
-            <Box className={classnames('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
+            <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs />
                 <ButtonSubmit loading={hookRegister.isPending} type="register" />
             </Box>

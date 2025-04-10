@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
 
@@ -24,7 +24,7 @@ export default function ButtonSubmit(props: AuthButtonSubmitProps) {
             loading={loading}
             size="large"
             variant="contained"
-            className={classnames('font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')}
+            className={clsx('font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')}
         >
             <FormattedMessage id={AuthLanguage.component.button[type]} />
         </Button>

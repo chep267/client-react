@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
 import { ListItem, ListItemText, ListItemAvatar } from '@mui/material';
 
@@ -46,7 +46,7 @@ const ThreadListSearch = React.memo(function ThreadListSearch() {
         return isHidden ? null : (
             <ListItem
                 component={RouterLink}
-                className={classnames('group/item h-20')}
+                className={clsx('group/item h-20')}
                 sx={{
                     '&:hover': {
                         backgroundColor: 'divider',

@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import classnames from 'classnames';
+import clsx from 'clsx';
 import makeStyles from '@mui/styles/makeStyles';
 import Button from '@mui/material/Button';
 
@@ -108,7 +108,7 @@ export default function PokemonItem(props: PokemonItemProps) {
         <Button
             id={id}
             disabled={isEmpty}
-            className={classnames(
+            className={clsx(
                 classes.item,
                 { [classes.itemEmpty]: isEmpty },
                 {
