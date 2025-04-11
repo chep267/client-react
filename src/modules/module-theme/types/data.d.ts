@@ -10,12 +10,3 @@ import type { PaletteMode, Theme } from '@mui/material/styles';
 export declare type TypeThemeMode = PaletteMode;
 
 export declare type TypeTheme = Theme;
-
-export declare type ThemeContextProps = {
-    data: {
-        mode: TypeThemeMode;
-    };
-    method: {
-        setTheme(value: TypeThemeMode): void;
-    };
-};

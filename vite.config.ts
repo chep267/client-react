@@ -51,7 +51,7 @@ export default ({ mode }: ConfigEnv) => {
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            visualizer({ filename: 'dist/stats.html', open: true }),
+            visualizer({ filename: 'stats.html', open: false }),
         ],
         resolve: {
             alias: resolveAlias(),

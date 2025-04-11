@@ -10,22 +10,29 @@ import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
+import { themeObject } from '@module-theme/constants/themeObject';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
+import { ParticleOptions } from '@module-base/constants/ParticleOptions';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';
 import ButtonRetry from '@module-base/components/ErrorBoundary/FallbackDefault/ButtonRetry';
+import Particle from '@module-base/components/Particles';
 
 /** types */
 import type { FallbackDefaultProps } from '@module-base/types';
 
-/** lazy components */
-const Particle = React.lazy(() => import('@module-base/components/Particles'));
-
 export default function FallbackDefault(props: FallbackDefaultProps) {
     const { isAutoReload } = props;
+    const { mode, systemMode } = useColorScheme();
+
+    const options = React.useMemo(() => {
+        const value = systemMode || (mode && mode === themeObject.light ? themeObject.light : themeObject.dark);
+        return ParticleOptions(value);
+    }, [mode]);
 
     return (
         <Stack className="h-screen w-screen items-center justify-center overflow-hidden">
@@ -40,7 +47,7 @@ export default function FallbackDefault(props: FallbackDefaultProps) {
                 <ButtonRetry isAutoReload={isAutoReload} />
             </Stack>
             <React.Suspense>
-                <Particle />
+                <Particle options={options} />
             </React.Suspense>
         </Stack>
     );

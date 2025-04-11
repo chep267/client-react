@@ -16,7 +16,7 @@ import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import AuthTitle from '@module-auth/components/AuthTitle';
 
 /** lazy components */
-const Particle = React.lazy(() => import('@module-base/components/Particles'));
+const AuthLayer = React.lazy(() => import('@module-auth/components/AuthLayer'));
 const SigninForm = React.lazy(() => import('@module-auth/components/form/SigninForm'));
 const RegisterForm = React.lazy(() => import('@module-auth/components/form/RegisterForm'));
 const RecoverForm = React.lazy(() => import('@module-auth/components/form/RecoverForm'));
@@ -34,7 +34,7 @@ export default function AuthScreen() {
                 </Routes>
             </React.Suspense>
             <React.Suspense fallback={null}>
-                <Particle />
+                <AuthLayer />
             </React.Suspense>
         </Box>
     );
