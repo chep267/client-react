@@ -11,7 +11,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 
 /** components */
 import AppSiderMini from '@module-global/components/AppSiderMini';
@@ -29,11 +29,11 @@ export default function MainRouter() {
             <AppSiderMini />
             <React.Suspense fallback={null}>
                 <Routes>
-                    <Route path={GlobalRouterPath.home} element={<Navigate to={GlobalRouterPath.defaultPath} />} />
-                    <Route path={`${GlobalRouterPath.feed}/*`} element={<TestScreen />} />
-                    <Route path={`${GlobalRouterPath.messenger}/*`} element={<MessengerScreen />} />
-                    <Route path={`${GlobalRouterPath.calendar}/*`} element={<CalendarScreen />} />
-                    <Route path={`${GlobalRouterPath.game}/*`} element={<GameScreen />} />
+                    <Route path={AppRouterPath.home} element={<Navigate to={AppRouterPath.defaultPath} />} />
+                    <Route path={`${AppRouterPath.feed}/*`} element={<TestScreen />} />
+                    <Route path={`${AppRouterPath.messenger}/*`} element={<MessengerScreen />} />
+                    <Route path={`${AppRouterPath.calendar}/*`} element={<CalendarScreen />} />
+                    <Route path={`${AppRouterPath.game}/*`} element={<GameScreen />} />
                     <Route path="*" element={<NotFoundScreen />} />
                 </Routes>
             </React.Suspense>

@@ -9,20 +9,20 @@ import * as React from 'react';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** types */
 import type { TypeSiderContext, TypeSiderState } from '@module-base/types';
 
 export const getSiderState = (): TypeSiderState => {
     switch (true) {
-        case window.innerWidth < ScreenSize.AppbarHiddenBreakpoint:
-            return SiderState.hidden;
-        case window.innerWidth < ScreenSize.AppbarCollapseBreakpoint:
-            return SiderState.force;
+        case window.innerWidth < AppScreenSize.AppbarHiddenBreakpoint:
+            return AppSiderState.hidden;
+        case window.innerWidth < AppScreenSize.AppbarCollapseBreakpoint:
+            return AppSiderState.force;
         default:
-            return SiderState.expand;
+            return AppSiderState.expand;
     }
 };
 

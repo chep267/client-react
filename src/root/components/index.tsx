@@ -23,7 +23,7 @@ import SiderProvider from '@module-base/components/SiderProvider';
 import MainScreen from '@module-global/screens/MainScreen';
 
 /** styles */
-import './main.css';
+import '@root/components/main.css';
 
 export default function App() {
     return (

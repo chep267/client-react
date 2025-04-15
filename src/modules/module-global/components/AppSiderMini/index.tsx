@@ -18,9 +18,9 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** hooks */
@@ -34,22 +34,22 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     const apps = React.useMemo(() => {
         return [
             {
-                path: GlobalRouterPath.feed,
+                path: AppRouterPath.feed,
                 name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
                 icon: <HomeIcon />,
             },
             {
-                path: GlobalRouterPath.messenger,
+                path: AppRouterPath.messenger,
                 name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
                 icon: <TelegramIcon />,
             },
             {
-                path: GlobalRouterPath.calendar,
+                path: AppRouterPath.calendar,
                 name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
                 icon: <CalendarMonthIcon />,
             },
             {
-                path: GlobalRouterPath.game,
+                path: AppRouterPath.game,
                 name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
                 icon: <GamesIcon />,
             },
@@ -58,7 +58,7 @@ const AppSiderMini = React.memo(function AppSiderMini() {
 
     const tabValue = React.useMemo(() => {
         const value = apps.find((item) => pathname.startsWith(item.path));
-        return value?.path || GlobalRouterPath.defaultPath;
+        return value?.path || AppRouterPath.defaultPath;
     }, [pathname]);
 
     const handleChange = React.useCallback((_event: React.SyntheticEvent, path: string) => {
@@ -68,8 +68,8 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar
             position="sticky"
-            className={clsx('z-1', { ['hidden']: hookSider.data.siderState !== SiderState.hidden })}
-            sx={{ top: `${ScreenSize.HeaderHeight}px` }}
+            className={clsx('z-1', { ['hidden']: hookSider.data.siderState !== AppSiderState.hidden })}
+            sx={{ top: `${AppScreenSize.HeaderHeight}px` }}
         >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">
                 {apps.map((menu) => (

@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import MenuIcon from '@mui/icons-material/Menu';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
@@ -27,7 +27,7 @@ export default function ButtonSetting() {
             }}
             menuProps={{
                 sx: {
-                    '& .MuiPaper-root': { top: `${ScreenSize.HeaderHeight + 4}px !important` },
+                    '& .MuiPaper-root': { top: `${AppScreenSize.HeaderHeight + 4}px !important` },
                 },
             }}
             buttonChildren={<MenuIcon />}

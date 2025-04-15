@@ -9,7 +9,7 @@ import { FormattedMessage } from 'react-intl';
 import { useController } from 'react-hook-form';
 
 /** constants */
-import { Regex } from '@module-base/constants/Regex';
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** components */
@@ -28,7 +28,7 @@ export default function FieldPassword<T extends FieldValues>(props: FieldPasswor
         rules: {
             required: AuthLanguage.status.password.empty,
             pattern: {
-                value: Regex.password,
+                value: AppRegex.password,
                 message: AuthLanguage.status.password.invalid,
             },
         },

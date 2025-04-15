@@ -9,7 +9,7 @@ import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
 import ThreadSearchProvider from '@module-messenger/components/ThreadSearchProvider';
@@ -28,13 +28,13 @@ export default function ConversationLeft() {
                 maxWidth: 0,
                 borderColor: 'divider',
                 [breakpoints.up('sm')]: {
-                    maxWidth: ScreenSize.Messenger.left.minWidth,
+                    maxWidth: AppScreenSize.Messenger.left.minWidth,
                 },
                 [breakpoints.up('lg')]: {
-                    maxWidth: ScreenSize.Messenger.left.mediumWidth,
+                    maxWidth: AppScreenSize.Messenger.left.mediumWidth,
                 },
                 [breakpoints.up('xl')]: {
-                    maxWidth: ScreenSize.Messenger.left.maxWidth,
+                    maxWidth: AppScreenSize.Messenger.left.maxWidth,
                 },
             })}
         >
@@ -42,9 +42,9 @@ export default function ConversationLeft() {
                 <Box
                     className={clsx('flex w-full flex-col justify-between', 'max-lg:hidden')}
                     sx={{
-                        height: ScreenSize.Messenger.left.titleHeight,
-                        minHeight: ScreenSize.Messenger.left.titleHeight,
-                        maxHeight: ScreenSize.Messenger.left.titleHeight,
+                        height: AppScreenSize.Messenger.left.titleHeight,
+                        minHeight: AppScreenSize.Messenger.left.titleHeight,
+                        maxHeight: AppScreenSize.Messenger.left.titleHeight,
                     }}
                 >
                     <ThreadTitle />

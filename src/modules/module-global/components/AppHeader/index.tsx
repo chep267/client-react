@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
 import AppInfo from './AppInfo';
@@ -22,7 +22,7 @@ import AppButtonDev from './AppButtonDev';
 import ButtonSetting from './ButtonSetting';
 
 const AppHeader = React.memo(function AppHeader() {
-    const appbarStyle = React.useRef({ height: ScreenSize.HeaderHeight }).current;
+    const appbarStyle = React.useRef({ height: AppScreenSize.HeaderHeight }).current;
 
     return (
         <AppBar position="fixed">

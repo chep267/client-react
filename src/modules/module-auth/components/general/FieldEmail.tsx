@@ -10,7 +10,7 @@ import TextField from '@mui/material/TextField';
 import { useController } from 'react-hook-form';
 
 /** constants */
-import { Regex } from '@module-base/constants/Regex';
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
@@ -26,7 +26,7 @@ export default function FieldEmail<T extends FieldValues>(props: FieldEmailProps
         rules: {
             required: AuthLanguage.status.email.empty,
             pattern: {
-                value: Regex.email,
+                value: AppRegex.email,
                 message: AuthLanguage.status.email.invalid,
             },
         },

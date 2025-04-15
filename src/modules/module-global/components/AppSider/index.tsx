@@ -15,8 +15,8 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** hooks */
@@ -35,27 +35,27 @@ const AppSider = React.memo(function AppSider() {
     const siderStyles = React.useMemo(
         () => ({
             drawer: {
-                [SiderState.hidden]: { width: 0, display: 'none' },
-                [SiderState.expand]: { width: ScreenSize.AppBarExpandWidth },
-                [SiderState.collapse]: { width: ScreenSize.AppBarCollapseWidth },
-                [SiderState.force]: { width: ScreenSize.AppBarCollapseWidth },
+                [AppSiderState.hidden]: { width: 0, display: 'none' },
+                [AppSiderState.expand]: { width: AppScreenSize.AppBarExpandWidth },
+                [AppSiderState.collapse]: { width: AppScreenSize.AppBarCollapseWidth },
+                [AppSiderState.force]: { width: AppScreenSize.AppBarCollapseWidth },
             },
             paper: {
-                [SiderState.hidden]: { width: 0, display: 'none' },
-                [SiderState.expand]: {
-                    width: ScreenSize.AppBarExpandWidth,
-                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
-                    top: `${ScreenSize.HeaderHeight}px !important`,
+                [AppSiderState.hidden]: { width: 0, display: 'none' },
+                [AppSiderState.expand]: {
+                    width: AppScreenSize.AppBarExpandWidth,
+                    height: `calc(100% - ${AppScreenSize.HeaderHeight}px)`,
+                    top: `${AppScreenSize.HeaderHeight}px !important`,
                 },
-                [SiderState.collapse]: {
-                    width: ScreenSize.AppBarCollapseWidth,
-                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
-                    top: `${ScreenSize.HeaderHeight}px !important`,
+                [AppSiderState.collapse]: {
+                    width: AppScreenSize.AppBarCollapseWidth,
+                    height: `calc(100% - ${AppScreenSize.HeaderHeight}px)`,
+                    top: `${AppScreenSize.HeaderHeight}px !important`,
                 },
-                [SiderState.force]: {
-                    width: ScreenSize.AppBarCollapseWidth,
-                    height: `calc(100% - ${ScreenSize.HeaderHeight}px)`,
-                    top: `${ScreenSize.HeaderHeight}px !important`,
+                [AppSiderState.force]: {
+                    width: AppScreenSize.AppBarCollapseWidth,
+                    height: `calc(100% - ${AppScreenSize.HeaderHeight}px)`,
+                    top: `${AppScreenSize.HeaderHeight}px !important`,
                 },
             },
         }),
@@ -63,12 +63,12 @@ const AppSider = React.memo(function AppSider() {
     );
 
     const tooltipId =
-        siderState === SiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
+        siderState === AppSiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
 
     return (
         <Drawer
             variant="permanent"
-            open={siderState !== SiderState.hidden}
+            open={siderState !== AppSiderState.hidden}
             className="relative h-full overflow-x-hidden transition-[width]"
             sx={siderStyles.drawer[siderState]}
             slotProps={{
@@ -79,12 +79,12 @@ const AppSider = React.memo(function AppSider() {
             }}
         >
             <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
-                <Button className="w-full min-w-14" disabled={siderState === SiderState.force} onClick={toggleSider}>
-                    {siderState === SiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+                <Button className="w-full min-w-14" disabled={siderState === AppSiderState.force} onClick={toggleSider}>
+                    {siderState === AppSiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
                 </Button>
             </Tooltip>
             <Divider />
-            <ListApp hasTooltip={siderState === SiderState.collapse} />
+            <ListApp hasTooltip={siderState === AppSiderState.collapse} />
         </Drawer>
     );
 });

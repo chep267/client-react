@@ -9,8 +9,8 @@ import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
-import { SiderState } from '@module-base/constants/SiderState';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { AppSiderState } from '@module-base/constants/AppSiderState';
 
 /** hooks */
 import { useSider } from '@module-base/hooks/useSider';
@@ -31,22 +31,22 @@ export default function ConversationRight() {
                 { ['w-0']: !hookMessenger.ui.openThreadInfo }
             )}
             sx={({ breakpoints, zIndex }) => ({
-                maxWidth: ScreenSize.Messenger.left.mediumWidth,
+                maxWidth: AppScreenSize.Messenger.left.mediumWidth,
                 borderColor: 'divider',
                 [breakpoints.down('lg')]: {
                     position: 'fixed',
                     top:
-                        ScreenSize.HeaderHeight +
-                        ScreenSize.Messenger.center.titleHeight +
-                        (hookSider.data.siderState === SiderState.hidden ? ScreenSize.AppBarMiniHeight : 0),
+                        AppScreenSize.HeaderHeight +
+                        AppScreenSize.Messenger.center.titleHeight +
+                        (hookSider.data.siderState === AppSiderState.hidden ? AppScreenSize.AppBarMiniHeight : 0),
                     right: 0,
                     bottom: 0,
                     zIndex: zIndex.drawer,
-                    maxHeight: `calc(100% - ${ScreenSize.HeaderHeight + ScreenSize.Messenger.center.titleHeight}px)`,
+                    maxHeight: `calc(100% - ${AppScreenSize.HeaderHeight + AppScreenSize.Messenger.center.titleHeight}px)`,
                     backgroundColor: 'background.paper',
                 },
                 [breakpoints.up('xl')]: {
-                    maxWidth: ScreenSize.Messenger.left.maxWidth,
+                    maxWidth: AppScreenSize.Messenger.left.maxWidth,
                 },
             })}
         >

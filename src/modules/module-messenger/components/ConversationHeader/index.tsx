@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import { Call as CallIcon, Videocam as VideoCallIcon } from '@mui/icons-material';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
 import ConversationName from './ConversationName';
@@ -22,9 +22,9 @@ export default function ConversationHeader() {
             className="flex w-full items-center justify-between border-b px-2 py-3"
             borderColor="divider"
             sx={{
-                height: ScreenSize.Messenger.center.titleHeight,
-                minHeight: ScreenSize.Messenger.center.titleHeight,
-                maxHeight: ScreenSize.Messenger.center.titleHeight,
+                height: AppScreenSize.Messenger.center.titleHeight,
+                minHeight: AppScreenSize.Messenger.center.titleHeight,
+                maxHeight: AppScreenSize.Messenger.center.titleHeight,
             }}
         >
             <ConversationName />

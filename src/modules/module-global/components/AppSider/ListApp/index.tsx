@@ -15,7 +15,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { GlobalRouterPath } from '@module-global/constants/GlobalRouterPath';
+import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
@@ -35,28 +35,28 @@ export default function ListApp(props: ListAppProps) {
     const apps = React.useMemo<TypeAppItem[]>(
         () => [
             {
-                path: GlobalRouterPath.feed,
+                path: AppRouterPath.feed,
                 name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
                 icon: <HomeIcon />,
-                onClick: () => navigate(GlobalRouterPath.feed),
+                onClick: () => navigate(AppRouterPath.feed),
             },
             {
-                path: GlobalRouterPath.messenger,
+                path: AppRouterPath.messenger,
                 name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
                 icon: <TelegramIcon />,
-                onClick: () => navigate(GlobalRouterPath.messenger),
+                onClick: () => navigate(AppRouterPath.messenger),
             },
             {
-                path: GlobalRouterPath.calendar,
+                path: AppRouterPath.calendar,
                 name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
                 icon: <CalendarMonthIcon />,
-                onClick: () => navigate(GlobalRouterPath.calendar),
+                onClick: () => navigate(AppRouterPath.calendar),
             },
             {
-                path: GlobalRouterPath.game,
+                path: AppRouterPath.game,
                 name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
                 icon: <GamesIcon />,
-                onClick: () => navigate(GlobalRouterPath.game),
+                onClick: () => navigate(AppRouterPath.game),
             },
         ],
         []

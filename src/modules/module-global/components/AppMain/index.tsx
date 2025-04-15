@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
 /** constants */
-import { ScreenSize } from '@module-base/constants/ScreenSize';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
@@ -25,7 +25,7 @@ export default function AppMain() {
     return (
         <Box
             className="flex w-auto max-w-full shrink-0 grow"
-            sx={{ paddingTop: `${ScreenSize.HeaderHeight}px` }}
+            sx={{ paddingTop: `${AppScreenSize.HeaderHeight}px` }}
             component="main"
         >
             <Container id="container" className="mx-auto flex h-full w-full max-w-full p-0">
