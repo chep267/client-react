@@ -15,10 +15,7 @@ import SearchIcon from '@mui/icons-material/Search';
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
 
-/** types */
-import type { InputSearchProps } from '@module-base/types';
-
-export default function InputSearch(props: InputSearchProps) {
+export default function InputSearch(props: App.ModuleBase.Component.InputSearchProps) {
     const {
         type = 'text',
         size = 'small',
@@ -55,7 +52,7 @@ export default function InputSearch(props: InputSearchProps) {
         return () => clearTimeout(timeout);
     }, [value]);
 
-    const onChange = React.useCallback<NonNullable<InputSearchProps['onChange']>>(
+    const onChange = React.useCallback<NonNullable<App.ModuleBase.Component.InputSearchProps['onChange']>>(
         (event) => setValue(event?.target?.value || ''),
         []
     );

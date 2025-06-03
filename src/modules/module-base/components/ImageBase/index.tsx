@@ -9,14 +9,11 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Skeleton from '@mui/material/Skeleton';
 
-/** types */
-import type { ImageBaseProps, ReactEventHandler } from '@module-base/types';
-
-const ImageBase = React.memo(function ImageBase(props: ImageBaseProps) {
+const ImageBase = React.memo(function ImageBase(props: App.ModuleBase.Component.ImageBaseProps) {
     const { alt = '', loading, onLoad, className, ...imageProps } = props;
     const [isLoading, setLoading] = React.useState(true);
 
-    const onLoadImage = React.useCallback<ReactEventHandler<HTMLImageElement>>((event) => {
+    const onLoadImage = React.useCallback<React.ReactEventHandler<HTMLImageElement>>((event) => {
         onLoad?.(event);
         setLoading(false);
     }, []);

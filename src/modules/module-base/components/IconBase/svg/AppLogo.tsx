@@ -7,10 +7,7 @@
 /** libs */
 import { blue } from '@mui/material/colors';
 
-/** types */
-import type { IconSVGProps } from '@module-base/types';
-
-export default function AppLogo(props: IconSVGProps) {
+export default function AppLogo(props: App.ModuleBase.Component.IconSVGProps) {
     return (
         <svg width={30} height={30} fill="none" viewBox="0 0 30 30" {...props}>
             <circle cx={15} cy={15} r={15} fill={props.color || blue[500]} />

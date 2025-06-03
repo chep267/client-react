@@ -8,10 +8,7 @@
 import * as React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 
-/** types */
-import type { IconBaseProps, TypeIcons } from '@module-base/types';
-
-const Icons: Readonly<TypeIcons> = {
+const Icons: Readonly<App.ModuleBase.Component.IconList> = {
     /** app icon */
     appLogo: React.lazy(() => import('@module-base/components/IconBase/svg/AppLogo')),
 
@@ -20,7 +17,7 @@ const Icons: Readonly<TypeIcons> = {
     notFound: React.lazy(() => import('@module-base/components/IconBase/svg/NotFound')),
 };
 
-const IconBase = React.memo(function IconBase(props: IconBaseProps) {
+const IconBase = React.memo(function IconBase(props: App.ModuleBase.Component.IconBaseProps) {
     const { name, width, height, size = 24, ...iconProps } = props;
     const Icon = Icons[name];
 
