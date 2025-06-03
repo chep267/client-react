@@ -1,25 +1,25 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
 import type { Unsubscribe } from 'firebase/firestore';
-import type { TypeCallApiPayload, TypeItemIds, TypeItems } from '@module-base/types';
+import type { TypePayloadApi, TypeItemIds, TypeItems } from '@module-base/types';
 import type { TypeDocumentThreadData, TypeDocumentMessageData } from '@module-messenger/types';
 
-export declare interface MessengerApiProps {
+export interface MessengerApiProps {
     /** thread */
     GetListThread: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             uid: string;
             fnCallback(data: { itemIds: TypeItemIds; items: TypeItems<TypeDocumentThreadData> }): void;
         }>;
         Response?: { unsubscribe: Unsubscribe };
     };
     CreateThread: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             uid: string;
             tid: string;
             data: TypeDocumentThreadData;
@@ -27,7 +27,7 @@ export declare interface MessengerApiProps {
         Response?: void;
     };
     MoveThread: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             uid: string;
             tid: string;
         }>;
@@ -36,7 +36,7 @@ export declare interface MessengerApiProps {
 
     /** message */
     GetListMessage: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             uid: string;
             tid: string;
             fnCallback(data: { itemIds: TypeItemIds; items: TypeItems<TypeDocumentMessageData> }): void;
@@ -44,7 +44,7 @@ export declare interface MessengerApiProps {
         Response?: { unsubscribe: Unsubscribe };
     };
     CreateMessage: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             uid: string;
             tid: string;
             mid: string;
@@ -53,7 +53,7 @@ export declare interface MessengerApiProps {
         Response: { message: TypeDocumentMessageData };
     };
     SendFile: {
-        Payload: TypeCallApiPayload<{
+        Payload: TypePayloadApi<{
             tid: string;
             mid: string;
             fid: string;

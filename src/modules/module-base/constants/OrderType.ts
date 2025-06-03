@@ -1,13 +1,10 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-/** types */
-import type { TypeOrderType } from '@module-base/types';
-
-export const OrderType: Readonly<Record<TypeOrderType, TypeOrderType>> = {
+export const OrderType: Readonly<{ [Key in App.ModuleBase.Component.OrderType]: Key }> = {
     asc: 'asc',
     desc: 'desc',
 };

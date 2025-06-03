@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -8,14 +8,17 @@
 import * as React from 'react';
 
 /** types */
-import type { ErrorBoundaryProps, ErrorBoundaryStates, ErrorInfo } from '@module-base/types';
+import type { ErrorInfo } from 'react';
 
 /** lazy components */
 const FallbackDefault = React.lazy(() => import('@module-base/components/ErrorBoundary/FallbackDefault'));
 const NotifyBoundary = React.lazy(() => import('@module-base/components/NotifyBoundary'));
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryStates> {
-    constructor(props: ErrorBoundaryProps) {
+class ErrorBoundary extends React.Component<
+    App.ModuleBase.Component.ErrorBoundaryProps,
+    App.ModuleBase.Component.ErrorBoundaryStates
+> {
+    constructor(props: App.ModuleBase.Component.ErrorBoundaryProps) {
         super(props);
         this.state = { hasError: false };
     }

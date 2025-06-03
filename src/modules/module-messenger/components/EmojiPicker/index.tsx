@@ -1,17 +1,16 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-import data from '@emoji-mart/data';
-
 /** libs */
+import { useTheme } from '@mui/material';
 import Picker from '@emoji-mart/react';
+import data from '@emoji-mart/data';
 
 /** hooks */
 import { useLanguage } from '@module-language/hooks/useLanguage';
-import { useTheme } from '@module-theme/hooks/useTheme';
 
 type EmojiPickerProps = {
     onEmojiSelect?(emoji: any, event?: any): void;
@@ -22,9 +21,7 @@ export default function EmojiPicker(props: EmojiPickerProps) {
     const {
         data: { locale },
     } = useLanguage();
-    const {
-        data: { mode },
-    } = useTheme();
+    const { palette } = useTheme();
 
-    return <Picker data={data} onEmojiSelect={onEmojiSelect} locale={locale} theme={mode} />;
+    return <Picker data={data} locale={locale} theme={palette.mode} onEmojiSelect={onEmojiSelect} />;
 }

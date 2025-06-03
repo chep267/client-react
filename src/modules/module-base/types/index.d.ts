@@ -1,12 +1,56 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
-export * from './event.d';
-export * from './data.d';
-export * from './apis.d';
-export * from './component.d';
-export * from './hook.d';
+import type * as TypeData from './data.d';
+import type * as TypeApi from './api.d';
+import type * as TypeHook from './hook.d';
+import type * as TypeComponent from './component.d';
+
+declare global {
+    namespace App {
+        namespace ModuleBase {
+            namespace Data {
+                type ItemIds = TypeData.TypeItemIds;
+                type Items<T = any> = TypeData.TypeItems<T>;
+                type StorageName = TypeData.TypeStorageName;
+                type StorageValue = TypeData.TypeStorageValue;
+            }
+            namespace Api {
+                type Payload<Data = unknown> = TypeApi.TypePayloadApi<Data>;
+                type Response<Data = unknown> = TypeApi.TypeResponseApi<Data>;
+            }
+            namespace Hook {
+                type Notify = TypeHook.TypeNotify;
+                type NotifyContext = TypeHook.TypeNotifyContext;
+                type SiderState = TypeHook.TypeSiderState;
+                type SiderContext = TypeHook.TypeSiderContext;
+                type UseCountdownProps = TypeHook.TypeUseCountdownProps;
+                type UseListSearchProps = TypeHook.TypeUseListSearchProps;
+            }
+            namespace Component {
+                type InputElement = TypeComponent.TypeInputElem;
+                type ErrorBoundaryProps = TypeComponent.TypeErrorBoundaryProps;
+                type ErrorBoundaryStates = TypeComponent.TypeErrorBoundaryStates;
+                type FallbackDefaultProps = TypeComponent.TypeFallbackDefaultProps;
+
+                type SiderProviderProps = TypeComponent.TypeSiderProviderProps;
+                type NotifyProviderProps = TypeComponent.TypeNotifyProviderProps;
+                type NotifyBoundaryProps = TypeComponent.TypeNotifyBoundaryProps;
+
+                type IconBaseProps = TypeComponent.TypeIconBaseProps;
+                type IconSVGProps = TypeComponent.TypeIconSVGProps;
+                type IconList = TypeComponent.TypeIconList;
+
+                type ImageBaseProps = TypeComponent.TypeImageBaseProps;
+                type InputSearchProps = TypeComponent.TypeInputSearchProps;
+                type MenuBaseProps = TypeComponent.TypeMenuBaseProps;
+
+                type OrderType = TypeComponent.TypeOrderType;
+            }
+        }
+    }
+}

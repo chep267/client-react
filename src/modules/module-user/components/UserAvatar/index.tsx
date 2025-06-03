@@ -1,19 +1,17 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** libs */
-import { Avatar, Skeleton } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
+import Avatar from '@mui/material/Avatar';
 
 /** hooks */
 import { useUser } from '@module-user/hooks/useUser';
 
-/** types */
-import type { UserAvatarProps } from '@module-user/types';
-
-function UserAvatarGet(props: UserAvatarProps) {
+function UserAvatarGet(props: App.ModuleUser.Component.UserAvatarProps) {
     const { uid, alt, ...otherProps } = props;
     const user = useUser({ uid });
     const src = user?.data?.photoURL || undefined;
@@ -24,7 +22,7 @@ function UserAvatarGet(props: UserAvatarProps) {
     return <Avatar alt={alt || user?.data?.displayName || ''} src={src} {...otherProps} />;
 }
 
-export default function UserAvatar(props: UserAvatarProps) {
+export default function UserAvatar(props: App.ModuleUser.Component.UserAvatarProps) {
     const { uid, src, ...otherProps } = props;
 
     if (src) {

@@ -1,14 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
-import type { PropsWithChildren } from 'react';
 import type { TypeUser } from '@module-user/types';
 
-export declare type AuthContextProps = {
+export type TypeAuthContext = {
     data: {
         isAuthentication: boolean;
         user: TypeUser | null;
@@ -19,5 +18,3 @@ export declare type AuthContextProps = {
         setPrePath(path: string): void;
     };
 };
-
-export declare type AuthProviderProps = PropsWithChildren;

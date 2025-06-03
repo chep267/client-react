@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2024.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -51,11 +51,9 @@ axiosClient.interceptors.request.use(
 
 /** Add a response interceptor */
 axiosClient.interceptors.response.use(
-    (response) =>
-        Promise.resolve({
-            ...response.data,
-            status: response.status,
-        }),
+    (response) => {
+        return response;
+    },
     async (error: AxiosError) => {
         if (error.response?.status === 401) {
             Cookies.remove(AppKey.uid);

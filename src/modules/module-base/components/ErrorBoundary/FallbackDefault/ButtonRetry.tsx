@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -18,10 +18,7 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown';
 
-/** types */
-import type { FallbackDefaultProps } from '@module-base/types';
-
-export default function ButtonRetry(props: Pick<FallbackDefaultProps, 'isAutoReload'>) {
+export default function ButtonRetry(props: Pick<App.ModuleBase.Component.FallbackDefaultProps, 'isAutoReload'>) {
     const { isAutoReload = true } = props;
 
     const reloadWindow = React.useCallback(() => window.location.reload(), []);

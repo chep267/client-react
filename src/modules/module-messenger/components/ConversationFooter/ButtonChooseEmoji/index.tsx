@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -8,8 +8,10 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
-import { IconButton, Popover, Tooltip } from '@mui/material';
-import { EmojiEmotions as EmojiEmotionsIcon } from '@mui/icons-material';
+import IconButton from '@mui/material/IconButton';
+import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
+import EmojiEmotions from '@mui/icons-material/EmojiEmotions';
 
 /** utils */
 import { MessengerLanguage } from '@module-messenger/constants/MessengerLanguage';
@@ -23,9 +25,6 @@ import EmojiPicker from '@module-messenger/components/EmojiPicker';
 /** styles */
 import useStyles from './styles';
 
-/** types */
-import type { ElementClickEvent } from '@module-base/types';
-
 export default function ButtonChooseEmoji() {
     const { tid = '' } = useParams();
     const classes = useStyles();
@@ -33,7 +32,7 @@ export default function ButtonChooseEmoji() {
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
-    const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget), []);
+    const openMenu = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget), []);
 
     const closeMenu = React.useCallback(() => setAnchorEl(null), []);
 
@@ -54,7 +53,7 @@ export default function ButtonChooseEmoji() {
         <>
             <Tooltip title={<FormattedMessage id={MessengerLanguage.component.button.chooseEmoji} />}>
                 <IconButton aria-describedby={id} onClick={openMenu}>
-                    <EmojiEmotionsIcon color="primary" />
+                    <EmojiEmotions color="primary" />
                 </IconButton>
             </Tooltip>
             <Popover

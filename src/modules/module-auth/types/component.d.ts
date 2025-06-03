@@ -1,25 +1,28 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
+import type { PropsWithChildren } from 'react';
 import type { Control, FieldPath, FieldValues, UseFormSetFocus, UseFormReturn } from 'react-hook-form';
 
-export declare type TypeAuthBreadcrumbsItem = {
+export type TypeAuthProviderProps = PropsWithChildren;
+
+export type TypeAuthBreadcrumbsItem = {
     title: string;
     path: string;
     append?: string;
     hidden?: boolean;
 };
 
-export declare type AuthButtonSubmitProps = {
+export type TypeAuthButtonSubmitProps = {
     loading?: boolean;
     type: 'signin' | 'register' | 'recover';
 };
 
-export declare type FieldEmailProps<T extends FieldValues> = {
+export type TypeFieldEmailProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;
@@ -27,7 +30,7 @@ export declare type FieldEmailProps<T extends FieldValues> = {
     clearErrors: UseFormReturn<T>['clearErrors'];
 };
 
-export declare type FieldPasswordProps<T extends FieldValues> = {
+export type TypeFieldPasswordProps<T extends FieldValues> = {
     name: FieldPath<T>;
     control: Control<T>;
     error?: boolean;

@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -22,31 +22,28 @@ import { LanguageContext } from '@module-language/contexts/LanguageContext';
 import { getDeviceLanguage } from '@module-language/utils/getDeviceLanguage';
 import { getMessage } from '@module-language/utils/getMessage';
 
-/** types */
-import type { TypeLocale, TypeMessages, LanguageProviderProps, LanguageContextProps } from '@module-language/types';
-
-export default function LanguageProvider(props: LanguageProviderProps) {
+export default function LanguageProvider(props: App.ModuleLanguage.Component.LanguageProviderProps) {
     const { children } = props;
 
-    const [locale, setLocale] = React.useState<TypeLocale>(() => {
-        const localeCookie = Cookies.get(AppKey.locale) as TypeLocale;
+    const [locale, setLocale] = React.useState<App.ModuleLanguage.Data.Locale>(() => {
+        const localeCookie = Cookies.get(AppKey.locale) as App.ModuleLanguage.Data.Locale;
         if (localeCookie && localeCookie in localeObject) {
             return localeCookie;
         }
         return getDeviceLanguage();
     });
-    const [messages, setMessages] = React.useState<TypeMessages | null>(null);
+    const [messages, setMessages] = React.useState<App.ModuleLanguage.Data.Messages | null>(null);
 
     React.useEffect(() => {
         getMessage(locale).then(setMessages);
     }, [locale]);
 
-    const setLanguage = React.useCallback<LanguageContextProps['method']['setLanguage']>((value) => {
+    const setLanguage = React.useCallback<App.ModuleLanguage.Hook.LanguageContext['method']['setLanguage']>((value) => {
         Cookies.set(AppKey.locale, value);
         setLocale(value);
     }, []);
 
-    const store = React.useMemo<LanguageContextProps>(() => {
+    const store = React.useMemo<App.ModuleLanguage.Hook.LanguageContext>(() => {
         return {
             data: { locale },
             method: { setLanguage },

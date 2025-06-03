@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -19,7 +19,7 @@ export default function AuthLayer() {
     const { mode, systemMode } = useColorScheme();
 
     const options = React.useMemo(() => {
-        const value = systemMode || (mode && mode === themeObject.light ? themeObject.light : themeObject.dark);
+        const value = systemMode || (mode === themeObject.light ? themeObject.light : themeObject.dark);
         return ParticleOptions(value);
     }, [mode]);
 

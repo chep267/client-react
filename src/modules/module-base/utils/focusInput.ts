@@ -1,16 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2024.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-/** types */
-import type { TypeInputElem } from '@module-base/types';
-
-export const focusInput = (payload: { timer?: number; elem?: TypeInputElem; cb?(): void }) => {
+export const focusInput = (payload: { timer?: number; elem?: App.ModuleBase.Component.InputElement; cb?(): void }) => {
     const { elem, cb, timer = 1 } = payload;
     if (!elem) {
         return cb?.();

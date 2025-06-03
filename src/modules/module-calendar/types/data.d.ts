@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -10,9 +10,9 @@ import type { Dispatch, SetStateAction } from 'react';
 /** types */
 import type { Dayjs } from 'dayjs';
 
-export declare type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
+export type TypeCalendarDisplay = 'sunday' | 'monday' | 'weekend';
 
-export declare type CalendarContextProps = {
+export type CalendarContextProps = {
     data: {
         today: Dayjs;
         display: TypeCalendarDisplay;
@@ -32,4 +32,4 @@ export declare type CalendarContextProps = {
     };
 };
 
-export declare type CalendarTableDataType = Record<number, Dayjs>;
+export type CalendarTableDataType = Record<number, Dayjs>;

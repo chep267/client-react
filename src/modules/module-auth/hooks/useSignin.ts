@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -40,7 +40,6 @@ export function useSignin() {
             const code = Number(error?.response?.status);
             let messageIntl: string;
             switch (true) {
-                case AppEnv.isFirebase:
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.signin.error;
                     break;
@@ -50,7 +49,7 @@ export function useSignin() {
             }
             hookNotify.method.toggleNotify({
                 open: true,
-                mode: 'error',
+                color: 'error',
                 messageIntl,
             });
         },

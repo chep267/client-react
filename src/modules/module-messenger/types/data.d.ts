@@ -1,13 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
 import type { TypeItemIds, TypeItems } from '@module-base/types';
 
-export declare type TypeDocumentThreadData = {
+export type TypeDocumentThreadData = {
     tid: string;
     name?: string;
     type?: 'thread' | 'group';
@@ -15,7 +15,7 @@ export declare type TypeDocumentThreadData = {
     lastMessage?: TypeDocumentMessageData;
 };
 
-export declare type TypeDocumentMessageData = {
+export type TypeDocumentMessageData = {
     uid: string;
     tid: string;
     mid: string;

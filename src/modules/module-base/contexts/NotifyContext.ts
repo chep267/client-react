@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -10,18 +10,15 @@ import * as React from 'react';
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
-/** types */
-import type { TypeNotify, TypeNotifyContext } from '@module-base/types';
-
-export const defaultNotifyState: Readonly<TypeNotify> = {
+export const defaultNotifyState: Readonly<App.ModuleBase.Hook.Notify> = {
     open: false,
     message: '',
     messageIntl: '',
-    mode: undefined,
+    color: undefined,
     duration: undefined,
 };
 
-export const NotifyContext = React.createContext<TypeNotifyContext>({
+export const NotifyContext = React.createContext<App.ModuleBase.Hook.NotifyContext>({
     data: defaultNotifyState,
     method: {
         toggleNotify: AppDefaultValue.emptyFunction,

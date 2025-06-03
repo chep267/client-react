@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -24,14 +24,14 @@ export function useCreateUser() {
         onSuccess: () => {
             NOTIFY.method.toggleNotify({
                 open: true,
-                mode: 'success',
+                color: 'success',
                 message: 'ok',
             });
         },
         onError: () => {
             NOTIFY.method.toggleNotify({
                 open: true,
-                mode: 'error',
+                color: 'error',
                 messageIntl: BaseLanguage.component.label.error.server,
             });
         },

@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -35,7 +35,7 @@ export default ({ mode }: ConfigEnv) => {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
         port: Number(process.env.VITE_APP_PORT) || 3000,
         host: process.env.VITE_APP_HOST || 'localhost',
-        isGzip: process.env.VITE_APP_ISGZIP === 'true',
+        isGzip: process.env.VITE_APP_BUILD_GZIP === 'true',
     };
     return defineConfig({
         plugins: [

@@ -1,13 +1,10 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-/** types */
-import type { TypeSiderState } from '@module-base/types';
-
-export const AppSiderState: Readonly<{ [Key in TypeSiderState]: Key }> = {
+export const AppSiderState: Readonly<{ [Key in App.ModuleBase.Hook.SiderState]: Key }> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',

@@ -1,12 +1,11 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
 import type { PaletteMode, Theme } from '@mui/material/styles';
 
-export declare type TypeThemeMode = PaletteMode;
-
-export declare type TypeTheme = Theme;
+export type TypeTheme = PaletteMode;
+export type TypeThemeData = Theme;

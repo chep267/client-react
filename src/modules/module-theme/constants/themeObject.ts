@@ -1,13 +1,10 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-/** types */
-import type { PaletteMode } from '@mui/material/styles';
-
-export const themeObject: Readonly<Record<PaletteMode, PaletteMode>> = {
-    light: 'light',
+export const themeObject: Readonly<{ [Key in App.ModuleTheme.Data.Theme]: Key }> = {
     dark: 'dark',
+    light: 'light',
 };

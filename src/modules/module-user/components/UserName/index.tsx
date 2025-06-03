@@ -1,26 +1,24 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** libs */
-import { Skeleton, Typography } from '@mui/material';
+import Skeleton from '@mui/material/Skeleton';
+import Typography from '@mui/material/Typography';
 
 /** hooks */
 import { useUser } from '@module-user/hooks/useUser';
 
-/** types */
-import type { UserNameProps } from '@module-user/types';
-
-function UserNameGet(props: Omit<UserNameProps, 'name'>) {
+function UserNameGet(props: Omit<App.ModuleUser.Component.UserNameProps, 'name'>) {
     const { uid, ...textProps } = props;
     const user = useUser({ uid });
 
     return <Typography {...textProps}>{user?.data?.displayName || <Skeleton width={100} />}</Typography>;
 }
 
-export default function UserName(props: UserNameProps) {
+export default function UserName(props: App.ModuleUser.Component.UserNameProps) {
     const { uid, name, ...textProps } = props;
 
     if (name) {

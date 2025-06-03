@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -11,10 +11,7 @@ import * as React from 'react';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 import { localeObject } from '@module-language/constants/localeObject';
 
-/** types */
-import type { LanguageContextProps } from '@module-language/types';
-
-export const LanguageContext = React.createContext<LanguageContextProps>({
+export const LanguageContext = React.createContext<App.ModuleLanguage.Hook.LanguageContext>({
     data: {
         locale: localeObject.vi,
     },

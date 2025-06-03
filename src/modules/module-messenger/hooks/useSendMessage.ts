@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -92,7 +92,7 @@ export function useSendMessage() {
         onError: () => {
             NOTIFY.method.toggleNotify({
                 open: true,
-                mode: 'error',
+                color: 'error',
                 messageIntl: BaseLanguage.component.label.error.server,
             });
         },

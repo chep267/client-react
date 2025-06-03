@@ -1,48 +1,77 @@
 # Chep MUI
 
-## Installing project
+This template should help get you started developing with Vue 3 in Vite.
 
-- Run `npm run update`
-- Or run `pnpm up --latest`
+## Recommended IDE Setup
 
-## Config Project
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-### Development/ Production Env
+## Type Support for `.vue` Imports in TS
 
-- Config API Endpoint: `.env`
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-### File env template: `.env.example`
+## Customize configuration
 
-- VITE_APP_NAME='app name'
-- VITE_APP_API_HOST='https://api.com'
-- VITE_APP_HOST='localhost'
-- VITE_APP_PORT=8080
+See [Vite Configuration Reference](https://vite.dev/config/).
 
----
+## Config `.env`
 
-## Available Scripts
+In this project, you need to create a `.env` file in the root directory to configure the following environment variables:
 
-In the project directory, you can run:
+- **VITE_APP_TITLE**: The title displayed in the browser tab.
+- **VITE_APP_NAME**: The name of the application.
+- **VITE_APP_MODE**: The operating mode (`dev`, `prod`, etc.).
 
-### `npm run dev`
+####
 
-### `pnpm dev`
+- **VITE_APP_CLIENT_HOST**: The server host (e.g., `localhost`).
+- **VITE_APP_CLIENT_PORT**: The port on which the application runs.
+- **VITE_APP_CLIENT_LOCALE**: The default language (`en`, `vi`, etc.).
+- **VITE_APP_CLIENT_THEME**: The theme of the application (`light` or `dark`).
 
-Runs the app in the development mode.\
-Open [http://localhost:8080](http://localhost:8080) to view it in the browser.
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+####
 
-### `npm test`
+- **VITE_APP_API_HOST**: The base URL for your API.
+- **VITE_APP_ACCESS_KEY**: The access key for external services or CDN.
 
-### `yarn test`
+## Project Setup
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```sh
+  pnpm install
+```
 
-### `npm run build`
+### Compile and Hot-Reload for Development
 
-### `yarn build`
+```sh
+  pnpm dev
+```
 
-Builds the app for production to the `dist` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+  pnpm test:unit
+```
+
+### Format code with Prettier
+
+```sh
+  pnpm format
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+  pnpm lint
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+  pnpm build
+```
+
+### Preview build app
+
+```sh
+  pnpm preview
+```

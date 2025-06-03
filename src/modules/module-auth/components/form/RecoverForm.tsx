@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -61,7 +61,6 @@ export default function RecoverForm() {
                 const code = Number(error?.response?.status);
                 let messageIntl: string;
                 switch (true) {
-                    case AppEnv.isFirebase:
                     case code >= 400 && code < 500:
                         messageIntl = AuthLanguage.notify.signin.error;
                         break;

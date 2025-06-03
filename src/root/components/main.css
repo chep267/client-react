@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -18,8 +18,7 @@
     --breakpoint-mobile: 30rem; /* 480px */
     --breakpoint-tablet: 40rem; /* 640px */
     --breakpoint-laptop: 64rem; /* 1024px */
-    --breakpoint-desktop: 80rem; /* 1280px */
-    --color-cam: #ff7f50;
+    --breakpoint-desktop: 88rem; /* 1408px */
 
     --animate-loading-anim: loadingAnim 2s linear infinite;
     --animate-start-anim: startAnim 2s linear infinite;
@@ -44,16 +43,19 @@
 
 @theme inline {
     --color-tw-primary: var(--color-custom-primary);
+    --color-tw-start: var(--color-custom-start);
 }
 
 @layer base {
     :root {
         --color-custom-primary: var(--color-blue-500);
+        --color-custom-start: var(--color-blue-500);
     }
     /* Theme dark */
     [data-theme='dark'],
     .dark {
         --color-custom-primary: var(--color-blue-400);
+        --color-custom-start: var(--color-amber-500);
     }
 
     * {

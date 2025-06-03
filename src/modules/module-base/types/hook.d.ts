@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -9,7 +9,7 @@ import type { PropsWithChildren, ReactNode } from 'react';
 import type { AlertColor } from '@mui/material/Alert';
 
 /** useCountdown */
-export declare type UseCountdownProps = {
+export type TypeUseCountdownProps = {
     numberCountdown?: number /** thời gian đếm ngược */;
     timer?: number /**  khoảng đếm ngược */;
     isContinue?: boolean /** có  tiếp tục đếm ngược khi về 0 */;
@@ -17,16 +17,15 @@ export declare type UseCountdownProps = {
 };
 
 /** useNotify */
-export declare type NotifyProviderProps = PropsWithChildren;
-export declare type TypeNotify = {
+export type TypeNotify = {
     open?: boolean;
     message?: ReactNode;
     messageIntl?: string;
-    mode?: AlertColor;
+    color?: AlertColor;
     duration?: number;
     top?: number;
 };
-export declare type TypeNotifyContext = {
+export type TypeNotifyContext = {
     data: TypeNotify;
     method: {
         toggleNotify(notify?: TypeNotify): void;
@@ -35,7 +34,7 @@ export declare type TypeNotifyContext = {
 };
 
 /** useListSearch */
-export declare type UseListSearchProps = {
+export type TypeUseListSearchProps = {
     disableEventKey: boolean; // có tắt phím mũi tên không, mặc định là không
     total: number; // số phần tử
     indexSelect: number; // vị trí đang select, mặc định là chưa chọn
@@ -44,11 +43,9 @@ export declare type UseListSearchProps = {
 };
 
 /** useSider */
-export declare type SiderProviderProps = PropsWithChildren;
+export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
 
-export declare type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
-
-export declare type TypeSiderContext = {
+export type TypeSiderContext = {
     data: {
         siderState: TypeSiderState;
     };

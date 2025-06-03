@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -12,9 +12,8 @@ import { themeObject } from '@module-theme/constants/themeObject';
 
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';
-import type { TypeThemeMode } from '@module-theme/types';
 
-export const ParticleOptions = (mode: TypeThemeMode): IParticlesProps['options'] => ({
+export const ParticleOptions = (mode: App.ModuleTheme.Data.Theme): IParticlesProps['options'] => ({
     autoPlay: true,
     clear: true,
     delay: 0,

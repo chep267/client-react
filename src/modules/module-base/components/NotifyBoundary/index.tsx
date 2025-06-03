@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -20,11 +20,10 @@ import { useNotify } from '@module-base/hooks/useNotify';
 
 /** types */
 import type { SnackbarOrigin } from '@mui/material/Snackbar';
-import type { NotifyBoundaryProps } from '@module-base/types';
 
-const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(props) {
+const NotifyBoundary = React.memo<App.ModuleBase.Component.NotifyProviderProps>(function NotifyBoundary(props) {
     const hookNotify = useNotify();
-    const { open, message, messageIntl, mode, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
+    const { open, message, messageIntl, color, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
 
     const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
 
@@ -41,11 +40,11 @@ const NotifyBoundary = React.memo<NotifyBoundaryProps>(function NotifyBoundary(p
             <Alert
                 className={clsx('w-full', { ['hidden']: !open })}
                 onClose={hookNotify.method.closeNotify}
-                severity={mode}
+                severity={color}
                 elevation={6}
                 variant="filled"
             >
-                <AlertTitle className="capitalize">{mode}!</AlertTitle>
+                <AlertTitle className="capitalize">{color}!</AlertTitle>
                 {messageIntl ? <FormattedMessage id={messageIntl} /> : message}
             </Alert>
         </Snackbar>

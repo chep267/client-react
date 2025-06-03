@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -13,25 +13,22 @@ import { NotifyContext, defaultNotifyState } from '@module-base/contexts/NotifyC
 /** components */
 import ErrorBoundary from '@module-base/components/ErrorBoundary';
 
-/** types */
-import type { TypeNotifyContext, TypeNotify, NotifyProviderProps } from '@module-base/types';
-
-export default function NotifyProvider(props: NotifyProviderProps) {
+export default function NotifyProvider(props: App.ModuleBase.Component.NotifyProviderProps) {
     const { children } = props;
 
-    const [notify, setNotify] = React.useState<TypeNotify>(defaultNotifyState);
+    const [notify, setNotify] = React.useState<App.ModuleBase.Hook.Notify>(defaultNotifyState);
 
-    const toggleNotify = React.useCallback<TypeNotifyContext['method']['toggleNotify']>(
+    const toggleNotify = React.useCallback<App.ModuleBase.Hook.NotifyContext['method']['toggleNotify']>(
         (options = defaultNotifyState) => setNotify(options),
         []
     );
 
-    const closeNotify = React.useCallback<TypeNotifyContext['method']['closeNotify']>(
+    const closeNotify = React.useCallback<App.ModuleBase.Hook.NotifyContext['method']['closeNotify']>(
         () => setNotify((prev) => ({ ...prev, open: false })),
         []
     );
 
-    const store = React.useMemo<TypeNotifyContext>(
+    const store = React.useMemo<App.ModuleBase.Hook.NotifyContext>(
         () => ({
             data: notify,
             method: {

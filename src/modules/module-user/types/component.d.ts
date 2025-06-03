@@ -1,19 +1,19 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
 import type { AvatarProps } from '@mui/material/Avatar';
 import type { TypographyProps } from '@mui/material/Typography';
-import type { TypeUser } from '@module-user/types/data.d';
+import type { TypeUser } from './data.d';
 
-export declare interface UserAvatarProps extends AvatarProps {
+export interface TypeUserAvatarProps extends AvatarProps {
     uid?: TypeUser['uid'];
 }
 
-export declare interface UserNameProps extends TypographyProps {
+export interface TypeUserNameProps extends TypographyProps {
     uid?: TypeUser['uid'];
     name?: TypeUser['displayName'];
 }

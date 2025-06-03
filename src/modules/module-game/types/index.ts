@@ -1,23 +1,23 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
-export declare type TypePokemonGameLevel = 'easy' | 'normal' | 'hard';
+export type TypePokemonGameLevel = 'easy' | 'normal' | 'hard';
 
-export declare type TypePokemonItemStatus = 'select' | 'success' | 'error';
+export type TypePokemonItemStatus = 'select' | 'success' | 'error';
 
-export declare type TypePokemonGameStatus = 'pending' | 'start' | 'stop' | 'next';
+export type TypePokemonGameStatus = 'pending' | 'start' | 'stop' | 'next';
 
-export declare type TypePokemonItem = {
+export type TypePokemonItem = {
     x: number;
     y: number;
     value: number;
 };
 
-export declare type PokemonContextProps = {
+export type PokemonContextProps = {
     data: {
         boardGame: TypePokemonItem[][];
         items: TypePokemonItem[];

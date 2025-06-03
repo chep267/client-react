@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -9,7 +9,7 @@ import type { Dispatch, PropsWithChildren, SetStateAction } from 'react';
 import type { TypeItems } from '@module-base/types';
 import type { TypeDocumentMessageData } from '@module-messenger/types/data';
 
-export declare type ThreadSearchContextProps = {
+export type ThreadSearchContextProps = {
     data: {
         isFocusSearch: boolean;
         isSearching: boolean;
@@ -22,9 +22,9 @@ export declare type ThreadSearchContextProps = {
     };
 };
 
-export declare type ThreadSearchProviderProps = PropsWithChildren;
+export type ThreadSearchProviderProps = PropsWithChildren;
 
-export declare type MessengerContextProps = {
+export type MessengerContextProps = {
     ui: {
         openThreadInfo: boolean;
         drafts: TypeItems<TypeDocumentMessageData>;

@@ -1,9 +1,9 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-export declare type TypeLocale = 'vi' | 'en';
+export type TypeLocale = 'vi' | 'en';
 
-export declare type TypeMessages = Record<string, string>;
+export type TypeMessages = Record<string, string>;

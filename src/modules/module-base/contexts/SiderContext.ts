@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -12,10 +12,7 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 
-/** types */
-import type { TypeSiderContext, TypeSiderState } from '@module-base/types';
-
-export const getSiderState = (): TypeSiderState => {
+export const getSiderState = (): App.ModuleBase.Hook.SiderState => {
     switch (true) {
         case window.innerWidth < AppScreenSize.AppbarHiddenBreakpoint:
             return AppSiderState.hidden;
@@ -26,11 +23,11 @@ export const getSiderState = (): TypeSiderState => {
     }
 };
 
-export const defaultSiderState: Readonly<TypeSiderContext['data']> = {
+export const defaultSiderState: Readonly<App.ModuleBase.Hook.SiderContext['data']> = {
     siderState: getSiderState(),
 };
 
-export const SiderContext = React.createContext<TypeSiderContext>({
+export const SiderContext = React.createContext<App.ModuleBase.Hook.SiderContext>({
     data: defaultSiderState,
     method: {
         toggleSider: AppDefaultValue.emptyFunction,

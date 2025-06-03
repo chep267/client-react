@@ -1,10 +1,20 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-export * from './data.d';
+/** types */
+import type * as TypeData from './data.d';
+
+declare global {
+    namespace App.ModuleTheme {
+        namespace Data {
+            type Theme = TypeData.TypeTheme;
+            type ThemeData = TypeData.TypeThemeData;
+        }
+    }
+}
 
 declare module '*.ttf';
 declare module '*.woff';

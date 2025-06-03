@@ -1,13 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** types */
 import type { Dayjs } from 'dayjs';
 
-export declare interface CalendarItemProps {
+export interface CalendarItemProps {
     day: Dayjs;
     isToday?: boolean;
     isInMonth?: boolean;
@@ -17,6 +17,6 @@ export declare interface CalendarItemProps {
     onSelect(): void;
 }
 
-export declare type CalendarLabelProps = {
+export type CalendarLabelProps = {
     day: number;
 };

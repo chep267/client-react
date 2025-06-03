@@ -1,13 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-export declare type TypeItemIds = string[];
+export type TypeItemIds = string[];
 
-export declare type TypeItems<T> = Record<string, T>;
+export type TypeItems<T = any> = Record<string, T>;
 
-export declare type StorageName = 'localStorage' | 'sessionStorage';
+export type TypeStorageName = 'localStorage' | 'sessionStorage';
 
-export declare type StoreValueType = string | null;
+export type TypeStorageValue = string | null;

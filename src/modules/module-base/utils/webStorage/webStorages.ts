@@ -1,18 +1,15 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-/** types */
-import type { StorageName, StoreValueType } from '@module-base/types';
-
 export class StorageBase {
-    constructor(storageName: StorageName) {
+    constructor(storageName: App.ModuleBase.Data.StorageName) {
         this.storageName = storageName;
     }
 
-    private readonly storageName: StorageName;
+    private readonly storageName: App.ModuleBase.Data.StorageName;
 
     private checkParams = (method: string, variable: any, name: string) => {
         if (!variable) {
@@ -26,19 +23,19 @@ export class StorageBase {
     };
     getList = (keys: string[]) => {
         this.checkParams('getList', keys, 'array storage key');
-        const results: Record<string, StoreValueType> = {};
+        const results: Record<string, App.ModuleBase.Data.StorageValue> = {};
         for (const key of keys) {
             results[key] = this.get(key);
         }
         return results;
     };
 
-    set = (key: string, data: StoreValueType) => {
+    set = (key: string, data: App.ModuleBase.Data.StorageValue) => {
         this.checkParams('set', key, 'storage key');
         this.checkParams('set', data, 'data');
         window[this.storageName].setItem(key, `${data || ''}`);
     };
-    setList = (keys: string[], data: StoreValueType[]) => {
+    setList = (keys: string[], data: App.ModuleBase.Data.StorageValue[]) => {
         this.checkParams('setList', keys, 'array storage key');
         this.checkParams('setList', data, 'array data');
         keys.forEach((key, index) => this.set(key, data[index]));

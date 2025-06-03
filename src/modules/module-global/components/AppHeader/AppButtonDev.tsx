@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -20,7 +20,7 @@ export default function AppButtonDev(props: any) {
     const hookNotify = useNotify();
 
     const onDev = () => {
-        hookNotify.method.toggleNotify({ open: true, mode: 'warning', message: 'In developing!' });
+        hookNotify.method.toggleNotify({ open: true, color: 'warning', message: 'In developing!' });
     };
 
     return (

@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -15,10 +15,7 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 /** contexts */
 import { defaultSiderState, SiderContext } from '@module-base/contexts/SiderContext';
 
-/** types */
-import type { SiderProviderProps, TypeSiderContext } from '@module-base/types';
-
-export default function SiderProvider(props: SiderProviderProps) {
+export default function SiderProvider(props: App.ModuleBase.Component.SiderProviderProps) {
     const { children } = props;
 
     const isCollapse = useMediaQuery(`(max-width:${AppScreenSize.AppbarCollapseBreakpoint}px)`);
@@ -49,7 +46,7 @@ export default function SiderProvider(props: SiderProviderProps) {
         });
     }, []);
 
-    const store = React.useMemo<TypeSiderContext>(() => {
+    const store = React.useMemo<App.ModuleBase.Hook.SiderContext>(() => {
         return {
             data: {
                 siderState,

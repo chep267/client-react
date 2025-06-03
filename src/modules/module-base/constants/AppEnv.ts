@@ -1,14 +1,12 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 export const AppEnv = {
-    appMode: import.meta.env.VITE_APP_MODE,
     appName: import.meta.env.VITE_APP_NAME,
     apiHost: import.meta.env.VITE_APP_API_HOST,
-    isFirebase: import.meta.env.VITE_APP_API_TYPE === 'firebase',
-    appTheme: import.meta.env.VITE_APP_THEME,
-    appLocale: import.meta.env.VITE_APP_LOCALE,
-};
+    appTheme: import.meta.env.VITE_APP_CLIENT_THEME,
+    appLocale: import.meta.env.VITE_APP_CLIENT_LOCALE,
+} as const;

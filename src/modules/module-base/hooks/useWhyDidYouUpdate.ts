@@ -1,13 +1,19 @@
-import { useEffect, useRef } from 'react';
+/**
+ *
+ * @author dongntd267@gmail.com
+ *
+ */
+
+import * as React from 'react';
 
 export function useWhyDidYouUpdate(name: string, props: Record<string, any>) {
-    const previousProps = useRef(props);
+    const previousProps = React.useRef(props);
 
-    useEffect(() => {
+    React.useEffect(() => {
         console.log(`[mounted] ${name}`);
     }, []);
 
-    useEffect(() => {
+    React.useEffect(() => {
         const changedProps: Record<string, any> = {};
         Object.keys(props).forEach((key) => {
             if (previousProps.current[key] !== props[key]) {

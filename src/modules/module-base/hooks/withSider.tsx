@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -8,7 +8,7 @@
 import { useSider } from './useSider';
 
 /** types */
-import type { ComponentType } from '@module-base/types';
+import type { ComponentType } from 'react';
 
 export function withSider<Props>(WrappedComponent: ComponentType<Props>) {
     return function EnhancedComponent(props: Props) {

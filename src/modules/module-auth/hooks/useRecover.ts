@@ -1,6 +1,6 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
@@ -27,7 +27,7 @@ export function useRecover() {
         onSuccess: () => {
             hookNotify.method.toggleNotify({
                 open: true,
-                mode: 'success',
+                color: 'success',
                 messageIntl: AuthLanguage.notify.recover.success,
             });
         },
@@ -43,7 +43,7 @@ export function useRecover() {
             }
             hookNotify.method.toggleNotify({
                 open: true,
-                mode: 'error',
+                color: 'error',
                 messageIntl,
             });
         },

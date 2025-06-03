@@ -1,13 +1,10 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
-/** types */
-import type { TypeLocale } from '@module-language/types';
-
-export const localeObject: Readonly<Record<TypeLocale, TypeLocale>> = {
+export const localeObject: Readonly<{ [Key in App.ModuleLanguage.Data.Locale]: Key }> = {
     vi: 'vi',
     en: 'en',
 };

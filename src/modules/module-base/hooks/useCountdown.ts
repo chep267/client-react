@@ -1,16 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** libs */
 import * as React from 'react';
 
-/** types */
-import type { UseCountdownProps } from '@module-base/types';
-
-export const useCountdown = (props: UseCountdownProps) => {
+export const useCountdown = (props: App.ModuleBase.Hook.UseCountdownProps) => {
     const { numberCountdown = 10, timer = 1000, callback, isContinue } = props;
 
     const countdownRef = React.useRef<NodeJS.Timeout>(undefined);

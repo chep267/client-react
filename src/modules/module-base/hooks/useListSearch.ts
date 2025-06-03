@@ -1,16 +1,13 @@
 /**
  *
- * @author dongntd267@gmail.com on 26/07/2023.
+ * @author dongntd267@gmail.com
  *
  */
 
 /** libs */
 import * as React from 'react';
 
-/** types */
-import type { UseListSearchProps, KeyboardEvent } from '@module-base/types';
-
-const defaultState: UseListSearchProps = {
+const defaultState: App.ModuleBase.Hook.UseListSearchProps = {
     disableEventKey: false, // có tắt phím mũi tên không, mặc định là không
     total: 0, // số phần tử
     indexSelect: 0, // vị trí đang select, mặc định là chưa chọn
@@ -18,8 +15,8 @@ const defaultState: UseListSearchProps = {
     idSelect: '', // id đang select, mặc định là chưa chọn
 };
 
-export const useListSearch = (props: Partial<UseListSearchProps> = defaultState) => {
-    const [state, setState] = React.useState<UseListSearchProps>({
+export const useListSearch = (props: Partial<App.ModuleBase.Hook.UseListSearchProps> = defaultState) => {
+    const [state, setState] = React.useState<App.ModuleBase.Hook.UseListSearchProps>({
         ...defaultState,
         ...props,
     });
