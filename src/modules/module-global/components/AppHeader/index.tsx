@@ -16,10 +16,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** components */
-import AppInfo from './AppInfo';
-import AppTimer from './AppTimer';
-import AppButtonDev from './AppButtonDev';
-import ButtonSetting from './ButtonSetting';
+import AppInfo from '@module-global/components/AppHeader/AppInfo';
+import AppTimer from '@module-global/components/AppHeader/AppTimer';
+import AppButtonDev from '@module-global/components/AppHeader/AppButtonDev';
+import ButtonSetting from '@module-global/components/AppHeader/ButtonSetting';
 
 const AppHeader = React.memo(function AppHeader() {
     const appbarStyle = React.useRef({ height: AppScreenSize.HeaderHeight }).current;

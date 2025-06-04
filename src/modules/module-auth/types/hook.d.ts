@@ -14,7 +14,7 @@ export type TypeAuthContext = {
         prePath: string;
     };
     method: {
-        setAuth(options?: Partial<AuthContextProps['data']>): void;
+        setAuth(options?: Partial<App.ModuleAuth.Hook.AuthContext['data']>): void;
         setPrePath(path: string): void;
     };
 };

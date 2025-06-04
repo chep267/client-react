@@ -14,10 +14,7 @@ import List from '@mui/material/List';
 import TableLoading from '@module-base/components/TableBase/TableLoading';
 import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 
-/** types */
-import type { ListBaseProps } from '@module-base/types';
-
-export default function ListBase<D>(props: ListBaseProps<D>) {
+export default function ListBase<Data>(props: App.ModuleBase.Component.ListBaseProps<Data>) {
     const { ref, data, className, classNameContainer, loading, emptyContent, itemContent, ...listProps } = props;
 
     const listRef = React.useRef<HTMLUListElement | null>(null);

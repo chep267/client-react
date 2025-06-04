@@ -25,7 +25,6 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { TypeApiAuth } from '@module-auth/types';
 
 export function useRestart() {
     const hookAuth = useAuth();
@@ -33,7 +32,7 @@ export function useRestart() {
 
     const hookRestart = useMutation({
         mutationFn: authApi.restart,
-        onSuccess: async (response: TypeApiAuth['Restart']['Response']) => {
+        onSuccess: async (response: App.ModuleAuth.Api.Restart['Response']) => {
             const exp = !isNaN(response.data.token.exp) ? response.data.token.exp : AppTimer.restart;
             hookAuth.method.setAuth({ isAuthentication: true, user: response.data.user });
             delay(exp - 3000 * 60, () => hookRestart.mutate({})).then();

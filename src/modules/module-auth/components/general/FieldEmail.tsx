@@ -15,9 +15,8 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** types */
 import type { FieldValues } from 'react-hook-form';
-import type { FieldEmailProps } from '@module-auth/types';
 
-export default function FieldEmail<T extends FieldValues>(props: FieldEmailProps<T>) {
+export default function FieldEmail<T extends FieldValues>(props: App.ModuleAuth.Component.FieldEmailProps<T>) {
     const { name, control, error, errorMessage, clearErrors } = props;
 
     const { field } = useController({

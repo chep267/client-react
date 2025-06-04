@@ -7,7 +7,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 /** apis */
-import { userFirebaseApi } from '@module-user/apis';
+import { userApi } from '@module-user/apis';
 
 /** hooks */
 import { useAuth } from '@module-auth/hooks/useAuth';
@@ -20,7 +20,7 @@ export function useListUser() {
 
     return useQuery({
         queryKey: ['useListUser', { uid }],
-        queryFn: () => userFirebaseApi.getList({}),
+        queryFn: () => userApi.getList({}),
         refetchOnWindowFocus: false,
         refetchIntervalInBackground: false,
         refetchOnReconnect: false,

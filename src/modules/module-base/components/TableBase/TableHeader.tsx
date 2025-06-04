@@ -18,10 +18,9 @@ import { OrderType } from '@module-base/constants/OrderType';
 /** components */
 import CheckboxColumn from '@module-base/components/TableBase/CheckboxColumn';
 
-/** types */
-import type { TableHeaderProps } from '@module-base/types';
-
-function TableHeader(props: TableHeaderProps) {
+function TableHeader<Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData>(
+    props: App.ModuleBase.Component.TableHeaderProps<Data>
+) {
     const { columns, orderBy, orderType, hasCheckbox, checked, indeterminate, onSort, onSelectAll } = props;
 
     return (

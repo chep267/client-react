@@ -17,9 +17,8 @@ import PasswordField from '@module-base/components/PasswordField';
 
 /** types */
 import type { FieldValues } from 'react-hook-form';
-import type { FieldPasswordProps } from '@module-auth/types';
 
-export default function FieldPassword<T extends FieldValues>(props: FieldPasswordProps<T>) {
+export default function FieldPassword<T extends FieldValues>(props: App.ModuleAuth.Component.FieldPasswordProps<T>) {
     const { name, control, error, errorMessage, clearErrors, setFocus, isConfirm } = props;
 
     const { field } = useController({

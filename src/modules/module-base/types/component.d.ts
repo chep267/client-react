@@ -72,6 +72,11 @@ export type TypeInputSearchProps<Variant extends TextFieldProps['variant'] = 'ou
     onChangeValue?(value: string): void;
 };
 
+/** PasswordField */
+export type TypePasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
+    setFocus?(): void;
+};
+
 /** MenuBase */
 export interface TypeMenuBaseProps {
     mode?: 'button' | 'icon';
@@ -85,35 +90,30 @@ export interface TypeMenuBaseProps {
 /** NotifyBoundary */
 export type TypeNotifyBoundaryProps = Omit<SnackbarProps, 'open' | 'autoHideDuration' | 'anchorOrigin' | 'onClose'>;
 
-/** PasswordField */
-export type PasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
-    setFocus?(): void;
-};
-
 /** ListBase */
-export interface ListBaseProps<D> extends Omit<ListProps, 'ref'> {
+export interface TypeListBaseProps<Data> extends Omit<ListProps, 'ref'> {
     ref?: Ref<{
         scrollTop(): void;
     }>;
     classNameContainer?: string;
     loading?: boolean;
     emptyContent?: string;
-    data?: D[];
-    itemContent?(item: D, index: number): ReactNode;
+    data?: Data[];
+    itemContent?(item: Data, index: number): ReactNode;
 }
-export interface NestedItemProps {
+export interface TypeNestedItemProps {
     id: string;
     icon?: ReactNode;
     loading?: boolean;
     title?: ReactNode;
     divide?: 'top' | 'bottom' | 'top-bottom';
-    subMenu?: NestedItemProps[];
+    subMenu?: TypeNestedItemProps[];
     subIndex?: number;
     onClick?(event: MouseEvent<HTMLDivElement>): void;
 }
 
 /** Virtual List */
-export interface VirtualListProps<D, C> extends VirtuosoProps<D, C> {
+export interface TypeVirtualListProps<Data, Context> extends VirtuosoProps<Data, Context> {
     loading?: boolean;
     emptyContent?: ReactNode;
     itemProps?: ListItemProps;
@@ -122,50 +122,53 @@ export interface VirtualListProps<D, C> extends VirtuosoProps<D, C> {
 /** TableBase */
 export type TypeOrderType = 'asc' | 'desc';
 export type TypeTableData = Record<string | number, any> | any[];
-export type TypeDataKey<D extends TypeTableData> = D extends any[] ? number : Extract<keyof D, string | number>;
-export interface TableBaseProps<D extends TypeTableData = TypeTableData> extends TableProps {
-    data?: readonly D[];
+export type TypeDataKey<Data extends TypeTableData> = Data extends any[] ? number : Extract<keyof Data, string | number>;
+export interface TypeTableBaseProps<Data extends TypeTableData = TypeTableData> extends TableProps {
+    data?: readonly Data[];
     loading?: boolean;
     emptyContent?: ReactNode;
     hasCheckbox?: boolean;
-    dataKeyForCheckbox?: TypeDataKey<D>;
+    dataKeyForCheckbox?: TypeDataKey<Data>;
     columns?: (Omit<TableCellProps, 'children'> & {
-        dataKey: TypeDataKey<D>;
+        dataKey: TypeDataKey<Data>;
         label: ReactNode;
         hasSort?: boolean;
-        onClickItem?(event: MouseEvent<HTMLTableCellElement>, data: { indexRow: number; indexCell: number; item: D }): void;
-        itemContent?(data: { indexRow: number; indexCell: number; item: D }): ReactNode;
+        onClickItem?(
+            event: MouseEvent<HTMLTableCellElement>,
+            data: { indexRow: number; indexCell: number; item: Data }
+        ): void;
+        itemContent?(data: { indexRow: number; indexCell: number; item: Data }): ReactNode;
     })[];
-    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
+    onChangeSelected?(arr: Array<Data[TypeDataKey<Data>]>): void;
 }
-export interface TableHeaderProps<D extends TypeTableData = TypeTableData> {
-    columns?: TableBaseProps<D>['columns'];
+export interface TypeTableHeaderProps<Data extends TypeTableData = TypeTableData> {
+    columns?: TypeTableBaseProps<Data>['columns'];
     hasCheckbox?: boolean;
     checked?: boolean;
     indeterminate?: boolean;
     orderType?: TypeOrderType;
-    orderBy?: TypeDataKey<D>;
-    onSort?(newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>): void;
+    orderBy?: TypeDataKey<Data>;
+    onSort?(newKey: TypeDataKey<Data>, prevKey: TypeDataKey<Data>): void;
     onSelectAll?(event: ChangeEvent<HTMLInputElement>): void;
 }
-export interface TableContentProps<D extends TypeTableData = TypeTableData> {
-    columns?: TableBaseProps<D>['columns'];
+export interface TypeTableContentProps<Data extends TypeTableData = TypeTableData> {
+    columns?: TypeTableBaseProps<Data>['columns'];
     hasCheckbox?: boolean;
     indexRow: number;
-    item: D;
+    item: Data;
     checked?: boolean;
-    onSelect?(item: D): void;
+    onSelect?(item: Data): void;
 }
-export interface CheckboxColumnProps extends CheckboxProps {
+export interface TypeCheckboxColumnProps extends CheckboxProps {
     hasCheckbox?: boolean;
 }
 
 /** Virtual Table */
-export interface VirtualTableProps<D extends TypeTableData, C = any> extends TableVirtuosoProps<D, C> {
+export interface TypeVirtualTableProps<Data extends TypeTableData, Context = any> extends TableVirtuosoProps<Data, Context> {
     loading?: boolean;
     emptyContent?: ReactNode;
     hasCheckbox?: boolean;
-    dataKeyForCheckbox?: TypeDataKey<D>;
-    columns?: TableBaseProps<D>['columns'];
-    onChangeSelected?(arr: Array<D[TypeDataKey<D>]>): void;
+    dataKeyForCheckbox?: TypeDataKey<Data>;
+    columns?: TypeTableBaseProps<Data>['columns'];
+    onChangeSelected?(arr: Array<Data[TypeDataKey<Data>]>): void;
 }

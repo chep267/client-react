@@ -15,13 +15,10 @@ import { FormattedMessage } from 'react-intl';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** types */
-import type { TypeAuthBreadcrumbsItem } from '@module-auth/types';
-
 export default function AuthBreadcrumbs() {
     const { pathname } = useLocation();
 
-    const breadcrumbs: TypeAuthBreadcrumbsItem[] = React.useMemo(() => {
+    const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = React.useMemo(() => {
         return [
             {
                 title: AuthLanguage.component.title.signin,

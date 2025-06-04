@@ -16,7 +16,8 @@
         "update-all": "pnpm up --latest",
         "deploy": "pnpm build && gh-pages -d dist",
         "analyze": "open dist/stats.html",
-        "clean": "tsc --build --clean"
+        "clean": "tsc --build --clean",
+        "check-code": "node script/check-coding-rules.ts"
     },
     "dependencies": {
         "@base-ui-components/react": "1.0.0-beta.0",

@@ -7,8 +7,8 @@
 /** libs */
 import { QueryClient } from '@tanstack/react-query';
 
-window.checkMobile = () => /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent);
-window.isMobile = window.checkMobile();
+// window.checkMobile = () => /iPhone|iPad|iPod|Android|Mobi/i.test(navigator.userAgent);
+// window.isMobile = window.checkMobile();
 
 /** Create a client */
 export const queryClient = new QueryClient({

@@ -18,16 +18,15 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 /** types */
 import type { SxProps, Theme } from '@mui/material/styles';
-import type { ElementClickEvent, NestedItemProps } from '@module-base/types';
 
-export default function NestedItem(props: NestedItemProps) {
+export default function NestedItem(props: App.ModuleBase.Component.NestedItemProps) {
     const { subIndex = 1, divide, loading, onClick, title, icon = ' ', subMenu } = props;
 
     const hasSub = (subMenu?.length || 0) > 0;
     const itemId = React.useId();
     const [open, setOpen] = React.useState(false);
 
-    const toggleOpen = React.useCallback((event: ElementClickEvent<HTMLDivElement>) => {
+    const toggleOpen = React.useCallback((event: React.MouseEvent<HTMLDivElement>) => {
         if (hasSub) {
             setOpen((prev) => !prev);
         }

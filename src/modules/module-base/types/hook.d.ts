@@ -5,7 +5,7 @@
  */
 
 /** types */
-import type { PropsWithChildren, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import type { AlertColor } from '@mui/material/Alert';
 
 /** useCountdown */

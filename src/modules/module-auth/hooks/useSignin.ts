@@ -13,7 +13,6 @@ import { authApi } from '@module-auth/apis/authApi';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { AppEnv } from '@module-base/constants/AppEnv';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
@@ -22,7 +21,6 @@ import { useAuth } from '@module-auth/hooks/useAuth';
 
 /** types */
 import type { AxiosError } from 'axios';
-import type { TypeApiAuth } from '@module-auth/types';
 
 export function useSignin() {
     const hookAuth = useAuth();
@@ -30,7 +28,7 @@ export function useSignin() {
 
     return useMutation({
         mutationFn: authApi.signin,
-        onSuccess: async (response: TypeApiAuth['Signin']['Response']) => {
+        onSuccess: async (response: App.ModuleAuth.Api.Signin['Response']) => {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);

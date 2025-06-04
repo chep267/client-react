@@ -16,13 +16,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableLoading from '@module-base/components/TableBase/TableLoading';
 import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 
-/** types */
-import type { VirtualListProps } from '@module-base/types';
-
-export default function VirtualList<D, C>(props: VirtualListProps<D, C>) {
+export default function VirtualList<Data, Context>(props: App.ModuleBase.Component.VirtualListProps<Data, Context>) {
     const { loading, emptyContent, itemProps, components, ...listProps } = props;
 
-    const customComponents = React.useMemo<VirtualListProps<D, C>['components']>(() => {
+    const customComponents = React.useMemo<App.ModuleBase.Component.VirtualListProps<Data, Context>['components']>(() => {
         return {
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>

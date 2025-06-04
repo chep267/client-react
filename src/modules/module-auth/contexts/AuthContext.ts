@@ -10,16 +10,13 @@ import * as React from 'react';
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
-/** types */
-import type { AuthContextProps } from '@module-auth/types';
-
-export const defaultAuthState: Readonly<AuthContextProps['data']> = {
+export const defaultAuthState: Readonly<App.ModuleAuth.Hook.AuthContext['data']> = {
     isAuthentication: false,
     user: null,
     prePath: '/',
 };
 
-export const AuthContext = React.createContext<AuthContextProps>({
+export const AuthContext = React.createContext<App.ModuleAuth.Hook.AuthContext>({
     data: defaultAuthState,
     method: {
         setAuth: AppDefaultValue.emptyFunction,

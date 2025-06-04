@@ -28,14 +28,15 @@ import { sortTableData } from '@module-base/utils/virtual';
 
 /** types */
 import type { ChangeEvent } from 'react';
-import type { TypeDataKey, TypeOrderType, TypeTableData, VirtualTableProps } from '@module-base/types';
 
-export default function VirtualTable<D extends TypeTableData = TypeTableData>(props: VirtualTableProps<D>) {
+export default function VirtualTable<Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData>(
+    props: App.ModuleBase.Component.VirtualTableProps<Data>
+) {
     const { data, loading, emptyContent, columns, hasCheckbox, dataKeyForCheckbox, onChangeSelected, ...tableProps } = props;
 
-    const [orderType, setOrderType] = React.useState<TypeOrderType>();
-    const [orderBy, setOrderBy] = React.useState<TypeDataKey<D>>();
-    const [selectedIds, setSelectedIds] = React.useState<Array<D[TypeDataKey<D>]>>([]);
+    const [orderType, setOrderType] = React.useState<App.ModuleBase.Component.OrderType>();
+    const [orderBy, setOrderBy] = React.useState<App.ModuleBase.Component.DataKey<Data>>();
+    const [selectedIds, setSelectedIds] = React.useState<Array<Data[App.ModuleBase.Component.DataKey<Data>]>>([]);
 
     React.useEffect(() => {
         onChangeSelected?.(selectedIds);
@@ -57,7 +58,7 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
     );
 
     const onSelectOne = React.useCallback(
-        (item: D) => {
+        (item: Data) => {
             if (!dataKeyForCheckbox) {
                 return;
             }
@@ -78,15 +79,18 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
         [dataKeyForCheckbox]
     );
 
-    const onSort = React.useCallback((newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>) => {
-        setOrderBy(newKey);
-        setOrderType((prevOrderType) => {
-            const isAsc = prevKey === newKey && prevOrderType === OrderType.asc;
-            return isAsc ? OrderType.desc : OrderType.asc;
-        });
-    }, []);
+    const onSort = React.useCallback(
+        (newKey: App.ModuleBase.Component.DataKey<Data>, prevKey: App.ModuleBase.Component.DataKey<Data>) => {
+            setOrderBy(newKey);
+            setOrderType((prevOrderType) => {
+                const isAsc = prevKey === newKey && prevOrderType === OrderType.asc;
+                return isAsc ? OrderType.desc : OrderType.asc;
+            });
+        },
+        []
+    );
 
-    const VirtualTableComponents = React.useMemo<VirtualTableProps<D>['components']>(
+    const VirtualTableComponents = React.useMemo<App.ModuleBase.Component.VirtualTableProps<Data>['components']>(
         () => ({
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>
@@ -103,7 +107,7 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
         [loading, emptyContent]
     );
 
-    const currentData = React.useMemo<Readonly<D[]>>(() => {
+    const currentData = React.useMemo<Readonly<Data[]>>(() => {
         if (!orderType || !orderBy) {
             return data || AppDefaultValue.emptyArray;
         }
@@ -125,7 +129,7 @@ export default function VirtualTable<D extends TypeTableData = TypeTableData>(pr
         );
     };
 
-    const itemContent = (indexRow: number, item: D) => {
+    const itemContent = (indexRow: number, item: Data) => {
         const checked = hasCheckbox && dataKeyForCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
         return (
             <TableContent

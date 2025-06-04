@@ -8,7 +8,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 /** apis */
-import { userFirebaseApi } from '@module-user/apis';
+import { userApi } from '@module-user/apis';
 
 /** utils */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
@@ -20,7 +20,7 @@ export function useCreateUser() {
     const NOTIFY = useNotify();
 
     return useMutation({
-        mutationFn: userFirebaseApi.create,
+        mutationFn: userApi.create,
         onSuccess: () => {
             NOTIFY.method.toggleNotify({
                 open: true,

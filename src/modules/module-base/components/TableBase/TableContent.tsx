@@ -11,10 +11,9 @@ import TableCell from '@mui/material/TableCell';
 /** components */
 import CheckboxColumn from '@module-base/components/TableBase/CheckboxColumn';
 
-/** types */
-import type { TableContentProps } from '@module-base/types';
-
-function TableContent(props: TableContentProps) {
+function TableContent<Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData>(
+    props: App.ModuleBase.Component.TableContentProps<Data>
+) {
     const { indexRow, item, columns, hasCheckbox, checked, onSelect } = props;
 
     return (

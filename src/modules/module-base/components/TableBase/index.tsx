@@ -27,10 +27,9 @@ import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 import TableHeader from '@module-base/components/TableBase/TableHeader';
 import TableContent from '@module-base/components/TableBase/TableContent';
 
-/** types */
-import type { TableBaseProps, TableHeaderProps, TypeDataKey, TypeOrderType, TypeTableData } from '@module-base/types';
-
-export default function TableBase<D extends TypeTableData = TypeTableData>(props: TableBaseProps<D>) {
+export default function TableBase<Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData>(
+    props: App.ModuleBase.Component.TableBaseProps<Data>
+) {
     const {
         data,
         loading,
@@ -43,15 +42,15 @@ export default function TableBase<D extends TypeTableData = TypeTableData>(props
         ...tableProps
     } = props;
 
-    const [orderType, setOrderType] = React.useState<TypeOrderType>();
-    const [orderBy, setOrderBy] = React.useState<TypeDataKey<D>>();
-    const [selectedIds, setSelectedIds] = React.useState<Array<D[TypeDataKey<D>]>>([]);
+    const [orderType, setOrderType] = React.useState<App.ModuleBase.Component.OrderType>();
+    const [orderBy, setOrderBy] = React.useState<App.ModuleBase.Component.DataKey<Data>>();
+    const [selectedIds, setSelectedIds] = React.useState<Array<Data[App.ModuleBase.Component.DataKey<Data>]>>([]);
 
     React.useEffect(() => {
         onChangeSelected?.(selectedIds);
     }, [selectedIds]);
 
-    const onSelectAll = React.useCallback<NonNullable<TableHeaderProps<D>['onSelectAll']>>(
+    const onSelectAll = React.useCallback<NonNullable<App.ModuleBase.Component.TableHeaderProps<Data>['onSelectAll']>>(
         (event) => {
             if (!dataKeyForCheckbox) {
                 return;
@@ -67,7 +66,7 @@ export default function TableBase<D extends TypeTableData = TypeTableData>(props
     );
 
     const onSelectOne = React.useCallback(
-        (item: D) => {
+        (item: Data) => {
             if (!dataKeyForCheckbox) {
                 return;
             }
@@ -88,22 +87,25 @@ export default function TableBase<D extends TypeTableData = TypeTableData>(props
         [dataKeyForCheckbox]
     );
 
-    const onSort = React.useCallback((newKey: TypeDataKey<D>, prevKey: TypeDataKey<D>) => {
-        setOrderBy(newKey);
-        setOrderType((prevOrderType) => {
-            const isAsc = prevKey === newKey && prevOrderType === OrderType.asc;
-            return isAsc ? OrderType.desc : OrderType.asc;
-        });
-    }, []);
+    const onSort = React.useCallback(
+        (newKey: App.ModuleBase.Component.DataKey<Data>, prevKey: App.ModuleBase.Component.DataKey<Data>) => {
+            setOrderBy(newKey);
+            setOrderType((prevOrderType) => {
+                const isAsc = prevKey === newKey && prevOrderType === OrderType.asc;
+                return isAsc ? OrderType.desc : OrderType.asc;
+            });
+        },
+        []
+    );
 
-    const currentData = React.useMemo<NonNullable<TableBaseProps<D>['data']>>(() => {
+    const currentData = React.useMemo<NonNullable<App.ModuleBase.Component.TableBaseProps<Data>['data']>>(() => {
         if (!orderType || !orderBy) {
             return data || AppDefaultValue.emptyArray;
         }
         return sortTableData({ data, orderType, orderBy });
     }, [data, orderType, orderBy]);
 
-    const itemContent = (item: D, indexRow: number) => {
+    const itemContent = (item: Data, indexRow: number) => {
         const checked = hasCheckbox && dataKeyForCheckbox ? selectedIds.includes(item[dataKeyForCheckbox]) : false;
         return (
             <TableRow key={indexRow}>

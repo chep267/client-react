@@ -12,9 +12,9 @@ export const breakpoints = {
         lg: 1024,
         xl: 1280,
         '2xl': 1536,
-        mobile: 567,
+        mobile: 480,
         tablet: 640,
         laptop: 1024,
-        desktop: 1280,
+        desktop: 1408,
     },
 };

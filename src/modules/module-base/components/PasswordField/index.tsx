@@ -12,10 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-/** types */
-import type { PasswordFieldProps } from '@module-base/types';
-
-export default function PasswordField(props: PasswordFieldProps) {
+export default function PasswordField(props: App.ModuleBase.Component.PasswordFieldProps) {
     const { setFocus, ...inputProps } = props;
     const [showPassword, setShowPassword] = React.useState(-1);
 

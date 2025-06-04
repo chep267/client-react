@@ -10,20 +10,22 @@ import * as React from 'react';
 /** contexts */
 import { AuthContext, defaultAuthState } from '@module-auth/contexts/AuthContext';
 
-/** types */
-import type { AuthContextProps, AuthProviderProps } from '@module-auth/types';
-
-export default function AuthProvider(props: AuthProviderProps) {
+export default function AuthProvider(props: App.ModuleAuth.Component.AuthProviderProps) {
     const { children } = props;
 
-    const [auth, setAuth] = React.useState<AuthContextProps['data']>(defaultAuthState);
-    const [prePath, setPrePath] = React.useState<AuthContextProps['data']['prePath']>(defaultAuthState.prePath);
+    const [auth, setAuth] = React.useState<App.ModuleAuth.Hook.AuthContext['data']>(defaultAuthState);
+    const [prePath, setPrePath] = React.useState<App.ModuleAuth.Hook.AuthContext['data']['prePath']>(
+        defaultAuthState.prePath
+    );
 
-    const onChangeAuth = React.useCallback<AuthContextProps['method']['setAuth']>((data = defaultAuthState) => {
-        setAuth({ ...defaultAuthState, ...data });
-    }, []);
+    const onChangeAuth = React.useCallback<App.ModuleAuth.Hook.AuthContext['method']['setAuth']>(
+        (data = defaultAuthState) => {
+            setAuth({ ...defaultAuthState, ...data });
+        },
+        []
+    );
 
-    const store = React.useMemo<AuthContextProps>(() => {
+    const store = React.useMemo<App.ModuleAuth.Hook.AuthContext>(() => {
         return {
             data: {
                 isAuthentication: auth.isAuthentication,

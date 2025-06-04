@@ -71,10 +71,11 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
     }, []);
 
     const endAdornment = React.useMemo(() => {
+        const hasValue = Boolean(value);
         return (
             <InputAdornment
                 position="end"
-                className={clsx('cursor-pointer', { ['visible']: value }, { ['invisible']: !value })}
+                className={clsx('cursor-pointer', { ['visible']: hasValue }, { ['invisible']: !hasValue })}
                 onClick={onClear}
             >
                 <ClearIcon color="primary" />

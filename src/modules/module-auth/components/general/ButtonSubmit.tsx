@@ -12,10 +12,7 @@ import Button from '@mui/material/Button';
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** types */
-import type { AuthButtonSubmitProps } from '@module-auth/types';
-
-export default function ButtonSubmit(props: AuthButtonSubmitProps) {
+export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
     const { loading, type } = props;
 
     return (

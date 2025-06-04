@@ -10,19 +10,18 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 
-/** types */
-import type { ElementClickEvent, MenuBaseProps } from '@module-base/types';
-
-export default function MenuBase(props: MenuBaseProps) {
+export default function MenuBase(props: App.ModuleBase.Component.MenuBaseProps) {
     const { buttonChildren, menuChildren, buttonProps, tooltipProps, menuProps } = props;
 
     const menuId = React.useId();
     const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
     const open = Boolean(menuElem);
 
-    const openMenu = React.useCallback((event: ElementClickEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
+    const openMenu = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
 
-    const closeMenu = React.useCallback<NonNullable<NonNullable<MenuBaseProps['menuProps']>['onClose']>>((event, reason) => {
+    const closeMenu = React.useCallback<
+        NonNullable<NonNullable<App.ModuleBase.Component.MenuBaseProps['menuProps']>['onClose']>
+    >((event, reason) => {
         setMenuElem(null);
         menuProps?.onClose?.(event, reason);
     }, []);

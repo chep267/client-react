@@ -8,18 +8,15 @@
 import { OrderType } from '@module-base/constants/OrderType';
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
-/** types */
-import { TypeDataKey, TypeOrderType, TypeTableData } from '@module-base/types';
-
-export const sortTableData = <D extends TypeTableData>(payload: {
+export const sortTableData = <D extends App.ModuleBase.Component.TableData>(payload: {
     data?: Readonly<Array<D>>;
-    orderType: TypeOrderType;
-    orderBy: TypeDataKey<D>;
+    orderType: App.ModuleBase.Component.OrderType;
+    orderBy: App.ModuleBase.Component.DataKey<D>;
 }): Readonly<Array<D>> => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
     if (!data) return AppDefaultValue.emptyArray;
 
-    const parseValue = (item: any, key?: TypeDataKey<D>) => {
+    const parseValue = (item: any, key?: App.ModuleBase.Component.DataKey<D>) => {
         if (typeof item === 'number') return item;
         if (typeof item === 'string') {
             if (!isNaN(Number(item))) return Number(item);

@@ -14,7 +14,7 @@
 // import dayjs from 'dayjs';
 //
 // /** apis */
-// import { userFirebaseApi } from '@module-user/apis';
+// import { userApi } from '@module-user/apis';
 //
 // /** constants */
 // import { AppTimer } from '@module-base/constants/AppTimer';
@@ -35,7 +35,7 @@
 //     }
 //
 //     const uid = validateId(response.user.uid, 'uid');
-//     let user = await userFirebaseApi.get({ uid, timer: 0 });
+//     let user = await userApi.get({ uid, timer: 0 });
 //     if (!user) {
 //         user = {
 //             uid,
@@ -45,7 +45,7 @@
 //             photoURL: response.user.photoURL,
 //             phoneNumber: response.user.phoneNumber,
 //         };
-//         await userFirebaseApi.create({ user });
+//         await userApi.create({ user });
 //     }
 //     return {
 //         data: {
@@ -94,7 +94,7 @@
 //     }
 //
 //     const uid = validateId(currentUser.uid, 'uid');
-//     let user = await userFirebaseApi.get({ uid, timer: 0 });
+//     let user = await userApi.get({ uid, timer: 0 });
 //     if (!user) {
 //         user = {
 //             uid,
@@ -104,7 +104,7 @@
 //             photoURL: currentUser.photoURL,
 //             phoneNumber: currentUser.phoneNumber,
 //         };
-//         await userFirebaseApi.create({ user });
+//         await userApi.create({ user });
 //     }
 //     return {
 //         data: {

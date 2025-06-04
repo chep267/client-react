@@ -7,12 +7,9 @@
 /** constants */
 import { localeObject } from '@module-language/constants/localeObject';
 
-/** types */
-import type { TypeLocale, TypeMessages } from '@module-language/types';
+const messagesCache = {} as Record<App.ModuleLanguage.Data.Locale, App.ModuleLanguage.Data.Messages>;
 
-const messagesCache = {} as Record<TypeLocale, TypeMessages>;
-
-export async function getMessage(locale: TypeLocale): Promise<TypeMessages> {
+export async function getMessage(locale: App.ModuleLanguage.Data.Locale): Promise<App.ModuleLanguage.Data.Messages> {
     if (messagesCache[locale]) {
         return Promise.resolve(messagesCache[locale]);
     }

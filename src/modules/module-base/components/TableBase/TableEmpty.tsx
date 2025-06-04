@@ -13,10 +13,7 @@ import Typography from '@mui/material/Typography';
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
-/** types */
-import type { TableBaseProps } from '@module-base/types';
-
-function TableEmpty(props: Pick<TableBaseProps, 'emptyContent'>) {
+function TableEmpty(props: Pick<App.ModuleBase.Component.TableBaseProps, 'emptyContent'>) {
     const { emptyContent } = props;
     return (
         <Box className="absolute top-0 right-0 bottom-0 left-0 z-1 flex items-center justify-center">
