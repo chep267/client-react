@@ -56,16 +56,53 @@ class FileSizeChecker {
         return cleaned.trim().split(/\s+/).filter(Boolean).length;
     }
 
-    private async checkFile(filePath: string) {
+    private checkFileName(filePath: string): void {
+        const regexPascalCase = /^[A-Z][a-zA-Z0-9]*$/;
+        const regexCamelCase = /^[a-z][a-zA-Z0-9]*$/;
+        const hasPascalCase =
+            filePath.includes('/components/') ||
+            filePath.includes('/screens/') ||
+            filePath.includes('/constants/') ||
+            filePath.includes('/contexts/');
+        const hasCamelCase = !hasPascalCase;
+        const fileName = filePath
+            .split('/')
+            .pop()
+            .replace(/\.[^.]+$/, ''); // 'MyComponent' từ 'MyComponent.tsx'
+
+        if (hasPascalCase) {
+            const specialFileNames = ['index', 'main'];
+            if (!specialFileNames.includes(fileName) && !regexPascalCase.test(fileName)) {
+                this.print(this.colors.red, filePath);
+                console.log(`  1:1  warning  File name not in PascalCase: ${fileName}  rule/file-name-pascal-case\n`);
+            }
+            return;
+        }
+        if (hasCamelCase) {
+            if (!regexCamelCase.test(fileName)) {
+                this.print(this.colors.red, filePath);
+                console.log(`  1:1  warning  File name not in CamelCase: ${fileName}  rule/file-name-camel-case\n`);
+            }
+            return;
+        }
+    }
+
+    private async checkFileSize(filePath: string): Promise<void> {
         const content = await readFile(filePath, 'utf8');
         const lines = content.split('\n').length;
         const words = this.countWords(content);
-
         if (lines > this.maxLines || words > this.maxWords) {
-            const absPath = resolve(filePath);
-            this.print(this.colors.red, absPath);
+            this.print(this.colors.red, filePath);
             console.log(`  1:1  warning  File too large — ${lines} lines, ${words} words  rule/file-size\n`);
         }
+    }
+
+    private async checkFile(filePath: string) {
+        const absPath = resolve(filePath);
+        // 1. Check PascalCase, camelCase
+        this.checkFileName(absPath);
+        // 2. Check lines / words
+        this.checkFileSize(absPath).then();
     }
 
     public async run() {
@@ -74,7 +111,7 @@ class FileSizeChecker {
             const ext = extname(file);
             const inSvgFolder = file.includes('/svg/');
             const isDtsFile = file.endsWith('.d.ts');
-            return this.validExtensions.includes(ext) && !inSvgFolder && !isDtsFile;
+            return !inSvgFolder && !isDtsFile && this.validExtensions.includes(ext);
         });
 
         for (const file of codeFiles) {

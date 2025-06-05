@@ -9,9 +9,7 @@ import { StyledEngineProvider, createTheme, ThemeProvider as ThemeProviderMUI } 
 import CssBaseline from '@mui/material/CssBaseline';
 
 /** constants */
-import { breakpoints } from '@module-theme/constants/breakpoints';
-import { components } from '@module-theme/constants/components';
-// import { palette } from '@module-theme/constants/palette';
+import { breakpoints, components } from '@module-theme/constants/MuiCustom';
 
 /** types */
 import type { PropsWithChildren } from 'react';

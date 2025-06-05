@@ -13,7 +13,7 @@ import 'dayjs/locale/en';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 
 /** contexts */
 import { LanguageContext } from '@module-language/contexts/LanguageContext';
@@ -27,7 +27,7 @@ export default function LanguageProvider(props: App.ModuleLanguage.Component.Lan
 
     const [locale, setLocale] = React.useState<App.ModuleLanguage.Data.Locale>(() => {
         const localeCookie = Cookies.get(AppKey.locale) as App.ModuleLanguage.Data.Locale;
-        if (localeCookie && localeCookie in localeObject) {
+        if (localeCookie && localeCookie in LocaleObject) {
             return localeCookie;
         }
         return getDeviceLanguage();
@@ -55,7 +55,7 @@ export default function LanguageProvider(props: App.ModuleLanguage.Component.Lan
     }
     return (
         <LanguageContext.Provider value={store}>
-            <IntlProvider defaultLocale={localeObject.en} locale={locale} messages={messages}>
+            <IntlProvider defaultLocale={LocaleObject.en} locale={locale} messages={messages}>
                 {children}
             </IntlProvider>
         </LanguageContext.Provider>

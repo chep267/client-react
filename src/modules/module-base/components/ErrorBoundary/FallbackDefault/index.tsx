@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
-import { themeObject } from '@module-theme/constants/themeObject';
+import { ThemeObject } from '@module-theme/constants/ThemeObject';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { ParticleOptions } from '@module-base/constants/ParticleOptions';
 
@@ -27,7 +27,7 @@ export default function FallbackDefault(props: App.ModuleBase.Component.Fallback
     const { mode, systemMode } = useColorScheme();
 
     const options = React.useMemo(() => {
-        const value = systemMode || (mode === themeObject.light ? themeObject.light : themeObject.dark);
+        const value = systemMode || (mode === ThemeObject.light ? ThemeObject.light : ThemeObject.dark);
         return ParticleOptions(value);
     }, [mode]);
 

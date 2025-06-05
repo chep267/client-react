@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { localeObject } from '@module-language/constants/localeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
 
 const messagesCache = {} as Record<App.ModuleLanguage.Data.Locale, App.ModuleLanguage.Data.Messages>;
 
@@ -18,5 +18,5 @@ export async function getMessage(locale: App.ModuleLanguage.Data.Locale): Promis
         messagesCache[locale] = messages[locale];
         return Promise.resolve(messages[locale]);
     }
-    return Promise.resolve(messagesCache[localeObject.en]);
+    return Promise.resolve(messagesCache[LocaleObject.en]);
 }

@@ -22,8 +22,8 @@ import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
 import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
-import { localeObject } from '@module-language/constants/localeObject';
-import { themeObject } from '@module-theme/constants/themeObject';
+import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { ThemeObject } from '@module-theme/constants/ThemeObject';
 import { ThemeLanguage } from '@module-theme/constants/ThemeLanguage';
 import { LangLanguage } from '@module-language/constants/LangLanguage';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
@@ -92,13 +92,13 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
                     id: 'Theme-Dark',
                     title: <FormattedMessage id={ThemeLanguage.component.label.dark} />,
                     icon: <DarkModeIcon color="disabled" />,
-                    onClick: () => setMode(themeObject.dark),
+                    onClick: () => setMode(ThemeObject.dark),
                 },
                 {
                     id: 'Theme-Light',
                     title: <FormattedMessage id={ThemeLanguage.component.label.light} />,
                     icon: <LightModeIcon color="warning" />,
-                    onClick: () => setMode(themeObject.light),
+                    onClick: () => setMode(ThemeObject.light),
                 },
             ],
         },
@@ -112,13 +112,13 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
                     id: 'Language-Vi',
                     title: <FormattedMessage id={LangLanguage.component.label.vi} />,
                     icon: <span className="scale-125 text-black">🇻🇳</span>,
-                    onClick: () => hookLanguage.method.setLanguage(localeObject.vi),
+                    onClick: () => hookLanguage.method.setLanguage(LocaleObject.vi),
                 },
                 {
                     id: 'Language-En',
                     title: <FormattedMessage id={LangLanguage.component.label.en} />,
                     icon: <span className="scale-125 text-black">🇬🇧</span>,
-                    onClick: () => hookLanguage.method.setLanguage(localeObject.en),
+                    onClick: () => hookLanguage.method.setLanguage(LocaleObject.en),
                 },
             ],
         },
