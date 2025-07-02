@@ -11,7 +11,7 @@ import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
 import { ParticleOptions } from '@module-base/constants/ParticleOptions';
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';

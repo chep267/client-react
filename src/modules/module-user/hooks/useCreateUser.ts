@@ -13,23 +13,23 @@ import { userApi } from '@module-user/apis';
 /** utils */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
-/** hooks */
-import { useNotify } from '@module-base/hooks/useNotify';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 export function useCreateUser() {
-    const NOTIFY = useNotify();
+    const notifyAction = useNotifyStore(({ action }) => action);
 
     return useMutation({
         mutationFn: userApi.create,
         onSuccess: () => {
-            NOTIFY.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'success',
                 message: 'ok',
             });
         },
         onError: () => {
-            NOTIFY.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'error',
                 messageIntl: BaseLanguage.component.label.error.server,

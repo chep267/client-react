@@ -19,18 +19,15 @@ import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
-/** hooks */
-import { useSider } from '@module-base/hooks/useSider';
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** components */
 import ListApp from './ListApp';
 
 const AppSider = React.memo(function AppSider() {
-    const hookSider = useSider();
-    const {
-        data: { siderState },
-        method: { toggleSider },
-    } = hookSider;
+    const sider = useSettingStore((store) => store.data.sider);
+    const settingAction = useSettingStore((store) => store.action);
 
     const siderStyles = React.useMemo(
         () => ({
@@ -63,28 +60,32 @@ const AppSider = React.memo(function AppSider() {
     );
 
     const tooltipId =
-        siderState === AppSiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
+        sider === AppSiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
+
+    const onChangeSider = () => {
+        settingAction.changeSider(sider === AppSiderState.expand ? AppSiderState.collapse : AppSiderState.expand);
+    };
 
     return (
         <Drawer
             variant="permanent"
-            open={siderState !== AppSiderState.hidden}
+            open={sider !== AppSiderState.hidden}
             className="relative h-full overflow-x-hidden transition-[width]"
-            sx={siderStyles.drawer[siderState]}
+            sx={siderStyles.drawer[sider]}
             slotProps={{
                 paper: {
                     className: 'left-0 transition-[width] z-1 overflow-x-hidden',
-                    sx: siderStyles.paper[siderState],
+                    sx: siderStyles.paper[sider],
                 },
             }}
         >
             <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
-                <Button className="w-full min-w-14" disabled={siderState === AppSiderState.force} onClick={toggleSider}>
-                    {siderState === AppSiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+                <Button className="w-full min-w-14" disabled={sider === AppSiderState.force} onClick={onChangeSider}>
+                    {sider === AppSiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
                 </Button>
             </Tooltip>
             <Divider />
-            <ListApp hasTooltip={siderState === AppSiderState.collapse} />
+            <ListApp hasTooltip={sider === AppSiderState.collapse} />
         </Drawer>
     );
 });

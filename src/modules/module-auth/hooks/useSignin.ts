@@ -16,15 +16,17 @@ import { AppKey } from '@module-base/constants/AppKey';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks/useNotify';
 import { useAuth } from '@module-auth/hooks/useAuth';
+
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 /** types */
 import type { AxiosError } from 'axios';
 
 export function useSignin() {
     const hookAuth = useAuth();
-    const hookNotify = useNotify();
+    const notifyAction = useNotifyStore(({ action }) => action);
 
     return useMutation({
         mutationFn: authApi.signin,
@@ -45,7 +47,7 @@ export function useSignin() {
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            hookNotify.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'error',
                 messageIntl,

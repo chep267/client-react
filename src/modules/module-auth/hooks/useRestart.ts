@@ -20,15 +20,17 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { delay } from '@module-base/utils/delay';
 
 /** hooks */
-import { useNotify } from '@module-base/hooks/useNotify';
 import { useAuth } from '@module-auth/hooks/useAuth';
+
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 /** types */
 import type { AxiosError } from 'axios';
 
 export function useRestart() {
     const hookAuth = useAuth();
-    const hookNotify = useNotify();
+    const notifyAction = useNotifyStore(({ action }) => action);
 
     const hookRestart = useMutation({
         mutationFn: authApi.restart,
@@ -49,7 +51,7 @@ export function useRestart() {
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            hookNotify.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'error',
                 messageIntl,

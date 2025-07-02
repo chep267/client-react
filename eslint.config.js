@@ -11,8 +11,8 @@ import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
 import pluginPrettier from 'eslint-plugin-prettier';
 import pluginQuery from '@tanstack/eslint-plugin-query';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
+import pluginReactHooks from 'eslint-plugin-react-hooks';
+import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 export default tsEslint.config({
     ignores: ['dist/*', 'dist/assets/*', 'node_modules/*'],
@@ -21,8 +21,8 @@ export default tsEslint.config({
     plugins: {
         react: pluginReact,
         prettier: pluginPrettier,
-        'react-hooks': reactHooks,
-        'react-refresh': reactRefresh,
+        'react-hooks': pluginReactHooks,
+        'react-refresh': pluginReactRefresh,
         '@tanstack/query': pluginQuery,
     },
     languageOptions: {
@@ -33,12 +33,12 @@ export default tsEslint.config({
         },
     },
     rules: {
-        ...reactHooks.configs.recommended.rules,
+        ...pluginReactHooks.configs.recommended.rules,
         'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-        'react/jsx-uses-react': 'off', // Tắt rule yêu cầu import React trong file jsx
+        'react/jsx-uses-react': 'off',
         'react/react-in-jsx-scope': 'off',
-        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }], // Cảnh báo biến không dùng
-        'react/jsx-no-target-blank': 'warn', // Cảnh báo khi thẻ <a target='_blank'> mà không có rel="noreferrer"
+        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+        'react/jsx-no-target-blank': 'warn',
         '@typescript-eslint/ban-ts-ignore': 'off',
         '@typescript-eslint/ban-ts-comment': 'off',
         'import/no-named-as-default': 'off',
@@ -54,7 +54,6 @@ export default tsEslint.config({
         '@tanstack/query/no-rest-destructuring': 'warn',
         '@tanstack/query/stable-query-client': 'error',
 
-        // Cảnh báo khi import sai
         'no-restricted-imports': [
             'error',
             {

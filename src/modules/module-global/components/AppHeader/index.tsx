@@ -14,6 +14,10 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
+
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** components */
 import AppInfo from '@module-global/components/AppHeader/AppInfo';
@@ -22,7 +26,8 @@ import AppButtonDev from '@module-global/components/AppHeader/AppButtonDev';
 import ButtonSetting from '@module-global/components/AppHeader/ButtonSetting';
 
 const AppHeader = React.memo(function AppHeader() {
-    const appbarStyle = React.useRef({ height: AppScreenSize.HeaderHeight }).current;
+    const appbarStyle = React.useRef({ height: AppScreenSize.HeaderHeight });
+    const theme = useSettingStore((store) => store.data.theme);
 
     return (
         <AppBar position="fixed">
@@ -30,9 +35,10 @@ const AppHeader = React.memo(function AppHeader() {
                 className={clsx(
                     'flex w-full flex-row items-center justify-between px-4 py-0',
                     'text-tw-primary',
-                    'dark:text-white'
+                    'dark:text-white',
+                    { ['bg-white']: theme === ThemeObject.light }
                 )}
-                sx={appbarStyle}
+                sx={appbarStyle.current}
             >
                 <Box className="flex items-center gap-5">
                     <AppInfo />

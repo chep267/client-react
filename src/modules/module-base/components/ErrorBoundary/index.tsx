@@ -7,12 +7,9 @@
 /** libs */
 import * as React from 'react';
 
-/** types */
-import type { ErrorInfo } from 'react';
-
 /** lazy components */
 const FallbackDefault = React.lazy(() => import('@module-base/components/ErrorBoundary/FallbackDefault'));
-const NotifyBoundary = React.lazy(() => import('@module-base/components/NotifyBoundary'));
+const NotifyBoundary = React.lazy(() => import('@module-base/components/ErrorBoundary/NotifyBoundary'));
 
 class ErrorBoundary extends React.Component<
     App.ModuleBase.Component.ErrorBoundaryProps,
@@ -28,7 +25,7 @@ class ErrorBoundary extends React.Component<
         return { hasError: true };
     }
 
-    componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+    componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
         // You can also log the error to an error reporting service
         // logErrorToMyService(error, errorInfo);
         console.log('ErrorBoundary: ', error, '\n--\n', errorInfo, '\n--');

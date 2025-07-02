@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
@@ -14,18 +13,22 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
+import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
-/** utils */
-import { useNotify } from '@module-base/hooks/useNotify';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
-/** types */
-import type { SnackbarOrigin } from '@mui/material/Snackbar';
-
-const NotifyBoundary = React.memo<App.ModuleBase.Component.NotifyProviderProps>(function NotifyBoundary(props) {
-    const hookNotify = useNotify();
-    const { open, message, messageIntl, color, duration = AppTimer.notifyDuration, top = 70 } = hookNotify.data;
-
-    const anchorOrigin = React.useRef<SnackbarOrigin>({ vertical: 'top', horizontal: 'right' }).current;
+export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBoundaryProps) {
+    const notifyStore = useNotifyStore();
+    const {
+        open,
+        message,
+        messageIntl,
+        color,
+        anchorOrigin,
+        duration = AppTimer.notifyDuration,
+        top = AppScreenSize.HeaderHeight + 6,
+    } = notifyStore.data;
 
     return (
         <Snackbar
@@ -34,12 +37,12 @@ const NotifyBoundary = React.memo<App.ModuleBase.Component.NotifyProviderProps>(
             style={{ top }}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
-            onClose={hookNotify.method.closeNotify}
+            onClose={notifyStore.action.closeNotify}
             {...props}
         >
             <Alert
                 className={clsx('w-full', { ['hidden']: !open })}
-                onClose={hookNotify.method.closeNotify}
+                onClose={notifyStore.action.closeNotify}
                 severity={color}
                 elevation={6}
                 variant="filled"
@@ -49,6 +52,4 @@ const NotifyBoundary = React.memo<App.ModuleBase.Component.NotifyProviderProps>(
             </Alert>
         </Snackbar>
     );
-});
-
-export default NotifyBoundary;
+}

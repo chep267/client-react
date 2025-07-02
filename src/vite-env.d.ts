@@ -13,8 +13,8 @@ interface ImportMetaEnv {
     readonly VITE_APP_API_HOST: string;
     readonly VITE_APP_CLIENT_HOST: string;
     readonly VITE_APP_CLIENT_PORT: string;
-    readonly VITE_APP_CLIENT_LOCALE: App.ModuleLanguage.Data.Locale;
-    readonly VITE_APP_CLIENT_THEME: App.ModuleTheme.Data.Theme;
+    readonly VITE_APP_CLIENT_LOCALE: App.ModuleBase.Store.Locale;
+    readonly VITE_APP_CLIENT_THEME: App.ModuleBase.Store.Theme;
 }
 
 declare module '*.svg' {

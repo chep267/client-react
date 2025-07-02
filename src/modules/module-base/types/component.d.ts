@@ -43,12 +43,6 @@ export interface TypeFallbackDefaultProps {
     isAutoReload?: boolean;
 }
 
-/** Sider */
-export type TypeSiderProviderProps = PropsWithChildren;
-
-/** Notify */
-export type TypeNotifyProviderProps = PropsWithChildren;
-
 /** IconBase */
 type TypeIconBase = 'appLogo' | 'error' | 'notFound';
 export type TypeIconSVGProps = SVGProps<SVGSVGElement>;

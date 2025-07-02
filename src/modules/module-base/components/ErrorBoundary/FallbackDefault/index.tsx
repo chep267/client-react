@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 import { ParticleOptions } from '@module-base/constants/ParticleOptions';
 

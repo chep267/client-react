@@ -13,19 +13,19 @@ import { authApi } from '@module-auth/apis/authApi';
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-/** hooks */
-import { useNotify } from '@module-base/hooks/useNotify';
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 /** types */
 import type { AxiosError } from 'axios';
 
 export function useRegister() {
-    const hookNotify = useNotify();
+    const notifyAction = useNotifyStore(({ action }) => action);
 
     return useMutation({
         mutationFn: authApi.register,
         onSuccess: () => {
-            hookNotify.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'success',
                 messageIntl: AuthLanguage.notify.register.success,
@@ -33,7 +33,7 @@ export function useRegister() {
         },
         onError: (error: AxiosError) => {
             const code = Number(error?.response?.status);
-            let messageIntl;
+            let messageIntl: string;
             switch (true) {
                 case code >= 400 && code < 500:
                     messageIntl = AuthLanguage.notify.register.error;
@@ -41,7 +41,7 @@ export function useRegister() {
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
             }
-            hookNotify.method.toggleNotify({
+            notifyAction.openNotify({
                 open: true,
                 color: 'error',
                 messageIntl,

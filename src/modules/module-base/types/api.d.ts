@@ -4,9 +4,7 @@
  *
  */
 
-type TypeDelayApi = { timer?: number };
-
-export type TypePayloadApi<Data = unknown> = TypeDelayApi & Data;
+export type TypePayloadApi<Data = unknown> = { timer?: number } & Data;
 
 export type TypeResponseApi<Data = unknown> = {
     message: string;

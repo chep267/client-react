@@ -12,50 +12,33 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 
-/** contexts */
-import { defaultSiderState, SiderContext } from '@module-base/contexts/SiderContext';
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
-export default function SiderProvider(props: App.ModuleBase.Component.SiderProviderProps) {
+export default function SiderProvider(props: React.PropsWithChildren) {
     const { children } = props;
 
-    const isCollapse = useMediaQuery(`(max-width:${AppScreenSize.AppbarCollapseBreakpoint}px)`);
+    const isForce = useMediaQuery(`(max-width:${AppScreenSize.AppbarCollapseBreakpoint}px)`);
     const isHidden = useMediaQuery(`(max-width:${AppScreenSize.AppbarHiddenBreakpoint}px)`);
-
-    const lastState = React.useRef(
-        defaultSiderState.siderState !== AppSiderState.expand ? AppSiderState.collapse : AppSiderState.expand
-    );
-    const [siderState, setSiderState] = React.useState(defaultSiderState.siderState);
+    const sider = useSettingStore((store) => store.data.sider);
+    const settingAction = useSettingStore((store) => store.action);
+    const lastState = React.useRef<App.ModuleBase.Store.SiderState>(sider);
 
     React.useEffect(() => {
-        setSiderState(() => {
-            switch (true) {
-                case isHidden:
-                    return AppSiderState.hidden;
-                case isCollapse:
-                    return AppSiderState.force;
-                default:
-                    return lastState.current;
-            }
-        });
-    }, [isCollapse, isHidden]);
+        if (sider === AppSiderState.expand || sider === AppSiderState.collapse) {
+            lastState.current = sider;
+        }
+        switch (true) {
+            case isHidden:
+                settingAction.changeSider(AppSiderState.hidden);
+                break;
+            case isForce:
+                settingAction.changeSider(AppSiderState.force);
+                break;
+            default:
+                settingAction.changeSider(lastState.current);
+        }
+    }, [isForce, isHidden]);
 
-    const toggleSider = React.useCallback(() => {
-        setSiderState((prevState) => {
-            lastState.current = prevState === AppSiderState.expand ? AppSiderState.collapse : AppSiderState.expand;
-            return lastState.current;
-        });
-    }, []);
-
-    const store = React.useMemo<App.ModuleBase.Hook.SiderContext>(() => {
-        return {
-            data: {
-                siderState,
-            },
-            method: {
-                toggleSider,
-            },
-        };
-    }, [siderState]);
-
-    return <SiderContext.Provider value={store}>{children}</SiderContext.Provider>;
+    return children;
 }

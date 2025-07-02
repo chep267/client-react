@@ -11,9 +11,9 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@root/utils/queryClient';
 
 /** providers */
-import NotifyProvider from '@module-base/components/NotifyProvider';
-import ThemeProvider from '@module-theme/components/ThemeProvider';
-import LanguageProvider from '@module-language/components/LanguageProvider';
+import ErrorBoundary from '@module-base/components/ErrorBoundary';
+import ThemeProvider from '@module-base/components/ThemeProvider';
+import LanguageProvider from '@module-base/components/LanguageProvider';
 import AuthProvider from '@module-auth/components/AuthProvider';
 import SiderProvider from '@module-base/components/SiderProvider';
 
@@ -26,17 +26,17 @@ import '@root/components/main.css';
 export default function App() {
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider>
-                <LanguageProvider>
-                    <NotifyProvider>
+            <LanguageProvider>
+                <ThemeProvider>
+                    <ErrorBoundary>
                         <AuthProvider>
                             <SiderProvider>
                                 <MainScreen />
                             </SiderProvider>
                         </AuthProvider>
-                    </NotifyProvider>
-                </LanguageProvider>
-            </ThemeProvider>
+                    </ErrorBoundary>
+                </ThemeProvider>
+            </LanguageProvider>
         </QueryClientProvider>
     );
 }

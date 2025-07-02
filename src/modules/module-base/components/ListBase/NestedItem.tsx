@@ -46,7 +46,9 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
     const renderCollapseList = React.useMemo(() => {
         return (
             <List disablePadding>
-                {subMenu?.map((value) => <NestedItem key={value.id} {...value} subIndex={subIndex + 1} />)}
+                {subMenu?.map((value) => (
+                    <NestedItem key={value.id} {...value} subIndex={subIndex + 1} />
+                ))}
             </List>
         );
     }, [subMenu]);

@@ -5,11 +5,11 @@
  */
 
 /** constants */
-import { LocaleObject } from '@module-language/constants/LocaleObject';
+import { LocaleObject } from '@module-base/constants/LocaleObject';
 
-const messagesCache = {} as Record<App.ModuleLanguage.Data.Locale, App.ModuleLanguage.Data.Messages>;
+const messagesCache = {} as Record<App.ModuleBase.Store.Locale, App.ModuleBase.Store.LanguageMessages>;
 
-export async function getMessage(locale: App.ModuleLanguage.Data.Locale): Promise<App.ModuleLanguage.Data.Messages> {
+export async function getMessage(locale: App.ModuleBase.Store.Locale): Promise<App.ModuleBase.Store.LanguageMessages> {
     if (messagesCache[locale]) {
         return Promise.resolve(messagesCache[locale]);
     }

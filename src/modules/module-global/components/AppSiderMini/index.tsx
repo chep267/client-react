@@ -23,13 +23,13 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { AppRouterPath } from '@module-base/constants/AppRouterPath';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
-/** hooks */
-import { useSider } from '@module-base/hooks/useSider';
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 const AppSiderMini = React.memo(function AppSiderMini() {
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    const hookSider = useSider();
+    const sider = useSettingStore((store) => store.data.sider);
 
     const apps = React.useMemo(() => {
         return [
@@ -68,7 +68,7 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar
             position="sticky"
-            className={clsx('z-1', { ['hidden']: hookSider.data.siderState !== AppSiderState.hidden })}
+            className={clsx('z-1', { ['hidden']: sider !== AppSiderState.hidden })}
             sx={{ top: `${AppScreenSize.HeaderHeight}px` }}
         >
             <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">

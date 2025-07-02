@@ -4,7 +4,7 @@
  *
  */
 
-export const AppSiderState: Readonly<{ [Key in App.ModuleBase.Hook.SiderState]: Key }> = {
+export const AppSiderState: Readonly<{ [Key in App.ModuleBase.Store.SiderState]: Key }> = {
     collapse: 'collapse',
     expand: 'expand',
     hidden: 'hidden',

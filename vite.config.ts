@@ -7,11 +7,11 @@
 /** libs */
 import { resolve } from 'node:path';
 import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import basicSsl from '@vitejs/plugin-basic-ssl';
-import { visualizer } from 'rollup-plugin-visualizer';
-import tailwindcss from '@tailwindcss/vite';
-import viteCompression from 'vite-plugin-compression';
+import pluginReact from '@vitejs/plugin-react-swc';
+import pluginBasicSsl from '@vitejs/plugin-basic-ssl';
+import pluginTailwindcss from '@tailwindcss/vite';
+import pluginViteCompression from 'vite-plugin-compression';
+import { visualizer as pluginVisualizer } from 'rollup-plugin-visualizer';
 
 /** module path */
 import tsPaths from './tsconfig.app.json' with { type: 'json' };
@@ -39,19 +39,19 @@ export default ({ mode }: ConfigEnv) => {
     };
     return defineConfig({
         plugins: [
-            react(),
-            basicSsl(),
-            tailwindcss(),
+            pluginReact(),
+            pluginBasicSsl(),
+            pluginTailwindcss(),
             // Gzip compression for production builds
             config.isGzip
-                ? viteCompression({
+                ? pluginViteCompression({
                       algorithm: 'gzip', // Use gzip compression
                       ext: '.gz', // Output extension
                       threshold: 10240, // Only compress files larger than 10KB
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            visualizer({ filename: 'stats.html', open: false }),
+            pluginVisualizer({ filename: 'stats.html', open: false }),
         ],
         resolve: {
             alias: resolveAlias(),

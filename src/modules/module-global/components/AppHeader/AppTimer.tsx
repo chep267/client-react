@@ -5,17 +5,16 @@
  */
 
 /** libs */
+import clsx from 'clsx';
 import dayjs from 'dayjs';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import clsx from 'clsx';
 
-/** hooks */
-import { useLanguage } from '@module-language/hooks/useLanguage';
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 function Timer() {
-    const hookLanguage = useLanguage();
-    const { locale } = hookLanguage.data;
+    const locale = useSettingStore((store) => store.data.locale);
     return dayjs().locale(locale).format('dddd, DD/MM/YYYY');
 }
 

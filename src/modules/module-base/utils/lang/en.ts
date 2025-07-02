@@ -17,4 +17,11 @@ export const en = {
     [BaseLanguage.component.label.error.fallback.autoReload]: '( Auto reload after {second} seconds )',
     [BaseLanguage.component.button.retry]: 'Retry',
     [BaseLanguage.component.table.empty]: 'No data!',
+
+    [BaseLanguage.component.label.theme.router]: 'Theme',
+    [BaseLanguage.component.label.theme.dark]: 'Dark',
+    [BaseLanguage.component.label.theme.light]: 'Light',
+    [BaseLanguage.component.label.language.router]: 'Language',
+    [BaseLanguage.component.label.language.vi]: 'Vietnamese',
+    [BaseLanguage.component.label.language.en]: 'English',
 } as const;

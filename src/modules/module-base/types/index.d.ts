@@ -9,6 +9,7 @@ import type * as TypeData from './data.d';
 import type * as TypeApi from './api.d';
 import type * as TypeHook from './hook.d';
 import type * as TypeComponent from './component.d';
+import type * as TypeStore from '@module-base/types/store';
 
 declare global {
     namespace App {
@@ -24,12 +25,16 @@ declare global {
                 type Response<Data = unknown> = TypeApi.TypeResponseApi<Data>;
             }
             namespace Hook {
-                type Notify = TypeHook.TypeNotify;
-                type NotifyContext = TypeHook.TypeNotifyContext;
-                type SiderState = TypeHook.TypeSiderState;
-                type SiderContext = TypeHook.TypeSiderContext;
                 type UseCountdownProps = TypeHook.TypeUseCountdownProps;
                 type UseListSearchProps = TypeHook.TypeUseListSearchProps;
+            }
+            namespace Store {
+                type Theme = TypeStore.TypeTheme;
+                type Locale = TypeStore.TypeLocale;
+                type LanguageMessages = TypeStore.TypeLanguageMessages;
+                type SiderState = TypeStore.TypeSiderState;
+                type NotifyStore = TypeStore.TypeNotifyStore;
+                type SettingStore = TypeStore.TypeSettingStore;
             }
             namespace Component {
                 type InputElement = TypeComponent.TypeInputElem;
@@ -37,8 +42,6 @@ declare global {
                 type ErrorBoundaryStates = TypeComponent.TypeErrorBoundaryStates;
                 type FallbackDefaultProps = TypeComponent.TypeFallbackDefaultProps;
 
-                type SiderProviderProps = TypeComponent.TypeSiderProviderProps;
-                type NotifyProviderProps = TypeComponent.TypeNotifyProviderProps;
                 type NotifyBoundaryProps = TypeComponent.TypeNotifyBoundaryProps;
 
                 type IconBaseProps = TypeComponent.TypeIconBaseProps;

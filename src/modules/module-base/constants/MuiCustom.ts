@@ -5,7 +5,7 @@
  */
 
 /** constants */
-import { ThemeObject } from '@module-theme/constants/ThemeObject';
+import { ThemeObject } from '@module-base/constants/ThemeObject';
 
 /** types */
 import type { Theme } from '@mui/material/styles';
