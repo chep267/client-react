@@ -23,13 +23,14 @@ import { useNotifyStore } from '@module-base/stores/useNotifyStore';
 
 /** types */
 import type { AxiosError } from 'axios';
+import { authServices } from '@module-auth/services';
 
 export function useSignin() {
     const hookAuth = useAuth();
     const notifyAction = useNotifyStore(({ action }) => action);
 
     return useMutation({
-        mutationFn: authApi.signin,
+        mutationFn: authServices.,
         onSuccess: async (response: App.ModuleAuth.Api.Signin['Response']) => {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);

@@ -5,9 +5,10 @@
  */
 
 /** types */
-import type * as TypeApi from './api.d';
-import type * as TypeHook from './hook.d';
-import type * as TypeComponent from './component.d';
+import type * as TypeApi from '@module-auth/types/api.d';
+import type * as TypeHook from '@module-auth/types/hook.d';
+import type * as TypeComponent from '@module-auth/types/component.d';
+import type * as TypeStore from '@module-auth/types/store.d';
 
 declare global {
     namespace App.ModuleAuth {
@@ -20,6 +21,9 @@ declare global {
         }
         namespace Hook {
             type AuthContext = TypeHook.TypeAuthContext;
+        }
+        namespace Store {
+            type AuthStore = TypeStore.TypeAuthStore;
         }
         namespace Component {
             type AuthProviderProps = TypeComponent.TypeAuthProviderProps;

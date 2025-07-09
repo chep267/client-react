@@ -1,0 +1,52 @@
+/**
+ *
+ * @author dongntd267@gmail.com
+ *
+ */
+
+/** apis */
+import { axiosClient } from '@module-base/apis/baseApi';
+
+/** constants */
+import { AppTimer } from '@module-base/constants/AppTimer';
+
+/** utils */
+import { delay as funcDelay } from '@module-base/utils/delay';
+
+/** types */
+import type { AxiosResponse, AxiosRequestConfig } from 'axios';
+
+export class BaseServices {
+    private readonly url: string;
+    private readonly delay: number;
+
+    constructor(url = '', delay = AppTimer.delay) {
+        this.url = url;
+        this.delay = delay;
+    }
+
+    public withDelay = async <Data = any>(promise: Promise<Data>, delay = this.delay): Promise<Data> => {
+        const [res] = await Promise.all([promise, funcDelay(delay)]);
+        return res;
+    };
+
+    public get = async <Data = any>(configs?: AxiosRequestConfig) => {
+        return axiosClient.get<Data, AxiosResponse<Data>>(this.url, configs);
+    };
+
+    public post = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.post<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    };
+
+    public put = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.put<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    };
+
+    public patch = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.patch<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    };
+
+    public delete = <Data>(configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.delete<Data>(this.url, configs);
+    };
+}

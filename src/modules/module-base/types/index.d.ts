@@ -5,11 +5,11 @@
  */
 
 /** types */
-import type * as TypeData from './data.d';
-import type * as TypeApi from './api.d';
-import type * as TypeHook from './hook.d';
-import type * as TypeComponent from './component.d';
-import type * as TypeStore from '@module-base/types/store';
+import type * as TypeData from '@module-base/types/data.d';
+import type * as TypeApi from '@module-base/types/api.d';
+import type * as TypeHook from '@module-base/types/hook.d';
+import type * as TypeComponent from '@module-base/types/component.d';
+import type * as TypeStore from '@module-base/types/store.d';
 
 declare global {
     namespace App {

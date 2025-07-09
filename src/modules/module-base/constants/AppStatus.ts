@@ -14,5 +14,6 @@ export const ApiMethod = {
     get: 'get',
     post: 'post',
     push: 'push',
+    patch: 'patch',
     delete: 'delete',
 } as const;

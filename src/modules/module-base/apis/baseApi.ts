@@ -20,7 +20,7 @@ import { delay } from '@module-base/utils/delay';
 import type { AxiosError, AxiosRequestConfig } from 'axios';
 
 /** for default api */
-const axiosClient = axios.create({
+export const axiosClient = axios.create({
     baseURL: AppEnv.apiHost,
     headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,9 @@ axiosClient.interceptors.response.use(
     }
 );
 
-export const baseApi = async <Res>(options: AxiosRequestConfig, isCDN?: boolean) => {
-    const client = isCDN ? axiosClientCDN : axiosClient;
-    return client<any, Res, any>(options);
+export const baseApi = async <Res>(options: AxiosRequestConfig) => {
+    return axiosClient<any, Res, any>(options);
+};
+export const fileApi = async <Res>(options: AxiosRequestConfig) => {
+    return axiosClientCDN<any, Res, any>(options);
 };
