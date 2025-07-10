@@ -67,9 +67,7 @@ export type TypeInputSearchProps<Variant extends TextFieldProps['variant'] = 'ou
 };
 
 /** PasswordField */
-export type TypePasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant> & {
-    setFocus?(): void;
-};
+export type TypePasswordFieldProps<Variant extends TextFieldProps['variant'] = 'outlined'> = TextFieldProps<Variant>;
 
 /** MenuBase */
 export interface TypeMenuBaseProps {

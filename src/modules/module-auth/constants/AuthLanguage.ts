@@ -22,7 +22,7 @@ export const AuthLanguage = {
             register: 'module.auth.component.title.register',
             recover: 'module.auth.component.title.recover',
             verifyOTP: 'module.auth.component.title.verifyOTP',
-            signOut: 'module.auth.component.title.signOut',
+            signout: 'module.auth.component.title.signout',
         },
     },
     status: {

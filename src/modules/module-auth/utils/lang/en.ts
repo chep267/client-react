@@ -13,7 +13,7 @@ export const en = {
     [AuthLanguage.component.title.register]: 'Register',
     [AuthLanguage.component.title.recover]: 'Recover',
     [AuthLanguage.component.title.verifyOTP]: 'Verify code',
-    [AuthLanguage.component.title.signOut]: 'Sign out',
+    [AuthLanguage.component.title.signout]: 'Sign out',
 
     // label
     [AuthLanguage.component.label.email]: 'Email',

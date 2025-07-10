@@ -16,5 +16,5 @@ export const vi = {
     [GlobalLanguage.component.label.game]: 'Trò chơi',
     [GlobalLanguage.component.label.setting]: 'Cài đặt',
     [GlobalLanguage.component.label.otherSetting]: 'Cài đặt khác',
-    [GlobalLanguage.component.label.signOut]: 'Đăng xuất',
+    [GlobalLanguage.component.label.signout]: 'Đăng xuất',
 } as const;

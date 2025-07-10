@@ -6,18 +6,23 @@
 
 /** libs */
 import * as React from 'react';
+import Cookie from 'js-cookie';
+import { HttpStatusCode } from 'axios';
+import clsx from 'clsx';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Cookie from 'js-cookie';
-import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useSignin } from '@module-auth/hooks/useSignin';
+import { useSignin } from '@module-auth/hooks/useAuth';
 
 /** components */
 import FieldEmail from '@module-auth/components/general/FieldEmail';
@@ -39,12 +44,25 @@ export default function SigninForm() {
         email: 'email',
         password: 'password',
     }).current;
+    const schema = React.useRef(
+        z.object({
+            [FormFieldsName.email]: z
+                .string()
+                .nonempty(AuthLanguage.status.email.empty)
+                .check(z.email(AuthLanguage.status.email.invalid)),
+            [FormFieldsName.password]: z
+                .string()
+                .nonempty(AuthLanguage.status.password.empty)
+                .regex(AppRegex.password, AuthLanguage.status.password.invalid),
+        })
+    );
 
     const hookSignin = useSignin();
     const {
         handleSubmit,
         control,
         formState: { errors },
+        watch,
         clearErrors,
         setFocus,
         setError,
@@ -55,7 +73,13 @@ export default function SigninForm() {
         },
         mode: 'onSubmit',
         reValidateMode: 'onSubmit',
+        resolver: zodResolver(schema.current),
     });
+    const [email, password] = watch([FormFieldsName.email, FormFieldsName.password]);
+
+    React.useEffect(() => {
+        clearErrors([FormFieldsName.email, FormFieldsName.password]);
+    }, [email, password]);
 
     const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
         hookSignin.mutate(data, {
@@ -63,7 +87,7 @@ export default function SigninForm() {
                 const code = Number(error?.response?.status);
                 let messageIntl: string;
                 switch (true) {
-                    case code >= 400 && code < 500:
+                    case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
                         messageIntl = AuthLanguage.notify.signin.error;
                         break;
                     default:
@@ -88,16 +112,15 @@ export default function SigninForm() {
                 name={FormFieldsName.email}
                 control={control}
                 error={Boolean(errors.email)}
-                errorMessage={errors.email?.message}
-                clearErrors={clearErrors}
+                label={<FormattedMessage id={AuthLanguage.component.label.email} />}
+                helperText={errors.email?.message ? <FormattedMessage id={errors.email.message} /> : undefined}
             />
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
                 error={Boolean(errors.password)}
-                errorMessage={errors.password?.message}
-                clearErrors={clearErrors}
-                setFocus={setFocus}
+                label={<FormattedMessage id={AuthLanguage.component.label.password} />}
+                helperText={errors.password?.message ? <FormattedMessage id={errors.password.message} /> : undefined}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs />

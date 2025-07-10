@@ -10,12 +10,13 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
+import { HttpStatusCode } from 'axios';
 
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useRegister } from '@module-auth/hooks/useRegister';
+import { useRegister } from '@module-auth/hooks/useAuth';
 
 /** components */
 import FieldEmail from '@module-auth/components/general/FieldEmail';
@@ -69,7 +70,7 @@ export default function RegisterForm() {
                 const code = Number(error?.response?.status);
                 let messageIntl: string;
                 switch (true) {
-                    case code >= 400 && code < 500:
+                    case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
                         messageIntl = AuthLanguage.notify.register.error;
                         break;
                     default:

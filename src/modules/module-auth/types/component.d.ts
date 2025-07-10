@@ -5,10 +5,8 @@
  */
 
 /** types */
-import type { PropsWithChildren } from 'react';
-import type { Control, FieldPath, FieldValues, UseFormSetFocus, UseFormReturn } from 'react-hook-form';
-
-export type TypeAuthProviderProps = PropsWithChildren;
+import type { Control, FieldPath, FieldValues } from 'react-hook-form';
+import type { TextFieldProps } from '@mui/material/TextField';
 
 export type TypeAuthBreadcrumbsItem = {
     title: string;
@@ -22,20 +20,7 @@ export type TypeAuthButtonSubmitProps = {
     type: 'signin' | 'register' | 'recover';
 };
 
-export type TypeFieldEmailProps<T extends FieldValues> = {
+export interface TypeFormTextFieldProps<T extends FieldValues> extends Omit<TextFieldProps<'outlined'>, 'variant'> {
     name: FieldPath<T>;
     control: Control<T>;
-    error?: boolean;
-    errorMessage?: string;
-    clearErrors: UseFormReturn<T>['clearErrors'];
-};
-
-export type TypeFieldPasswordProps<T extends FieldValues> = {
-    name: FieldPath<T>;
-    control: Control<T>;
-    error?: boolean;
-    errorMessage?: string;
-    setFocus: UseFormSetFocus<T>;
-    isConfirm?: boolean;
-    clearErrors: UseFormReturn<T>['clearErrors'];
-};
+}

@@ -7,7 +7,6 @@
 /** libs */
 import * as React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Box from '@mui/material/Box';
 
 /** constants */
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
@@ -15,15 +14,17 @@ import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 /** components */
 import AuthTitle from '@module-auth/components/AuthTitle';
 
+/** screens */
+import LayerScreen from '@module-base/screens/LayerScreen';
+
 /** lazy components */
-const AuthLayer = React.lazy(() => import('@module-auth/components/AuthLayer'));
-const SigninForm = React.lazy(() => import('@module-auth/components/form/SigninForm'));
-const RegisterForm = React.lazy(() => import('@module-auth/components/form/RegisterForm'));
-const RecoverForm = React.lazy(() => import('@module-auth/components/form/RecoverForm'));
+const SigninForm = React.lazy(() => import('@module-auth/components/AuthForm/SigninForm'));
+const RegisterForm = React.lazy(() => import('@module-auth/components/AuthForm/RegisterForm'));
+const RecoverForm = React.lazy(() => import('@module-auth/components/AuthForm/RecoverForm'));
 
 export default function AuthScreen() {
     return (
-        <Box className="flex h-full w-full flex-col items-center justify-center gap-y-10 p-2">
+        <LayerScreen className="flex h-full w-full flex-col items-center justify-center gap-y-10 p-2">
             <AuthTitle />
             <React.Suspense fallback={null}>
                 <Routes>
@@ -33,9 +34,6 @@ export default function AuthScreen() {
                     <Route path="*" element={<Navigate to={AuthRouterPath.signin} replace />} />
                 </Routes>
             </React.Suspense>
-            <React.Suspense fallback={null}>
-                <AuthLayer />
-            </React.Suspense>
-        </Box>
+        </LayerScreen>
     );
 }

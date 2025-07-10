@@ -5,12 +5,7 @@
  */
 
 /** libs */
-import { FormattedMessage } from 'react-intl';
 import { useController } from 'react-hook-form';
-
-/** constants */
-import { AppRegex } from '@module-base/constants/AppRegex';
-import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** components */
 import PasswordField from '@module-base/components/PasswordField';
@@ -18,39 +13,23 @@ import PasswordField from '@module-base/components/PasswordField';
 /** types */
 import type { FieldValues } from 'react-hook-form';
 
-export default function FieldPassword<T extends FieldValues>(props: App.ModuleAuth.Component.FieldPasswordProps<T>) {
-    const { name, control, error, errorMessage, clearErrors, setFocus, isConfirm } = props;
-
-    const { field } = useController({
-        name,
-        control,
-        rules: {
-            required: AuthLanguage.status.password.empty,
-            pattern: {
-                value: AppRegex.password,
-                message: AuthLanguage.status.password.invalid,
-            },
-        },
-    });
+export default function FieldPassword<T extends FieldValues>(props: App.ModuleAuth.Component.FormTextFieldProps<T>) {
+    const { name, control, ...fieldProps } = props;
+    const { field } = useController({ name, control });
 
     return (
         <PasswordField
+            type="email"
             variant="outlined"
-            label={<FormattedMessage id={AuthLanguage.component.label[isConfirm ? 'confirmPassword' : 'password']} />}
+            autoComplete="email"
             spellCheck={false}
             fullWidth
-            autoComplete={isConfirm ? undefined : 'password'}
-            error={error}
-            helperText={errorMessage ? <FormattedMessage id={errorMessage} /> : undefined}
+            {...fieldProps}
             inputRef={field.ref}
             value={field.value}
             name={field.name}
-            onChange={(event) => {
-                field.onChange(event);
-                clearErrors(name);
-            }}
+            onChange={field.onChange}
             onBlur={field.onBlur}
-            setFocus={() => setFocus(name)}
         />
     );
 }

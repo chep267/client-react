@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import { QueryClientProvider } from '@tanstack/react-query';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
@@ -15,7 +16,10 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
-export default function SiderProvider(props: React.PropsWithChildren) {
+/** utils */
+import { queryClient } from '@module-base/utils/queryClient';
+
+export default function AppProvider(props: React.PropsWithChildren) {
     const { children } = props;
 
     const isForce = useMediaQuery(`(max-width:${AppScreenSize.AppbarCollapseBreakpoint}px)`);
@@ -24,6 +28,7 @@ export default function SiderProvider(props: React.PropsWithChildren) {
     const settingAction = useSettingStore((store) => store.action);
     const lastState = React.useRef<App.ModuleBase.Store.SiderState>(sider);
 
+    /** sider event */
     React.useEffect(() => {
         if (sider === AppSiderState.expand || sider === AppSiderState.collapse) {
             lastState.current = sider;
@@ -40,5 +45,5 @@ export default function SiderProvider(props: React.PropsWithChildren) {
         }
     }, [isForce, isHidden]);
 
-    return children;
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }

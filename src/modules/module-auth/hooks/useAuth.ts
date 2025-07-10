@@ -5,9 +5,167 @@
  */
 
 /** libs */
-import * as React from 'react';
+import Cookies from 'js-cookie';
+import { useMutation } from '@tanstack/react-query';
+import { HttpStatusCode } from 'axios';
 
-/** contexts */
-import { AuthContext } from '@module-auth/contexts/AuthContext';
+/** constants */
+import { AppKey } from '@module-base/constants/AppKey';
+import { AppTimer } from '@module-base/constants/AppTimer';
+import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-export const useAuth = () => React.useContext(AuthContext);
+/** services */
+import { authServices } from '@module-auth/services';
+
+/** stores */
+import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
+
+/** utils */
+import { delay } from '@module-base/utils/delay';
+
+/** types */
+import type { AxiosError } from 'axios';
+
+export function useSignin() {
+    const notifyAction = useNotifyStore(({ action }) => action);
+    const authAction = useAuthStore(({ action }) => action);
+
+    return useMutation({
+        mutationFn: authServices.signin,
+        onSuccess: async (response) => {
+            const { user } = response.data;
+            Cookies.set(AppKey.uid, user.uid);
+            Cookies.set(AppKey.email, `${user.email}`);
+            authAction.setData({ isAuthentication: true, user });
+        },
+        onError: (error: AxiosError) => {
+            const code = Number(error?.response?.status);
+            let messageIntl: string;
+            switch (true) {
+                case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                    messageIntl = AuthLanguage.notify.signin.error;
+                    break;
+                default:
+                    messageIntl = AuthLanguage.notify.server.error;
+                    break;
+            }
+            notifyAction.openNotify({
+                open: true,
+                color: 'error',
+                messageIntl,
+            });
+        },
+    });
+}
+
+export function useSignout() {
+    const authAction = useAuthStore(({ action }) => action);
+
+    return useMutation({
+        mutationFn: authServices.signout,
+        retry: 3,
+        onSettled: () => {
+            Cookies.remove(AppKey.uid);
+            authAction.setData({ isAuthentication: false, user: null, prePath: '/' });
+        },
+    });
+}
+
+export function useRestart() {
+    const notifyAction = useNotifyStore(({ action }) => action);
+    const authAction = useAuthStore(({ action }) => action);
+
+    const hookRestart = useMutation({
+        mutationFn: authServices.restart,
+        onSuccess: (response) => {
+            const { user, token } = response.data;
+            const exp = !isNaN(token.exp) ? token.exp : AppTimer.restart;
+            authAction.setData({ isAuthentication: true, user });
+            delay(exp - 3000 * 60, () => hookRestart.mutate({ uid: user.uid })).then();
+        },
+        onError: async (error: AxiosError) => {
+            Cookies.remove(AppKey.uid);
+            const code = Number(error?.response?.status);
+            let messageIntl: string;
+            switch (true) {
+                case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                    messageIntl = AuthLanguage.notify.refresh.error;
+                    break;
+                default:
+                    messageIntl = AuthLanguage.notify.server.error;
+                    break;
+            }
+            notifyAction.openNotify({
+                open: true,
+                color: 'error',
+                messageIntl,
+            });
+            authAction.setData({ isAuthentication: false, user: null });
+        },
+    });
+
+    return hookRestart;
+}
+
+export function useRecover() {
+    const notifyAction = useNotifyStore(({ action }) => action);
+
+    return useMutation({
+        mutationFn: authServices.recover,
+        onSuccess: () => {
+            notifyAction.openNotify({
+                open: true,
+                color: 'success',
+                messageIntl: AuthLanguage.notify.recover.success,
+            });
+        },
+        onError: (error: AxiosError) => {
+            const code = Number(error?.response?.status);
+            let messageIntl: string;
+            switch (true) {
+                case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                    messageIntl = AuthLanguage.notify.recover.error;
+                    break;
+                default:
+                    messageIntl = AuthLanguage.notify.server.error;
+            }
+            notifyAction.openNotify({
+                open: true,
+                color: 'error',
+                messageIntl,
+            });
+        },
+    });
+}
+
+export function useRegister() {
+    const notifyAction = useNotifyStore(({ action }) => action);
+
+    return useMutation({
+        mutationFn: authServices.register,
+        onSuccess: () => {
+            notifyAction.openNotify({
+                open: true,
+                color: 'success',
+                messageIntl: AuthLanguage.notify.register.success,
+            });
+        },
+        onError: (error: AxiosError) => {
+            const code = Number(error?.response?.status);
+            let messageIntl: string;
+            switch (true) {
+                case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                    messageIntl = AuthLanguage.notify.register.error;
+                    break;
+                default:
+                    messageIntl = AuthLanguage.notify.server.error;
+            }
+            notifyAction.openNotify({
+                open: true,
+                color: 'error',
+                messageIntl,
+            });
+        },
+    });
+}

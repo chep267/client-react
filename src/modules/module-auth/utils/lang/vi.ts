@@ -13,7 +13,7 @@ export const vi = {
     [AuthLanguage.component.title.register]: 'Đăng kí',
     [AuthLanguage.component.title.recover]: 'Quên mật khẩu',
     [AuthLanguage.component.title.verifyOTP]: 'Mã xác thực',
-    [AuthLanguage.component.title.signOut]: 'Đăng xuất',
+    [AuthLanguage.component.title.signout]: 'Đăng xuất',
 
     // label
     [AuthLanguage.component.label.email]: 'Email',

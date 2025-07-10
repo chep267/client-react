@@ -33,7 +33,7 @@
         "@mui/utils": "^7.2.0",
         "@mui/x-date-pickers": "^8.7.0",
         "@tailwindcss/vite": "^4.1.11",
-        "@tanstack/react-query": "^5.81.5",
+        "@tanstack/react-query": "^5.82.0",
         "@tsconfig/vite-react": "^6.3.6",
         "@tsparticles/engine": "^3.8.1",
         "@tsparticles/react": "^3.0.0",
@@ -55,6 +55,7 @@
         "react-router-dom": "^7.6.3",
         "react-virtuoso": "^4.13.0",
         "tailwindcss": "^4.1.11",
+        "zod": "^4.0.2",
         "zustand": "^5.0.6"
     },
     "devDependencies": {
@@ -78,7 +79,7 @@
         "gh-pages": "^6.3.0",
         "globals": "^16.3.0",
         "prettier": "^3.6.2",
-        "prettier-plugin-tailwindcss": "^0.6.13",
+        "prettier-plugin-tailwindcss": "^0.6.14",
         "rimraf": "^6.0.1",
         "rollup-plugin-visualizer": "^6.0.3",
         "typescript": "^5.8.3",

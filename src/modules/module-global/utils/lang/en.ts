@@ -16,5 +16,5 @@ export const en = {
     [GlobalLanguage.component.label.game]: 'Game',
     [GlobalLanguage.component.label.setting]: 'Setting',
     [GlobalLanguage.component.label.otherSetting]: 'Other setting',
-    [GlobalLanguage.component.label.signOut]: 'Sign out',
+    [GlobalLanguage.component.label.signout]: 'Sign out',
 } as const;

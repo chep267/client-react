@@ -6,22 +6,22 @@
 
 /** libs */
 import * as React from 'react';
-import { useColorScheme } from '@mui/material/styles';
 
 /** constants */
 import { ParticleOptions } from '@module-base/constants/ParticleOptions';
-import { ThemeObject } from '@module-base/constants/ThemeObject';
 
-/** components */
-import Particle from '@module-base/components/Particles';
+/** stores */
+import { useSettingStore } from '@module-base/stores/useSettingStore';
+
+/** lazy components */
+const Particle = React.lazy(() => import('@module-base/components/Particles'));
 
 export default function AuthLayer() {
-    const { mode, systemMode } = useColorScheme();
+    const theme = useSettingStore((store) => store.data.theme);
 
-    const options = React.useMemo(() => {
-        const value = systemMode || (mode === ThemeObject.light ? ThemeObject.light : ThemeObject.dark);
-        return ParticleOptions(value);
-    }, [mode]);
-
-    return <Particle options={options} />;
+    return (
+        <React.Suspense>
+            <Particle options={ParticleOptions(theme)} />
+        </React.Suspense>
+    );
 }

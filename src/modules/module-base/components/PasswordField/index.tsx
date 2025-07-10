@@ -13,38 +13,34 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 export default function PasswordField(props: App.ModuleBase.Component.PasswordFieldProps) {
-    const { setFocus, ...inputProps } = props;
-    const [showPassword, setShowPassword] = React.useState(-1);
-
-    React.useEffect(() => {
-        if (showPassword > -1) {
-            setFocus?.();
-        }
-    }, [showPassword]);
+    const [showPassword, setShowPassword] = React.useState(false);
 
     const toggleShowPassword = React.useCallback(() => {
-        setShowPassword((prev) => (prev === 1 ? 0 : 1));
+        setShowPassword((prev) => !prev);
     }, []);
 
-    const endAdornment = React.useMemo(() => {
-        return (
-            <InputAdornment position="end">
-                <IconButton onClick={toggleShowPassword} aria-label="show-hide">
-                    {showPassword === 1 ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                </IconButton>
-            </InputAdornment>
-        );
+    const preventDefault = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
+    const slotProps = React.useMemo(() => {
+        return {
+            input: {
+                endAdornment: (
+                    <InputAdornment position="end">
+                        <IconButton
+                            onClick={toggleShowPassword}
+                            onMouseDown={preventDefault}
+                            onMouseUp={preventDefault}
+                            aria-label="show-hide"
+                        >
+                            {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                        </IconButton>
+                    </InputAdornment>
+                ),
+            },
+        };
     }, [showPassword]);
 
-    return (
-        <TextField
-            {...inputProps}
-            slotProps={{
-                input: {
-                    endAdornment,
-                },
-            }}
-            type={showPassword === 1 ? 'text' : 'password'}
-        />
-    );
+    return <TextField {...props} slotProps={slotProps} type={showPassword ? 'text' : 'password'} />;
 }

@@ -4,33 +4,16 @@
  *
  */
 
-/** libs */
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import { useColorScheme } from '@mui/material/styles';
-
-/** constants */
-import { ParticleOptions } from '@module-base/constants/ParticleOptions';
-import { ThemeObject } from '@module-base/constants/ThemeObject';
-
 /** components */
 import IconBase from '@module-base/components/IconBase';
-import Particle from '@module-base/components/Particles';
+
+/** screens */
+import LayerScreen from '@module-base/screens/LayerScreen';
 
 export default function NotFoundScreen() {
-    const { mode, systemMode } = useColorScheme();
-
-    const options = React.useMemo(() => {
-        const value = systemMode || (mode === ThemeObject.light ? ThemeObject.light : ThemeObject.dark);
-        return ParticleOptions(value);
-    }, [mode]);
-
     return (
-        <Box className="flex h-full w-full items-center justify-center">
+        <LayerScreen>
             <IconBase name="notFound" className="h-full w-auto" />
-            <React.Suspense fallback={null}>
-                <Particle options={options} />
-            </React.Suspense>
-        </Box>
+        </LayerScreen>
     );
 }

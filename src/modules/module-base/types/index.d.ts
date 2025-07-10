@@ -6,7 +6,6 @@
 
 /** types */
 import type * as TypeData from '@module-base/types/data.d';
-import type * as TypeApi from '@module-base/types/api.d';
 import type * as TypeHook from '@module-base/types/hook.d';
 import type * as TypeComponent from '@module-base/types/component.d';
 import type * as TypeStore from '@module-base/types/store.d';
@@ -19,10 +18,6 @@ declare global {
                 type Items<Data = any> = TypeData.TypeItems<Data>;
                 type StorageName = TypeData.TypeStorageName;
                 type StorageValue = TypeData.TypeStorageValue;
-            }
-            namespace Api {
-                type Payload<Data = unknown> = TypeApi.TypePayloadApi<Data>;
-                type Response<Data = unknown> = TypeApi.TypeResponseApi<Data>;
             }
             namespace Hook {
                 type UseCountdownProps = TypeHook.TypeUseCountdownProps;

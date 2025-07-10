@@ -23,10 +23,11 @@ import { LangLanguage } from '@module-base/constants/LangLanguage';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useSignOut } from '@module-auth/hooks/useSignOut';
+import { useSignout } from '@module-auth/hooks/useAuth';
 
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
+import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** components */
 import NestedItem from '@module-base/components/NestedItem';
@@ -39,7 +40,9 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
     const { closeMenu } = props;
 
     const settingAction = useSettingStore((store) => store.action);
-    const hookSignOut = useSignOut();
+    const isAuthentication = useAuthStore((store) => store.data.isAuthentication);
+    const user = useAuthStore((store) => store.data.user);
+    const hookSignout = useSignout();
 
     const menuBase = React.useRef<App.ModuleBase.Component.NestedItemProps[]>([
         {
@@ -85,20 +88,20 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
     ]);
 
     const menuAuth = React.useMemo<App.ModuleBase.Component.NestedItemProps[]>(() => {
-        if (!hookSignOut.isAuthentication) {
+        if (!isAuthentication) {
             return AppDefaultValue.emptyArray;
         }
         return [
             {
                 id: 'sign-out',
-                title: <FormattedMessage id={AuthLanguage.component.title.signOut} />,
+                title: <FormattedMessage id={AuthLanguage.component.title.signout} />,
                 icon: <LogoutIcon color="primary" />,
                 divide: 'bottom',
-                loading: hookSignOut.isPending,
-                onClick: () => hookSignOut.mutate({}, { onSuccess: closeMenu }),
+                loading: hookSignout.isPending,
+                onClick: () => hookSignout.mutate({ uid: user!.uid }, { onSettled: closeMenu }),
             },
         ];
-    }, [hookSignOut.isPending, hookSignOut.isAuthentication]);
+    }, [hookSignout.isPending, isAuthentication]);
 
     const renderMenuBase = React.useMemo(() => {
         return menuBase.current.map((item) => <NestedItem key={item.id} {...item} />);

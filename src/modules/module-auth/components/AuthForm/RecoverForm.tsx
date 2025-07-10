@@ -11,13 +11,14 @@ import Paper from '@mui/material/Paper';
 import Cookie from 'js-cookie';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
+import { HttpStatusCode } from 'axios';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useRecover } from '@module-auth/hooks/useRecover';
+import { useRecover } from '@module-auth/hooks/useAuth';
 
 /** components */
 import FieldEmail from '@module-auth/components/general/FieldEmail';
@@ -60,7 +61,7 @@ export default function RecoverForm() {
                 const code = Number(error?.response?.status);
                 let messageIntl: string;
                 switch (true) {
-                    case code >= 400 && code < 500:
+                    case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
                         messageIntl = AuthLanguage.notify.signin.error;
                         break;
                     default:

@@ -17,25 +17,13 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { delay } from '@module-base/utils/delay';
 
 /** types */
-import type { AxiosError, AxiosRequestConfig } from 'axios';
+import type { AxiosError } from 'axios';
 
 /** for default api */
 export const axiosClient = axios.create({
     baseURL: AppEnv.apiHost,
     headers: {
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Credentials': true,
-        lang: 'en',
-    },
-    timeout: AppTimer.timeoutApi,
-    withCredentials: true,
-});
-
-/** for file api */
-const axiosClientCDN = axios.create({
-    baseURL: AppEnv.apiHost,
-    headers: {
-        'Content-Type': 'multipart/form-data',
         'Access-Control-Allow-Credentials': true,
         lang: 'en',
     },
@@ -63,10 +51,3 @@ axiosClient.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-
-export const baseApi = async <Res>(options: AxiosRequestConfig) => {
-    return axiosClient<any, Res, any>(options);
-};
-export const fileApi = async <Res>(options: AxiosRequestConfig) => {
-    return axiosClientCDN<any, Res, any>(options);
-};

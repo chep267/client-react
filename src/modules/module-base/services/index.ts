@@ -17,10 +17,10 @@ import { delay as funcDelay } from '@module-base/utils/delay';
 import type { AxiosResponse, AxiosRequestConfig } from 'axios';
 
 export class BaseServices {
-    private readonly url: string;
-    private readonly delay: number;
+    protected readonly url: string;
+    protected readonly delay: number;
 
-    constructor(url = '', delay = AppTimer.delay) {
+    constructor(url = '', delay: number = AppTimer.pendingApi) {
         this.url = url;
         this.delay = delay;
     }
@@ -31,22 +31,22 @@ export class BaseServices {
     };
 
     public get = async <Data = any>(configs?: AxiosRequestConfig) => {
-        return axiosClient.get<Data, AxiosResponse<Data>>(this.url, configs);
+        return axiosClient.get<Data, AxiosResponse<Data>>(this.url + (configs?.url || ''), configs);
     };
 
-    public post = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
-        return axiosClient.post<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    public post = <Data = any, Body = any>(data: Body, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.post<Data, AxiosResponse<Data>, Body>(this.url + (configs?.url || ''), data, configs);
     };
 
-    public put = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
-        return axiosClient.put<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    public put = <Data = any, Body = any>(data: Body, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.put<Data, AxiosResponse<Data>, Body>(this.url + (configs?.url || ''), data, configs);
     };
 
-    public patch = <Data = any>(data: Partial<Data>, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
-        return axiosClient.patch<Data, AxiosResponse<Data>, Partial<Data>>(this.url, data, configs);
+    public patch = <Data = any, Body = any>(data: Body, configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
+        return axiosClient.patch<Data, AxiosResponse<Data>, Body>(this.url + (configs?.url || ''), data, configs);
     };
 
-    public delete = <Data>(configs?: AxiosRequestConfig): Promise<AxiosResponse<Data>> => {
-        return axiosClient.delete<Data>(this.url, configs);
+    public delete = (configs?: AxiosRequestConfig): Promise<AxiosResponse> => {
+        return axiosClient.delete(this.url + (configs?.url || ''), configs);
     };
 }
