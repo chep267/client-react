@@ -19,9 +19,9 @@ export default function PasswordField(props: App.ModuleBase.Component.PasswordFi
         setShowPassword((prev) => !prev);
     }, []);
 
-    const preventDefault = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const preventDefault = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
-    };
+    }, []);
 
     const slotProps = React.useMemo(() => {
         return {

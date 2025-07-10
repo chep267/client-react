@@ -17,6 +17,9 @@ import { useRestart } from '@module-auth/hooks/useAuth';
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
 
+/** screens */
+import LayerScreen from '@module-base/screens/LayerScreen';
+
 export default function StartScreen() {
     const uid = Cookies.get(AppKey.uid) || '';
     const hookRestart = useRestart();
@@ -27,5 +30,9 @@ export default function StartScreen() {
         }
     }, [uid]);
 
-    return <StartLoading />;
+    return (
+        <LayerScreen>
+            <StartLoading />
+        </LayerScreen>
+    );
 }

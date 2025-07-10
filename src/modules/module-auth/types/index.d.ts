@@ -24,6 +24,8 @@ declare global {
         namespace Component {
             type AuthButtonSubmitProps = TypeComponent.TypeAuthButtonSubmitProps;
             type AuthBreadcrumbsItem = TypeComponent.TypeAuthBreadcrumbsItem;
+            type AuthBreadcrumbsProps = TypeComponent.TypeAuthBreadcrumbsProps;
+            type AuthTitleProps = TypeComponent.TypeAuthTitleProps;
             type FormTextFieldProps<T> = TypeComponent.TypeFormTextFieldProps<T>;
         }
     }

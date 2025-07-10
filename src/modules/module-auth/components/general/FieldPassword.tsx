@@ -19,9 +19,8 @@ export default function FieldPassword<T extends FieldValues>(props: App.ModuleAu
 
     return (
         <PasswordField
-            type="email"
+            id={name}
             variant="outlined"
-            autoComplete="email"
             spellCheck={false}
             fullWidth
             {...fieldProps}

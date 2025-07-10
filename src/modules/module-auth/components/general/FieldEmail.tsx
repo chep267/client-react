@@ -17,9 +17,8 @@ export default function FieldEmail<T extends FieldValues>(props: App.ModuleAuth.
 
     return (
         <TextField
-            type="email"
+            id={name}
             variant="outlined"
-            autoComplete="email"
             spellCheck={false}
             fullWidth
             {...fieldProps}

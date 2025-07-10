@@ -11,9 +11,6 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 /** constants */
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 
-/** components */
-import AuthTitle from '@module-auth/components/AuthTitle';
-
 /** screens */
 import LayerScreen from '@module-base/screens/LayerScreen';
 
@@ -24,8 +21,7 @@ const RecoverForm = React.lazy(() => import('@module-auth/components/AuthForm/Re
 
 export default function AuthScreen() {
     return (
-        <LayerScreen className="flex h-full w-full flex-col items-center justify-center gap-y-10 p-2">
-            <AuthTitle />
+        <LayerScreen>
             <React.Suspense fallback={null}>
                 <Routes>
                     <Route path={AuthRouterPath.signin} element={<SigninForm />} />

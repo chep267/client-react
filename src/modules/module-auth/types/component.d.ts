@@ -15,10 +15,17 @@ export type TypeAuthBreadcrumbsItem = {
     hidden?: boolean;
 };
 
+export type TypeAuthBreadcrumbsProps = {
+    name?: 'signin' | 'register' | 'recover';
+};
+
+export type TypeAuthTitleProps = {
+    className?: string;
+} & TypeAuthBreadcrumbsProps;
+
 export type TypeAuthButtonSubmitProps = {
     loading?: boolean;
-    type: 'signin' | 'register' | 'recover';
-};
+} & TypeAuthBreadcrumbsProps;
 
 export interface TypeFormTextFieldProps<T extends FieldValues> extends Omit<TextFieldProps<'outlined'>, 'variant'> {
     name: FieldPath<T>;

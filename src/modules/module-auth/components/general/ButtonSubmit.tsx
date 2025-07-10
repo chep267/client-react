@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
-    const { loading, type } = props;
+    const { loading, name } = props;
 
     return (
         <Button
@@ -23,7 +23,7 @@ export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonS
             variant="contained"
             className={clsx('bg-tw-primary font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3')}
         >
-            <FormattedMessage id={AuthLanguage.component.button[type]} />
+            <FormattedMessage id={AuthLanguage.component.button[name]} />
         </Button>
     );
 }

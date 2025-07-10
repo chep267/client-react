@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** constants */
@@ -22,11 +23,11 @@ type LayerScreenProps = React.PropsWithChildren<{
 }>;
 
 export default function LayerScreen(props: LayerScreenProps) {
-    const { children, className = 'flex h-full w-full items-center justify-center' } = props;
+    const { children, className } = props;
     const theme = useSettingStore((store) => store.data.theme);
 
     return (
-        <Box className={className}>
+        <Box className={clsx('flex h-full w-full items-center justify-center', className)}>
             {children}
             <React.Suspense fallback={null}>
                 <Particle options={ParticleOptions(theme)} />

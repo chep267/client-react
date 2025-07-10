@@ -25,6 +25,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { useSignin } from '@module-auth/hooks/useAuth';
 
 /** components */
+import AuthTitle from '@module-auth/components/AuthTitle';
 import FieldEmail from '@module-auth/components/general/FieldEmail';
 import FieldPassword from '@module-auth/components/general/FieldPassword';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
@@ -55,17 +56,17 @@ export default function SigninForm() {
                 .nonempty(AuthLanguage.status.password.empty)
                 .regex(AppRegex.password, AuthLanguage.status.password.invalid),
         })
-    );
+    ).current;
 
     const hookSignin = useSignin();
     const {
         handleSubmit,
         control,
-        formState: { errors },
         watch,
         clearErrors,
         setFocus,
         setError,
+        formState: { errors },
     } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
@@ -73,7 +74,7 @@ export default function SigninForm() {
         },
         mode: 'onSubmit',
         reValidateMode: 'onSubmit',
-        resolver: zodResolver(schema.current),
+        resolver: zodResolver(schema),
     });
     const [email, password] = watch([FormFieldsName.email, FormFieldsName.password]);
 
@@ -108,6 +109,7 @@ export default function SigninForm() {
             onSubmit={handleSubmit(onSubmit)}
             noValidate
         >
+            <AuthTitle className="pb-6" name="signin" />
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
@@ -123,8 +125,8 @@ export default function SigninForm() {
                 helperText={errors.password?.message ? <FormattedMessage id={errors.password.message} /> : undefined}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
-                <AuthBreadcrumbs />
-                <ButtonSubmit loading={hookSignin.isPending} type="signin" />
+                <AuthBreadcrumbs name="signin" />
+                <ButtonSubmit loading={hookSignin.isPending} name="signin" />
             </Box>
         </Paper>
     );

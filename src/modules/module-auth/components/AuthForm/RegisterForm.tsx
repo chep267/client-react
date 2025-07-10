@@ -6,19 +6,24 @@
 
 /** libs */
 import * as React from 'react';
+import { HttpStatusCode } from 'axios';
+import clsx from 'clsx';
+import * as z from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { FormattedMessage } from 'react-intl';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
-import { HttpStatusCode } from 'axios';
 
 /** constants */
+import { AppRegex } from '@module-base/constants/AppRegex';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
 import { useRegister } from '@module-auth/hooks/useAuth';
 
 /** components */
+import AuthTitle from '@module-auth/components/AuthTitle';
 import FieldEmail from '@module-auth/components/general/FieldEmail';
 import FieldPassword from '@module-auth/components/general/FieldPassword';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
@@ -39,32 +44,58 @@ export default function RegisterForm() {
         password: 'password',
         confirmPassword: 'confirmPassword',
     }).current;
+    const schema = React.useRef(
+        z
+            .object({
+                [FormFieldsName.email]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.email.empty)
+                    .check(z.email(AuthLanguage.status.email.invalid)),
+                [FormFieldsName.password]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.password.empty)
+                    .regex(AppRegex.password, AuthLanguage.status.password.invalid),
+                [FormFieldsName.confirmPassword]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.password.empty)
+                    .regex(AppRegex.password, AuthLanguage.status.password.invalid),
+            })
+            .refine((data) => data[FormFieldsName.password] === data[FormFieldsName.confirmPassword], {
+                path: [FormFieldsName.confirmPassword],
+                message: AuthLanguage.status.password.different,
+            })
+    ).current;
 
     const hookRegister = useRegister();
     const {
         handleSubmit,
         control,
-        formState: { errors },
+        watch,
         clearErrors,
         setFocus,
         setError,
+        formState: { errors },
     } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: '',
             [FormFieldsName.password]: '',
-            confirmPassword: '',
+            [FormFieldsName.confirmPassword]: '',
         },
         mode: 'onSubmit',
         reValidateMode: 'onSubmit',
+        resolver: zodResolver(schema),
     });
+    const [email, password, confirmPassword] = watch([
+        FormFieldsName.email,
+        FormFieldsName.password,
+        FormFieldsName.confirmPassword,
+    ]);
+
+    React.useEffect(() => {
+        clearErrors([FormFieldsName.email, FormFieldsName.password, FormFieldsName.confirmPassword]);
+    }, [email, password, confirmPassword]);
 
     const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
-        if (data.password !== data.confirmPassword) {
-            const messageIntl = AuthLanguage.status.password.different;
-            setError(FormFieldsName.confirmPassword, { message: messageIntl });
-            setFocus(FormFieldsName.confirmPassword);
-            return;
-        }
         hookRegister.mutate(data, {
             onError: (error: AxiosError) => {
                 const code = Number(error?.response?.status);
@@ -92,33 +123,37 @@ export default function RegisterForm() {
             onSubmit={handleSubmit(onSubmit)}
             noValidate
         >
+            <AuthTitle className="pb-6" name="register" />
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
+                autoComplete="off"
+                autoFocus
                 error={Boolean(errors.email)}
-                errorMessage={errors.email?.message}
-                clearErrors={clearErrors}
+                label={<FormattedMessage id={AuthLanguage.component.label.email} />}
+                helperText={errors.email?.message ? <FormattedMessage id={errors.email.message} /> : undefined}
             />
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
+                autoComplete="off"
                 error={Boolean(errors.password)}
-                errorMessage={errors.password?.message}
-                clearErrors={clearErrors}
-                setFocus={setFocus}
+                label={<FormattedMessage id={AuthLanguage.component.label.password} />}
+                helperText={errors.password?.message ? <FormattedMessage id={errors.password.message} /> : undefined}
             />
             <FieldPassword
                 name={FormFieldsName.confirmPassword}
                 control={control}
+                autoComplete="off"
                 error={Boolean(errors.confirmPassword)}
-                errorMessage={errors.confirmPassword?.message}
-                clearErrors={clearErrors}
-                setFocus={setFocus}
-                isConfirm={true}
+                label={<FormattedMessage id={AuthLanguage.component.label.confirmPassword} />}
+                helperText={
+                    errors.confirmPassword?.message ? <FormattedMessage id={errors.confirmPassword.message} /> : undefined
+                }
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
-                <AuthBreadcrumbs />
-                <ButtonSubmit loading={hookRegister.isPending} type="register" />
+                <AuthBreadcrumbs name="register" />
+                <ButtonSubmit loading={hookRegister.isPending} name="register" />
             </Box>
         </Paper>
     );
