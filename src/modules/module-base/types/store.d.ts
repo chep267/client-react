@@ -15,7 +15,7 @@ export type TypeLanguageMessages = Record<string, string>;
 export type TypeTheme = PaletteMode;
 export type TypeSiderState = 'collapse' | 'expand' | 'hidden' | 'force';
 
-/** Notify store */
+/** Setting store */
 type TypeNotifyData = {
     open?: boolean;
     message?: ReactNode;
@@ -25,25 +25,17 @@ type TypeNotifyData = {
     anchorOrigin?: SnackbarOrigin;
     top?: number | string;
 };
-type TypeNotifyAction = {
-    closeNotify: () => void;
-    openNotify: (data: Partial<TypeNotifyData>) => void;
-};
-export type TypeNotifyStore = {
-    data: TypeNotifyData;
-    action: TypeNotifyAction;
-};
-
-/** Setting store */
 type TypeSettingData = {
     locale: TypeLocale;
     theme: TypeTheme;
     sider: TypeSiderState;
+    notify: TypeNotifyData;
 };
 type TypeSettingAction = {
-    changeLocale: (locale: TypeLocale) => void;
-    changeTheme: (theme: TypeTheme) => void;
-    changeSider: (sider: TypeSiderState) => void;
+    changeLocale: (locale?: TypeLocale) => void;
+    changeTheme: (theme?: TypeTheme) => void;
+    changeSider: (sider?: TypeSiderState) => void;
+    changeNotify: (data?: Partial<TypeNotifyData>) => void;
 };
 export type TypeSettingStore = {
     data: TypeSettingData;

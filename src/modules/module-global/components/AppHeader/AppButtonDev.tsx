@@ -13,14 +13,14 @@ import IconButton from '@mui/material/IconButton';
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** stores */
-import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 export default function AppButtonDev(props: any) {
     const { icon } = props;
-    const notifyAction = useNotifyStore(({ action }) => action);
+    const settingAction = useSettingStore(({ action }) => action);
 
     const onDev = () => {
-        notifyAction.openNotify({ open: true, color: 'warning', message: 'In developing!' });
+        settingAction.changeNotify({ open: true, color: 'warning', message: 'In developing!' });
     };
 
     return (

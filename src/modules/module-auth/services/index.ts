@@ -11,8 +11,8 @@ import { AuthApiPath } from '@module-auth/constants/AuthApiPath';
 import { BaseServices } from '@module-base/services';
 
 class AuthServices extends BaseServices {
-    constructor() {
-        super();
+    constructor(url = AuthApiPath.root) {
+        super(url);
     }
 
     public signin = (data: App.ModuleAuth.Api.Signin['Payload']) => {

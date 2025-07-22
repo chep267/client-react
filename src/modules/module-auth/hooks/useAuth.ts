@@ -18,7 +18,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 import { authServices } from '@module-auth/services';
 
 /** stores */
-import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 import { useAuthStore } from '@module-auth/stores/useAuthStore';
 
 /** utils */
@@ -28,7 +28,7 @@ import { delay } from '@module-base/utils/delay';
 import type { AxiosError } from 'axios';
 
 export function useSignin() {
-    const notifyAction = useNotifyStore(({ action }) => action);
+    const settingAction = useSettingStore(({ action }) => action);
     const authAction = useAuthStore(({ action }) => action);
 
     return useMutation({
@@ -50,7 +50,7 @@ export function useSignin() {
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'error',
                 messageIntl,
@@ -73,7 +73,7 @@ export function useSignout() {
 }
 
 export function useRestart() {
-    const notifyAction = useNotifyStore(({ action }) => action);
+    const settingAction = useSettingStore(({ action }) => action);
     const authAction = useAuthStore(({ action }) => action);
 
     const hookRestart = useMutation({
@@ -96,7 +96,7 @@ export function useRestart() {
                     messageIntl = AuthLanguage.notify.server.error;
                     break;
             }
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'error',
                 messageIntl,
@@ -109,12 +109,12 @@ export function useRestart() {
 }
 
 export function useRecover() {
-    const notifyAction = useNotifyStore(({ action }) => action);
+    const settingAction = useSettingStore(({ action }) => action);
 
     return useMutation({
         mutationFn: authServices.recover,
         onSuccess: () => {
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'success',
                 messageIntl: AuthLanguage.notify.recover.success,
@@ -130,7 +130,7 @@ export function useRecover() {
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
             }
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'error',
                 messageIntl,
@@ -140,12 +140,12 @@ export function useRecover() {
 }
 
 export function useRegister() {
-    const notifyAction = useNotifyStore(({ action }) => action);
+    const settingAction = useSettingStore(({ action }) => action);
 
     return useMutation({
         mutationFn: authServices.register,
         onSuccess: () => {
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'success',
                 messageIntl: AuthLanguage.notify.register.success,
@@ -161,7 +161,7 @@ export function useRegister() {
                 default:
                     messageIntl = AuthLanguage.notify.server.error;
             }
-            notifyAction.openNotify({
+            settingAction.changeNotify({
                 open: true,
                 color: 'error',
                 messageIntl,

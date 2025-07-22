@@ -4,10 +4,10 @@
  *
  */
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+// import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 export function useListUser() {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
     // const AUTH = useAuth();
     // const uid = AUTH.data.user?.uid;
     // const data = queryClient.getQueryData(['useListUser', { uid }]);

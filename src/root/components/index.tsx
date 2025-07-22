@@ -5,9 +5,6 @@
  */
 
 /** providers */
-import ErrorBoundary from '@module-base/components/ErrorBoundary';
-import ThemeProvider from '@module-base/components/ThemeProvider';
-import LanguageProvider from '@module-base/components/LanguageProvider';
 import AppProvider from '@module-base/components/AppProvider';
 
 /** screens */
@@ -19,13 +16,7 @@ import '@root/components/main.css';
 export default function App() {
     return (
         <AppProvider>
-            <LanguageProvider>
-                <ThemeProvider>
-                    <ErrorBoundary>
-                        <MainScreen />
-                    </ErrorBoundary>
-                </ThemeProvider>
-            </LanguageProvider>
+            <MainScreen />
         </AppProvider>
     );
 }

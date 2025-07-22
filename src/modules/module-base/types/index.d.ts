@@ -28,7 +28,6 @@ declare global {
                 type Locale = TypeStore.TypeLocale;
                 type LanguageMessages = TypeStore.TypeLanguageMessages;
                 type SiderState = TypeStore.TypeSiderState;
-                type NotifyStore = TypeStore.TypeNotifyStore;
                 type SettingStore = TypeStore.TypeSettingStore;
             }
             namespace Component {

@@ -7,6 +7,7 @@
 /** libs */
 import * as React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 /** constants */
@@ -18,6 +19,11 @@ import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** utils */
 import { queryClient } from '@module-base/utils/queryClient';
+
+/** providers */
+import ErrorBoundary from '@module-base/components/ErrorBoundary';
+import ThemeProvider from '@module-base/components/ThemeProvider';
+import LanguageProvider from '@module-base/components/LanguageProvider';
 
 export default function AppProvider(props: React.PropsWithChildren) {
     const { children } = props;
@@ -45,5 +51,15 @@ export default function AppProvider(props: React.PropsWithChildren) {
         }
     }, [isForce, isHidden]);
 
-    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+    return (
+        <QueryClientProvider client={queryClient}>
+            <LanguageProvider>
+                <ThemeProvider>
+                    <ErrorBoundary>
+                        <BrowserRouter>{children}</BrowserRouter>
+                    </ErrorBoundary>
+                </ThemeProvider>
+            </LanguageProvider>
+        </QueryClientProvider>
+    );
 }

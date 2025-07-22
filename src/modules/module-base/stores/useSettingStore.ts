@@ -17,35 +17,52 @@ import { getDeviceLanguage } from '@module-base/utils/getDeviceLanguage';
 import { getDeviceTheme } from '@module-base/utils/getDeviceTheme';
 import { getSiderState } from '@module-base/utils/getSiderState';
 
-const defaultNotifyStoreData: Readonly<App.ModuleBase.Store.SettingStore['data']> = {
+const defaultNotifyStoreData: Readonly<App.ModuleBase.Store.SettingStore['data']['notify']> = {
+    open: false,
+    message: '',
+    messageIntl: '',
+    color: undefined,
+    duration: undefined,
+    anchorOrigin: { vertical: 'top', horizontal: 'right' },
+};
+
+const defaultSettingStore: Readonly<App.ModuleBase.Store.SettingStore['data']> = {
     locale: getDeviceLanguage(),
     theme: getDeviceTheme(),
     sider: getSiderState(),
+    notify: defaultNotifyStoreData,
 };
 
 export const useSettingStore = create<App.ModuleBase.Store.SettingStore>((set) => ({
-    data: structuredClone(defaultNotifyStoreData),
+    data: window.structuredClone(defaultSettingStore),
     action: {
-        changeLocale: (locale) => {
+        changeLocale: (locale = defaultSettingStore.locale) => {
             Cookies.set(AppKey.locale, locale);
             set(
-                produce<App.ModuleBase.Store.SettingStore>(({ data }) => {
-                    data.locale = locale;
+                produce<App.ModuleBase.Store.SettingStore>((store) => {
+                    store.data.locale = locale;
                 })
             );
         },
-        changeTheme: (theme) => {
+        changeTheme: (theme = defaultSettingStore.theme) => {
             Cookies.set(AppKey.theme, theme);
             set(
-                produce<App.ModuleBase.Store.SettingStore>(({ data }) => {
-                    data.theme = theme;
+                produce<App.ModuleBase.Store.SettingStore>((store) => {
+                    store.data.theme = theme;
                 })
             );
         },
-        changeSider: (sider) => {
+        changeSider: (sider = defaultSettingStore.sider) => {
             set(
-                produce<App.ModuleBase.Store.SettingStore>(({ data }) => {
-                    data.sider = sider;
+                produce<App.ModuleBase.Store.SettingStore>((store) => {
+                    store.data.sider = sider;
+                })
+            );
+        },
+        changeNotify: (notifyData = window.structuredClone(defaultNotifyStoreData)) => {
+            set(
+                produce<App.ModuleBase.Store.SettingStore>((store) => {
+                    store.data.notify = { ...store.data.notify, ...notifyData };
                 })
             );
         },

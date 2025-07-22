@@ -16,10 +16,12 @@ import { AppTimer } from '@module-base/constants/AppTimer';
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** stores */
-import { useNotifyStore } from '@module-base/stores/useNotifyStore';
+import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBoundaryProps) {
-    const { data: notifyData, action: notifyAction } = useNotifyStore();
+    const notifyData = useSettingStore(({ data }) => data.notify);
+    const settingAction = useSettingStore(({ action }) => action);
+
     const {
         open,
         message,
@@ -30,6 +32,8 @@ export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBou
         top = AppScreenSize.HeaderHeight + 6,
     } = notifyData;
 
+    const closeNotify = () => settingAction.changeNotify();
+
     return (
         <Snackbar
             key="base-notify-boundary-app"
@@ -37,12 +41,12 @@ export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBou
             style={{ top }}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
-            onClose={notifyAction.closeNotify}
+            onClose={closeNotify}
             {...props}
         >
             <Alert
                 className={clsx('w-full', { ['hidden']: !open })}
-                onClose={notifyAction.closeNotify}
+                onClose={closeNotify}
                 severity={color}
                 elevation={6}
                 variant="filled"
