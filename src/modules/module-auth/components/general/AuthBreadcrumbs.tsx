@@ -16,7 +16,7 @@ import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export default function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBreadcrumbsProps) {
-    const { name } = props;
+    const { name = 'signin' } = props;
 
     const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = React.useMemo(() => {
         return [

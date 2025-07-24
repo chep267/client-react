@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
-    const { loading, name } = props;
+    const { loading, name = 'signin' } = props;
 
     return (
         <Button

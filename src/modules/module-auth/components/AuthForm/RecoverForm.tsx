@@ -6,10 +6,10 @@
 
 /** libs */
 import * as React from 'react';
+import * as z from 'zod';
 import Cookie from 'js-cookie';
 import { HttpStatusCode } from 'axios';
 import clsx from 'clsx';
-import * as z from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormattedMessage } from 'react-intl';
@@ -18,7 +18,12 @@ import Paper from '@mui/material/Paper';
 
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
+import { AppRegex } from '@module-base/constants/AppRegex';
+import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+
+/** utils */
+import { delay } from '@module-base/utils/delay';
 
 /** hooks */
 import { useRecover } from '@module-auth/hooks/useAuth';
@@ -35,7 +40,7 @@ import type { AxiosError } from 'axios';
 
 type TypeFormFieldsName = 'email';
 type TypeFormData = {
-    [Key in TypeFormFieldsName]: string;
+    email: string;
 };
 
 export default function RecoverForm() {
@@ -47,7 +52,7 @@ export default function RecoverForm() {
             [FormFieldsName.email]: z
                 .string()
                 .nonempty(AuthLanguage.status.email.empty)
-                .check(z.email(AuthLanguage.status.email.invalid)),
+                .regex(AppRegex.email, AuthLanguage.status.email.invalid),
         })
     ).current;
 
@@ -55,24 +60,17 @@ export default function RecoverForm() {
     const {
         handleSubmit,
         control,
-        watch,
-        clearErrors,
-        setFocus,
         setError,
+        clearErrors,
         formState: { errors },
     } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
         },
         mode: 'onSubmit',
-        reValidateMode: 'onSubmit',
+        reValidateMode: 'onChange',
         resolver: zodResolver(schema),
     });
-    const email = watch(FormFieldsName.email);
-
-    React.useEffect(() => {
-        clearErrors(FormFieldsName.email);
-    }, [email]);
 
     const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
         hookRecover.mutate(data, {
@@ -88,10 +86,14 @@ export default function RecoverForm() {
                         break;
                 }
                 setError(FormFieldsName.email, { message: messageIntl });
-                setFocus(FormFieldsName.email);
+                delay(AppTimer.notifyDuration, clearErrors).then();
             },
         });
     }, []);
+
+    const renderHelperText = (messageIntl?: string) => {
+        return messageIntl ? <FormattedMessage id={messageIntl} /> : undefined;
+    };
 
     return (
         <Paper
@@ -104,9 +106,10 @@ export default function RecoverForm() {
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
+                autoFocus
                 error={Boolean(errors.email)}
                 label={<FormattedMessage id={AuthLanguage.component.label.email} />}
-                helperText={errors.email?.message ? <FormattedMessage id={errors.email.message} /> : undefined}
+                helperText={renderHelperText(errors.email?.message)}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="recover" />
