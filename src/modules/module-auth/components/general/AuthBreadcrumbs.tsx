@@ -15,28 +15,26 @@ import { FormattedMessage } from 'react-intl';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-export default function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBreadcrumbsProps) {
+const AuthBreadcrumbs = React.memo(function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBreadcrumbsProps) {
     const { name = 'signin' } = props;
 
-    const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = React.useMemo(() => {
-        return [
-            {
-                title: AuthLanguage.component.title.signin,
-                path: AuthRouterPath.signin,
-                hidden: name === 'signin',
-            },
-            {
-                title: AuthLanguage.component.title.register,
-                path: AuthRouterPath.register,
-                hidden: name === 'register',
-            },
-            {
-                title: AuthLanguage.component.title.recover,
-                path: AuthRouterPath.recover,
-                hidden: name === 'recover',
-            },
-        ];
-    }, [name]);
+    const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = [
+        {
+            title: AuthLanguage.component.title.signin,
+            path: AuthRouterPath.signin,
+            hidden: name === 'signin',
+        },
+        {
+            title: AuthLanguage.component.title.register,
+            path: AuthRouterPath.register,
+            hidden: name === 'register',
+        },
+        {
+            title: AuthLanguage.component.title.recover,
+            path: AuthRouterPath.recover,
+            hidden: name === 'recover',
+        },
+    ];
 
     return (
         <Breadcrumbs aria-label="breadcrumb" className="text-tw-primary w-full">
@@ -57,4 +55,6 @@ export default function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBrea
             )}
         </Breadcrumbs>
     );
-}
+});
+
+export default AuthBreadcrumbs;

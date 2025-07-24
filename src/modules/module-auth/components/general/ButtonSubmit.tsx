@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
@@ -12,7 +13,7 @@ import Button from '@mui/material/Button';
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
+const ButtonSubmit = React.memo(function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
     const { loading, name = 'signin' } = props;
 
     return (
@@ -26,4 +27,6 @@ export default function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonS
             <FormattedMessage id={AuthLanguage.component.button[name]} />
         </Button>
     );
-}
+});
+
+export default ButtonSubmit;

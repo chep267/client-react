@@ -27,11 +27,11 @@ import { delay } from '@module-base/utils/delay';
 import { useRegister } from '@module-auth/hooks/useAuth';
 
 /** components */
-import AuthTitle from '@module-auth/components/AuthTitle';
+import AuthTitle from '@module-auth/components/general/AuthTitle';
+import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 import FieldEmail from '@module-auth/components/general/FieldEmail';
 import FieldPassword from '@module-auth/components/general/FieldPassword';
 import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
-import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 
 /** types */
 import type { SubmitHandler } from 'react-hook-form';
@@ -111,7 +111,7 @@ export default function RegisterForm() {
         });
     }, []);
 
-    const renderHelperText = (messageIntl?: string) => {
+    const renderMessageIntl = (messageIntl?: string) => {
         return messageIntl ? <FormattedMessage id={messageIntl} /> : undefined;
     };
 
@@ -126,27 +126,24 @@ export default function RegisterForm() {
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
-                autoComplete="off"
                 autoFocus
                 error={Boolean(errors.email)}
-                label={<FormattedMessage id={AuthLanguage.component.label.email} />}
-                helperText={renderHelperText(errors.email?.message)}
+                label={renderMessageIntl(AuthLanguage.component.label.email)}
+                helperText={renderMessageIntl(errors.email?.message)}
             />
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
-                autoComplete="off"
                 error={Boolean(errors.password)}
-                label={<FormattedMessage id={AuthLanguage.component.label.password} />}
-                helperText={renderHelperText(errors.password?.message)}
+                label={renderMessageIntl(AuthLanguage.component.label.password)}
+                helperText={renderMessageIntl(errors.password?.message)}
             />
             <FieldPassword
                 name={FormFieldsName.confirmPassword}
                 control={control}
-                autoComplete="off"
                 error={Boolean(errors.confirmPassword)}
-                label={<FormattedMessage id={AuthLanguage.component.label.confirmPassword} />}
-                helperText={renderHelperText(errors.confirmPassword?.message)}
+                label={renderMessageIntl(AuthLanguage.component.label.confirmPassword)}
+                helperText={renderMessageIntl(errors.confirmPassword?.message)}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="register" />
