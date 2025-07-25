@@ -8,7 +8,7 @@
 import { validateId } from '@module-base/utils/validateId';
 
 /** hooks */
-import { useListUser } from './useListUser';
+import { useListUser } from '@module-user/hooks/useListUser';
 
 /** types */
 
@@ -23,6 +23,6 @@ export function useUser(props: UseUserProps) {
 
     return {
         isLoading: hookListUser.isLoading,
-        data: hookListUser.data?.items?.[`${uid}`],
+        data: hookListUser.data?.data?.items?.[`${uid}`],
     };
 }

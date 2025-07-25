@@ -4,11 +4,8 @@
  *
  */
 
-@import 'tailwindcss' important;
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import 'tailwindcss';
+@import '@fontsource/roboto';
 
 @custom-variant dark (&:where(.dark, .dark *));
 @custom-variant hover (&:hover);

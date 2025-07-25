@@ -22,17 +22,14 @@ import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 import ListBase from '@module-base/components/ListBase';
 import AppItem from './AppItem';
 
-/** types */
-import type { ListAppProps, TypeAppItem } from '@module-global/types';
-
-export default function ListApp(props: ListAppProps) {
+export default function ListApp(props: App.ModuleGlobal.Component.ListAppProps) {
     const { hasTooltip } = props;
 
     const navigate = useNavigate();
     const { pathname } = useLocation();
     const router = `/${pathname.split('/')[1]}`;
 
-    const apps = React.useMemo<TypeAppItem[]>(
+    const apps = React.useMemo<App.ModuleGlobal.Component.AppItem[]>(
         () => [
             {
                 path: AppRouterPath.feed,
@@ -62,7 +59,7 @@ export default function ListApp(props: ListAppProps) {
         []
     );
 
-    const itemContent = (item: TypeAppItem) => {
+    const itemContent = (item: App.ModuleGlobal.Component.AppItem) => {
         return <AppItem key={item.path} isSelected={item.path === router} hasTooltip={hasTooltip} item={item} />;
     };
 

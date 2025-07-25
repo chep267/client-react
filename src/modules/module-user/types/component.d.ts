@@ -7,7 +7,7 @@
 /** types */
 import type { AvatarProps } from '@mui/material/Avatar';
 import type { TypographyProps } from '@mui/material/Typography';
-import type { TypeUser } from './data.d';
+import type { TypeUser } from '@module-user/types/data.d';
 
 export interface TypeUserAvatarProps extends AvatarProps {
     uid?: TypeUser['uid'];

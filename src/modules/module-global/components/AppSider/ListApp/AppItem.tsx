@@ -12,12 +12,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-/** types */
-import type { AppItemProps } from '@module-global/types';
-
 /** styles */
 
-const AppItem = React.memo(function AppItem(props: AppItemProps) {
+const AppItem = React.memo(function AppItem(props: App.ModuleGlobal.Component.AppItemProps) {
     const { isSelected, hasTooltip, item } = props;
     const itemSelectedStyle = React.useRef({
         '& .MuiListItemButton-root': {

@@ -4,17 +4,21 @@
  *
  */
 
+/** types */
+import type { TypeItemIds, TypeItems } from '@module-base/types/data.d';
+import type { TypeUser } from '@module-user/types/data.d';
+
 export interface TypeUserApi {
     Create: {
-        Payload: App.ModuleBase.Api.Payload<{ user: App.ModuleUser.Data.User }>;
+        Payload: { user: TypeUser };
         Response?: void;
     };
     Get: {
-        Payload: App.ModuleBase.Api.Payload<{ uid: App.ModuleUser.Data.User['uid'] }>;
-        Response?: App.ModuleUser.Data.User;
+        Payload: { uid: TypeUser['uid'] };
+        Response?: TypeUser;
     };
     GetList: {
-        Payload: App.ModuleBase.Api.Payload<{ limit?: number }>;
-        Response?: { itemIds: App.ModuleBase.Data.ItemIds; items: App.ModuleBase.Data.Items<TypeUser> };
+        Payload?: { limit?: number };
+        Response?: { itemIds: TypeItemIds; items: TypeItems<TypeUser> };
     };
 }

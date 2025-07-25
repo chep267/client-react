@@ -4,7 +4,7 @@
  *
  */
 
-export class StorageBase {
+export default class StorageBase {
     constructor(storageName: App.ModuleBase.Data.StorageName) {
         this.storageName = storageName;
     }

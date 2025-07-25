@@ -4,21 +4,21 @@
  *
  */
 
-// import { useQuery, useQueryClient } from '@tanstack/react-query';
+/** libs */
+import { useQuery } from '@tanstack/react-query';
+
+/** services */
+import { userServices } from '@module-user/services';
 
 export function useListUser() {
-    // const queryClient = useQueryClient();
-    // const AUTH = useAuth();
-    // const uid = AUTH.data.user?.uid;
-    // const data = queryClient.getQueryData(['useListUser', { uid }]);
-    //
-    // return useQuery({
-    //     queryKey: ['useListUser', { uid }],
-    //     queryFn: () => userApi.getList({}),
-    //     refetchOnWindowFocus: false,
-    //     refetchIntervalInBackground: false,
-    //     refetchOnReconnect: false,
-    //     refetchOnMount: !data,
-    //     refetchInterval: 1000 * 60 * 5, // 5 minutes
-    // });
+    const uid = '';
+
+    return useQuery({
+        queryKey: ['useListUser', { uid }],
+        queryFn: () => userServices.getList(),
+        refetchOnWindowFocus: false,
+        refetchIntervalInBackground: false,
+        refetchOnReconnect: false,
+        refetchInterval: 1000 * 60 * 5, // 5 minutes
+    });
 }

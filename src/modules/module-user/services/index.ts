@@ -22,6 +22,14 @@ class UserServices extends BaseServices {
             })
         );
     };
+    public getList = (params?: App.ModuleUser.Api.GetList['Payload']) => {
+        return this.withDelay(
+            this.get<App.ModuleUser.Api.GetList['Response']>({
+                url: UserApiPath.getList,
+                params,
+            })
+        );
+    };
 }
 
 export const userServices = new UserServices();
