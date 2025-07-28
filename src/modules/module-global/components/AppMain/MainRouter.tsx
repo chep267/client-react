@@ -18,7 +18,7 @@ import AppSiderMini from '@module-global/components/AppSiderMini';
 
 /** screens */
 const NotFoundScreen = React.lazy(() => import('@module-base/screens/NotFoundScreen'));
-const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen'));
+const TestScreen = React.lazy(() => import('@module-global/screens/TestScreen.tsx'));
 // const MessengerScreen = React.lazy(() => import('@module-messenger/screens/MessengerScreen'));
 // const CalendarScreen = React.lazy(() => import('@module-calendar/screens/CalendarScreen'));
 // const GameScreen = React.lazy(() => import('@module-game/screens/GameScreen'));

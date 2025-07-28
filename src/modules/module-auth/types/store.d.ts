@@ -9,7 +9,6 @@ import type { TypeUser } from '@module-user/types/data.d';
 
 /** Auth store */
 type TypeAuthData = {
-    isAuthentication: boolean;
     user: TypeUser | null;
     prePath: string;
 };

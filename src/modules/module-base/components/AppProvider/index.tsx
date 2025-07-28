@@ -6,7 +6,7 @@
 
 /** libs */
 import * as React from 'react';
-import { QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
@@ -17,13 +17,24 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
-/** utils */
-import { queryClient } from '@module-base/utils/queryClient';
-
 /** providers */
 import ErrorBoundary from '@module-base/components/ErrorBoundary';
 import ThemeProvider from '@module-base/components/ThemeProvider';
 import LanguageProvider from '@module-base/components/LanguageProvider';
+
+/** Create a client */
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            refetchOnWindowFocus: false,
+            refetchOnMount: false,
+            refetchIntervalInBackground: false,
+            refetchInterval: false,
+            refetchOnReconnect: false,
+            retryDelay: 1000,
+        },
+    },
+});
 
 export default function AppProvider(props: React.PropsWithChildren) {
     const { children } = props;

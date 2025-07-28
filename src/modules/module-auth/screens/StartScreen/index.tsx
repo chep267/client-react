@@ -21,7 +21,7 @@ import StartLoading from '@module-base/components/StartLoading';
 import LayerScreen from '@module-base/screens/LayerScreen';
 
 export default function StartScreen() {
-    const uid = Cookies.get(AppKey.uid) || '';
+    const uid = Cookies.get(AppKey.uid);
     const hookRestart = useRestart();
 
     React.useEffect(() => {

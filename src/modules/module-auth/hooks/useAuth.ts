@@ -37,7 +37,7 @@ export function useSignin() {
             const { user } = response.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);
-            authAction.setData({ isAuthentication: true, user });
+            authAction.setData({ user });
         },
         onError: (error: AxiosError) => {
             const code = Number(error?.response?.status);
@@ -67,7 +67,7 @@ export function useSignout() {
         retry: 3,
         onSettled: () => {
             Cookies.remove(AppKey.uid);
-            authAction.setData({ isAuthentication: false, user: null, prePath: '/' });
+            authAction.setData({ user: null, prePath: '/' });
         },
     });
 }
@@ -81,8 +81,8 @@ export function useRestart() {
         onSuccess: (response) => {
             const { user, token } = response.data;
             const exp = !isNaN(token.exp) ? token.exp : AppTimer.restart;
-            authAction.setData({ isAuthentication: true, user });
-            delay(exp - 3000 * 60, () => hookRestart.mutate({ uid: user.uid })).then();
+            authAction.setData({ user });
+            delay(exp, () => hookRestart.mutate({ uid: user.uid })).then();
         },
         onError: async (error: AxiosError) => {
             Cookies.remove(AppKey.uid);
@@ -101,7 +101,7 @@ export function useRestart() {
                 color: 'error',
                 messageIntl,
             });
-            authAction.setData({ isAuthentication: false, user: null });
+            authAction.setData({ user: null });
         },
     });
 

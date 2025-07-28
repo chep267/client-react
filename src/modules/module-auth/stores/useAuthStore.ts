@@ -13,7 +13,6 @@ import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 export const useAuthStore = create<App.ModuleAuth.Store.AuthStore>((set) => ({
     data: {
-        isAuthentication: false,
         user: null,
         prePath: '/',
     },

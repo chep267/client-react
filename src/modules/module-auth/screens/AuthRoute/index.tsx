@@ -25,7 +25,7 @@ export default function AuthRoute(props: React.PropsWithChildren) {
     const { children } = props;
     const { pathname } = useLocation();
     const navigate = useNavigate();
-    const isAuthentication = useAuthStore((store) => store.data.isAuthentication);
+    const isAuthentication = useAuthStore((store) => Boolean(store.data.user));
     const prePath = useAuthStore((store) => store.data.prePath);
     const authAction = useAuthStore((store) => store.action);
 
@@ -52,15 +52,18 @@ export default function AuthRoute(props: React.PropsWithChildren) {
         }
     }, [accountState, pathname]);
 
-    return (
-        <React.Suspense>
-            {accountState === AccountState.signedIn ? (
-                children
-            ) : accountState === AccountState.reSignin ? (
-                <StartScreen />
-            ) : (
-                <AuthScreen />
-            )}
-        </React.Suspense>
+    return React.useMemo(
+        () => (
+            <React.Suspense>
+                {accountState === AccountState.signedIn ? (
+                    children
+                ) : accountState === AccountState.reSignin ? (
+                    <StartScreen />
+                ) : (
+                    <AuthScreen />
+                )}
+            </React.Suspense>
+        ),
+        [accountState]
     );
 }

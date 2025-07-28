@@ -76,7 +76,7 @@ export interface TypeMenuBaseProps {
     tooltipProps?: Omit<TooltipProps, 'children'>;
     buttonProps?: Omit<ButtonProps, 'onClick' | 'children'>;
     buttonChildren?: TooltipProps['children'] | ButtonProps['children'];
-    menuChildren?: MenuProps['children'] | ((props: { closeMenu: () => void }) => MenuProps['children']);
+    menuChildren?: MenuProps['children'] | ((props: { closeMenu: menuProps['onClose'] }) => MenuProps['children']);
 }
 
 /** NotifyBoundary */

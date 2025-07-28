@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import clsx from 'clsx';
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
@@ -25,8 +24,7 @@ import AppTimer from '@module-global/components/AppHeader/AppTimer';
 import AppButtonDev from '@module-global/components/AppHeader/AppButtonDev';
 import ButtonSetting from '@module-global/components/AppHeader/ButtonSetting';
 
-const AppHeader = React.memo(function AppHeader() {
-    const appbarStyle = React.useRef({ height: AppScreenSize.HeaderHeight });
+export default function AppHeader() {
     const theme = useSettingStore((store) => store.data.theme);
 
     return (
@@ -38,7 +36,7 @@ const AppHeader = React.memo(function AppHeader() {
                     'dark:text-white',
                     { ['bg-white']: theme === ThemeObject.light }
                 )}
-                sx={appbarStyle.current}
+                sx={{ height: AppScreenSize.HeaderHeight }}
             >
                 <Box className="flex items-center gap-5">
                     <AppInfo />
@@ -51,6 +49,4 @@ const AppHeader = React.memo(function AppHeader() {
             </Toolbar>
         </AppBar>
     );
-});
-
-export default AppHeader;
+}

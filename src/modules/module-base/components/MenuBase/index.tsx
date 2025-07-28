@@ -17,8 +17,6 @@ export default function MenuBase(props: App.ModuleBase.Component.MenuBaseProps) 
     const [menuElem, setMenuElem] = React.useState<HTMLElement | null>(null);
     const open = Boolean(menuElem);
 
-    const openMenu = React.useCallback((event: React.MouseEvent<HTMLButtonElement>) => setMenuElem(event.currentTarget), []);
-
     const closeMenu = React.useCallback<
         NonNullable<NonNullable<App.ModuleBase.Component.MenuBaseProps['menuProps']>['onClose']>
     >((event, reason) => {
@@ -27,25 +25,28 @@ export default function MenuBase(props: App.ModuleBase.Component.MenuBaseProps) 
     }, []);
 
     const renderButton = () => {
-        const renderContent = () => {
-            return (
-                <Button {...buttonProps} id={`button-menu-${menuId}`} aria-haspopup="true" onClick={openMenu}>
-                    {buttonChildren}
-                </Button>
-            );
-        };
+        const Content = (
+            <Button
+                {...buttonProps}
+                id={`button-menu-${menuId}`}
+                aria-haspopup="true"
+                onClick={(event) => setMenuElem(event.currentTarget)}
+            >
+                {buttonChildren}
+            </Button>
+        );
         if (!tooltipProps) {
-            return renderContent();
+            return Content;
         }
-        return <Tooltip {...tooltipProps}>{renderContent()}</Tooltip>;
+        return <Tooltip {...tooltipProps}>{Content}</Tooltip>;
     };
 
     return (
-        <div>
+        <>
             {renderButton()}
             <Menu {...menuProps} id={`menu-${menuId}`} anchorEl={menuElem} open={open} onClose={closeMenu}>
-                {typeof menuChildren === 'function' ? menuChildren({ closeMenu: () => setMenuElem(null) }) : menuChildren}
+                {typeof menuChildren === 'function' ? menuChildren({ closeMenu }) : menuChildren}
             </Menu>
-        </div>
+        </>
     );
 }

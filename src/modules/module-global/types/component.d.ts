@@ -18,8 +18,7 @@ export interface ListAppProps {
     hasTooltip: boolean;
 }
 
-export interface AppItemProps {
+export interface AppItemProps extends ListAppProps {
     item: TypeAppItem;
     isSelected: boolean;
-    hasTooltip: boolean;
 }

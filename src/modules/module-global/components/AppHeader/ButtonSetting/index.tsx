@@ -15,7 +15,7 @@ import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
 import MenuBase from '@module-base/components/MenuBase';
-import MenuSetting from './MenuSetting';
+import MenuSetting from '@module-global/components/AppHeader/ButtonSetting/MenuSetting';
 
 export default function ButtonSetting() {
     return (

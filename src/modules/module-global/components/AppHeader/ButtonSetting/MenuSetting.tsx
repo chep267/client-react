@@ -40,8 +40,8 @@ const MenuSetting = React.memo(function MenuSetting(props: Props) {
     const { closeMenu } = props;
 
     const settingAction = useSettingStore((store) => store.action);
-    const isAuthentication = useAuthStore((store) => store.data.isAuthentication);
     const user = useAuthStore((store) => store.data.user);
+    const isAuthentication = Boolean(user);
     const hookSignout = useSignout();
 
     const menuBase = React.useRef<App.ModuleBase.Component.NestedItemProps[]>([
