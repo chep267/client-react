@@ -13,7 +13,7 @@ import Button from '@mui/material/Button';
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-const ButtonSubmit = React.memo(function ButtonSubmit(props: App.ModuleAuth.Component.AuthButtonSubmitProps) {
+const ButtonSubmit = React.memo<App.ModuleAuth.Component.AuthButtonSubmitProps>(function ButtonSubmit(props) {
     const { loading, name = 'signin' } = props;
 
     return (

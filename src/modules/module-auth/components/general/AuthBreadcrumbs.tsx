@@ -15,7 +15,7 @@ import { FormattedMessage } from 'react-intl';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-const AuthBreadcrumbs = React.memo(function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBreadcrumbsProps) {
+const AuthBreadcrumbs = React.memo<App.ModuleAuth.Component.AuthBreadcrumbsProps>(function AuthBreadcrumbs(props) {
     const { name = 'signin' } = props;
 
     const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = [

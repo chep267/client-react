@@ -17,7 +17,7 @@ const Icons: Readonly<App.ModuleBase.Component.IconList> = {
     notFound: React.lazy(() => import('@module-base/components/IconBase/svg/NotFound')),
 };
 
-const IconBase = React.memo(function IconBase(props: App.ModuleBase.Component.IconBaseProps) {
+const IconBase = React.memo<App.ModuleBase.Component.IconBaseProps>(function IconBase(props) {
     const { name, width, height, size = 24, ...iconProps } = props;
     const Icon = Icons[name];
 

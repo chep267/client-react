@@ -9,7 +9,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Skeleton from '@mui/material/Skeleton';
 
-const ImageBase = React.memo(function ImageBase(props: App.ModuleBase.Component.ImageBaseProps) {
+const ImageBase = React.memo<App.ModuleBase.Component.ImageBaseProps>(function ImageBase(props) {
     const { alt = '', loading, onLoad, className, ...imageProps } = props;
     const [isLoading, setLoading] = React.useState(true);
 

@@ -32,11 +32,11 @@ import { useAuthStore } from '@module-auth/stores/useAuthStore';
 /** components */
 import NestedItem from '@module-base/components/NestedItem';
 
-type Props = {
+type MenuSettingProps = {
     closeMenu(): void;
 };
 
-const MenuSetting = React.memo(function MenuSetting(props: Props) {
+const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
     const { closeMenu } = props;
 
     const settingAction = useSettingStore((store) => store.action);

@@ -12,7 +12,7 @@ import { loadSlim } from '@tsparticles/slim';
 /** types */
 import type { IParticlesProps } from '@tsparticles/react';
 
-const Particle = React.memo(function Particle(props: IParticlesProps) {
+const Particle = React.memo<IParticlesProps>(function Particle(props) {
     const { options } = props;
 
     const id = React.useId();
