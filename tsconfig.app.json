@@ -16,15 +16,9 @@
             "@langs/*": ["src/langs/*"],
             "@modules/*": ["src/modules/*"],
             "@module-base/*": ["src/modules/module-base/*"],
-            "@module-theme/*": ["src/modules/module-theme/*"],
-            "@module-language/*": ["src/modules/module-language/*"],
-            "@module-user/*": ["src/modules/module-user/*"],
+            "@module-global/*": ["src/modules/module-global/*"],
             "@module-auth/*": ["src/modules/module-auth/*"],
-            "@module-calendar/*": ["src/modules/module-calendar/*"],
-            "@module-messenger/*": ["src/modules/module-messenger/*"],
-            "@module-feed/*": ["src/modules/module-feed/*"],
-            "@module-game/*": ["src/modules/module-game/*"],
-            "@module-global/*": ["src/modules/module-global/*"]
+            "@module-user/*": ["src/modules/module-user/*"]
         }
     }
 }
