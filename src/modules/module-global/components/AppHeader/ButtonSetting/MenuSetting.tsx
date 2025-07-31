@@ -33,7 +33,7 @@ import { useAuthStore } from '@module-auth/stores/useAuthStore';
 import NestedItem from '@module-base/components/NestedItem';
 
 type MenuSettingProps = {
-    closeMenu(): void;
+    closeMenu(event: Event | React.SyntheticEvent): void;
 };
 
 const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
@@ -98,7 +98,7 @@ const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
                 icon: <LogoutIcon color="primary" />,
                 divide: 'bottom',
                 loading: hookSignout.isPending,
-                onClick: () => hookSignout.mutate({ uid: user!.uid }, { onSettled: closeMenu }),
+                onClick: (event) => hookSignout.mutate({ uid: user!.uid }, { onSettled: () => closeMenu(event) }),
             },
         ];
     }, [hookSignout.isPending, isAuthentication]);

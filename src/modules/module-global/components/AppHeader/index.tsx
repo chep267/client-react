@@ -13,10 +13,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-import { ThemeObject } from '@module-base/constants/ThemeObject';
-
-/** stores */
-import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** components */
 import AppInfo from '@module-global/components/AppHeader/AppInfo';
@@ -25,16 +21,13 @@ import AppButtonDev from '@module-global/components/AppHeader/AppButtonDev';
 import ButtonSetting from '@module-global/components/AppHeader/ButtonSetting';
 
 export default function AppHeader() {
-    const theme = useSettingStore((store) => store.data.theme);
-
     return (
         <AppBar position="fixed">
             <Toolbar
                 className={clsx(
                     'flex w-full flex-row items-center justify-between px-4 py-0',
-                    'text-tw-primary',
-                    'dark:text-white',
-                    { ['bg-white']: theme === ThemeObject.light }
+                    'text-tw-primary bg-white',
+                    'dark:bg-transparent dark:text-white'
                 )}
                 sx={{ height: AppScreenSize.HeaderHeight }}
             >

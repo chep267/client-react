@@ -20,9 +20,7 @@ export default function AppInfo() {
     return (
         <Box className="flex items-center gap-2" component={Link} to={AppRouterPath.home}>
             <IconBase name="appLogo" />
-            <Typography variant="h6" fontWeight={600}>
-                {AppEnv.appName}
-            </Typography>
+            <Typography variant="h6">{AppEnv.appName}</Typography>
         </Box>
     );
 }

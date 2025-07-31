@@ -18,17 +18,13 @@ import StartLoading from '@module-base/components/StartLoading';
 
 /** lazy components */
 const AppSider = React.lazy(() => import('@module-global/components/AppSider'));
-const MainRouter = React.lazy(() => import('@module-global/components/AppMain/MainRouter'));
+const MainRoute = React.lazy(() => import('@module-global/components/AppMain/MainRoute'));
 const AuthRoute = React.lazy(() => import('@module-auth/screens/AuthRoute'));
 
 export default function AppMain() {
     return (
-        <Box
-            className="flex w-auto max-w-full shrink-0 grow"
-            sx={{ paddingTop: `${AppScreenSize.HeaderHeight}px` }}
-            component="main"
-        >
-            <Container id="container" className="mx-auto flex h-full w-full max-w-full p-0">
+        <Box component="main" className="flex shrink grow" sx={{ paddingTop: `${AppScreenSize.HeaderHeight}px` }}>
+            <Container id="app-container" className="flex h-full w-full max-w-full p-0">
                 <React.Suspense fallback={<StartLoading />}>
                     <Routes>
                         <Route
@@ -36,7 +32,7 @@ export default function AppMain() {
                             element={
                                 <AuthRoute>
                                     <AppSider />
-                                    <MainRouter />
+                                    <MainRoute />
                                 </AuthRoute>
                             }
                         />

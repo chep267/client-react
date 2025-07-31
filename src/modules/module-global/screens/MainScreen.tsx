@@ -13,7 +13,7 @@ import AppMain from '@module-global/components/AppMain';
 
 export default function MainScreen() {
     return (
-        <Box className="relative flex h-screen w-screen flex-col">
+        <Box className="relative flex h-dvh w-dvw flex-col">
             <AppHeader />
             <AppMain />
         </Box>
