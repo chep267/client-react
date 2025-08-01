@@ -73,13 +73,7 @@ export default function RegisterForm() {
     ).current;
 
     const hookRegister = useRegister();
-    const {
-        handleSubmit,
-        control,
-        setError,
-        clearErrors,
-        formState: { errors },
-    } = useForm<TypeFormData>({
+    const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: '',
             [FormFieldsName.password]: '',
@@ -111,10 +105,6 @@ export default function RegisterForm() {
         });
     }, []);
 
-    const renderMessageIntl = (messageIntl?: string) => {
-        return messageIntl ? <FormattedMessage id={messageIntl} /> : undefined;
-    };
-
     return (
         <Paper
             className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
@@ -126,24 +116,18 @@ export default function RegisterForm() {
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
+                label={<FormattedMessage id={AuthLanguage.component.label.email} />}
                 autoFocus
-                error={Boolean(errors.email)}
-                label={renderMessageIntl(AuthLanguage.component.label.email)}
-                helperText={renderMessageIntl(errors.email?.message)}
             />
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
-                error={Boolean(errors.password)}
-                label={renderMessageIntl(AuthLanguage.component.label.password)}
-                helperText={renderMessageIntl(errors.password?.message)}
+                label={<FormattedMessage id={AuthLanguage.component.label.password} />}
             />
             <FieldPassword
                 name={FormFieldsName.confirmPassword}
                 control={control}
-                error={Boolean(errors.confirmPassword)}
-                label={renderMessageIntl(AuthLanguage.component.label.confirmPassword)}
-                helperText={renderMessageIntl(errors.confirmPassword?.message)}
+                label={<FormattedMessage id={AuthLanguage.component.label.confirmPassword} />}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="register" />

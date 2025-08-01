@@ -64,13 +64,7 @@ export default function SigninForm() {
     ).current;
 
     const hookSignin = useSignin();
-    const {
-        handleSubmit,
-        control,
-        setError,
-        clearErrors,
-        formState: { errors },
-    } = useForm<TypeFormData>({
+    const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: Cookie.get(AppKey.email) || 'dong.nguyenthanh@powergatesoftware.com',
             [FormFieldsName.password]: 'Midom@2024',
@@ -100,10 +94,6 @@ export default function SigninForm() {
         });
     }, []);
 
-    const renderMessageIntl = (messageIntl?: string) => {
-        return messageIntl ? <FormattedMessage id={messageIntl} /> : undefined;
-    };
-
     return (
         <Paper
             className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
@@ -115,17 +105,13 @@ export default function SigninForm() {
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
+                label={<FormattedMessage id={AuthLanguage.component.label.email} />}
                 autoFocus
-                error={Boolean(errors.email)}
-                label={renderMessageIntl(AuthLanguage.component.label.email)}
-                helperText={renderMessageIntl(errors.email?.message)}
             />
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
-                error={Boolean(errors.password)}
-                label={renderMessageIntl(AuthLanguage.component.label.password)}
-                helperText={renderMessageIntl(errors.password?.message)}
+                label={<FormattedMessage id={AuthLanguage.component.label.password} />}
             />
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="signin" />

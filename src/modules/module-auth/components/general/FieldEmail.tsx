@@ -6,6 +6,7 @@
 
 /** libs */
 import { useController } from 'react-hook-form';
+import { FormattedMessage } from 'react-intl';
 import TextField from '@mui/material/TextField';
 
 /** types */
@@ -13,7 +14,10 @@ import type { FieldValues } from 'react-hook-form';
 
 export default function FieldEmail<T extends FieldValues>(props: App.ModuleAuth.Component.FormTextFieldProps<T>) {
     const { name, control, ...fieldProps } = props;
-    const { field } = useController({ name, control });
+    const {
+        field,
+        fieldState: { error },
+    } = useController({ name, control });
 
     return (
         <TextField
@@ -28,6 +32,8 @@ export default function FieldEmail<T extends FieldValues>(props: App.ModuleAuth.
             disabled={field.disabled}
             onChange={field.onChange}
             onBlur={field.onBlur}
+            error={Boolean(error)}
+            helperText={error ? <FormattedMessage id={error.message} /> : undefined}
         />
     );
 }
