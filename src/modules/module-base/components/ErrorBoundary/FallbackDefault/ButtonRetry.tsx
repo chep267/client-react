@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -18,27 +17,26 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 /** hooks */
 import { useCountdown } from '@module-base/hooks/useCountdown';
 
+function Timer() {
+    const { second } = useCountdown({
+        callback: () => window.location.reload(),
+        numberCountdown: AppTimer.countdownError,
+    });
+
+    return <FormattedMessage id={BaseLanguage.component.label.error.fallback.autoReload} values={{ second }} />;
+}
+
 export default function ButtonRetry(props: Pick<App.ModuleBase.Component.FallbackDefaultProps, 'isAutoReload'>) {
     const { isAutoReload = true } = props;
 
-    const reloadWindow = React.useCallback(() => window.location.reload(), []);
-
-    const { second } = useCountdown({ callback: reloadWindow, numberCountdown: AppTimer.countdownError });
-
-    const renderContent = React.useMemo(() => {
-        return (
-            <Button onClick={reloadWindow} variant="outlined" size="large" color="error">
-                <FormattedMessage id={BaseLanguage.component.button.retry} />
-            </Button>
-        );
-    }, []);
-
     return (
         <Stack className="items-center justify-center pt-3">
-            {renderContent}
+            <Button onClick={() => window.location.reload()} variant="outlined" size="large" color="error">
+                <FormattedMessage id={BaseLanguage.component.button.retry} />
+            </Button>
             {isAutoReload ? (
                 <Typography className="pt-3 text-base" color="error">
-                    <FormattedMessage id={BaseLanguage.component.label.error.fallback.autoReload} values={{ second }} />
+                    <Timer />
                 </Typography>
             ) : null}
         </Stack>

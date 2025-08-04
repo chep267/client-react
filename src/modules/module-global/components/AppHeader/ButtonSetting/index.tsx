@@ -7,7 +7,7 @@
 /** libs */
 import * as React from 'react';
 import clsx from 'clsx';
-
+import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
@@ -15,6 +15,10 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import MenuList from '@mui/material/MenuList';
 import MenuIcon from '@mui/icons-material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+
+/** constants */
+import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** components */
 import MenuSetting from '@module-global/components/AppHeader/ButtonSetting/MenuSetting';
@@ -37,18 +41,20 @@ export default function ButtonSetting() {
 
     return (
         <div>
-            <Button
-                ref={anchorRef}
-                id={`button-${menuId}`}
-                aria-controls={`menu-${menuId}`}
-                aria-expanded={open}
-                aria-haspopup="true"
-                aria-label="setting"
-                className={clsx('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 text-inherit', 'hover:border')}
-                onClick={handleToggle}
-            >
-                <MenuIcon />
-            </Button>
+            <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />}>
+                <Button
+                    ref={anchorRef}
+                    id={`button-${menuId}`}
+                    aria-controls={`menu-${menuId}`}
+                    aria-expanded={open}
+                    aria-haspopup="true"
+                    aria-label="setting"
+                    className={clsx('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 text-inherit', 'hover:border')}
+                    onClick={handleToggle}
+                >
+                    <MenuIcon />
+                </Button>
+            </Tooltip>
             <Popper
                 className="!top-3.5"
                 open={open}

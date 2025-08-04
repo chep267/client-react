@@ -14,7 +14,8 @@ export const en = {
     [BaseLanguage.component.label.error.server]: 'Server busy!',
     [BaseLanguage.component.label.error.fallback.title]: 'An error occurred',
     [BaseLanguage.component.label.error.fallback.content]: 'Please try to run the application again',
-    [BaseLanguage.component.label.error.fallback.autoReload]: '( Auto reload after {second} seconds )',
+    [BaseLanguage.component.label.error.fallback.autoReload]:
+        '( Auto reload after {second, plural, =0 {# second} one {# second} other {# seconds}} )',
     [BaseLanguage.component.button.retry]: 'Retry',
     [BaseLanguage.component.table.empty]: 'No data!',
 
