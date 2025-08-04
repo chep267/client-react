@@ -28,10 +28,6 @@ declare module '*.png' {
 }
 
 declare global {
-    interface Window {
-        checkMobile(): boolean;
-        isMobile: boolean;
-    }
     interface ImportMeta {
         readonly env: ImportMetaEnv;
     }
