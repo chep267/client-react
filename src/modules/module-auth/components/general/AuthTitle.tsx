@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Typography from '@mui/material/Typography';
@@ -13,7 +12,7 @@ import Typography from '@mui/material/Typography';
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-const AuthTitle = React.memo<App.ModuleAuth.Component.AuthTitleProps>(function AuthTitle(props) {
+export default function AuthTitle(props: App.ModuleAuth.Component.AuthTitleProps) {
     const { className, name = 'signin' } = props;
 
     return (
@@ -21,6 +20,4 @@ const AuthTitle = React.memo<App.ModuleAuth.Component.AuthTitleProps>(function A
             <FormattedMessage id={AuthLanguage.component.title[name]} />
         </Typography>
     );
-});
-
-export default AuthTitle;
+}

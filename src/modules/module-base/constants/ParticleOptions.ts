@@ -93,6 +93,9 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
             z5000: {
                 number: {
                     value: 70,
+                    limit: {
+                        value: 70,
+                    },
                 },
                 zIndex: {
                     value: 50,
@@ -101,6 +104,9 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
             z7500: {
                 number: {
                     value: 30,
+                    limit: {
+                        value: 30,
+                    },
                 },
                 zIndex: {
                     value: 75,
@@ -109,6 +115,9 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
             z2500: {
                 number: {
                     value: 50,
+                    limit: {
+                        value: 50,
+                    },
                 },
                 zIndex: {
                     value: 25,
@@ -117,6 +126,9 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
             z1000: {
                 number: {
                     value: 40,
+                    limit: {
+                        value: 40,
+                    },
                 },
                 zIndex: {
                     value: 10,
@@ -180,12 +192,10 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
         number: {
             density: {
                 enable: false,
-                width: 1920,
-                height: 1080,
             },
             limit: {
                 mode: 'delete',
-                value: 0,
+                value: 1,
             },
             value: 200,
         },

@@ -24,7 +24,10 @@ export default function StartLoading() {
                         'dark:border-t-amber-500 dark:border-r-amber-500'
                     )}
                 />
-                <Typography variant="h5" className={clsx('tracking-wide uppercase', 'text-blue-500', 'dark:text-amber-500')}>
+                <Typography
+                    variant="h5"
+                    className={clsx('tracking-wide uppercase', 'text-blue-500', 'dark:text-amber-500')}
+                >
                     <FormattedMessage id={BaseLanguage.component.label.start} />
                 </Typography>
                 <Stack className="animate-loading-anim absolute top-[calc(50%-2px)] left-1/2 h-1 w-1/2 origin-left bg-transparent">

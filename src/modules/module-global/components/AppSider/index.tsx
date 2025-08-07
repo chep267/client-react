@@ -60,7 +60,9 @@ const AppSider = React.memo(function AppSider() {
     );
 
     const tooltipId =
-        sider === AppSiderState.expand ? GlobalLanguage.component.label.collapse : GlobalLanguage.component.label.expand;
+        sider === AppSiderState.expand
+            ? GlobalLanguage.component.label.collapse
+            : GlobalLanguage.component.label.expand;
 
     const onChangeSider = () => {
         settingAction.changeSider(sider === AppSiderState.expand ? AppSiderState.collapse : AppSiderState.expand);
@@ -81,7 +83,11 @@ const AppSider = React.memo(function AppSider() {
         >
             <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
                 <Button className="w-full min-w-14" disabled={sider === AppSiderState.force} onClick={onChangeSider}>
-                    {sider === AppSiderState.expand ? <KeyboardDoubleArrowLeftIcon /> : <KeyboardDoubleArrowRightIcon />}
+                    {sider === AppSiderState.expand ? (
+                        <KeyboardDoubleArrowLeftIcon />
+                    ) : (
+                        <KeyboardDoubleArrowRightIcon />
+                    )}
                 </Button>
             </Tooltip>
             <Divider />

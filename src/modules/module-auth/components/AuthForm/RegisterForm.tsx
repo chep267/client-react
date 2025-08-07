@@ -23,18 +23,14 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-/** hooks */
-import { useRegister } from '@module-auth/hooks/useAuth';
-
 /** components */
 import AuthTitle from '@module-auth/components/general/AuthTitle';
 import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 import FieldEmail from '@module-auth/components/general/FieldEmail';
 import FieldPassword from '@module-auth/components/general/FieldPassword';
-import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
+import ButtonRegister from '@module-auth/components/general/ButtonRegister';
 
 /** types */
-import type { SubmitHandler } from 'react-hook-form';
 import type { AxiosError } from 'axios';
 
 type TypeFormFieldsName = 'email' | 'password' | 'confirmPassword';
@@ -72,7 +68,6 @@ export default function RegisterForm() {
             })
     ).current;
 
-    const hookRegister = useRegister();
     const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: '',
@@ -84,54 +79,56 @@ export default function RegisterForm() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
-        hookRegister.mutate(data, {
-            onError: (error: AxiosError) => {
-                const code = Number(error?.response?.status);
-                let messageIntl: string;
-                switch (true) {
-                    case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
-                        messageIntl = AuthLanguage.notify.register.error;
-                        break;
-                    default:
-                        messageIntl = AuthLanguage.notify.server.error;
-                        break;
-                }
-                setError(FormFieldsName.email, { message: messageIntl });
-                setError(FormFieldsName.password, { message: messageIntl });
-                setError(FormFieldsName.confirmPassword, { message: messageIntl });
-                delay(AppTimer.notifyDuration, clearErrors).then();
-            },
-        });
+    const onSubmitError = React.useCallback((error: AxiosError) => {
+        const code = Number(error?.response?.status);
+        let messageIntl: string;
+        switch (true) {
+            case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                messageIntl = AuthLanguage.notify.register.error;
+                break;
+            default:
+                messageIntl = AuthLanguage.notify.server.error;
+                break;
+        }
+        setError(FormFieldsName.email, { message: messageIntl });
+        setError(FormFieldsName.password, { message: messageIntl });
+        setError(FormFieldsName.confirmPassword, { message: messageIntl });
+        delay(AppTimer.notifyDuration, clearErrors).then();
     }, []);
 
     return (
         <Paper
             className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
             component="form"
-            onSubmit={handleSubmit(onSubmit)}
             noValidate
         >
             <AuthTitle className="pb-6" name="register" />
+
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
                 label={<FormattedMessage id={AuthLanguage.component.label.email} />}
+                autoComplete="username"
                 autoFocus
             />
+
             <FieldPassword
                 name={FormFieldsName.password}
                 control={control}
                 label={<FormattedMessage id={AuthLanguage.component.label.password} />}
+                autoComplete="new-password"
             />
+
             <FieldPassword
                 name={FormFieldsName.confirmPassword}
                 control={control}
                 label={<FormattedMessage id={AuthLanguage.component.label.confirmPassword} />}
+                autoComplete="new-password"
             />
+
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="register" />
-                <ButtonSubmit loading={hookRegister.isPending} name="register" />
+                <ButtonRegister handleSubmit={handleSubmit} onSubmitError={onSubmitError} />
             </Box>
         </Paper>
     );

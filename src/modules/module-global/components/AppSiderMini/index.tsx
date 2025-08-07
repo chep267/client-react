@@ -71,7 +71,13 @@ const AppSiderMini = React.memo(function AppSiderMini() {
             className={clsx('z-1', { ['hidden']: sider !== AppSiderState.hidden })}
             sx={{ top: `${AppScreenSize.HeaderHeight}px` }}
         >
-            <Tabs value={tabValue} onChange={handleChange} textColor="primary" indicatorColor="primary" variant="fullWidth">
+            <Tabs
+                value={tabValue}
+                onChange={handleChange}
+                textColor="primary"
+                indicatorColor="primary"
+                variant="fullWidth"
+            >
                 {apps.map((menu) => (
                     <Tab key={menu.path} id={menu.path} value={menu.path} label={menu.icon} />
                 ))}

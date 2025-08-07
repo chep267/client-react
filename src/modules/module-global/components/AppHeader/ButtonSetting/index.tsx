@@ -68,7 +68,11 @@ export default function ButtonSetting() {
                     <Grow {...TransitionProps} className="origin-top-right">
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={open} id={`menu-${menuId}`} aria-labelledby={`button-${menuId}`}>
+                                <MenuList
+                                    autoFocusItem={open}
+                                    id={`menu-${menuId}`}
+                                    aria-labelledby={`button-${menuId}`}
+                                >
                                     <MenuSetting closeMenu={handleClose} />
                                 </MenuList>
                             </ClickAwayListener>

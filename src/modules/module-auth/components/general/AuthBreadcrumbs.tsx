@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 import { Link as RouterLink } from 'react-router-dom';
@@ -15,7 +14,7 @@ import { FormattedMessage } from 'react-intl';
 import { AuthRouterPath } from '@module-auth/constants/AuthRouterPath';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
-const AuthBreadcrumbs = React.memo<App.ModuleAuth.Component.AuthBreadcrumbsProps>(function AuthBreadcrumbs(props) {
+export default function AuthBreadcrumbs(props: App.ModuleAuth.Component.AuthBreadcrumbsProps) {
     const { name = 'signin' } = props;
 
     const breadcrumbs: App.ModuleAuth.Component.AuthBreadcrumbsItem[] = [
@@ -55,6 +54,4 @@ const AuthBreadcrumbs = React.memo<App.ModuleAuth.Component.AuthBreadcrumbsProps
             )}
         </Breadcrumbs>
     );
-});
-
-export default AuthBreadcrumbs;
+}

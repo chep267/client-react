@@ -25,17 +25,13 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 /** utils */
 import { delay } from '@module-base/utils/delay';
 
-/** hooks */
-import { useRecover } from '@module-auth/hooks/useAuth';
-
 /** components */
 import AuthTitle from '@module-auth/components/general/AuthTitle';
 import AuthBreadcrumbs from '@module-auth/components/general/AuthBreadcrumbs';
 import FieldEmail from '@module-auth/components/general/FieldEmail';
-import ButtonSubmit from '@module-auth/components/general/ButtonSubmit';
+import ButtonRecover from '@module-auth/components/general/ButtonRecover';
 
 /** types */
-import type { SubmitHandler } from 'react-hook-form';
 import type { AxiosError } from 'axios';
 
 type TypeFormFieldsName = 'email';
@@ -56,7 +52,6 @@ export default function RecoverForm() {
         })
     ).current;
 
-    const hookRecover = useRecover();
     const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
             [FormFieldsName.email]: Cookie.get(AppKey.email) || '',
@@ -66,42 +61,40 @@ export default function RecoverForm() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
-        hookRecover.mutate(data, {
-            onError: (error: AxiosError) => {
-                const code = Number(error?.response?.status);
-                let messageIntl: string;
-                switch (true) {
-                    case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
-                        messageIntl = AuthLanguage.notify.signin.error;
-                        break;
-                    default:
-                        messageIntl = AuthLanguage.notify.server.error;
-                        break;
-                }
-                setError(FormFieldsName.email, { message: messageIntl });
-                delay(AppTimer.notifyDuration, clearErrors).then();
-            },
-        });
+    const onSubmitError = React.useCallback((error: AxiosError) => {
+        const code = Number(error?.response?.status);
+        let messageIntl: string;
+        switch (true) {
+            case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+                messageIntl = AuthLanguage.notify.signin.error;
+                break;
+            default:
+                messageIntl = AuthLanguage.notify.server.error;
+                break;
+        }
+        setError(FormFieldsName.email, { message: messageIntl });
+        delay(AppTimer.notifyDuration, clearErrors).then();
     }, []);
 
     return (
         <Paper
             className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
             component="form"
-            onSubmit={handleSubmit(onSubmit)}
             noValidate
         >
             <AuthTitle className="pb-6" name="recover" />
+
             <FieldEmail
                 name={FormFieldsName.email}
                 control={control}
                 label={<FormattedMessage id={AuthLanguage.component.label.email} />}
+                autoComplete="username"
                 autoFocus
             />
+
             <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="recover" />
-                <ButtonSubmit loading={hookRecover.isPending} name="recover" />
+                <ButtonRecover handleSubmit={handleSubmit} onSubmitError={onSubmitError} />
             </Box>
         </Paper>
     );

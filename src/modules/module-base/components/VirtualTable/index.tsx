@@ -29,10 +29,11 @@ import { sortTableData } from '@module-base/utils/virtual';
 /** types */
 import type { ChangeEvent } from 'react';
 
-export default function VirtualTable<Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData>(
-    props: App.ModuleBase.Component.VirtualTableProps<Data>
-) {
-    const { data, loading, emptyContent, columns, hasCheckbox, dataKeyForCheckbox, onChangeSelected, ...tableProps } = props;
+export default function VirtualTable<
+    Data extends App.ModuleBase.Component.TableData = App.ModuleBase.Component.TableData,
+>(props: App.ModuleBase.Component.VirtualTableProps<Data>) {
+    const { data, loading, emptyContent, columns, hasCheckbox, dataKeyForCheckbox, onChangeSelected, ...tableProps } =
+        props;
 
     const [orderType, setOrderType] = React.useState<App.ModuleBase.Component.OrderType>();
     const [orderBy, setOrderBy] = React.useState<App.ModuleBase.Component.DataKey<Data>>();

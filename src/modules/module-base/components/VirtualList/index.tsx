@@ -19,7 +19,9 @@ import TableEmpty from '@module-base/components/TableBase/TableEmpty';
 export default function VirtualList<Data, Context>(props: App.ModuleBase.Component.VirtualListProps<Data, Context>) {
     const { loading, emptyContent, itemProps, components, ...listProps } = props;
 
-    const customComponents = React.useMemo<App.ModuleBase.Component.VirtualListProps<Data, Context>['components']>(() => {
+    const customComponents = React.useMemo<
+        App.ModuleBase.Component.VirtualListProps<Data, Context>['components']
+    >(() => {
         return {
             Scroller: React.forwardRef<HTMLDivElement, any>((props, ref) => (
                 <>
@@ -29,7 +31,11 @@ export default function VirtualList<Data, Context>(props: App.ModuleBase.Compone
             )),
             List: React.forwardRef((props, ref) => <List ref={ref} component="div" {...props} />),
             Item: ({ style, ...defaultProps }) => (
-                <ListItem {...defaultProps} {...itemProps} style={{ padding: 0, margin: 0, ...style, ...itemProps?.style }} />
+                <ListItem
+                    {...defaultProps}
+                    {...itemProps}
+                    style={{ padding: 0, margin: 0, ...style, ...itemProps?.style }}
+                />
             ),
             EmptyPlaceholder: () => (loading ? null : <TableEmpty emptyContent={emptyContent} />),
             ...components,

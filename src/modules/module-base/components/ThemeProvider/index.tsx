@@ -6,7 +6,12 @@
 
 /** libs */
 import * as React from 'react';
-import { StyledEngineProvider, createTheme, ThemeProvider as ThemeProviderMUI, useColorScheme } from '@mui/material/styles';
+import {
+    StyledEngineProvider,
+    createTheme,
+    ThemeProvider as ThemeProviderMUI,
+    useColorScheme,
+} from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import CssBaseline from '@mui/material/CssBaseline';
 

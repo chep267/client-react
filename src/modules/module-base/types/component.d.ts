@@ -114,7 +114,9 @@ export interface TypeVirtualListProps<Data, Context> extends VirtuosoProps<Data,
 /** TableBase */
 export type TypeOrderType = 'asc' | 'desc';
 export type TypeTableData = Record<string | number, any> | any[];
-export type TypeDataKey<Data extends TypeTableData> = Data extends any[] ? number : Extract<keyof Data, string | number>;
+export type TypeDataKey<Data extends TypeTableData> = Data extends any[]
+    ? number
+    : Extract<keyof Data, string | number>;
 export interface TypeTableBaseProps<Data extends TypeTableData = TypeTableData> extends TableProps {
     data?: readonly Data[];
     loading?: boolean;
@@ -156,7 +158,8 @@ export interface TypeCheckboxColumnProps extends CheckboxProps {
 }
 
 /** Virtual Table */
-export interface TypeVirtualTableProps<Data extends TypeTableData, Context = any> extends TableVirtuosoProps<Data, Context> {
+export interface TypeVirtualTableProps<Data extends TypeTableData, Context = any>
+    extends TableVirtuosoProps<Data, Context> {
     loading?: boolean;
     emptyContent?: ReactNode;
     hasCheckbox?: boolean;
