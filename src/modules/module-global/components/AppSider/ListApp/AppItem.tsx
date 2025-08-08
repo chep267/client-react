@@ -36,7 +36,7 @@ const AppItem = React.memo<App.ModuleGlobal.Component.AppItemProps>(function App
 
     return (
         <ListItem className="w-full p-1" sx={isSelected ? itemSelectedStyle : undefined}>
-            <Tooltip title={item.name} placement="right" disableHoverListener={!hasTooltip}>
+            <Tooltip title={item.name} placement="right" arrow disableHoverListener={!hasTooltip}>
                 {itemContent}
             </Tooltip>
         </ListItem>

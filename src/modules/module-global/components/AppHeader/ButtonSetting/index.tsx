@@ -41,7 +41,7 @@ export default function ButtonSetting() {
 
     return (
         <div>
-            <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />}>
+            <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />} arrow>
                 <Button
                     ref={anchorRef}
                     id={`button-${menuId}`}

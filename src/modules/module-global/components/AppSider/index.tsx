@@ -6,28 +6,22 @@
 
 /** libs */
 import * as React from 'react';
-import { FormattedMessage } from 'react-intl';
-import Tooltip from '@mui/material/Tooltip';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import Button from '@mui/material/Button';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 /** constants */
 import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** components */
-import ListApp from './ListApp';
+import ButtonSider from '@module-global/components/AppSider/ButtonSider';
+import ListApp from '@module-global/components/AppSider/ListApp';
 
 const AppSider = React.memo(function AppSider() {
     const sider = useSettingStore((store) => store.data.sider);
-    const settingAction = useSettingStore((store) => store.action);
 
     const siderStyles = React.useMemo(
         () => ({
@@ -59,15 +53,6 @@ const AppSider = React.memo(function AppSider() {
         []
     );
 
-    const tooltipId =
-        sider === AppSiderState.expand
-            ? GlobalLanguage.component.label.collapse
-            : GlobalLanguage.component.label.expand;
-
-    const onChangeSider = () => {
-        settingAction.changeSider(sider === AppSiderState.expand ? AppSiderState.collapse : AppSiderState.expand);
-    };
-
     return (
         <Drawer
             variant="permanent"
@@ -81,17 +66,9 @@ const AppSider = React.memo(function AppSider() {
                 },
             }}
         >
-            <Tooltip title={<FormattedMessage id={tooltipId} />} placement="right">
-                <Button className="w-full min-w-14" disabled={sider === AppSiderState.force} onClick={onChangeSider}>
-                    {sider === AppSiderState.expand ? (
-                        <KeyboardDoubleArrowLeftIcon />
-                    ) : (
-                        <KeyboardDoubleArrowRightIcon />
-                    )}
-                </Button>
-            </Tooltip>
+            <ButtonSider />
             <Divider />
-            <ListApp hasTooltip={sider === AppSiderState.collapse} />
+            <ListApp hasTooltip={sider !== AppSiderState.expand} />
         </Drawer>
     );
 });

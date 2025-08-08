@@ -5,8 +5,7 @@
  */
 
 /** libs */
-import { AES } from 'crypto-es/lib/aes';
-import { Utf8 } from 'crypto-es/lib/core';
+import { AES, Utf8 } from 'crypto-es';
 
 const CIPHER_KEY = 'to-la-chep';
 

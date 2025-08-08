@@ -24,7 +24,7 @@ export default function AppButtonDev(props: any) {
     };
 
     return (
-        <Tooltip title={<FormattedMessage id={BaseLanguage.component.label.develop} />}>
+        <Tooltip title={<FormattedMessage id={BaseLanguage.component.label.develop} />} arrow>
             <IconButton
                 className="m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 text-inherit hover:border"
                 aria-label="dev"
