@@ -31,12 +31,14 @@ function resolveAlias() {
 // https://vitejs.dev/config/
 export default ({ mode }: ConfigEnv) => {
     process.env = Object.assign(process.env, loadEnv(mode, process.cwd()));
+
     const config = {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
         port: Number(process.env.VITE_APP_PORT) || 3000,
         host: process.env.VITE_APP_HOST || 'localhost',
         isGzip: process.env.VITE_APP_BUILD_GZIP === 'true',
     };
+
     return defineConfig({
         plugins: [
             pluginReact(),
@@ -51,7 +53,7 @@ export default ({ mode }: ConfigEnv) => {
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            pluginVisualizer({ filename: 'stats.html', open: false }),
+            config.isDevMode ? pluginVisualizer({ filename: 'stats.html', open: false }) : undefined,
         ],
         resolve: {
             alias: resolveAlias(),
