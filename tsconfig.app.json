@@ -1,12 +1,11 @@
 {
     "extends": "@tsconfig/vite-react/tsconfig.json",
-    "include": ["src"],
-    "exclude": ["src/**/__tests__/*"],
+    "include": ["src/**/*"],
+    "exclude": ["src/**/__tests__/*", "node_modules", "dist"],
     "compilerOptions": {
-        "target": "ES2023",
-        "lib": ["ES2023", "DOM", "DOM.Iterable"],
-        "noImplicitAny": false,
-        "experimentalDecorators": true,
+        "target": "ESNext",
+        "lib": ["ES2024", "ESNext", "DOM", "DOM.Iterable"],
+        "noImplicitAny": true,
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
 
@@ -17,8 +16,8 @@
             "@modules/*": ["src/modules/*"],
             "@module-base/*": ["src/modules/module-base/*"],
             "@module-global/*": ["src/modules/module-global/*"],
-            "@module-auth/*": ["src/modules/module-auth/*"],
-            "@module-user/*": ["src/modules/module-user/*"]
+            "@module-user/*": ["src/modules/module-user/*"],
+            "@module-auth/*": ["src/modules/module-auth/*"]
         }
     }
 }

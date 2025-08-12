@@ -27,6 +27,8 @@ declare module '*.png' {
     export const ReactComponent;
 }
 
+declare module 'chance';
+
 declare global {
     interface ImportMeta {
         readonly env: ImportMetaEnv;
