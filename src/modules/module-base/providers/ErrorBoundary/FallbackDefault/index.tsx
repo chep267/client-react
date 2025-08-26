@@ -15,7 +15,7 @@ import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
 /** components */
 import IconBase from '@module-base/components/IconBase';
-import ButtonRetry from '@module-base/components/ErrorBoundary/FallbackDefault/ButtonRetry';
+import ButtonRetry from '@module-base/providers/ErrorBoundary/FallbackDefault/ButtonRetry';
 
 /** screens */
 import LayerScreen from '@module-base/screens/LayerScreen';

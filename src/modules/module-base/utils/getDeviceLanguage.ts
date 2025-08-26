@@ -23,7 +23,7 @@ export const getDeviceLanguage = (): App.ModuleBase.Store.Locale => {
     if (locale in LocaleObject) {
         return locale;
     }
-    // get from device
+    // get from the device
     const deviceLanguage =
         navigator.languages && navigator.languages.length ? navigator.languages[0] : navigator.language;
     // vi_VN | en_UK | en_US | ...

@@ -23,7 +23,7 @@ export const getDeviceTheme = (): App.ModuleBase.Store.Theme => {
     if (theme in ThemeObject) {
         return theme;
     }
-    // get from device
+    // get from the device
     if (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches) {
         return ThemeObject.dark;
     }

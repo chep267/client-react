@@ -18,9 +18,9 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** providers */
-import ErrorBoundary from '@module-base/components/ErrorBoundary';
-import ThemeProvider from '@module-base/components/ThemeProvider';
-import LanguageProvider from '@module-base/components/LanguageProvider';
+import ErrorBoundary from '@module-base/providers/ErrorBoundary';
+import ThemeProvider from '@module-base/providers/ThemeProvider';
+import LanguageProvider from '@module-base/providers/LanguageProvider';
 
 /** Create a client */
 const queryClient = new QueryClient({

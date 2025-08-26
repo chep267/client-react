@@ -8,8 +8,8 @@
 import * as React from 'react';
 
 /** lazy components */
-const FallbackDefault = React.lazy(() => import('@module-base/components/ErrorBoundary/FallbackDefault'));
-const NotifyBoundary = React.lazy(() => import('@module-base/components/ErrorBoundary/NotifyBoundary'));
+const FallbackDefault = React.lazy(() => import('@module-base/providers/ErrorBoundary/FallbackDefault'));
+const NotifyBoundary = React.lazy(() => import('@module-base/providers/ErrorBoundary/NotifyBoundary'));
 
 class ErrorBoundary extends React.Component<
     App.ModuleBase.Component.ErrorBoundaryProps,
@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component<
     }
 
     static getDerivedStateFromError() {
-        // Update state so the next render will show the fallback UI.
+        // Update the state so the next render will show the fallback UI.
         return { hasError: true };
     }
 

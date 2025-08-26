@@ -12,8 +12,8 @@ export const debounce = (timer: number = AppTimer.debounce, cb?: (...args: any[]
     let timeout: NodeJS.Timeout;
     return (...args: any[]) => {
         if (timeout) {
-            clearTimeout(timeout); // Hủy lần timeout trước đó
+            clearTimeout(timeout);
         }
-        timeout = setTimeout(() => cb?.(...args), timer); // Thiết lập timeout mới
+        timeout = setTimeout(() => cb?.(...args), timer);
     };
 };

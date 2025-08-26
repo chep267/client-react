@@ -53,7 +53,7 @@ export default ({ mode }: ConfigEnv) => {
                       deleteOriginFile: false, // Keep original files
                   })
                 : undefined,
-            config.isDevMode ? pluginVisualizer({ filename: 'stats.html', open: false }) : undefined,
+            config.isDevMode ? pluginVisualizer({ filename: 'stats.html', open: true }) : undefined,
         ],
         resolve: {
             alias: resolveAlias(),
@@ -71,7 +71,7 @@ export default ({ mode }: ConfigEnv) => {
             target: 'esnext', // Target modern browsers
             minify: 'esbuild', // Enable minification
             sourcemap: false, // Generate sourcemaps (optional, disable for smaller builds)
-            chunkSizeWarningLimit: 500, // Set maximum chunk size (in bytes)
+            chunkSizeWarningLimit: 500, // Set the maximum chunk size (in bytes)
             assetsInlineLimit: 4096,
             cssCodeSplit: true, // Enable CSS code splitting
             commonjsOptions: {

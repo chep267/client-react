@@ -9,7 +9,7 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 
 /** providers */
-import AppProvider from '@module-base/components/AppProvider';
+import AppProvider from '@module-base/providers/AppProvider';
 
 /** screens */
 import MainScreen from '@module-global/screens/MainScreen';
