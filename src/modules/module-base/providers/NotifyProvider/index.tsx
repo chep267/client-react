@@ -8,14 +8,14 @@
 import * as React from 'react';
 
 /** lazy components */
-const FallbackDefault = React.lazy(() => import('@module-base/providers/ErrorBoundary/FallbackDefault'));
-const NotifyBoundary = React.lazy(() => import('@module-base/providers/ErrorBoundary/NotifyBoundary'));
+const FallbackDefault = React.lazy(() => import('@module-base/providers/NotifyProvider/FallbackDefault'));
+const NotifyBoundary = React.lazy(() => import('@module-base/providers/NotifyProvider/NotifyBoundary'));
 
-class ErrorBoundary extends React.Component<
-    App.ModuleBase.Component.ErrorBoundaryProps,
-    App.ModuleBase.Component.ErrorBoundaryStates
+class NotifyProvider extends React.Component<
+    App.ModuleBase.Component.NotifyProviderProps,
+    App.ModuleBase.Component.NotifyProviderStates
 > {
-    constructor(props: App.ModuleBase.Component.ErrorBoundaryProps) {
+    constructor(props: App.ModuleBase.Component.NotifyProviderProps) {
         super(props);
         this.state = { hasError: false };
     }
@@ -44,4 +44,4 @@ class ErrorBoundary extends React.Component<
     }
 }
 
-export default ErrorBoundary;
+export default NotifyProvider;

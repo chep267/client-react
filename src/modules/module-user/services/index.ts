@@ -8,9 +8,9 @@
 import { UserApiPath } from '@module-user/constants/UserApiPath';
 
 /** services */
-import { BaseServices } from '@module-base/services';
+import { BaseService } from '@module-base/services';
 
-class UserServices extends BaseServices {
+class UserServices extends BaseService {
     constructor(url = UserApiPath.root) {
         super(url);
     }

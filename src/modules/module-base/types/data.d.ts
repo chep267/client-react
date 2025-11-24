@@ -10,4 +10,4 @@ export type TypeItems<Data = any> = Record<string, Data>;
 
 export type TypeStorageName = 'localStorage' | 'sessionStorage';
 
-export type TypeStorageValue = string | null;
+export type TypeStorageValue = string | null | undefined;

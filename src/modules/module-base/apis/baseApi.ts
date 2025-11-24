@@ -5,7 +5,7 @@
  */
 
 /** libs */
-import axios, { HttpStatusCode } from 'axios';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 
 /** constants */
@@ -19,7 +19,7 @@ import { delay } from '@module-base/utils/delay';
 /** types */
 import type { AxiosError } from 'axios';
 
-/** for default api */
+/** default api */
 export const axiosClient = axios.create({
     baseURL: AppEnv.apiHost,
     headers: {
@@ -31,19 +31,19 @@ export const axiosClient = axios.create({
     withCredentials: true,
 });
 
-/** Add a request interceptor */
+/** request interceptor */
 axiosClient.interceptors.request.use(
     (config) => config,
     (error: AxiosError) => Promise.reject(error)
 );
 
-/** Add a response interceptor */
+/** response interceptor */
 axiosClient.interceptors.response.use(
     (response) => {
         return response;
     },
     async (error: AxiosError) => {
-        if (error.response?.status === HttpStatusCode.Unauthorized) {
+        if (error.response?.status === axios.HttpStatusCode.Unauthorized) {
             Cookies.remove(AppKey.uid);
         }
         /** khoan, dừng khoảng chừng là 600ms */

@@ -26,16 +26,14 @@ import MenuSetting from '@module-global/components/AppHeader/ButtonSetting/MenuS
 export default function ButtonSetting() {
     const menuId = React.useId();
     const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef<HTMLButtonElement>(null);
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
+    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+        setOpen((previousOpen) => !previousOpen);
     };
 
-    const handleClose = (event: Event | React.SyntheticEvent) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target as HTMLElement)) {
-            return;
-        }
+    const handleClose = () => {
         setOpen(false);
     };
 
@@ -43,35 +41,27 @@ export default function ButtonSetting() {
         <div>
             <Tooltip title={<FormattedMessage id={GlobalLanguage.component.label.setting} />} arrow>
                 <Button
-                    ref={anchorRef}
                     id={`button-${menuId}`}
                     aria-controls={`menu-${menuId}`}
-                    aria-expanded={open}
                     aria-haspopup="true"
                     aria-label="setting"
-                    className={clsx('m-0 h-10 w-10 min-w-10 rounded-full border-0 p-0 text-inherit', 'hover:border')}
-                    onClick={handleToggle}
+                    aria-describedby={`popper-${menuId}`}
+                    className={clsx('m-0 h-10 w-10 min-w-10', 'rounded-full border-0 p-0 text-inherit', 'hover:border')}
+                    onClick={handleClick}
                 >
                     <MenuIcon />
                 </Button>
             </Tooltip>
-            <Popper
-                className="!top-3.5"
-                open={open}
-                anchorEl={anchorRef.current}
-                role={undefined}
-                placement="bottom-end"
-                transition
-                disablePortal
-            >
+
+            <Popper className="!top-3.5" id={`popper-${menuId}`} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
                     <Grow {...TransitionProps} className="origin-top-right">
                         <Paper>
                             <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList
-                                    autoFocusItem={open}
                                     id={`menu-${menuId}`}
                                     aria-labelledby={`button-${menuId}`}
+                                    autoFocusItem={open}
                                 >
                                     <MenuSetting closeMenu={handleClose} />
                                 </MenuList>

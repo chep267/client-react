@@ -26,12 +26,12 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
     const itemId = React.useId();
     const [open, setOpen] = React.useState(false);
 
-    const toggleOpen = React.useCallback((event: React.MouseEvent<HTMLDivElement>) => {
+    const toggleOpen = (event: React.MouseEvent<HTMLDivElement>) => {
         if (hasSub) {
             setOpen((prev) => !prev);
         }
         onClick?.(event);
-    }, []);
+    };
 
     const styleIcon = React.useMemo<SxProps<Theme>>(
         () => ({
@@ -51,7 +51,7 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
                 ))}
             </List>
         );
-    }, [subMenu]);
+    }, [subMenu, subIndex]);
 
     return (
         <div key={itemId}>

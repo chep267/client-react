@@ -30,6 +30,7 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
     const inputRef = React.useRef<HTMLInputElement | null>(null);
     const prevValue = React.useRef('');
     const [value, setValue] = React.useState('');
+    const hasValue = Boolean(value);
 
     React.useEffect(() => {
         let timeout: NodeJS.Timeout;
@@ -71,7 +72,6 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
     }, []);
 
     const endAdornment = React.useMemo(() => {
-        const hasValue = Boolean(value);
         return (
             <InputAdornment
                 position="end"
@@ -81,7 +81,7 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
                 <ClearIcon color="primary" />
             </InputAdornment>
         );
-    }, [Boolean(value)]);
+    }, [hasValue]);
 
     return (
         <TextField

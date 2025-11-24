@@ -16,11 +16,14 @@ export const useCountdown = (props: App.ModuleBase.Hook.UseCountdownProps) => {
 
     const onStop = React.useCallback(() => clearInterval(countdownRef.current), []);
 
-    const onRefresh = React.useCallback((number = numberCountdown) => {
-        onStop();
-        setSecond(number);
-        setRefresh((prev) => (prev + 1) % 7);
-    }, []);
+    const onRefresh = React.useCallback(
+        (number = numberCountdown) => {
+            onStop();
+            setSecond(number);
+            setRefresh((prev) => (prev + 1) % 7);
+        },
+        [numberCountdown]
+    );
 
     const countdownEffect = React.useCallback(() => {
         setSecond((s) => {
@@ -33,7 +36,7 @@ export const useCountdown = (props: App.ModuleBase.Hook.UseCountdownProps) => {
             }
             return s - 1;
         });
-    }, [numberCountdown]);
+    }, [numberCountdown, isContinue, callback]);
 
     React.useEffect(() => {
         countdownRef.current = setInterval(countdownEffect, timer);

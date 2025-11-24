@@ -8,7 +8,6 @@
 import * as React from 'react';
 import * as z from 'zod';
 import Cookie from 'js-cookie';
-import { HttpStatusCode } from 'axios';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +23,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
 
 /** components */
 import AuthTitle from '@module-auth/components/general/AuthTitle';
@@ -42,22 +42,28 @@ type TypeFormData = {
 };
 
 export default function SigninForm() {
-    const FormFieldsName = React.useRef<Readonly<{ [Key in TypeFormFieldsName]: Key }>>({
-        email: 'email',
-        password: 'password',
-    }).current;
-    const schema = React.useRef<z.ZodType<TypeFormData, TypeFormData>>(
-        z.object({
-            [FormFieldsName.email]: z
-                .string()
-                .nonempty(AuthLanguage.status.email.empty)
-                .regex(AppRegex.email, AuthLanguage.status.email.invalid),
-            [FormFieldsName.password]: z
-                .string()
-                .nonempty(AuthLanguage.status.password.empty)
-                .regex(AppRegex.password, AuthLanguage.status.password.invalid),
-        })
-    ).current;
+    const FormFieldsName = React.useMemo<Readonly<{ [Key in TypeFormFieldsName]: Key }>>(
+        () => ({
+            email: 'email',
+            password: 'password',
+        }),
+        []
+    );
+
+    const schema = React.useMemo<z.ZodType<TypeFormData, TypeFormData>>(
+        () =>
+            z.object({
+                [FormFieldsName.email]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.email.empty)
+                    .regex(AppRegex.email, AuthLanguage.status.email.invalid),
+                [FormFieldsName.password]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.password.empty)
+                    .regex(AppRegex.password, AuthLanguage.status.password.invalid),
+            }),
+        []
+    );
 
     const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
@@ -69,11 +75,10 @@ export default function SigninForm() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmitError = React.useCallback((error: AxiosError) => {
-        const code = Number(error?.response?.status);
+    const onSubmitError = (error: AxiosError) => {
         let messageIntl: string;
         switch (true) {
-            case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
+            case isCallApiErrorByClient(error):
                 messageIntl = AuthLanguage.notify.signin.error;
                 break;
             default:
@@ -83,11 +88,16 @@ export default function SigninForm() {
         setError(FormFieldsName.email, { message: messageIntl });
         setError(FormFieldsName.password, { message: messageIntl });
         delay(AppTimer.notifyDuration, clearErrors).then();
-    }, []);
+    };
 
     return (
         <Paper
-            className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
+            className={clsx(
+                'flex flex-col',
+                'w-full max-w-xl',
+                'z-1 gap-y-5 rounded-md p-6',
+                'overflow-hidden shadow-lg'
+            )}
             component="form"
             noValidate
         >
@@ -108,7 +118,7 @@ export default function SigninForm() {
                 autoComplete="current-password"
             />
 
-            <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
+            <Box className={clsx('flex flex-col items-end justify-between', 'w-full gap-2', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="signin" />
                 <ButtonSignin handleSubmit={handleSubmit} onSubmitError={onSubmitError} />
             </Box>

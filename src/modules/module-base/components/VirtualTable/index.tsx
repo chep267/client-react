@@ -15,7 +15,6 @@ import TableRow from '@mui/material/TableRow';
 
 /** constants */
 import { OrderType } from '@module-base/constants/OrderType';
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** components */
 import TableLoading from '@module-base/components/TableBase/TableLoading';
@@ -55,7 +54,7 @@ export default function VirtualTable<
                 return data.map((item) => item[dataKeyForCheckbox]);
             });
         },
-        [data]
+        [data, dataKeyForCheckbox]
     );
 
     const onSelectOne = React.useCallback(
@@ -71,7 +70,7 @@ export default function VirtualTable<
                 if (selectedIndex === 0) {
                     return prevIds.slice(1);
                 }
-                if (selectedIndex === selectedIds.length - 1) {
+                if (selectedIndex === prevIds.length - 1) {
                     return prevIds.slice(0, -1);
                 }
                 return [...prevIds.slice(0, selectedIndex), ...prevIds.slice(selectedIndex + 1)];
@@ -110,7 +109,7 @@ export default function VirtualTable<
 
     const currentData = React.useMemo<Readonly<Data[]>>(() => {
         if (!orderType || !orderBy) {
-            return data || AppDefaultValue.emptyArray;
+            return data || [];
         }
         return sortTableData({ data, orderType, orderBy });
     }, [data, orderType, orderBy]);

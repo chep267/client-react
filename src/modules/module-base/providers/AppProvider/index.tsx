@@ -18,7 +18,7 @@ import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** providers */
-import ErrorBoundary from '@module-base/providers/ErrorBoundary';
+import NotifyProvider from '@module-base/providers/NotifyProvider';
 import ThemeProvider from '@module-base/providers/ThemeProvider';
 import LanguageProvider from '@module-base/providers/LanguageProvider';
 
@@ -66,9 +66,9 @@ export default function AppProvider(props: React.PropsWithChildren) {
         <QueryClientProvider client={queryClient}>
             <LanguageProvider>
                 <ThemeProvider>
-                    <ErrorBoundary>
+                    <NotifyProvider>
                         <BrowserRouter>{children}</BrowserRouter>
-                    </ErrorBoundary>
+                    </NotifyProvider>
                 </ThemeProvider>
             </LanguageProvider>
         </QueryClientProvider>

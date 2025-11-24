@@ -8,7 +8,6 @@
 import * as React from 'react';
 import * as z from 'zod';
 import Cookie from 'js-cookie';
-import { HttpStatusCode } from 'axios';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +23,7 @@ import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
+import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
 
 /** components */
 import AuthTitle from '@module-auth/components/general/AuthTitle';
@@ -40,17 +40,23 @@ type TypeFormData = {
 };
 
 export default function RecoverForm() {
-    const FormFieldsName = React.useRef<Readonly<{ [Key in TypeFormFieldsName]: Key }>>({
-        email: 'email',
-    }).current;
-    const schema = React.useRef(
-        z.object({
-            [FormFieldsName.email]: z
-                .string()
-                .nonempty(AuthLanguage.status.email.empty)
-                .regex(AppRegex.email, AuthLanguage.status.email.invalid),
-        })
-    ).current;
+    const FormFieldsName = React.useMemo<Readonly<{ [Key in TypeFormFieldsName]: Key }>>(
+        () => ({
+            email: 'email',
+        }),
+        []
+    );
+
+    const schema = React.useMemo<z.ZodType<TypeFormData, TypeFormData>>(
+        () =>
+            z.object({
+                [FormFieldsName.email]: z
+                    .string()
+                    .nonempty(AuthLanguage.status.email.empty)
+                    .regex(AppRegex.email, AuthLanguage.status.email.invalid),
+            }),
+        []
+    );
 
     const { handleSubmit, control, setError, clearErrors } = useForm<TypeFormData>({
         defaultValues: {
@@ -61,12 +67,11 @@ export default function RecoverForm() {
         resolver: zodResolver(schema),
     });
 
-    const onSubmitError = React.useCallback((error: AxiosError) => {
-        const code = Number(error?.response?.status);
+    const onSubmitError = (error: AxiosError) => {
         let messageIntl: string;
         switch (true) {
-            case code >= HttpStatusCode.BadRequest && code < HttpStatusCode.InternalServerError:
-                messageIntl = AuthLanguage.notify.signin.error;
+            case isCallApiErrorByClient(error):
+                messageIntl = AuthLanguage.notify.recover.error;
                 break;
             default:
                 messageIntl = AuthLanguage.notify.server.error;
@@ -74,11 +79,16 @@ export default function RecoverForm() {
         }
         setError(FormFieldsName.email, { message: messageIntl });
         delay(AppTimer.notifyDuration, clearErrors).then();
-    }, []);
+    };
 
     return (
         <Paper
-            className="z-1 flex w-full max-w-xl flex-col gap-y-5 overflow-hidden rounded-md p-6 shadow-lg"
+            className={clsx(
+                'flex flex-col',
+                'w-full max-w-xl',
+                'z-1 gap-y-5 rounded-md p-6',
+                'overflow-hidden shadow-lg'
+            )}
             component="form"
             noValidate
         >
@@ -92,7 +102,7 @@ export default function RecoverForm() {
                 autoFocus
             />
 
-            <Box className={clsx('flex w-full items-end justify-between gap-2', 'flex-col', 'xs:flex-row')}>
+            <Box className={clsx('flex flex-col items-end justify-between', 'w-full gap-2', 'xs:flex-row')}>
                 <AuthBreadcrumbs name="recover" />
                 <ButtonRecover handleSubmit={handleSubmit} onSubmitError={onSubmitError} />
             </Box>

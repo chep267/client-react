@@ -16,14 +16,6 @@ import ListItemText from '@mui/material/ListItemText';
 
 const AppItem = React.memo<App.ModuleGlobal.Component.AppItemProps>(function AppItem(props) {
     const { isSelected, hasTooltip, item } = props;
-    const itemSelectedStyle = React.useRef({
-        '& .MuiListItemButton-root': {
-            backgroundColor: 'primary.dark',
-            '& .MuiListItemText-root, .MuiSvgIcon-root': {
-                color: 'common.white',
-            },
-        },
-    }).current;
 
     const itemContent = React.useMemo(() => {
         return (
@@ -35,7 +27,21 @@ const AppItem = React.memo<App.ModuleGlobal.Component.AppItemProps>(function App
     }, [item]);
 
     return (
-        <ListItem className="w-full p-1" sx={isSelected ? itemSelectedStyle : undefined}>
+        <ListItem
+            className="w-full p-1"
+            sx={
+                isSelected
+                    ? {
+                          '& .MuiListItemButton-root': {
+                              backgroundColor: 'primary.dark',
+                              '& .MuiListItemText-root, .MuiSvgIcon-root': {
+                                  color: 'common.white',
+                              },
+                          },
+                      }
+                    : undefined
+            }
+        >
             <Tooltip title={item.name} placement="right" arrow disableHoverListener={!hasTooltip}>
                 {itemContent}
             </Tooltip>

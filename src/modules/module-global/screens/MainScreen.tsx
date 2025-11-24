@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import clsx from 'clsx';
 import Box from '@mui/material/Box';
 
 /** components */
@@ -13,7 +14,7 @@ import AppMain from '@module-global/components/AppMain';
 
 export default function MainScreen() {
     return (
-        <Box className="relative flex h-dvh w-dvw flex-col">
+        <Box className={clsx('relative', 'flex flex-col', 'h-dvh w-dvw')}>
             <AppHeader />
             <AppMain />
         </Box>

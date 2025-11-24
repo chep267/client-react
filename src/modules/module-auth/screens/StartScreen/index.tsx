@@ -6,13 +6,9 @@
 
 /** libs */
 import * as React from 'react';
-import Cookies from 'js-cookie';
-
-/** AppKey */
-import { AppKey } from '@module-base/constants/AppKey';
 
 /** hooks */
-import { useRestart } from '@module-auth/hooks/useAuth';
+import { useRestart } from '@module-auth/hooks/useRestart';
 
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
@@ -21,14 +17,11 @@ import StartLoading from '@module-base/components/StartLoading';
 import LayerScreen from '@module-base/screens/LayerScreen';
 
 export default function StartScreen() {
-    const uid = Cookies.get(AppKey.uid);
     const hookRestart = useRestart();
 
     React.useEffect(() => {
-        if (uid) {
-            hookRestart.mutate({ uid });
-        }
-    }, [uid]);
+        hookRestart.mutate();
+    }, []);
 
     return (
         <LayerScreen>

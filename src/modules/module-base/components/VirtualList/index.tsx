@@ -40,7 +40,7 @@ export default function VirtualList<Data, Context>(props: App.ModuleBase.Compone
             EmptyPlaceholder: () => (loading ? null : <TableEmpty emptyContent={emptyContent} />),
             ...components,
         };
-    }, [components, itemProps]);
+    }, [components, itemProps, loading, emptyContent]);
 
     return <Virtuoso components={customComponents} {...listProps} />;
 }

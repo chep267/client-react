@@ -61,9 +61,9 @@ const AppSiderMini = React.memo(function AppSiderMini() {
         return value?.path || AppRouterPath.defaultPath;
     }, [pathname]);
 
-    const handleChange = React.useCallback((_event: React.SyntheticEvent, path: string) => {
+    const handleChange = (_event: React.SyntheticEvent, path: string) => {
         navigate(path);
-    }, []);
+    };
 
     return (
         <AppBar

@@ -37,33 +37,30 @@ export default function AuthRoute(props: React.PropsWithChildren) {
             pathname as (typeof AuthRouterPath)[keyof typeof AuthRouterPath]
         );
         if (accountState === AccountState.signin && !isAuthPath) {
-            /** chưa đăng nhập, trở về đăng nhập  */
+            /** not logged in, return to log in  */
             authAction.setData({ prePath: pathname });
             navigate(AuthRouterPath.signin, { replace: true });
         }
         if (accountState === AccountState.reSignin && pathname !== AuthRouterPath.start) {
-            /** đã đăng nhập từ trước, lấy phiên đăng nhập */
+            /** already logged in, get session */
             authAction.setData({ prePath: isAuthPath ? '/' : pathname });
             navigate(AuthRouterPath.start, { replace: true });
         }
         if (accountState === AccountState.signedIn && isAuthPath) {
-            /** đã đăng nhập xong, vào home */
+            /** logged in and go home */
             navigate(prePath, { replace: true });
         }
     }, [accountState, pathname]);
 
-    return React.useMemo(
-        () => (
-            <React.Suspense>
-                {accountState === AccountState.signedIn ? (
-                    children
-                ) : accountState === AccountState.reSignin ? (
-                    <StartScreen />
-                ) : (
-                    <AuthScreen />
-                )}
-            </React.Suspense>
-        ),
-        [accountState]
+    return (
+        <React.Suspense>
+            {accountState === AccountState.signedIn ? (
+                children
+            ) : accountState === AccountState.reSignin ? (
+                <StartScreen />
+            ) : (
+                <AuthScreen />
+            )}
+        </React.Suspense>
     );
 }

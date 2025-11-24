@@ -13,17 +13,21 @@ const ImageBase = React.memo<App.ModuleBase.Component.ImageBaseProps>(function I
     const { alt = '', loading, onLoad, className, ...imageProps } = props;
     const [isLoading, setLoading] = React.useState(true);
 
-    const onLoadImage = React.useCallback<React.ReactEventHandler<HTMLImageElement>>((event) => {
-        onLoad?.(event);
-        setLoading(false);
-    }, []);
-
     return (
         <div className={clsx('relative', className)}>
             {isLoading ? (
                 <Skeleton className="absolute top-0 right-0 bottom-0 left-0 z-1 h-full w-full" variant="rectangular" />
             ) : null}
-            <img alt={alt} className={className} loading={loading || 'lazy'} onLoad={onLoadImage} {...imageProps} />
+            <img
+                alt={alt}
+                className={className}
+                loading={loading || 'lazy'}
+                onLoad={(event) => {
+                    onLoad?.(event);
+                    setLoading(false);
+                }}
+                {...imageProps}
+            />
         </div>
     );
 });

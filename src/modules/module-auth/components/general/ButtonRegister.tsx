@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Button from '@mui/material/Button';
@@ -14,12 +13,12 @@ import Button from '@mui/material/Button';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** hooks */
-import { useRegister } from '@module-auth/hooks/useAuth';
+import { useRegister } from '@module-auth/hooks/useRegister';
 
 /** types */
 import type { AxiosError } from 'axios';
 import type { ButtonProps } from '@mui/material/Button';
-import type { UseFormHandleSubmit, SubmitHandler } from 'react-hook-form';
+import type { UseFormHandleSubmit } from 'react-hook-form';
 
 type TypeFormData = {
     email: string;
@@ -44,11 +43,11 @@ export default function ButtonRegister(props: TypeButtonRegister) {
 
     const hookRegister = useRegister();
 
-    const onSubmit = React.useCallback<SubmitHandler<TypeFormData>>((data) => {
+    const onSubmit = handleSubmit((data) => {
         hookRegister.mutate(data, {
             onError: onSubmitError,
         });
-    }, []);
+    });
 
     return (
         <Button
@@ -57,7 +56,7 @@ export default function ButtonRegister(props: TypeButtonRegister) {
             variant={variant}
             className={clsx('bg-tw-primary font-bold tracking-normal capitalize', 'w-full', 'xs:w-1/3', className)}
             loading={hookRegister.isPending}
-            onClick={handleSubmit(onSubmit)}
+            onClick={onSubmit}
             {...btnProps}
         >
             <FormattedMessage id={AuthLanguage.component.button.register} />

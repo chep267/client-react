@@ -16,7 +16,6 @@ import TableRow from '@mui/material/TableRow';
 
 /** constants */
 import { OrderType } from '@module-base/constants/OrderType';
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 /** utils */
 import { sortTableData } from '@module-base/utils/virtual';
@@ -62,7 +61,7 @@ export default function TableBase<Data extends App.ModuleBase.Component.TableDat
                 return data.map((item) => item[dataKeyForCheckbox]);
             });
         },
-        [data]
+        [data, dataKeyForCheckbox]
     );
 
     const onSelectOne = React.useCallback(
@@ -78,7 +77,7 @@ export default function TableBase<Data extends App.ModuleBase.Component.TableDat
                 if (selectedIndex === 0) {
                     return prevIds.slice(1);
                 }
-                if (selectedIndex === selectedIds.length - 1) {
+                if (selectedIndex === prevIds.length - 1) {
                     return prevIds.slice(0, -1);
                 }
                 return [...prevIds.slice(0, selectedIndex), ...prevIds.slice(selectedIndex + 1)];
@@ -100,7 +99,7 @@ export default function TableBase<Data extends App.ModuleBase.Component.TableDat
 
     const currentData = React.useMemo<NonNullable<App.ModuleBase.Component.TableBaseProps<Data>['data']>>(() => {
         if (!orderType || !orderBy) {
-            return data || AppDefaultValue.emptyArray;
+            return data || [];
         }
         return sortTableData({ data, orderType, orderBy });
     }, [data, orderType, orderBy]);

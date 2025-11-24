@@ -6,7 +6,6 @@
 
 /** constants */
 import { OrderType } from '@module-base/constants/OrderType';
-import { AppDefaultValue } from '@module-base/constants/AppDefaultValue';
 
 export const sortTableData = <D extends App.ModuleBase.Component.TableData>(payload: {
     data?: Readonly<Array<D>>;
@@ -14,7 +13,7 @@ export const sortTableData = <D extends App.ModuleBase.Component.TableData>(payl
     orderBy: App.ModuleBase.Component.DataKey<D>;
 }): Readonly<Array<D>> => {
     const { data, orderType = OrderType.asc, orderBy } = payload;
-    if (!data) return AppDefaultValue.emptyArray;
+    if (!data) return [];
 
     const parseValue = (item: any, key?: App.ModuleBase.Component.DataKey<D>) => {
         if (typeof item === 'number') return item;

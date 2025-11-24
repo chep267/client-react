@@ -56,7 +56,7 @@ export default function ListApp(props: App.ModuleGlobal.Component.ListAppProps) 
                 onClick: () => navigate(AppRouterPath.game),
             },
         ],
-        []
+        [navigate]
     );
 
     const itemContent = (item: App.ModuleGlobal.Component.AppItem) => {

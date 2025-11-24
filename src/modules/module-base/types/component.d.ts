@@ -32,11 +32,11 @@ import type { TableProps } from '@mui/material/Table';
 export type TypeInputElem = HTMLInputElement | null;
 
 /** ErrorBoundary */
-export interface TypeErrorBoundaryProps extends PropsWithChildren {
+export interface TypeNotifyProviderProps extends PropsWithChildren {
     fallback?: FunctionComponent;
     isAutoReload?: boolean;
 }
-export interface TypeErrorBoundaryStates {
+export interface TypeNotifyProviderStates {
     hasError: boolean;
 }
 export interface TypeFallbackDefaultProps {

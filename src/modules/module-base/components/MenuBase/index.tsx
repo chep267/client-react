@@ -19,10 +19,13 @@ export default function MenuBase(props: App.ModuleBase.Component.MenuBaseProps) 
 
     const closeMenu = React.useCallback<
         NonNullable<NonNullable<App.ModuleBase.Component.MenuBaseProps['menuProps']>['onClose']>
-    >((event, reason) => {
-        setMenuElem(null);
-        menuProps?.onClose?.(event, reason);
-    }, []);
+    >(
+        (event, reason) => {
+            setMenuElem(null);
+            menuProps?.onClose?.(event, reason);
+        },
+        [menuProps]
+    );
 
     const renderButton = () => {
         const Content = (
