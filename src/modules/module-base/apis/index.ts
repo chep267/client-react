@@ -46,7 +46,7 @@ axiosClient.interceptors.response.use(
         if (error.response?.status === axios.HttpStatusCode.Unauthorized) {
             Cookies.remove(AppKey.uid);
         }
-        /** khoan, dừng khoảng chừng là 600ms */
+        /** Waiting, pause for about 600ms */
         await delay(AppTimer.pendingApi);
         return Promise.reject(error);
     }

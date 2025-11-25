@@ -7,6 +7,9 @@
 /** libs */
 import { useMutation } from '@tanstack/react-query';
 
+/** constants */
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
+
 /** services */
 import { userServices } from '@module-user/services';
 
@@ -24,14 +27,14 @@ export function useCreateUser() {
         onSuccess: () => {
             settingAction.changeNotify({
                 open: true,
-                color: 'success',
+                color: AppNotifyColor.success,
                 message: 'ok',
             });
         },
         onError: () => {
             settingAction.changeNotify({
                 open: true,
-                color: 'error',
+                color: AppNotifyColor.error,
                 messageIntl: BaseLanguage.component.label.error.server,
             });
         },

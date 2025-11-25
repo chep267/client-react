@@ -5,12 +5,13 @@
  */
 
 /** libs */
-import Tooltip from '@mui/material/Tooltip';
 import { FormattedMessage } from 'react-intl';
+import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
@@ -20,7 +21,7 @@ export default function AppButtonDev(props: any) {
     const settingAction = useSettingStore(({ action }) => action);
 
     const onDev = () => {
-        settingAction.changeNotify({ open: true, color: 'warning', message: 'In developing!' });
+        settingAction.changeNotify({ open: true, color: AppNotifyColor.warning, message: 'In developing!' });
     };
 
     return (

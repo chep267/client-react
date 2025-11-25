@@ -6,7 +6,7 @@
 
 export const AppNotifyColor = {
     default: '',
-    error: 'red',
+    error: 'error',
     warning: 'warning',
     success: 'success',
 } as const;

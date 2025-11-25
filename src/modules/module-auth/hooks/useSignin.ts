@@ -11,6 +11,7 @@ import { useMutation } from '@tanstack/react-query';
 /** constants */
 import { AppKey } from '@module-base/constants/AppKey';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** utils */
 import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
@@ -48,7 +49,7 @@ export function useSignin() {
             }
             settingAction.changeNotify({
                 open: true,
-                color: 'error',
+                color: AppNotifyColor.error,
                 messageIntl,
             });
         },

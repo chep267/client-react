@@ -8,6 +8,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 /** constants */
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
 
 /** utils */
@@ -30,7 +31,7 @@ export function useRegister() {
         onSuccess: () => {
             settingAction.changeNotify({
                 open: true,
-                color: 'success',
+                color: AppNotifyColor.success,
                 messageIntl: AuthLanguage.notify.register.success,
             });
         },
@@ -45,7 +46,7 @@ export function useRegister() {
             }
             settingAction.changeNotify({
                 open: true,
-                color: 'error',
+                color: AppNotifyColor.error,
                 messageIntl,
             });
         },

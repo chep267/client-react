@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 
 /** constants */
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** utils */
 import { isCallApiErrorByClient } from '@module-base/utils/isClientCallApiError';
@@ -30,7 +31,7 @@ export function useRecover() {
         onSuccess: () => {
             settingAction.changeNotify({
                 open: true,
-                color: 'success',
+                color: AppNotifyColor.success,
                 messageIntl: AuthLanguage.notify.recover.success,
             });
         },
@@ -45,7 +46,7 @@ export function useRecover() {
             }
             settingAction.changeNotify({
                 open: true,
-                color: 'error',
+                color: AppNotifyColor.error,
                 messageIntl,
             });
         },

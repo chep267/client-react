@@ -5,7 +5,7 @@
  */
 
 /** apis */
-import { axiosClient } from '@module-base/apis/baseApi';
+import { axiosClient } from '@module-base/apis';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';

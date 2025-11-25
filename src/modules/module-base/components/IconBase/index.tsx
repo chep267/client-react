@@ -12,18 +12,18 @@ const Icons: Readonly<App.ModuleBase.Component.IconList> = {
     /** app icon */
     appLogo: React.lazy(() => import('@module-base/components/IconBase/svg/AppLogo')),
 
-    /** other icon */
+    /** another icon */
     error: React.lazy(() => import('@module-base/components/IconBase/svg/Error')),
     notFound: React.lazy(() => import('@module-base/components/IconBase/svg/NotFound')),
 };
 
 const IconBase = React.memo<App.ModuleBase.Component.IconBaseProps>(function IconBase(props) {
-    const { name, width, height, size = 24, ...iconProps } = props;
+    const { name, size = 24, width = size, height = size, ...iconProps } = props;
     const Icon = Icons[name];
 
     return (
-        <React.Suspense fallback={<Skeleton width={width || size} height={height || size} variant="circular" />}>
-            <Icon name={name} width={width || size} height={height || size} {...iconProps} />
+        <React.Suspense fallback={<Skeleton width={width} height={height} variant="circular" />}>
+            <Icon name={name} width={width} height={height} {...iconProps} />
         </React.Suspense>
     );
 });

@@ -12,6 +12,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AppKey } from '@module-base/constants/AppKey';
 import { AppTimer } from '@module-base/constants/AppTimer';
 import { AuthLanguage } from '@module-auth/constants/AuthLanguage';
+import { AppNotifyColor } from '@module-base/constants/AppNotifyColor';
 
 /** utils */
 import { delay } from '@module-base/utils/delay';
@@ -52,7 +53,7 @@ export function useRestart() {
             }
             settingAction.changeNotify({
                 open: true,
-                color: 'error',
+                color: AppNotifyColor.error,
                 messageIntl,
             });
             authAction.setData({ user: null, prePath: '/' });
