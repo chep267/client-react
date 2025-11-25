@@ -7,7 +7,6 @@
 /** libs */
 import eslint from '@eslint/js';
 import tsEslint from 'typescript-eslint';
-import globals from 'globals';
 import pluginReact from 'eslint-plugin-react';
 import pluginPrettier from 'eslint-plugin-prettier';
 import pluginQuery from '@tanstack/eslint-plugin-query';
@@ -27,7 +26,6 @@ export default tsEslint.config({
     },
     languageOptions: {
         ecmaVersion: 'latest',
-        globals: globals.browser,
         parserOptions: {
             parser: '@typescript-eslint/parser',
         },
