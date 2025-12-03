@@ -159,8 +159,10 @@ export interface TypeCheckboxColumnProps extends CheckboxProps {
 }
 
 /** Virtual Table */
-export interface TypeVirtualTableProps<Data extends TypeTableData, Context = any>
-    extends TableVirtuosoProps<Data, Context> {
+export interface TypeVirtualTableProps<Data extends TypeTableData, Context = any> extends TableVirtuosoProps<
+    Data,
+    Context
+> {
     loading?: boolean;
     emptyContent?: ReactNode;
     hasCheckbox?: boolean;

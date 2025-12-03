@@ -53,7 +53,7 @@ export default function ButtonSetting() {
                 </Button>
             </Tooltip>
 
-            <Popper className="!top-3.5" id={`popper-${menuId}`} open={open} anchorEl={anchorEl} transition>
+            <Popper className="!top-3.5 z-50" id={`popper-${menuId}`} open={open} anchorEl={anchorEl} transition>
                 {({ TransitionProps }) => (
                     <Grow {...TransitionProps} className="origin-top-right">
                         <Paper>

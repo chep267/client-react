@@ -26,11 +26,11 @@ export default function FallbackDefault(props: App.ModuleBase.Component.Fallback
     return (
         <LayerScreen className="h-screen w-screen items-center justify-center overflow-hidden">
             <Stack className="z-1 items-center justify-center">
-                <IconBase name="error" width={237} height={213} />
-                <Typography className={clsx('font-medium', 'text-3xl', 'md:text-5xl')} color="error">
+                <IconBase className="fill-tw-danger" name="error" width={237} height={213} />
+                <Typography className={clsx('text-tw-danger font-medium', 'text-3xl', 'md:text-5xl')}>
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.title} />
                 </Typography>
-                <Typography className={clsx('font-medium', 'text-xl', 'md:text-2xl')} color="error">
+                <Typography className={clsx('text-tw-danger font-medium', 'text-xl', 'md:text-2xl')}>
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.content} />
                 </Typography>
                 <ButtonRetry isAutoReload={isAutoReload} />

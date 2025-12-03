@@ -74,12 +74,17 @@ const AppSiderMini = React.memo(function AppSiderMini() {
             <Tabs
                 value={tabValue}
                 onChange={handleChange}
-                textColor="primary"
-                indicatorColor="primary"
                 variant="fullWidth"
+                className="[&_.MuiTabs-indicator]:bg-tw-primary"
             >
                 {apps.map((menu) => (
-                    <Tab key={menu.path} id={menu.path} value={menu.path} label={menu.icon} />
+                    <Tab
+                        key={menu.path}
+                        id={menu.path}
+                        value={menu.path}
+                        label={menu.icon}
+                        className="aria-selected:text-tw-primary"
+                    />
                 ))}
             </Tabs>
         </AppBar>

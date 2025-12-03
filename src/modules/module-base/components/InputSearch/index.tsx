@@ -66,7 +66,7 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
     const startAdornment = React.useMemo(() => {
         return (
             <InputAdornment position="start">
-                <SearchIcon color="primary" />
+                <SearchIcon className="text-tw-primary" />
             </InputAdornment>
         );
     }, []);
@@ -78,7 +78,7 @@ export default function InputSearch(props: App.ModuleBase.Component.InputSearchP
                 className={clsx('cursor-pointer', { ['visible']: hasValue }, { ['invisible']: !hasValue })}
                 onClick={onClear}
             >
-                <ClearIcon color="primary" />
+                <ClearIcon className="text-tw-primary" />
             </InputAdornment>
         );
     }, [hasValue]);

@@ -17,7 +17,7 @@ const CheckboxColumn = React.memo<App.ModuleBase.Component.CheckboxColumnProps>(
     }
     return (
         <TableCell padding="checkbox">
-            <Checkbox color="primary" {...checkboxProps} />
+            <Checkbox className="text-tw-primary" {...checkboxProps} />
         </TableCell>
     );
 });

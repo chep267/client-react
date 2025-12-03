@@ -31,11 +31,11 @@ export default function ButtonRetry(props: Pick<App.ModuleBase.Component.Fallbac
 
     return (
         <Stack className="items-center justify-center pt-3">
-            <Button onClick={() => window.location.reload()} variant="outlined" size="large" color="error">
+            <Button onClick={() => window.location.reload()} variant="outlined" size="large" className="text-tw-danger">
                 <FormattedMessage id={BaseLanguage.component.button.retry} />
             </Button>
             {isAutoReload ? (
-                <Typography className="pt-3 text-base" color="error">
+                <Typography className="text-tw-danger pt-3 text-base">
                     <Timer />
                 </Typography>
             ) : null}
