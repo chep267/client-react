@@ -54,7 +54,7 @@ export const ParticleOptions = (mode: App.ModuleBase.Store.Theme): IParticlesPro
             },
         },
         color: {
-            value: mode === ThemeObject.light ? blue[500] : orange[500],
+            value: mode === ThemeObject.light ? blue[800] : orange[800],
             animation: {
                 h: {
                     count: 0,

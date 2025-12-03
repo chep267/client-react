@@ -16,7 +16,7 @@ export default function AuthTitle(props: App.ModuleAuth.Component.AuthTitleProps
     const { className, name = 'signin' } = props;
 
     return (
-        <Typography className={clsx('text-tw-primary z-1 text-4xl', className)}>
+        <Typography className={clsx('z-1 text-4xl', className)}>
             <FormattedMessage id={AuthLanguage.component.title[name]} />
         </Typography>
     );

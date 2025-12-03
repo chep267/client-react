@@ -60,7 +60,7 @@ const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
                     {
                         id: 'Theme-Light',
                         title: <FormattedMessage id={ThemeLanguage.component.label.light} />,
-                        icon: <LightModeIcon color="warning" />,
+                        icon: <LightModeIcon className="text-tw-warning" />,
                         onClick: () => settingAction.changeTheme(ThemeObject.light),
                     },
                 ],
@@ -97,8 +97,9 @@ const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
         const menuAuth: App.ModuleBase.Component.NestedItemProps[] = [
             {
                 id: 'sign-out',
+                className: 'hover:*:text-tw-danger',
                 title: <FormattedMessage id={AuthLanguage.component.title.signout} />,
-                icon: <LogoutIcon color="primary" />,
+                icon: <LogoutIcon />,
                 divide: 'bottom',
                 loading: hookSignout.isPending,
                 onClick: (event) => hookSignout.mutate(undefined, { onSettled: () => closeMenu(event) }),

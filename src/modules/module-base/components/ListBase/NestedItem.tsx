@@ -18,9 +18,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 /** types */
 import type { SxProps, Theme } from '@mui/material/styles';
+import clsx from 'clsx';
 
 export default function NestedItem(props: App.ModuleBase.Component.NestedItemProps) {
-    const { subIndex = 1, divide, loading, onClick, title, icon = ' ', subMenu } = props;
+    const { subIndex = 1, divide, loading, onClick, title, icon = '', className, subMenu } = props;
 
     const hasSub = (subMenu?.length || 0) > 0;
     const itemId = React.useId();
@@ -35,9 +36,6 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
 
     const styleIcon = React.useMemo<SxProps<Theme>>(
         () => ({
-            '.MuiSvgIcon-root': {
-                color: open ? 'primary.main' : undefined,
-            },
             marginLeft: `${6 + (subIndex - 1) * 24}px`,
         }),
         [subIndex, open]
@@ -56,17 +54,17 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
     return (
         <div key={itemId}>
             {divide?.includes('top') ? <Divider /> : null}
-            <ListItemButton onClick={toggleOpen}>
-                <ListItemIcon className="mr-5 min-w-6" sx={styleIcon}>
+            <ListItemButton className={className} onClick={toggleOpen}>
+                <ListItemIcon className={clsx('mr-5 min-w-6', { 'text-tw-primary': open })} sx={styleIcon}>
                     {icon}
                 </ListItemIcon>
                 {loading ? (
                     <CircularProgress size={20} />
                 ) : (
-                    <ListItemText primary={title} slotProps={{ primary: { color: open ? 'primary' : undefined } }} />
+                    <ListItemText primary={title} className={clsx({ 'text-tw-primary': open })} />
                 )}
                 {!hasSub ? null : open ? (
-                    <ExpandLessIcon className="ml-8" color="primary" />
+                    <ExpandLessIcon className="text-tw-primary ml-8" />
                 ) : (
                     <ExpandMoreIcon className="ml-8" />
                 )}

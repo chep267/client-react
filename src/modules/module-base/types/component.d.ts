@@ -95,6 +95,7 @@ export interface TypeListBaseProps<Data> extends Omit<ListProps, 'ref'> {
 }
 export interface TypeNestedItemProps {
     id: string;
+    className?: string;
     icon?: ReactNode;
     loading?: boolean;
     title?: ReactNode;

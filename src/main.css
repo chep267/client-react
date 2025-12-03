@@ -40,19 +40,24 @@
 
 @theme inline {
     --color-tw-primary: var(--color-custom-primary);
-    --color-tw-start: var(--color-custom-start);
+    --color-tw-danger: var(--color-custom-danger);
+    --color-tw-warning: var(--color-custom-warning);
+    --color-tw-success: var(--color-custom-success);
+    --color-tw-info: var(--color-custom-info);
 }
 
 @layer base {
     :root {
-        --color-custom-primary: var(--color-blue-500);
-        --color-custom-start: var(--color-blue-500);
+        --color-custom-primary: var(--color-blue-800);
+        --color-custom-danger: var(--color-red-500);
+        --color-custom-warning: var(--color-amber-500);
+        --color-custom-success: var(--color-green-500);
+        --color-custom-info: var(--color-blue-500);
     }
     /* Theme dark */
     [data-theme='dark'],
     .dark {
         --color-custom-primary: var(--color-blue-400);
-        --color-custom-start: var(--color-amber-500);
     }
 
     * {

@@ -25,7 +25,8 @@ export default function AppHeader() {
         <AppBar position="fixed">
             <Toolbar
                 className={clsx(
-                    'flex w-full flex-row items-center justify-between px-4 py-0',
+                    'flex flex-row items-center justify-between',
+                    'w-full px-4 py-0',
                     'text-tw-primary bg-white',
                     'dark:bg-transparent dark:text-white'
                 )}

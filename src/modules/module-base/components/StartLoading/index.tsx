@@ -20,13 +20,13 @@ export default function StartLoading() {
                 <div
                     className={clsx(
                         'animate-start-anim absolute inset-0 rounded-full border-3 border-transparent shadow-lg',
-                        'border-t-blue-500 border-r-blue-500',
-                        'dark:border-t-amber-500 dark:border-r-amber-500'
+                        'border-t-tw-primary border-r-tw-primary',
+                        'dark:border-t-tw-warning dark:border-r-tw-warning'
                     )}
                 />
                 <Typography
                     variant="h5"
-                    className={clsx('tracking-wide uppercase', 'text-blue-500', 'dark:text-amber-500')}
+                    className={clsx('tracking-wide uppercase', 'text-tw-primary', 'dark:text-tw-warning')}
                 >
                     <FormattedMessage id={BaseLanguage.component.label.start} />
                 </Typography>
@@ -34,8 +34,8 @@ export default function StartLoading() {
                     <div
                         className={clsx(
                             'absolute -top-1.5 -right-2 h-4 w-4 rounded-full shadow-lg',
-                            'bg-blue-500',
-                            'dark:bg-amber-500'
+                            'bg-tw-primary',
+                            'dark:bg-tw-warning'
                         )}
                     />
                 </Stack>

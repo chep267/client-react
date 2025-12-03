@@ -96,7 +96,9 @@ export default function SigninForm() {
                 'flex flex-col',
                 'w-full max-w-xl',
                 'z-1 gap-y-5 rounded-md p-6',
-                'overflow-hidden shadow-lg'
+                'overflow-hidden shadow-lg',
+                'text-tw-primary',
+                'dark:text-white'
             )}
             component="form"
             noValidate
