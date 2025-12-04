@@ -6,7 +6,7 @@
 
 /** libs */
 import { resolve } from 'node:path';
-import { defineConfig, loadEnv, type ConfigEnv } from 'vite';
+import { type ConfigEnv, defineConfig, loadEnv } from 'vite';
 import pluginReact from '@vitejs/plugin-react-swc';
 import pluginBasicSsl from '@vitejs/plugin-basic-ssl';
 import pluginTailwindcss from '@tailwindcss/vite';
@@ -81,6 +81,13 @@ export default ({ mode }: ConfigEnv) => {
                 output: {
                     minifyInternalExports: true, // Minify output
                     compact: true, // Compact output
+                    manualChunks: {
+                        react: ['react', 'react-dom'],
+                        mui: ['@mui/material', '@mui/icons-material'],
+                        intl: ['react-intl'],
+                        particles: ['@tsparticles/react', '@tsparticles/slim'],
+                        router: ['react-router-dom'],
+                    },
                 },
             },
         },
