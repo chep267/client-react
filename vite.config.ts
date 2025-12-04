@@ -83,10 +83,11 @@ export default ({ mode }: ConfigEnv) => {
                     compact: true, // Compact output
                     manualChunks: {
                         react: ['react', 'react-dom'],
-                        mui: ['@mui/material', '@mui/icons-material'],
+                        mui: ['@mui/material', '@mui/icons-material', '@mui/utils'],
                         intl: ['react-intl'],
                         particles: ['@tsparticles/react', '@tsparticles/slim'],
                         router: ['react-router-dom'],
+                        query: ['@tanstack/react-query'],
                     },
                 },
             },
