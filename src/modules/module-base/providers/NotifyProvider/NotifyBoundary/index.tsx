@@ -5,6 +5,7 @@
  */
 
 /** libs */
+import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
@@ -32,13 +33,15 @@ export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBou
         top = AppScreenSize.HeaderHeight + 6,
     } = notifyData;
 
+    const style = React.useMemo(() => ({ top }), [top]);
+
     const closeNotify = () => settingAction.changeNotify();
 
     return (
         <Snackbar
             key="base-notify-boundary-app"
             open={open}
-            style={{ top }}
+            style={style}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
             onClose={closeNotify}

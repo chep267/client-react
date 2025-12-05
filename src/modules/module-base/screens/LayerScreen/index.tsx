@@ -27,7 +27,7 @@ export default function LayerScreen(props: LayerScreenProps) {
     const theme = useSettingStore((store) => store.data.theme);
 
     return (
-        <Box className={clsx('flex h-full w-full items-center justify-center', className)}>
+        <Box className={clsx('flex items-center justify-center', 'h-full w-full', className)}>
             {children}
             <React.Suspense fallback={null}>
                 <Particle options={ParticleOptions(theme)} />

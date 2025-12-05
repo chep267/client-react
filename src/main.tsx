@@ -17,7 +17,7 @@ import MainScreen from '@module-global/screens/MainScreen';
 /** styles */
 import '@src/main.css';
 
-const root = createRoot(document.getElementById('root') as HTMLElement);
+const root = createRoot(document.getElementById('root')!);
 root.render(
     <React.StrictMode>
         <AppProvider>

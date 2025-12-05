@@ -24,8 +24,8 @@ export default function FallbackDefault(props: App.ModuleBase.Component.Fallback
     const { isAutoReload } = props;
 
     return (
-        <LayerScreen className="h-screen w-screen items-center justify-center overflow-hidden">
-            <Stack className="z-1 items-center justify-center">
+        <LayerScreen className={clsx('items-center justify-center', 'h-screen w-screen', 'overflow-hidden')}>
+            <Stack className={clsx('items-center justify-center', 'z-1')}>
                 <IconBase className="fill-tw-danger" name="error" width={237} height={213} />
                 <Typography className={clsx('text-tw-danger font-medium', 'text-3xl', 'md:text-5xl')}>
                     <FormattedMessage id={BaseLanguage.component.label.error.fallback.title} />
