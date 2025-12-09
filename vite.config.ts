@@ -82,12 +82,10 @@ export default ({ mode }: ConfigEnv) => {
                     minifyInternalExports: true, // Minify output
                     compact: true, // Compact output
                     manualChunks: {
-                        react: ['react', 'react-dom'],
-                        mui: ['@mui/material', '@mui/icons-material', '@mui/utils'],
-                        intl: ['react-intl'],
-                        particles: ['@tsparticles/react', '@tsparticles/slim'],
-                        router: ['react-router-dom'],
-                        query: ['@tanstack/react-query'],
+                        'vite-chunks-react-core': ['react', 'react-dom', 'react-router-dom', 'react-intl'],
+                        'vite-chunks-mui': ['@mui/material', '@mui/icons-material', '@mui/utils'],
+                        'vite-chunks-particles': ['@tsparticles/react', '@tsparticles/slim'],
+                        'vite-chunks-vendor': ['@tanstack/react-query'],
                     },
                 },
             },
