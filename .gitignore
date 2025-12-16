@@ -35,3 +35,4 @@ pnpm-workspace.yaml
 package-lock.json
 stats.html
 .env
+.vercel

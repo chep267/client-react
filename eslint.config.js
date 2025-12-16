@@ -14,7 +14,7 @@ import pluginReactHooks from 'eslint-plugin-react-hooks';
 import pluginReactRefresh from 'eslint-plugin-react-refresh';
 
 export default tsEslint.config({
-    ignores: ['dist/*', 'dist/assets/*', 'node_modules/*'],
+    ignores: ['dist/**/*', 'node_modules/**/*', 'public/**/*', '.vercel/**/*'],
     files: ['**/*.{js,mjs,cjs,ts,jsx,tsx,vue}'],
     extends: [eslint.configs.recommended, ...tsEslint.configs.recommended],
     plugins: {

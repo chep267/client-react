@@ -34,8 +34,8 @@ export default ({ mode }: ConfigEnv) => {
 
     const config = {
         isDevMode: process.env.VITE_APP_MODE === 'dev',
-        port: Number(process.env.VITE_APP_PORT) || 3000,
-        host: process.env.VITE_APP_HOST || 'localhost',
+        port: Number(process.env.VITE_APP_CLIENT_PORT) || 3000,
+        host: process.env.VITE_APP_CLIENT_HOST || 'localhost',
         isGzip: process.env.VITE_APP_BUILD_GZIP === 'true',
     };
 

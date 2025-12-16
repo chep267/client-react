@@ -33,7 +33,7 @@ export function useSignin() {
     return useMutation({
         mutationFn: authService.signin,
         onSuccess: async (response) => {
-            const { user } = response.data;
+            const { user } = response.data.data;
             Cookies.set(AppKey.uid, user.uid);
             Cookies.set(AppKey.email, `${user.email}`);
             authAction.setData({ user });
