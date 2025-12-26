@@ -16,9 +16,6 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
-/** utils */
-import { delay } from '@module-base/utils/delay';
-
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
 
@@ -29,6 +26,8 @@ type PopperInstance = NonNullable<PopperProps['popperRef']> extends React.Ref<in
 
 export default function ButtonSider() {
     const popperRef = React.useRef<PopperInstance>(null);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+
     const sider = useSettingStore((store) => store.data.sider);
     const settingAction = useSettingStore((store) => store.action);
     const isExpand = sider === AppSiderState.expand;
@@ -37,10 +36,16 @@ export default function ButtonSider() {
     const SiderIcon = isExpand ? KeyboardDoubleArrowLeftIcon : KeyboardDoubleArrowRightIcon;
 
     React.useEffect(() => {
-        delay(150, () => {
-            popperRef.current?.update?.();
-        }).then();
-    }, [sider]);
+        if (!buttonRef.current) return;
+        const resizeObserver = new ResizeObserver(() => {
+            popperRef.current?.update();
+        });
+        resizeObserver.observe(buttonRef.current);
+
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, []);
 
     const onChangeSider = () => {
         settingAction.changeSider(isExpand ? AppSiderState.collapse : AppSiderState.expand);
@@ -52,10 +57,10 @@ export default function ButtonSider() {
             placement="right"
             arrow
             slotProps={{
-                popper: { popperRef },
+                popper: { popperRef, modifiers: [{ name: 'computeStyles', options: { gpuAcceleration: false } }] },
             }}
         >
-            <Button className="w-full min-w-14" disabled={isForce} onClick={onChangeSider}>
+            <Button ref={buttonRef} className="w-full min-w-14" disabled={isForce} onClick={onChangeSider}>
                 <SiderIcon />
             </Button>
         </Tooltip>
