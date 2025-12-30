@@ -34,7 +34,7 @@ const defaultSettingStore: Readonly<App.ModuleBase.Store.SettingStore['data']> =
 };
 
 export const useSettingStore = create<App.ModuleBase.Store.SettingStore>((set) => ({
-    data: window.structuredClone(defaultSettingStore),
+    data: structuredClone(defaultSettingStore),
     action: {
         changeLocale: (locale = defaultSettingStore.locale) => {
             Cookies.set(AppKey.locale, locale);
@@ -59,7 +59,7 @@ export const useSettingStore = create<App.ModuleBase.Store.SettingStore>((set) =
                 })
             );
         },
-        changeNotify: (notifyData = window.structuredClone(defaultNotifyStoreData)) => {
+        changeNotify: (notifyData = structuredClone(defaultNotifyStoreData)) => {
             set(
                 produce<App.ModuleBase.Store.SettingStore>((store) => {
                     store.data.notify = { ...store.data.notify, ...notifyData };

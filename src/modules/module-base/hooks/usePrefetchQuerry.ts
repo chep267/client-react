@@ -15,7 +15,7 @@ export const usePrefetchQuery = (options: FetchQueryOptions) => {
 
     // This happens in render, but is safe to do because ensureQueryData
     // only fetches if there is no data in the cache for this query. This
-    // means we know no observers are watching the data so the side effect
+    // means we know no observers are watching the data, so the side effect
     // is not observable, which is safe.
     queryClient.ensureQueryData(options).then();
 };
