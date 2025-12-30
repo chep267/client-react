@@ -6,13 +6,12 @@
 
 /** libs */
 import * as React from 'react';
+import clsx from 'clsx';
 import Tooltip from '@mui/material/Tooltip';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
-/** styles */
 
 const AppItem = React.memo<App.ModuleGlobal.Component.AppItemProps>(function AppItem(props) {
     const { isSelected, hasTooltip, item } = props;
@@ -28,19 +27,9 @@ const AppItem = React.memo<App.ModuleGlobal.Component.AppItemProps>(function App
 
     return (
         <ListItem
-            className="w-full p-1"
-            sx={
-                isSelected
-                    ? {
-                          '& .MuiListItemButton-root': {
-                              backgroundColor: 'primary.dark',
-                              '& .MuiListItemText-root, .MuiSvgIcon-root': {
-                                  color: 'common.white',
-                              },
-                          },
-                      }
-                    : undefined
-            }
+            className={clsx('w-full p-1', {
+                '[&_.MuiListItemButton-root]:bg-tw-primary [&_.MuiListItemButton-root]:*:text-white': isSelected,
+            })}
         >
             <Tooltip title={item.name} placement="right" arrow disableHoverListener={!hasTooltip}>
                 {itemContent}

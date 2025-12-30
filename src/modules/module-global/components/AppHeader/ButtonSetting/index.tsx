@@ -54,7 +54,7 @@ export default function ButtonSetting() {
             </Tooltip>
 
             <Popper
-                className="!top-3.5 z-100"
+                className="!fixed !top-[calc(var(--app-size-header-height)+2px)] !right-4 z-(--mui-zIndex-appBar) !transform-none"
                 id={`popper-${menuId}`}
                 open={open}
                 anchorEl={anchorEl}

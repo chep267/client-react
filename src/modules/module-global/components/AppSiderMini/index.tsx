@@ -8,7 +8,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -18,10 +17,8 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import GamesIcon from '@mui/icons-material/Games';
 
 /** constants */
-import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 import { AppSiderState } from '@module-base/constants/AppSiderState';
 import { AppRouterPath } from '@module-base/constants/AppRouterPath';
-import { GlobalLanguage } from '@module-global/constants/GlobalLanguage';
 
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
@@ -35,22 +32,18 @@ const AppSiderMini = React.memo(function AppSiderMini() {
         return [
             {
                 path: AppRouterPath.feed,
-                name: <FormattedMessage id={GlobalLanguage.component.label.feed} />,
                 icon: <HomeIcon />,
             },
             {
                 path: AppRouterPath.messenger,
-                name: <FormattedMessage id={GlobalLanguage.component.label.messenger} />,
                 icon: <TelegramIcon />,
             },
             {
                 path: AppRouterPath.calendar,
-                name: <FormattedMessage id={GlobalLanguage.component.label.calendar} />,
                 icon: <CalendarMonthIcon />,
             },
             {
                 path: AppRouterPath.game,
-                name: <FormattedMessage id={GlobalLanguage.component.label.game} />,
                 icon: <GamesIcon />,
             },
         ];
@@ -68,8 +61,9 @@ const AppSiderMini = React.memo(function AppSiderMini() {
     return (
         <AppBar
             position="sticky"
-            className={clsx('z-1', { ['hidden']: sider !== AppSiderState.hidden })}
-            sx={{ top: `${AppScreenSize.HeaderHeight}px` }}
+            className={clsx('top-0 z-1', {
+                ['hidden']: sider !== AppSiderState.hidden,
+            })}
         >
             <Tabs
                 value={tabValue}

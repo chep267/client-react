@@ -33,9 +33,7 @@ export default function AuthRoute(props: React.PropsWithChildren) {
     const accountState = isAuthentication ? AccountState.signedIn : uid ? AccountState.reSignin : AccountState.signin;
 
     React.useEffect(() => {
-        const isAuthPath = Object.values(AuthRouterPath).includes(
-            pathname as (typeof AuthRouterPath)[keyof typeof AuthRouterPath]
-        );
+        const isAuthPath = Object.values(AuthRouterPath as Record<string, string>).includes(pathname);
         if (accountState === AccountState.signin && !isAuthPath) {
             /** not logged in, return to log in  */
             authAction.setData({ prePath: pathname });

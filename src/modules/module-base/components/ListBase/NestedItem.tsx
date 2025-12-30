@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import clsx from 'clsx';
 import CircularProgress from '@mui/material/CircularProgress';
 import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
@@ -15,10 +16,6 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-
-/** types */
-import type { SxProps, Theme } from '@mui/material/styles';
-import clsx from 'clsx';
 
 export default function NestedItem(props: App.ModuleBase.Component.NestedItemProps) {
     const { subIndex = 1, divide, loading, onClick, title, icon = '', className, subMenu } = props;
@@ -34,13 +31,6 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
         onClick?.(event);
     };
 
-    const styleIcon = React.useMemo<SxProps<Theme>>(
-        () => ({
-            marginLeft: `${6 + (subIndex - 1) * 24}px`,
-        }),
-        [subIndex, open]
-    );
-
     const renderCollapseList = React.useMemo(() => {
         return (
             <List disablePadding>
@@ -55,7 +45,12 @@ export default function NestedItem(props: App.ModuleBase.Component.NestedItemPro
         <div key={itemId}>
             {divide?.includes('top') ? <Divider /> : null}
             <ListItemButton className={className} onClick={toggleOpen}>
-                <ListItemIcon className={clsx('mr-5 min-w-6', { 'text-tw-primary': open })} sx={styleIcon}>
+                <ListItemIcon
+                    className={clsx('mr-5 min-w-6', { 'text-tw-primary': open })}
+                    sx={{
+                        marginLeft: `${6 + (subIndex - 1) * 24}px`,
+                    }}
+                >
                     {icon}
                 </ListItemIcon>
                 {loading ? (

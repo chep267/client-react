@@ -11,9 +11,6 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
-/** constants */
-import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-
 /** components */
 import AppInfo from '@module-global/components/AppHeader/AppInfo';
 import AppTimer from '@module-global/components/AppHeader/AppTimer';
@@ -27,10 +24,10 @@ export default function AppHeader() {
                 className={clsx(
                     'flex flex-row items-center justify-between',
                     'w-full px-4 py-0',
+                    'h-(--app-size-header-height) !min-h-0',
                     'text-tw-primary bg-white',
                     'dark:bg-transparent dark:text-white'
                 )}
-                sx={{ height: AppScreenSize.HeaderHeight }}
             >
                 <Box className="flex items-center gap-5">
                     <AppInfo />

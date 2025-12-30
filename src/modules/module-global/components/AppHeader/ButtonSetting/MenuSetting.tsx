@@ -6,6 +6,7 @@
 
 /** libs */
 import * as React from 'react';
+import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import List from '@mui/material/List';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
@@ -109,7 +110,13 @@ const MenuSetting = React.memo<MenuSettingProps>(function MenuSetting(props) {
     }, [hookSignout, isAuthentication, closeMenu]);
 
     return (
-        <List component="nav">
+        <List
+            component="nav"
+            className={clsx(
+                'scrollbar-thin overflow-auto overscroll-none',
+                'max-h-[calc(100dvh-var(--app-size-header-height)-20px)]'
+            )}
+        >
             {renderMenuBase}
             {renderMenuAuth}
         </List>

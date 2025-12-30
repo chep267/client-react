@@ -5,7 +5,6 @@
  */
 
 /** libs */
-import * as React from 'react';
 import clsx from 'clsx';
 import { FormattedMessage } from 'react-intl';
 import Snackbar from '@mui/material/Snackbar';
@@ -14,7 +13,6 @@ import AlertTitle from '@mui/material/AlertTitle';
 
 /** constants */
 import { AppTimer } from '@module-base/constants/AppTimer';
-import { AppScreenSize } from '@module-base/constants/AppScreenSize';
 
 /** stores */
 import { useSettingStore } from '@module-base/stores/useSettingStore';
@@ -23,17 +21,7 @@ export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBou
     const notifyData = useSettingStore(({ data }) => data.notify);
     const settingAction = useSettingStore(({ action }) => action);
 
-    const {
-        open,
-        message,
-        messageIntl,
-        color,
-        anchorOrigin,
-        duration = AppTimer.notifyDuration,
-        top = AppScreenSize.HeaderHeight + 6,
-    } = notifyData;
-
-    const style = React.useMemo(() => ({ top }), [top]);
+    const { open, message, messageIntl, color, anchorOrigin, duration = AppTimer.notifyDuration } = notifyData;
 
     const closeNotify = () => settingAction.changeNotify();
 
@@ -41,7 +29,6 @@ export default function NotifyBoundary(props: App.ModuleBase.Component.NotifyBou
         <Snackbar
             key="base-notify-boundary-app"
             open={open}
-            style={style}
             autoHideDuration={duration}
             anchorOrigin={anchorOrigin}
             onClose={closeNotify}

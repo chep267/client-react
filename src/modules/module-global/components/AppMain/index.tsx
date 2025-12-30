@@ -10,9 +10,6 @@ import { Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 
-/** constants */
-import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-
 /** components */
 import StartLoading from '@module-base/components/StartLoading';
 
@@ -23,7 +20,7 @@ const AuthRoute = React.lazy(() => import('@module-auth/screens/AuthRoute'));
 
 export default function AppMain() {
     return (
-        <Box component="main" className="flex shrink grow" sx={{ paddingTop: `${AppScreenSize.HeaderHeight}px` }}>
+        <Box component="main" className="flex shrink grow pt-(--app-size-header-height)">
             <Container id="app-container" className="flex h-full w-full max-w-full p-0">
                 <React.Suspense fallback={<StartLoading />}>
                     <Routes>

@@ -13,6 +13,9 @@ import { FormattedMessage } from 'react-intl';
 /** constants */
 import { BaseLanguage } from '@module-base/constants/BaseLanguage';
 
+/** styles */
+import './index.css';
+
 export default function StartLoading() {
     return (
         <Stack className={clsx('absolute', 'items-center justify-center', 'top-0 right-0 bottom-0 left-0')}>

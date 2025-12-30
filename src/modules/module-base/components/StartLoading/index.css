@@ -1,0 +1,24 @@
+@keyframes loadingAnim {
+    0% {
+        transform: rotate(45deg);
+    }
+    100% {
+        transform: rotate(405deg);
+    }
+}
+@keyframes startAnim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-loading-anim {
+    animation: loadingAnim 2s linear infinite;
+}
+
+.animate-start-anim {
+    animation: startAnim 2s linear infinite;
+}

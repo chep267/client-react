@@ -32,6 +32,7 @@ export default function LanguageProvider(props: React.PropsWithChildren) {
     if (!messages) {
         return null;
     }
+
     return (
         <IntlProvider defaultLocale={LocaleObject.en} locale={locale} messages={messages}>
             {children}

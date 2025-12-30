@@ -61,7 +61,7 @@ export default function ButtonSider() {
             }}
         >
             <Button ref={buttonRef} className="w-full min-w-14" disabled={isForce} onClick={onChangeSider}>
-                <SiderIcon />
+                <SiderIcon className="text-tw-primary" />
             </Button>
         </Tooltip>
     );

@@ -65,7 +65,7 @@ export default function ListApp(props: App.ModuleGlobal.Component.ListAppProps) 
 
     return (
         <ListBase
-            className={clsx('scrollbar-thin', { ['scrollbar-hidden']: hasTooltip })}
+            className={clsx('scrollbar-thin overscroll-none', { ['scrollbar-hidden']: hasTooltip })}
             data={apps}
             itemContent={itemContent}
         />

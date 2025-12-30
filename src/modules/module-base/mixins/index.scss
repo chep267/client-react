@@ -4,8 +4,8 @@
  *
  */
 
-$breakpoint-mobile: 30rem; /* 480px */
-$breakpoint-desktop: 88rem; /* 1408px */
+$breakpoint-mobile: var(--breakpoint-mobile); /* 480px */
+$breakpoint-desktop: var(--breakpoint-desktop); /* 1408px */
 
 @mixin mixin-screen-mobile {
     @media only screen and (max-width: #{$breakpoint-mobile}) {

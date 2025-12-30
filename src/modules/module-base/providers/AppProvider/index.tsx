@@ -8,19 +8,12 @@
 import * as React from 'react';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { BrowserRouter } from 'react-router-dom';
-import useMediaQuery from '@mui/material/useMediaQuery';
-
-/** constants */
-import { AppScreenSize } from '@module-base/constants/AppScreenSize';
-import { AppSiderState } from '@module-base/constants/AppSiderState';
-
-/** stores */
-import { useSettingStore } from '@module-base/stores/useSettingStore';
 
 /** providers */
 import NotifyProvider from '@module-base/providers/NotifyProvider';
 import ThemeProvider from '@module-base/providers/ThemeProvider';
 import LanguageProvider from '@module-base/providers/LanguageProvider';
+import WindowProvider from '@module-base/providers/WindowProvider';
 
 /** Create a client */
 const queryClient = new QueryClient({
@@ -39,38 +32,17 @@ const queryClient = new QueryClient({
 export default function AppProvider(props: React.PropsWithChildren) {
     const { children } = props;
 
-    const isForce = useMediaQuery(`(max-width:${AppScreenSize.AppbarCollapseBreakpoint}px)`);
-    const isHidden = useMediaQuery(`(max-width:${AppScreenSize.AppbarHiddenBreakpoint}px)`);
-    const sider = useSettingStore((store) => store.data.sider);
-    const settingAction = useSettingStore((store) => store.action);
-    const lastState = React.useRef<App.ModuleBase.Store.SiderState>(sider);
-
-    /** sider event */
-    React.useEffect(() => {
-        if (sider === AppSiderState.expand || sider === AppSiderState.collapse) {
-            lastState.current = sider;
-        }
-        switch (true) {
-            case isHidden:
-                settingAction.changeSider(AppSiderState.hidden);
-                break;
-            case isForce:
-                settingAction.changeSider(AppSiderState.force);
-                break;
-            default:
-                settingAction.changeSider(lastState.current);
-        }
-    }, [isForce, isHidden]);
-
     return (
         <QueryClientProvider client={queryClient}>
-            <LanguageProvider>
-                <ThemeProvider>
-                    <NotifyProvider>
-                        <BrowserRouter>{children}</BrowserRouter>
-                    </NotifyProvider>
-                </ThemeProvider>
-            </LanguageProvider>
+            <BrowserRouter>
+                <LanguageProvider>
+                    <ThemeProvider>
+                        <NotifyProvider>
+                            <WindowProvider>{children}</WindowProvider>
+                        </NotifyProvider>
+                    </ThemeProvider>
+                </LanguageProvider>
+            </BrowserRouter>
         </QueryClientProvider>
     );
 }

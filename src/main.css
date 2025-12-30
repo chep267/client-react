@@ -16,26 +16,6 @@
     --breakpoint-tablet: 40rem; /* 640px */
     --breakpoint-laptop: 64rem; /* 1024px */
     --breakpoint-desktop: 88rem; /* 1408px */
-
-    --animate-loading-anim: loadingAnim 2s linear infinite;
-    --animate-start-anim: startAnim 2s linear infinite;
-
-    @keyframes loadingAnim {
-        0% {
-            transform: rotate(45deg);
-        }
-        100% {
-            transform: rotate(405deg);
-        }
-    }
-    @keyframes startAnim {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
 }
 
 @theme inline {
@@ -53,6 +33,8 @@
         --color-custom-warning: var(--color-amber-500);
         --color-custom-success: var(--color-green-500);
         --color-custom-info: var(--color-blue-500);
+
+        --app-size-header-height: 64px;
     }
     /* Theme dark */
     [data-theme='dark'],

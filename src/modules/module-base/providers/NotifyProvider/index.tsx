@@ -38,7 +38,7 @@ class NotifyProvider extends React.Component<
         return (
             <React.Suspense fallback={null}>
                 {hasError ? <FallBack isAutoReload={isAutoReload} /> : children}
-                <NotifyBoundary />
+                <NotifyBoundary className="top-[calc(var(--app-size-header-height)+6px)]" />
             </React.Suspense>
         );
     }
